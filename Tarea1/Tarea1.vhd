@@ -1,0 +1,17 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all; 
+
+ENTITY Tarea1 IS PORT(
+
+	SW   : IN  STD_LOGIC_VECTOR (9 DOWNTO 0);
+	LEDR : OUT STD_LOGIC_VECTOR (9 DOWNTO 0)
+ );
+
+END Tarea1;
+ 
+ARCHITECTURE SwitchToLed OF Tarea1 IS
+BEGIN
+ 
+	LEDR <= not(SW);
+
+END SwitchToLed;	
