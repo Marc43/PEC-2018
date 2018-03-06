@@ -36,8 +36,8 @@ ARCHITECTURE Structure OF Morse IS
 	SIGNAL CLOCK_HS : STD_LOGIC;
 	SIGNAL MorseCode: STD_LOGIC_VECTOR (11 DOWNTO 0);
 	SIGNAL START_V	 : STD_LOGIC_VECTOR  (3 DOWNTO 0); -- [15, 0] start at maximum (also length)
-	SIGNAL MY_CLOCK : STD_LOGIC;
-
+	SIGNAL RESET	 : STD_LOGIC := '0';
+	
 BEGIN
 
 	clock : clockGen
@@ -56,16 +56,22 @@ BEGIN
 	
 	PROCESS (CLOCK_HS, KEY)
 		VARIABLE ITERATOR  	: INTEGER := 0;
-		VARIABLE INI_MORSE 	: STD_LOGIC := '0';
-		VARIABLE WIP			: STD_LOGIC := '0';
+		VARIABLE INI_MORSE 	: STD_LOGIC;
+		VARIABLE WIP			: STD_LOGIC;
 	BEGIN
-	
-		IF KEY(1)'last_value = '1' and KEY(1) = '0' THEN -- Start the sequence
-			INI_MORSE := '1';
-			WIP := '1';
 		
-		ELSIF KEY(1)'last_value = '1' and KEY(0) = '0' THEN -- Abort the sequence
+		IF RESET = '0' THEN
+			
+			INI_MORSE := '0';
 			WIP := '0';
+			RESET <= '1';
+	
+		ELSIF KEY(1) = '0' AND KEY(1)'last_value = '1' THEN -- Start the sequence
+			INI_MORSE := '1';
+		
+		ELSIF KEY(0) = '0' AND KEY(0)'last_value = '1' THEN -- Abort the sequence
+			WIP := '0';
+			LEDR(0) <= '0';
 	
 		ELSIF falling_edge(CLOCK_HS) THEN
 		   -- If it's time to print, and the morse has started
@@ -75,7 +81,7 @@ BEGIN
 				WIP := '1';
 			END IF;
 			
-			IF ITERATOR = -1 THEN
+			IF ITERATOR < 0 THEN --We finished the morse sequence
 				WIP := '0';
 			END IF;
 			
@@ -88,7 +94,9 @@ BEGIN
 				ITERATOR := ITERATOR - 1;
 			END IF;
 		END IF;
+		
 		LEDG(0) <= not WIP;
+		
 	END PROCESS;
 	
 END Structure;	
