@@ -9,7 +9,7 @@ ENTITY Morse IS
 	PORT (CLOCK_50  : IN STD_LOGIC;
 			SW        : IN STD_LOGIC_VECTOR  (2 DOWNTO 0);
 			KEY		 : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
-			LEDR		 : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			LEDR		 : OUT STD_LOGIC_VECTOR (0 DOWNTO 0);
 			LEDG		 : OUT STD_LOGIC_VECTOR (0 DOWNTO 0);
 			HEX0      : OUT std_logic_vector (6 downto 0));
 END Morse;
@@ -54,20 +54,17 @@ BEGIN
 	MorseVector => MorseCode,
 	START_VEC   => START_V);
 	
-	PROCESS (CLOCK_HS, KEY(1), KEY(0))
+	PROCESS (CLOCK_HS, KEY)
 		VARIABLE ITERATOR  	: INTEGER := 0;
 		VARIABLE INI_MORSE 	: STD_LOGIC := '0';
-		VARIABLE FINISH		: STD_LOGIC := '1';
 		VARIABLE WIP			: STD_LOGIC := '0';
 	BEGIN
 	
-		IF KEY(1) = '0' THEN -- Start the sequence
+		IF KEY(1)'last_value = '1' and KEY(1) = '0' THEN -- Start the sequence
 			INI_MORSE := '1';
-			FINISH := '0';
 			WIP := '1';
 		
-		ELSIF KEY(0) = '0' THEN -- Abort the sequence
-			FINISH := '1';
+		ELSIF KEY(1)'last_value = '1' and KEY(0) = '0' THEN -- Abort the sequence
 			WIP := '0';
 	
 		ELSIF falling_edge(CLOCK_HS) THEN
@@ -80,7 +77,6 @@ BEGIN
 			
 			IF ITERATOR = -1 THEN
 				WIP := '0';
-				FINISH := '1';
 			END IF;
 			
 			IF WIP = '1' THEN
@@ -92,7 +88,7 @@ BEGIN
 				ITERATOR := ITERATOR - 1;
 			END IF;
 		END IF;
-		LEDG(0) <= FINISH;
+		LEDG(0) <= not WIP;
 	END PROCESS;
 	
 END Structure;	

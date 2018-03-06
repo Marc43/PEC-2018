@@ -438,7 +438,7 @@ GND*                         : R15       :        :                   :         
 GND*                         : R16       :        :                   :         : 7         :                
 GND*                         : R17       :        :                   :         : 6         :                
 GND*                         : R18       :        :                   :         : 6         :                
-LEDR[1]                      : R19       : output : 3.3-V LVTTL       :         : 6         : Y              
+GND*                         : R19       :        :                   :         : 6         :                
 LEDR[0]                      : R20       : output : 3.3-V LVTTL       :         : 6         : Y              
 KEY[1]                       : R21       : input  : 3.3-V LVTTL       :         : 6         : Y              
 KEY[0]                       : R22       : input  : 3.3-V LVTTL       :         : 6         : Y              
