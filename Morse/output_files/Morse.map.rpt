@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Morse
-Tue Mar 06 14:43:37 2018
+Wed Mar 07 13:38:18 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -48,13 +48,13 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Mar 06 14:43:37 2018           ;
+; Analysis & Synthesis Status        ; Successful - Wed Mar 07 13:38:18 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; Morse                                           ;
 ; Top-level Entity Name              ; Morse                                           ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 1,163                                           ;
-;     Total combinational functions  ; 655                                             ;
+; Total logic elements               ; 1,164                                           ;
+;     Total combinational functions  ; 656                                             ;
 ;     Dedicated logic registers      ; 869                                             ;
 ; Total registers                    ; 869                                             ;
 ; Total pins                         ; 15                                              ;
@@ -172,7 +172,7 @@ applicable agreement for further details.
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                   ; Library ;
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------+---------+
-; ../Tarea7b/clock_gen.vhd         ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/PEC-2018-master/Tarea7b/clock_gen.vhd                 ;         ;
+; clock_gen.vhd                    ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/PEC-2018-master/Morse/clock_gen.vhd                   ;         ;
 ; Morse.vhd                        ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/PEC-2018-master/Morse/Morse.vhd                       ;         ;
 ; SwitchToMorse.vhd                ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/PEC-2018-master/Morse/SwitchToMorse.vhd               ;         ;
 ; displayLletres.vhd               ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/PEC-2018-master/Morse/displayLletres.vhd              ;         ;
@@ -225,6 +225,7 @@ applicable agreement for further details.
 ; sld_rom_sr.vhd                   ; yes             ; Encrypted Megafunction       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/sld_rom_sr.vhd               ;         ;
 ; sld_hub.vhd                      ; yes             ; Encrypted Megafunction       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/sld_hub.vhd                  ;         ;
 ; sld_jtag_hub.vhd                 ; yes             ; Encrypted Megafunction       ; c:/altera/13.0sp1/quartus/libraries/megafunctions/sld_jtag_hub.vhd             ;         ;
+; ../Tarea7b/clock_gen.vhd         ; yes             ; User VHDL File               ; ../Tarea7b/clock_gen.vhd                                                       ;         ;
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------+---------+
 
 
@@ -233,16 +234,16 @@ applicable agreement for further details.
 +---------------------------------------------+----------+
 ; Resource                                    ; Usage    ;
 +---------------------------------------------+----------+
-; Estimated Total logic elements              ; 1,163    ;
+; Estimated Total logic elements              ; 1,164    ;
 ;                                             ;          ;
-; Total combinational functions               ; 655      ;
+; Total combinational functions               ; 656      ;
 ; Logic element usage by number of LUT inputs ;          ;
-;     -- 4 input functions                    ; 243      ;
-;     -- 3 input functions                    ; 213      ;
-;     -- <=2 input functions                  ; 199      ;
+;     -- 4 input functions                    ; 242      ;
+;     -- 3 input functions                    ; 214      ;
+;     -- <=2 input functions                  ; 200      ;
 ;                                             ;          ;
 ; Logic elements by mode                      ;          ;
-;     -- normal mode                          ; 536      ;
+;     -- normal mode                          ; 537      ;
 ;     -- arithmetic mode                      ; 119      ;
 ;                                             ;          ;
 ; Total registers                             ; 869      ;
@@ -254,8 +255,8 @@ applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0        ;
 ; Maximum fan-out node                        ; CLOCK_50 ;
 ; Maximum fan-out                             ; 499      ;
-; Total fan-out                               ; 5400     ;
-; Average fan-out                             ; 3.42     ;
+; Total fan-out                               ; 5401     ;
+; Average fan-out                             ; 3.41     ;
 +---------------------------------------------+----------+
 
 
@@ -264,12 +265,12 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                              ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                         ; Library Name ;
 +---------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |Morse                                                                                                  ; 655 (86)          ; 869 (36)     ; 37888       ; 0            ; 0       ; 0         ; 15   ; 0            ; |Morse                                                                                                                                                                                                                                                                                                                                      ; work         ;
+; |Morse                                                                                                  ; 656 (86)          ; 869 (36)     ; 37888       ; 0            ; 0       ; 0         ; 15   ; 0            ; |Morse                                                                                                                                                                                                                                                                                                                                      ; work         ;
 ;    |Display7:visor0|                                                                                    ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|Display7:visor0                                                                                                                                                                                                                                                                                                                      ; work         ;
 ;    |clockGen:clock|                                                                                     ; 75 (75)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|clockGen:clock                                                                                                                                                                                                                                                                                                                       ; work         ;
-;    |sld_hub:auto_hub|                                                                                   ; 117 (1)           ; 86 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                     ; work         ;
-;       |sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|                                                    ; 116 (78)          ; 86 (58)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst                                                                                                                                                                                                                                                                        ; work         ;
-;          |sld_rom_sr:hub_info_reg|                                                                      ; 21 (21)           ; 9 (9)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_rom_sr:hub_info_reg                                                                                                                                                                                                                                                ; work         ;
+;    |sld_hub:auto_hub|                                                                                   ; 118 (1)           ; 86 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                     ; work         ;
+;       |sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|                                                    ; 117 (78)          ; 86 (58)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst                                                                                                                                                                                                                                                                        ; work         ;
+;          |sld_rom_sr:hub_info_reg|                                                                      ; 22 (22)           ; 9 (9)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_rom_sr:hub_info_reg                                                                                                                                                                                                                                                ; work         ;
 ;          |sld_shadow_jsm:shadow_jsm|                                                                    ; 17 (17)           ; 19 (19)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_shadow_jsm:shadow_jsm                                                                                                                                                                                                                                              ; work         ;
 ;    |sld_signaltap:auto_signaltap_0|                                                                     ; 370 (1)           ; 714 (74)     ; 37888       ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_signaltap:auto_signaltap_0                                                                                                                                                                                                                                                                                                       ; work         ;
 ;       |sld_signaltap_impl:sld_signaltap_body|                                                           ; 369 (0)           ; 640 (0)      ; 37888       ; 0            ; 0       ; 0         ; 0    ; 0            ; |Morse|sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body                                                                                                                                                                                                                                                                 ; work         ;
@@ -375,8 +376,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 ; Inverted Register                                                                                                                                                              ; Fan out ;
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; INI_MORSE                                                                                                                                                                      ; 36      ;
-; FIRST                                                                                                                                                                          ; 35      ;
+; INI_MORSE                                                                                                                                                                      ; 35      ;
+; FIRST                                                                                                                                                                          ; 34      ;
 ; clockGen:clock|COUNTER[6]                                                                                                                                                      ; 2       ;
 ; clockGen:clock|COUNTER[11]                                                                                                                                                     ; 2       ;
 ; clockGen:clock|COUNTER[12]                                                                                                                                                     ; 2       ;
@@ -413,7 +414,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------+
-; 9:1                ; 2 bits    ; 12 LEs        ; 10 LEs               ; 2 LEs                  ; No         ; |Morse|ITERATOR                                                                                              ;
+; 3:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; No         ; |Morse|ITERATOR                                                                                              ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 10 LEs               ; 2 LEs                  ; No         ; |Morse|ITERATOR                                                                                              ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|hub_minor_ver_reg[0]                    ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|mixer_addr_reg[4]                       ;
 ; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |Morse|sld_hub:auto_hub|sld_jtag_hub:\jtag_hub_gen:sld_jtag_hub_inst|sld_rom_sr:hub_info_reg|word_counter[0] ;
@@ -601,10 +603,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue Mar 06 14:43:34 2018
+    Info: Processing started: Wed Mar 07 13:38:14 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Morse -c Morse
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018-master/tarea7b/clock_gen.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file clock_gen.vhd
     Info (12022): Found design unit 1: clockGen-Structure
     Info (12023): Found entity 1: clockGen
 Info (12021): Found 2 design units, including 1 entities, in source file morse.vhd
@@ -666,15 +668,15 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (35024): Succesfully connected in-system debug instance "auto_signaltap_0" to all 75 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1237 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1238 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 9 input pins
     Info (21059): Implemented 10 output pins
-    Info (21061): Implemented 1180 logic cells
+    Info (21061): Implemented 1181 logic cells
     Info (21064): Implemented 37 RAM segments
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 525 megabytes
-    Info: Processing ended: Tue Mar 06 14:43:37 2018
-    Info: Elapsed time: 00:00:03
+    Info: Peak virtual memory: 521 megabytes
+    Info: Processing ended: Wed Mar 07 13:38:18 2018
+    Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 
 

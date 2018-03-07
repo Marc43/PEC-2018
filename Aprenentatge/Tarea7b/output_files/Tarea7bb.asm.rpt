@@ -1,5 +1,5 @@
 Assembler report for Tarea7bb
-Wed Feb 28 11:52:49 2018
+Wed Mar 07 13:46:30 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -10,8 +10,8 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/pec02/Documents/PEC/Tarea7bb/output_files/Tarea7bb.sof
-  6. Assembler Device Options: C:/Users/pec02/Documents/PEC/Tarea7bb/output_files/Tarea7bb.pof
+  5. Assembler Device Options: C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/output_files/Tarea7bb.sof
+  6. Assembler Device Options: C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/output_files/Tarea7bb.pof
   7. Assembler Messages
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Feb 28 11:52:49 2018 ;
+; Assembler Status      ; Successful - Wed Mar 07 13:46:30 2018 ;
 ; Revision Name         ; Tarea7bb                              ;
 ; Top-level Entity Name ; Tarea7b                               ;
 ; Family                ; Cyclone II                            ;
@@ -78,37 +78,37 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+-----------------------------------------------------------------+
-; Assembler Generated Files                                       ;
-+-----------------------------------------------------------------+
-; File Name                                                       ;
-+-----------------------------------------------------------------+
-; C:/Users/pec02/Documents/PEC/Tarea7bb/output_files/Tarea7bb.sof ;
-; C:/Users/pec02/Documents/PEC/Tarea7bb/output_files/Tarea7bb.pof ;
-+-----------------------------------------------------------------+
++-----------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                               ;
++-----------------------------------------------------------------------------------------+
+; File Name                                                                               ;
++-----------------------------------------------------------------------------------------+
+; C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/output_files/Tarea7bb.sof ;
+; C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/output_files/Tarea7bb.pof ;
++-----------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/pec02/Documents/PEC/Tarea7bb/output_files/Tarea7bb.sof ;
-+----------------+--------------------------------------------------------------------------+
-; Option         ; Setting                                                                  ;
-+----------------+--------------------------------------------------------------------------+
-; Device         ; EP2C20F484C7                                                             ;
-; JTAG usercode  ; 0x001C2593                                                               ;
-; Checksum       ; 0x001C2593                                                               ;
-+----------------+--------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/output_files/Tarea7bb.sof ;
++----------------+--------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                          ;
++----------------+--------------------------------------------------------------------------------------------------+
+; Device         ; EP2C20F484C7                                                                                     ;
+; JTAG usercode  ; 0x001C2593                                                                                       ;
+; Checksum       ; 0x001C2593                                                                                       ;
++----------------+--------------------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/pec02/Documents/PEC/Tarea7bb/output_files/Tarea7bb.pof ;
-+--------------------+----------------------------------------------------------------------+
-; Option             ; Setting                                                              ;
-+--------------------+----------------------------------------------------------------------+
-; Device             ; EPCS16                                                               ;
-; JTAG usercode      ; 0x00000000                                                           ;
-; Checksum           ; 0x1DD786E0                                                           ;
-; Compression Ratio  ; 3                                                                    ;
-+--------------------+----------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/output_files/Tarea7bb.pof ;
++--------------------+----------------------------------------------------------------------------------------------+
+; Option             ; Setting                                                                                      ;
++--------------------+----------------------------------------------------------------------------------------------+
+; Device             ; EPCS16                                                                                       ;
+; JTAG usercode      ; 0x00000000                                                                                   ;
+; Checksum           ; 0x1DD786E0                                                                                   ;
+; Compression Ratio  ; 3                                                                                            ;
++--------------------+----------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -117,13 +117,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Feb 28 11:52:48 2018
+    Info: Processing started: Wed Mar 07 13:46:29 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off Tarea7bb -c Tarea7bb
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 436 megabytes
-    Info: Processing ended: Wed Feb 28 11:52:49 2018
+    Info: Processing ended: Wed Mar 07 13:46:30 2018
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

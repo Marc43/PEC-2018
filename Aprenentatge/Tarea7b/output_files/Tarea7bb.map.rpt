@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Tarea7bb
-Wed Feb 28 11:52:43 2018
+Wed Mar 07 13:46:25 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -43,7 +43,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Feb 28 11:52:43 2018           ;
+; Analysis & Synthesis Status        ; Successful - Wed Mar 07 13:46:25 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; Tarea7bb                                        ;
 ; Top-level Entity Name              ; Tarea7b                                         ;
@@ -162,15 +162,15 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                  ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                           ; Library ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------+---------+
-; Tarea7b.vhd                      ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC/Tarea7bb/Tarea7b.vhd      ;         ;
-; display4bits.vhd                 ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC/Tarea7bb/display4bits.vhd ;         ;
-; clock_gen.vhd                    ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC/Tarea7bb/clock_gen.vhd    ;         ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                   ; Library ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------+---------+
+; Tarea7b.vhd                      ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/Tarea7b.vhd      ;         ;
+; display4bits.vhd                 ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/display4bits.vhd ;         ;
+; clock_gen.vhd                    ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/Aprenentatge/Tarea7b/clock_gen.vhd    ;         ;
++----------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------+
@@ -279,7 +279,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Feb 28 11:52:42 2018
+    Info: Processing started: Wed Mar 07 13:46:24 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Tarea7bb -c Tarea7bb
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
 Info (12021): Found 2 design units, including 1 entities, in source file tarea7b.vhd
@@ -301,8 +301,8 @@ Info (21057): Implemented 149 device resources after synthesis - the final resou
     Info (21059): Implemented 28 output pins
     Info (21061): Implemented 120 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 486 megabytes
-    Info: Processing ended: Wed Feb 28 11:52:43 2018
+    Info: Peak virtual memory: 485 megabytes
+    Info: Processing ended: Wed Mar 07 13:46:25 2018
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

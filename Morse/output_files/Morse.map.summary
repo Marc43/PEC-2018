@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Tue Mar 06 14:43:37 2018
+Analysis & Synthesis Status : Successful - Wed Mar 07 13:38:18 2018
 Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : Morse
 Top-level Entity Name : Morse
 Family : Cyclone II
-Total logic elements : 1,163
-    Total combinational functions : 655
+Total logic elements : 1,164
+    Total combinational functions : 656
     Dedicated logic registers : 869
 Total registers : 869
 Total pins : 15
