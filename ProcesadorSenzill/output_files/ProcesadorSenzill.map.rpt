@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ProcesadorSenzill
-Tue Mar 06 15:51:36 2018
+Thu Mar 08 13:33:04 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -10,12 +10,7 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Elapsed Time Per Partition
- 10. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Messages
 
 
 
@@ -41,20 +36,20 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Mar 06 15:51:36 2018           ;
+; Analysis & Synthesis Status        ; Failed - Thu Mar 08 13:33:04 2018               ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; ProcesadorSenzill                               ;
 ; Top-level Entity Name              ; regfile                                         ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 216                                             ;
-;     Total combinational functions  ; 88                                              ;
-;     Dedicated logic registers      ; 128                                             ;
-; Total registers                    ; 128                                             ;
-; Total pins                         ; 40                                              ;
-; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 0                                               ;
-; Embedded Multiplier 9-bit elements ; 0                                               ;
-; Total PLLs                         ; 0                                               ;
+; Total logic elements               ; N/A until Partition Merge                       ;
+;     Total combinational functions  ; N/A until Partition Merge                       ;
+;     Dedicated logic registers      ; N/A until Partition Merge                       ;
+; Total registers                    ; N/A until Partition Merge                       ;
+; Total pins                         ; N/A until Partition Merge                       ;
+; Total virtual pins                 ; N/A until Partition Merge                       ;
+; Total memory bits                  ; N/A until Partition Merge                       ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
+; Total PLLs                         ; N/A until Partition Merge                       ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -160,86 +155,13 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                  ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                           ; Library ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------+---------+
-; regfile.vhd                      ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorSenzill/regfile.vhd ;         ;
-+----------------------------------+-----------------+-----------------+------------------------------------------------------------------------+---------+
-
-
-+-----------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary         ;
-+---------------------------------------------+-------+
-; Resource                                    ; Usage ;
-+---------------------------------------------+-------+
-; Estimated Total logic elements              ; 216   ;
-;                                             ;       ;
-; Total combinational functions               ; 88    ;
-; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 72    ;
-;     -- 3 input functions                    ; 16    ;
-;     -- <=2 input functions                  ; 0     ;
-;                                             ;       ;
-; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 88    ;
-;     -- arithmetic mode                      ; 0     ;
-;                                             ;       ;
-; Total registers                             ; 128   ;
-;     -- Dedicated logic registers            ; 128   ;
-;     -- I/O registers                        ; 0     ;
-;                                             ;       ;
-; I/O pins                                    ; 40    ;
-; Embedded Multiplier 9-bit elements          ; 0     ;
-; Maximum fan-out node                        ; clk   ;
-; Maximum fan-out                             ; 128   ;
-; Total fan-out                               ; 736   ;
-; Average fan-out                             ; 2.88  ;
-+---------------------------------------------+-------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |regfile                   ; 88 (88)           ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 40   ; 0            ; |regfile            ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 128   ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 128   ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:00     ;
-+----------------+--------------+
-
-
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue Mar 06 15:51:35 2018
+    Info: Processing started: Thu Mar 08 13:33:04 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProcesadorSenzill -c ProcesadorSenzill
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
 Info (12021): Found 2 design units, including 1 entities, in source file unidad_control.vhd
@@ -254,31 +176,17 @@ Info (12021): Found 2 design units, including 1 entities, in source file proc.vh
 Info (12021): Found 2 design units, including 1 entities, in source file datapath.vhd
     Info (12022): Found design unit 1: datapath-Structure
     Info (12023): Found entity 1: datapath
-Info (12021): Found 2 design units, including 1 entities, in source file control_l.vhd
-    Info (12022): Found design unit 1: control_l-Structure
-    Info (12023): Found entity 1: control_l
+Error (10500): VHDL syntax error at control_l.vhd(29) near text "IF";  expecting "end", or "(", or an identifier ("if" is a reserved keyword), or a concurrent statement File: C:/Users/pec02/Documents/PEC-2018-master/ProcesadorSenzill/control_l.vhd Line: 29
+Error (10500): VHDL syntax error at control_l.vhd(31) near text "IF";  expecting ";", or an identifier ("if" is a reserved keyword), or "architecture" File: C:/Users/pec02/Documents/PEC-2018-master/ProcesadorSenzill/control_l.vhd Line: 31
+Error (10500): VHDL syntax error at control_l.vhd(35) near text "IF";  expecting ";", or an identifier ("if" is a reserved keyword), or "architecture" File: C:/Users/pec02/Documents/PEC-2018-master/ProcesadorSenzill/control_l.vhd Line: 35
+Info (12021): Found 0 design units, including 0 entities, in source file control_l.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
     Info (12022): Found design unit 1: alu-Structure
     Info (12023): Found entity 1: alu
-Info (12021): Found 0 design units, including 0 entities, in source file regfile_test.vhd
-Info (12127): Elaborating entity "regfile" for the top level hierarchy
-Warning (10492): VHDL Process Statement warning at regfile.vhd(25): signal "wrd" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276004): RAM logic "regs" is uninferred due to inappropriate RAM size
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "addr_d[0]"
-    Warning (15610): No output dependent on input pin "addr_d[1]"
-    Warning (15610): No output dependent on input pin "addr_d[2]"
-Info (21057): Implemented 256 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 24 input pins
-    Info (21059): Implemented 16 output pins
-    Info (21061): Implemented 216 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 477 megabytes
-    Info: Processing ended: Tue Mar 06 15:51:36 2018
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 3 errors, 0 warnings
+    Error: Peak virtual memory: 475 megabytes
+    Error: Processing ended: Thu Mar 08 13:33:04 2018
+    Error: Elapsed time: 00:00:00
+    Error: Total CPU time (on all processors): 00:00:01
 
 
