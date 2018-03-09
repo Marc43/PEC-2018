@@ -15,35 +15,18 @@ END control_l;
 ARCHITECTURE Structure OF control_l IS
 	SIGNAL instr_code : STD_LOGIC_VECTOR (3 DOWNTO 0);
 BEGIN
-
 	instr_code <= ir(15 DOWNTO 12);
 	
-	ldpc	<= '1'; -- By default always active
-	wrd	<= '1';
+	immed		<= X"00" & ir(7 DOWNTO 0) WHEN instr_code = "0101" AND ir (7) = '0' ELSE
+					X"FF" & ir(7 DOWNTO 0) WHEN instr_code = "0101" AND ir (7) = '1';
+	op			<= ir(8) WHEN instr_code = "0101";
+	addr_a	<= ir(11 DOWNTO 9) WHEN instr_code = "0101" and ir(8) = '1';
+	addr_d 	<= ir(11 DOWNTO 9) WHEN instr_code = "0101";
 	
-	immed		<= ir(7 DOWNTO 0);
-	op			<= ir(8);
-	addr_a	<= ir(11 DOWNTO 9);
-	addr_d 	<= ir(11 DOWNTO 9);
-	
-	IF ir = 0xFFFF THEN
-		ldpc	<= not ldpc; -- HALT CPU
-	END IF;
+	ldpc <= '0' WHEN ir = X"FFFF" ELSE
+		     '1';
+		  
+	wrd <= '1' WHEN instr_code = "0101" ELSE
+		    '0';
 
-	IF addr_a != addr_d THEN
-		wrd <= not wrd; -- Write not allowed
-	END IF;
-	
-	--CASE instr_code IS
-	--	WHEN "0101" =>
-	--		immed		<= ir(7 DOWNTO 0);
-	--		op			<= ir(8);
-	--		addr_a	<= ir(11 DOWNTO 9);
-	--		addr_d 	<= ir(11 DOWNTO 9);
-	--		ldpc 		<= '1'; -- Increase PC
-	--		wrd		<= '1'; -- Regfile write permission
-	--	WHEN others =>
-	--		ldpc 		<= '0'; -- Stop 
-	--END CASE;
-		
 END Structure;
