@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ProcesadorMulticicle
-Tue Mar 13 10:49:32 2018
+Tue Mar 13 15:22:47 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -14,7 +14,7 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Inverted Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
  10. Elapsed Time Per Partition
  11. Analysis & Synthesis Messages
 
@@ -42,16 +42,16 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Mar 13 10:49:32 2018           ;
+; Analysis & Synthesis Status        ; Successful - Tue Mar 13 15:22:47 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; ProcesadorMulticicle                            ;
-; Top-level Entity Name              ; proc                                            ;
+; Top-level Entity Name              ; datapath                                        ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 23                                              ;
-;     Total combinational functions  ; 23                                              ;
-;     Dedicated logic registers      ; 15                                              ;
-; Total registers                    ; 15                                              ;
-; Total pins                         ; 34                                              ;
+; Total logic elements               ; 378                                             ;
+;     Total combinational functions  ; 266                                             ;
+;     Dedicated logic registers      ; 128                                             ;
+; Total registers                    ; 128                                             ;
+; Total pins                         ; 96                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -65,7 +65,7 @@ applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value        ;
 +----------------------------------------------------------------------------+--------------------+----------------------+
 ; Device                                                                     ; EP2C20F484C7       ;                      ;
-; Top-level entity name                                                      ; proc               ; ProcesadorMulticicle ;
+; Top-level entity name                                                      ; datapath           ; ProcesadorMulticicle ;
 ; Family name                                                                ; Cyclone II         ; Cyclone IV GX        ;
 ; Use smart compilation                                                      ; Off                ; Off                  ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                   ;
@@ -161,18 +161,15 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                            ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                     ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
-; unidad_control.vhd               ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/unidad_control.vhd ;         ;
-; regfile.vhd                      ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/regfile.vhd        ;         ;
-; proc.vhd                         ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/proc.vhd           ;         ;
-; datapath.vhd                     ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/datapath.vhd       ;         ;
-; control_l.vhd                    ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/control_l.vhd      ;         ;
-; alu.vhd                          ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/alu.vhd            ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                      ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                               ; Library ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------+---------+
+; regfile.vhd                      ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/regfile.vhd  ;         ;
+; datapath.vhd                     ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/datapath.vhd ;         ;
+; alu.vhd                          ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/alu.vhd      ;         ;
++----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -180,40 +177,40 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimated Total logic elements              ; 23    ;
+; Estimated Total logic elements              ; 378   ;
 ;                                             ;       ;
-; Total combinational functions               ; 23    ;
+; Total combinational functions               ; 266   ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 5     ;
-;     -- 3 input functions                    ; 1     ;
-;     -- <=2 input functions                  ; 17    ;
+;     -- 4 input functions                    ; 156   ;
+;     -- 3 input functions                    ; 108   ;
+;     -- <=2 input functions                  ; 2     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 10    ;
-;     -- arithmetic mode                      ; 13    ;
+;     -- normal mode                          ; 251   ;
+;     -- arithmetic mode                      ; 15    ;
 ;                                             ;       ;
-; Total registers                             ; 15    ;
-;     -- Dedicated logic registers            ; 15    ;
+; Total registers                             ; 128   ;
+;     -- Dedicated logic registers            ; 128   ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
-; I/O pins                                    ; 34    ;
+; I/O pins                                    ; 96    ;
 ; Embedded Multiplier 9-bit elements          ; 0     ;
-; Maximum fan-out node                        ; boot  ;
-; Maximum fan-out                             ; 16    ;
-; Total fan-out                               ; 128   ;
-; Average fan-out                             ; 1.78  ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 128   ;
+; Total fan-out                               ; 1368  ;
+; Average fan-out                             ; 2.79  ;
 +---------------------------------------------+-------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                    ;
-+------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
-; Compilation Hierarchy Node   ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                          ; Library Name ;
-+------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
-; |proc                        ; 23 (0)            ; 15 (0)       ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |proc                                        ; work         ;
-;    |unidad_control:c0|       ; 23 (18)           ; 15 (15)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |proc|unidad_control:c0                      ; work         ;
-;       |control_l:control_l0| ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |proc|unidad_control:c0|control_l:control_l0 ; work         ;
-+------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name        ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
+; |datapath                  ; 266 (52)          ; 128 (0)      ; 0           ; 0            ; 0       ; 0         ; 96   ; 0            ; |datapath                  ; work         ;
+;    |alu:alu0|              ; 46 (46)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |datapath|alu:alu0         ; work         ;
+;    |regfile:regfile0|      ; 168 (168)         ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |datapath|regfile:regfile0 ; work         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -222,25 +219,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 15    ;
+; Total registers                              ; 128   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 15    ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 15    ;
+; Number of registers using Clock Enable       ; 128   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; unidad_control:c0|PC0[14]              ; 2       ;
-; unidad_control:c0|PC0[15]              ; 2       ;
-; Total number of inverted registers = 2 ;         ;
-+----------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |datapath|alu:alu0|Mux14   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
 +-------------------------------+
@@ -258,7 +253,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue Mar 13 10:49:31 2018
+    Info: Processing started: Tue Mar 13 15:22:45 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProcesadorMulticicle -c ProcesadorMulticicle
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
 Info (12021): Found 2 design units, including 1 entities, in source file unidad_control.vhd
@@ -270,9 +265,9 @@ Info (12021): Found 2 design units, including 1 entities, in source file regfile
 Info (12021): Found 2 design units, including 1 entities, in source file proc.vhd
     Info (12022): Found design unit 1: proc-Structure
     Info (12023): Found entity 1: proc
-Info (12021): Found 2 design units, including 1 entities, in source file memory.vhd
-    Info (12022): Found design unit 1: memory-comportament
-    Info (12023): Found entity 1: memory
+Info (12021): Found 2 design units, including 1 entities, in source file multi.vhd
+    Info (12022): Found design unit 1: multi-Structure
+    Info (12023): Found entity 1: multi
 Info (12021): Found 2 design units, including 1 entities, in source file datapath.vhd
     Info (12022): Found design unit 1: datapath-Structure
     Info (12023): Found entity 1: datapath
@@ -282,52 +277,22 @@ Info (12021): Found 2 design units, including 1 entities, in source file control
 Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
     Info (12022): Found design unit 1: alu-Structure
     Info (12023): Found entity 1: alu
-Info (12127): Elaborating entity "proc" for the top level hierarchy
-Info (12128): Elaborating entity "unidad_control" for hierarchy "unidad_control:c0"
-Warning (10492): VHDL Process Statement warning at unidad_control.vhd(51): signal "boot" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at unidad_control.vhd(55): signal "boot" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at unidad_control.vhd(49): inferring latch(es) for signal or variable "PC0", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "PC0[0]" at unidad_control.vhd(49)
-Info (12128): Elaborating entity "control_l" for hierarchy "unidad_control:c0|control_l:control_l0"
-Info (10041): Inferred latch for "addr_d[0]" at control_l.vhd(24)
-Info (10041): Inferred latch for "addr_d[1]" at control_l.vhd(24)
-Info (10041): Inferred latch for "addr_d[2]" at control_l.vhd(24)
-Info (10041): Inferred latch for "addr_a[0]" at control_l.vhd(23)
-Info (10041): Inferred latch for "addr_a[1]" at control_l.vhd(23)
-Info (10041): Inferred latch for "addr_a[2]" at control_l.vhd(23)
-Info (10041): Inferred latch for "op" at control_l.vhd(22)
-Info (10041): Inferred latch for "immed[0]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[1]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[2]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[3]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[4]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[5]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[6]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[7]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[8]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[9]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[10]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[11]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[12]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[13]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[14]" at control_l.vhd(20)
-Info (10041): Inferred latch for "immed[15]" at control_l.vhd(20)
-Info (12128): Elaborating entity "datapath" for hierarchy "datapath:e0"
-Info (12128): Elaborating entity "regfile" for hierarchy "datapath:e0|regfile:reg0"
-Warning (10492): VHDL Process Statement warning at regfile.vhd(24): signal "wrd" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Info (12128): Elaborating entity "alu" for hierarchy "datapath:e0|alu:alu0"
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "addr_m[0]" is stuck at GND
+Info (12127): Elaborating entity "datapath" for the top level hierarchy
+Info (12128): Elaborating entity "alu" for hierarchy "alu:alu0"
+Info (12128): Elaborating entity "regfile" for hierarchy "regfile:regfile0"
+Warning (10492): VHDL Process Statement warning at regfile.vhd(26): signal "wrd" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "regfile:regfile0|regs" is uninferred due to inappropriate RAM size
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 57 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 18 input pins
-    Info (21059): Implemented 16 output pins
-    Info (21061): Implemented 23 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 479 megabytes
-    Info: Processing ended: Tue Mar 13 10:49:32 2018
-    Info: Elapsed time: 00:00:01
+Info (21057): Implemented 490 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 64 input pins
+    Info (21059): Implemented 32 output pins
+    Info (21061): Implemented 394 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 480 megabytes
+    Info: Processing ended: Tue Mar 13 15:22:47 2018
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 
 
