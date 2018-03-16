@@ -18,11 +18,72 @@ end entity;
 
 architecture Structure of multi is
 
-    -- Aqui iria la declaracion de las los estados de la maquina de estados
+TYPE states_t IS (IDLE, FETCH, DEMW);
+
+SIGNAL state : states_t;
 
 begin
 
-    -- Aqui iria la máquina de estados del modelos de Moore que gestiona el multiciclo
-    -- Aqui irian la generacion de las senales de control que su valor depende del ciclo en que se esta.
+	PROCESS (clk, boot)
+	BEGIN
+	
+		IF boot = '1' THEN
+		
+			state <= IDLE;
+			
+		ELSIF rising_edge(clk) THEN
+		
+			CASE state IS
+				WHEN IDLE 	=>
+					IF boot = '0' THEN
+						state <= FETCH; -- Boot edged to 0
+					END IF;
+				WHEN FETCH 	=>
+				
+					state <= DEMW;
+				
+				WHEN DEMW	=>
+				
+					state <= FETCH;
+			END CASE;
+			
+		END IF;
+		
+	END PROCESS;
+	
+	PROCESS (state)
+	BEGIN
+		
+		CASE state IS
+			WHEN IDLE 	=>
+			
+					ldpc 	<= '0';
+					wrd 	<= '0';
+					wr_m	<=	'0';
+					word_byte 	<= '0'; 
+					ins_dad		<=	'0';
+					ldir			<=	'0';
+			
+			WHEN FETCH 	=>
+			
+					ldpc	<= '0';
+					wrd	<= '0';
+					wr_m	<= '0';
+					word_byte 	<= '0';
+					ins_dad		<= '0'; -- MEM[PC]
+					ldir			<= '1'; -- Copy to IR
+			
+			WHEN DEMW 	=>
+				
+					ldpc 	<= ldpc_l;
+					wrd	<= wrd_l;
+					wr_m	<= wr_m_l;
+					word_byte 	<= w_b;
+					ins_dad		<= '1'; -- To do stores from the ALU
+					ldir			<=	'0';
+			
+		END CASE;
+		
+	END PROCESS;
 
 end Structure;

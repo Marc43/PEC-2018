@@ -72,7 +72,6 @@ BEGIN
 	ldpc	<=	'0' 	WHEN op_code = HALT ELSE
 				'1';
 	
-	
 	wr_m	<= '1' 	WHEN op_code = ST 	OR 
 							  op_code = STB 	ELSE		
 				'0'; 
@@ -88,5 +87,10 @@ BEGIN
 	word_byte 	<= '1' WHEN op_code = LDB OR
 									op_code = STB ELSE		
 						'0'; -- Note that could be "NOT immed_x2"
+						
+	wrd			<= '0' WHEN op_code = HALT OR
+									op_code = STB 	OR
+									op_code = ST	ELSE
+						'1';
 	
 END Structure;
