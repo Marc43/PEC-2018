@@ -70,15 +70,18 @@ BEGIN
 	
 	WITH in_d SELECT		-- Data output or data from memory (loads)
 		mux_dreg <= alu_out 	WHEN '0',
-						datard_m	WHEN '1';
+						datard_m	WHEN '1',
+						alu_out	WHEN others;
 	
 	WITH immed_x2 SELECT -- Normal operations or memory access (aligment) 
 		mux_immed <= immed 															WHEN '0',
-					    STD_LOGIC_VECTOR(shift_left(unsigned(immed), 1))	WHEN '1';
+					    STD_LOGIC_VECTOR(shift_left(unsigned(immed), 1))	WHEN '1',
+						 immed															WHEN others;
 						 
 	WITH ins_dad SELECT
 		mux_addr <= pc 		WHEN '0',
-						alu_out	WHEN '1';
+						alu_out	WHEN '1',
+						pc			WHEN others;
 						
 	data_wr	<= reg_b;
 	addr_m	<= mux_addr;

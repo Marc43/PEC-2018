@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ProcesadorMulticicle
-Fri Mar 16 14:57:27 2018
+Mon Mar 19 14:22:04 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,14 +13,10 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |unidad_control|multi:multi0|state
-  9. User-Specified and Inferred Latches
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Port Connectivity Checks: "multi:multi0"
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Elapsed Time Per Partition
+ 11. Analysis & Synthesis Messages
 
 
 
@@ -46,16 +42,16 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Mar 16 14:57:27 2018           ;
+; Analysis & Synthesis Status        ; Successful - Mon Mar 19 14:22:04 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; ProcesadorMulticicle                            ;
-; Top-level Entity Name              ; unidad_control                                  ;
+; Top-level Entity Name              ; datapath                                        ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 60                                              ;
-;     Total combinational functions  ; 58                                              ;
-;     Dedicated logic registers      ; 34                                              ;
-; Total registers                    ; 34                                              ;
-; Total pins                         ; 67                                              ;
+; Total logic elements               ; 378                                             ;
+;     Total combinational functions  ; 266                                             ;
+;     Dedicated logic registers      ; 128                                             ;
+; Total registers                    ; 128                                             ;
+; Total pins                         ; 96                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -69,7 +65,7 @@ applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value        ;
 +----------------------------------------------------------------------------+--------------------+----------------------+
 ; Device                                                                     ; EP2C20F484C7       ;                      ;
-; Top-level entity name                                                      ; unidad_control     ; ProcesadorMulticicle ;
+; Top-level entity name                                                      ; datapath           ; ProcesadorMulticicle ;
 ; Family name                                                                ; Cyclone II         ; Cyclone IV GX        ;
 ; Use smart compilation                                                      ; Off                ; Off                  ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                   ;
@@ -165,15 +161,15 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                            ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                     ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
-; unidad_control.vhd               ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/unidad_control.vhd ;         ;
-; multi.vhd                        ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/multi.vhd          ;         ;
-; control_l.vhd                    ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018-master/ProcesadorMulticicle/control_l.vhd      ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                               ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                        ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
+; regfile.vhd                      ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018/ProcesadorMulticicle/regfile.vhd  ;         ;
+; datapath.vhd                     ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018/ProcesadorMulticicle/datapath.vhd ;         ;
+; alu.vhd                          ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/PEC-2018/ProcesadorMulticicle/alu.vhd      ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -181,83 +177,41 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimated Total logic elements              ; 60    ;
+; Estimated Total logic elements              ; 378   ;
 ;                                             ;       ;
-; Total combinational functions               ; 58    ;
+; Total combinational functions               ; 266   ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 10    ;
-;     -- 3 input functions                    ; 11    ;
-;     -- <=2 input functions                  ; 37    ;
+;     -- 4 input functions                    ; 156   ;
+;     -- 3 input functions                    ; 108   ;
+;     -- <=2 input functions                  ; 2     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 44    ;
-;     -- arithmetic mode                      ; 14    ;
+;     -- normal mode                          ; 251   ;
+;     -- arithmetic mode                      ; 15    ;
 ;                                             ;       ;
-; Total registers                             ; 34    ;
-;     -- Dedicated logic registers            ; 34    ;
+; Total registers                             ; 128   ;
+;     -- Dedicated logic registers            ; 128   ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
-; I/O pins                                    ; 67    ;
+; I/O pins                                    ; 96    ;
 ; Embedded Multiplier 9-bit elements          ; 0     ;
-; Maximum fan-out node                        ; boot  ;
-; Maximum fan-out                             ; 36    ;
-; Total fan-out                               ; 313   ;
-; Average fan-out                             ; 1.97  ;
+; Maximum fan-out node                        ; clk   ;
+; Maximum fan-out                             ; 128   ;
+; Total fan-out                               ; 1368  ;
+; Average fan-out                             ; 2.79  ;
 +---------------------------------------------+-------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                          ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                  ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+--------------+
-; |unidad_control            ; 58 (34)           ; 34 (31)      ; 0           ; 0            ; 0       ; 0         ; 67   ; 0            ; |unidad_control                      ; work         ;
-;    |control_l:control_l0|  ; 19 (19)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |unidad_control|control_l:control_l0 ; work         ;
-;    |multi:multi0|          ; 5 (5)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |unidad_control|multi:multi0         ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name        ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
+; |datapath                  ; 266 (52)          ; 128 (0)      ; 0           ; 0            ; 0       ; 0         ; 96   ; 0            ; |datapath                  ; work         ;
+;    |alu:alu0|              ; 46 (46)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |datapath|alu:alu0         ; work         ;
+;    |regfile:regfile0|      ; 168 (168)         ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |datapath|regfile:regfile0 ; work         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-Encoding Type:  One-Hot
-+-----------------------------------------------------+
-; State Machine - |unidad_control|multi:multi0|state  ;
-+-------------+------------+-------------+------------+
-; Name        ; state.DEMW ; state.FETCH ; state.IDLE ;
-+-------------+------------+-------------+------------+
-; state.IDLE  ; 0          ; 0           ; 0          ;
-; state.FETCH ; 0          ; 1           ; 1          ;
-; state.DEMW  ; 1          ; 0           ; 1          ;
-+-------------+------------+-------------+------------+
-
-
-+---------------------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                                           ;
-+-----------------------------------------------------+--------------------------------+------------------------+
-; Latch Name                                          ; Latch Enable Signal            ; Free of Timing Hazards ;
-+-----------------------------------------------------+--------------------------------+------------------------+
-; control_l:control_l0|op[0]                          ; GND                            ; yes                    ;
-; control_l:control_l0|op[1]                          ; GND                            ; yes                    ;
-; control_l:control_l0|immed[0]                       ; control_l:control_l0|immed[15] ; yes                    ;
-; control_l:control_l0|immed[1]                       ; control_l:control_l0|immed[15] ; yes                    ;
-; control_l:control_l0|immed[2]                       ; control_l:control_l0|immed[15] ; yes                    ;
-; control_l:control_l0|immed[3]                       ; control_l:control_l0|immed[15] ; yes                    ;
-; control_l:control_l0|immed[4]                       ; control_l:control_l0|immed[15] ; yes                    ;
-; control_l:control_l0|immed[5]                       ; control_l:control_l0|immed[15] ; yes                    ;
-; control_l:control_l0|immed[6]                       ; control_l:control_l0|Equal0    ; yes                    ;
-; control_l:control_l0|immed[7]                       ; control_l:control_l0|Equal0    ; yes                    ;
-; Number of user-specified and inferred latches = 10  ;                                ;                        ;
-+-----------------------------------------------------+--------------------------------+------------------------+
-Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
-
-
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; new_pc[0]                             ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 1 ;                                        ;
-+---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -265,12 +219,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 34    ;
+; Total registers                              ; 128   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 15    ;
-; Number of registers using Asynchronous Clear ; 3     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 31    ;
+; Number of registers using Clock Enable       ; 128   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -280,18 +234,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |unidad_control|bus_ir[5]  ;
-; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |unidad_control|new_pc[1]  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |datapath|alu:alu0|Mux14   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "multi:multi0"                                                                       ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; ldpc ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -309,7 +253,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Mar 16 14:57:26 2018
+    Info: Processing started: Mon Mar 19 14:22:02 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProcesadorMulticicle -c ProcesadorMulticicle
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
 Info (12021): Found 2 design units, including 1 entities, in source file unidad_control.vhd
@@ -333,56 +277,22 @@ Info (12021): Found 2 design units, including 1 entities, in source file control
 Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
     Info (12022): Found design unit 1: alu-Structure
     Info (12023): Found entity 1: alu
-Info (12127): Elaborating entity "unidad_control" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at unidad_control.vhd(63): object "multi_ldpc" assigned a value but never read
-Info (12128): Elaborating entity "control_l" for hierarchy "control_l:control_l0"
-Info (10041): Inferred latch for "op[0]" at control_l.vhd(61)
-Info (10041): Inferred latch for "op[1]" at control_l.vhd(61)
-Info (10041): Inferred latch for "immed[0]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[1]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[2]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[3]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[4]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[5]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[6]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[7]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[8]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[9]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[10]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[11]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[12]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[13]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[14]" at control_l.vhd(54)
-Info (10041): Inferred latch for "immed[15]" at control_l.vhd(54)
-Info (12128): Elaborating entity "multi" for hierarchy "multi:multi0"
-Warning (10492): VHDL Process Statement warning at multi.vhd(78): signal "ldpc_l" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at multi.vhd(79): signal "wrd_l" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at multi.vhd(80): signal "wr_m_l" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at multi.vhd(81): signal "w_b" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (13012): Latch control_l:control_l0|immed[6] has unsafe behavior
-    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal bus_ir[12]
-Warning (13012): Latch control_l:control_l0|immed[7] has unsafe behavior
-    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal bus_ir[12]
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "immed[8]" is stuck at GND
-    Warning (13410): Pin "immed[9]" is stuck at GND
-    Warning (13410): Pin "immed[10]" is stuck at GND
-    Warning (13410): Pin "immed[11]" is stuck at GND
-    Warning (13410): Pin "immed[12]" is stuck at GND
-    Warning (13410): Pin "immed[13]" is stuck at GND
-    Warning (13410): Pin "immed[14]" is stuck at GND
-    Warning (13410): Pin "immed[15]" is stuck at GND
-    Warning (13410): Pin "pc[0]" is stuck at GND
+Info (12127): Elaborating entity "datapath" for the top level hierarchy
+Info (12128): Elaborating entity "alu" for hierarchy "alu:alu0"
+Info (12128): Elaborating entity "regfile" for hierarchy "regfile:regfile0"
+Warning (10492): VHDL Process Statement warning at regfile.vhd(26): signal "wrd" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "regfile:regfile0|regs" is uninferred due to inappropriate RAM size
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 127 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 18 input pins
-    Info (21059): Implemented 49 output pins
-    Info (21061): Implemented 60 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 19 warnings
-    Info: Peak virtual memory: 489 megabytes
-    Info: Processing ended: Fri Mar 16 14:57:27 2018
-    Info: Elapsed time: 00:00:01
+Info (21057): Implemented 490 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 64 input pins
+    Info (21059): Implemented 32 output pins
+    Info (21061): Implemented 394 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 477 megabytes
+    Info: Processing ended: Mon Mar 19 14:22:04 2018
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 
 
