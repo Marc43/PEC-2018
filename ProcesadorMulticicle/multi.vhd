@@ -51,39 +51,11 @@ begin
 		
 	END PROCESS;
 	
-	PROCESS (state)
-	BEGIN
-		
-		CASE state IS
-			WHEN IDLE 	=>
-			
-					ldpc 	<= '0';
-					wrd 	<= '0';
-					wr_m	<=	'0';
-					word_byte 	<= '0'; 
-					ins_dad		<=	'0';
-					ldir			<=	'0';
-			
-			WHEN FETCH 	=>
-			
-					ldpc	<= '0';
-					wrd	<= '0';
-					wr_m	<= '0';
-					word_byte 	<= '0';
-					ins_dad		<= '0'; -- MEM[PC]
-					ldir			<= '1'; -- Copy to IR
-			
-			WHEN DEMW 	=>
-				
-					ldpc 	<= ldpc_l;
-					wrd	<= wrd_l;
-					wr_m	<= wr_m_l;
-					word_byte 	<= w_b;
-					ins_dad		<= '1'; -- To do stores from the ALU
-					ldir			<=	'0';
-			
-		END CASE;
-		
-	END PROCESS;
+	ldpc	<= ldpc_l	when state=DEMW else '0';
+	wrd	<= wrd_l 	when state=DEMW else '0';
+	wr_m	<= wr_m_l 	when state=DEMW else '0';
+	word_byte <= w_b	when state=DEMW else '0';
+	ins_dad <=	'1'	when state=DEMW else '0';
+	ldir <= '1'			when state=FETCH else '0';
 
 end Structure;

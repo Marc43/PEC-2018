@@ -55,7 +55,6 @@ SIGNAL bus_addr_b			: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL bus_addr_d 		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL bus_immed			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_pc				: STD_LOGIC_VECTOR (15 DOWNTO 0);
-SIGNAL bus_datard_m		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_ins_dad		: STD_LOGIC;
 SIGNAL bus_in_d			: STD_LOGIC;
 SIGNAL bus_immed_x2		: STD_LOGIC;
@@ -66,6 +65,7 @@ SIGNAL bus_addr_m			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_data_wr		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 
 BEGIN
+
 
 	unidad_control0 : unidad_control
 	PORT MAP (
@@ -82,7 +82,8 @@ BEGIN
 		ins_dad	=> bus_ins_dad,
 		immed_x2	=> bus_immed_x2,
 		wr_m		=> bus_wr_m,
-		word_byte=> bus_word_byte
+		word_byte=> bus_word_byte,
+		in_d 		=> bus_in_d
 	);
 	
 	datapath0 : datapath
@@ -95,13 +96,16 @@ BEGIN
 		addr_d	=> bus_addr_d,
 		immed		=> bus_immed,
 		immed_x2	=>	bus_immed_x2,
-		datard_m	=> bus_datard_m,
+		datard_m	=> datard_m,
 		ins_dad	=> bus_ins_dad,
 		pc			=> bus_pc,
 		in_d		=> bus_in_d,
-		addr_m	=> bus_addr_m,
-		data_wr	=> bus_data_wr
+		addr_m	=> addr_m,
+		data_wr	=> data_wr
 		
 	);
+	
+	wr_m <= bus_wr_m;
+	word_byte <= bus_word_byte;
    
 END Structure;

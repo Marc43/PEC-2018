@@ -69,7 +69,6 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL pc_mux_startaddr		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 	SIGNAL new_pc					: STD_LOGIC_VECTOR (15 DOWNTO 0);
-	--SIGNAL pcmas2					: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 BEGIN
 
@@ -113,7 +112,7 @@ BEGIN
 		instr_mux_and	<= instrPC_mux_instrIR WHEN '0',
 								X"0000"				  WHEN others;
 								
-	WITH bus_ldpc SELECT
+	WITH multi_ldpc SELECT
 		pcmas2_mux_oldpc	<= new_pc		WHEN '0',
 									new_pc + 2 	WHEN others;
 								

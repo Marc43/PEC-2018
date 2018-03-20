@@ -39,9 +39,6 @@ add wave -noupdate /test_sisa/proc0/datapath0/regfile0/d
 add wave -noupdate /test_sisa/proc0/datapath0/regfile0/wrd
 add wave -noupdate -expand /test_sisa/proc0/datapath0/regfile0/regs
 TreeUpdate [SetDefaultTree]
-quietly WaveActivateNextPane
-quietly WaveActivateNextPane
-quietly WaveActivateNextPane
 WaveRestoreCursors {{Cursor 3} {0 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 373

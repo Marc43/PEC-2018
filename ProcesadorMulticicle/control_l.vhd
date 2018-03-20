@@ -51,12 +51,12 @@ BEGIN
 	immed_ma 	<= ir(5 DOWNTO 0);
 	immed_alu	<= ir(7 DOWNTO 0);
 	
-	immed			<= std_logic_vector(resize(unsigned(immed_ma), immed'length)) 	WHEN 		op_code = LD 	OR
+	immed			<= std_logic_vector(resize(signed(immed_ma), immed'length)) 	WHEN 		op_code = LD 	OR
 																													op_code = LDB 	OR
 																													op_code = ST 	OR
 																													op_code = STB	ELSE
 					
-						std_logic_vector(resize(unsigned(immed_alu), immed'length)) WHEN 		op_code = MOV;
+						std_logic_vector(resize(signed(immed_alu), immed'length)) WHEN 		op_code = MOV;
 
 	op		<= ADD 	WHEN 		op_code = LD	OR 
 									op_code = ST	OR 
