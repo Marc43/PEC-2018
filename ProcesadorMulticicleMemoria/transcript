@@ -1,0 +1,116 @@
+# Loading project ctrl_mem
+# Compile of MemoryController.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd failed with 2 errors.
+# 3 compiles, 1 failed with 2 errors. 
+# Compile of MemoryController.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd failed with 1 errors.
+# 3 compiles, 1 failed with 1 error. 
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of MemoryController.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd failed with 1 errors.
+# 3 compiles, 1 failed with 1 error. 
+# Compile of MemoryController.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd failed with 1 errors.
+# 3 compiles, 1 failed with 1 error. 
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of SRAMController.vhd was successful.
+# reading /home/akuja/akuja_drive/Marc/Universidad/FIB/altera/13.0sp1/modelsim_ase/linuxaloem/../modelsim.ini
+# Loading project test_sisa
+# Compile of async_64Kx16.vhd failed with 1 errors.
+# Compile of MemoryController.vhd was successful.
+# Compile of package_timing.vhd was successful.
+# Compile of package_utility.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd was successful.
+# Compile of test_sisa.vhd was successful with warnings.
+# 7 compiles, 1 failed with 1 error. 
+# Compile of async_64Kx16.vhd was successful.
+# Compile of async_64Kx16.vhd was successful.
+# Compile of MemoryController.vhd was successful.
+# Compile of package_timing.vhd was successful.
+# Compile of package_utility.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd was successful.
+# Compile of test_sisa.vhd was successful with warnings.
+# 7 compiles, 0 failed with no errors. 
+vsim work.test_sisa
+# vsim work.test_sisa 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.test_sisa(comportament)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.sisa(structure)
+# Loading ieee.std_logic_textio(body)
+# Loading work.package_timing(body)
+# Loading work.package_utility(body)
+# Loading work.async_64kx16(behave_arch)
+# ** Warning: (vsim-8683) Uninitialized out port /test_sisa/SoC/SRAM_ADDR(17 downto 16) has no driver.
+# This port will contribute value (UU) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized out port /test_sisa/SoC/SRAM_ADDR(15 downto 0) has no driver.
+# This port will contribute value (UUUUUUUUUUUUUUUU) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(15) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(14) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(13) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(12) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(11) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(10) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(9) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(8) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(7) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(6) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(5) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(4) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(3) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(2) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(1) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized inout port /test_sisa/SoC/SRAM_DQ(0) has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized out port /test_sisa/SoC/SRAM_UB_N has no driver.
+# This port will contribute value (U) to the signal network.
+# ** Warning: (vsim-8683) Uninitialized out port /test_sisa/SoC/SRAM_LB_N has no driver.
+# This port will contribute value (U) to the signal network.
+add wave sim:/test_sisa/SoC/*
+run 1000ns
+# Compile of test_states.vhd failed with 1 errors.
+# Compile of test_states.vhd failed with 1 errors.
+# Compile of test_states.vhd failed with 1 errors.
+# Compile of test_states.vhd failed with 1 errors.
+# Compile of test_states.vhd was successful.
+vsim work.test_mem
+# vsim work.test_mem 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.test_mem(comportament)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.sramcontroller(comportament)
+# ** Warning: (vsim-8683) Uninitialized out port /test_mem/controller0/dataReaded(15 downto 0) has no driver.
+# This port will contribute value (UUUUUUUUUUUUUUUU) to the signal network.
+add wave sim:/test_mem/controller0/*
+run 1000ns
