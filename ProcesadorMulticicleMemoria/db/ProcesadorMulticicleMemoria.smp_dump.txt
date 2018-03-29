@@ -1,0 +1,6 @@
+
+State Machine - |MemoryController|SRAMController:controller0|state
+Name state.WR_ST state.RD_ST state.IDLE_ST 
+state.IDLE_ST 0 0 0 
+state.RD_ST 0 1 1 
+state.WR_ST 1 0 1 

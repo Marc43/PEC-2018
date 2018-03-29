@@ -25,6 +25,8 @@ architecture comportament of SRAMController is
 	TYPE states_t IS (IDLE_ST, RD_ST, WR_ST); 
 	
 	SIGNAL state : states_t := IDLE_ST;
+	
+	signal data_ext : std_logic_vector (15 downto 0);
 
 begin
 
@@ -76,5 +78,14 @@ begin
 		END PROCESS;
 			
 		SRAM_ADDR 	<= "00" & address;
+		
+		data_ext		<= X"11" & SRAM_DQ (7 downto 0) when SRAM_DQ (7) = '1' else
+							X"00" & SRAM_DQ (7 downto 0);
+							
+		dataReaded	<= data_ext when state = RD_ST and byte_m = '1' else
+							SRAM_DQ	when state = RD_ST and byte_m = '0' else
+							SRAM_DQ;
+		
+		-- TODO, where is the readed data obtained????????? !!!!!•
 
 end comportament;

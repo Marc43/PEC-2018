@@ -23,24 +23,26 @@ architecture comportament of test_mem is
           byte_m      : in    std_logic := '0');
   end component;
   
+  signal clk    : std_logic := '0';
   signal addr   : STD_LOGIC_VECTOR (15 downto 0);
   signal dataRD : std_logic_vector (15 downto 0);
   signal byte   : std_logic;
-  signal Write  : std_logic;
+  signal wri    : std_logic := '0';
   signal dataWR : std_logic_vector (15 downto 0); 
-  
-  signal CLOCK_50 : std_logic;
   
 begin
   
   controller0 : SRAMController
   port map (
-    clk => CLOCK_50,
+    clk => clk,
     address => addr,
     dataReaded => dataRD,
-    WR  => Write,
+    WR  => wri,
     byte_m => byte,
     dataToWrite => dataWR
   );
+  
+  wri 	<= not wri after 5 ns; 
+  clk 	<= not clk after 10 ns;
   
 end comportament;
