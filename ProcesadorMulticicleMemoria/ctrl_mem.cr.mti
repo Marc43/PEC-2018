@@ -1,4 +1,12 @@
-/home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd
+X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity test_mem
+-- Compiling architecture comportament of test_mem
+
+} {} {}} /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO

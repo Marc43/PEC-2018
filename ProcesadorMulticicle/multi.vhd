@@ -20,11 +20,11 @@ architecture Structure of multi is
 
 TYPE states_t IS (IDLE, FETCH, DEMW);
 
-SIGNAL state : states_t;
+SIGNAL state : states_t := IDLE;
 
 begin
 
-	PROCESS (clk, boot)
+	PROCESS (clk)
 	BEGIN
 	
 		IF boot = '1' THEN

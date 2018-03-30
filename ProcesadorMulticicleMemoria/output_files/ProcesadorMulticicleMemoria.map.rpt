@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ProcesadorMulticicleMemoria
-Thu Mar 29 19:40:46 2018
+Fri Mar 30 09:39:37 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,13 +13,17 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |MemoryController|SRAMController:controller0|state
-  9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
+  8. State Machine - |sisa|MemoryController:mem_ctrl0|SRAMController:controller0|state
+  9. State Machine - |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0|state
+ 10. User-Specified and Inferred Latches
+ 11. Logic Cells Representing Combinational Loops
+ 12. Registers Removed During Synthesis
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
 
 
 
@@ -45,16 +49,16 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Mar 29 19:40:46 2018           ;
+; Analysis & Synthesis Status        ; Successful - Fri Mar 30 09:39:37 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; ProcesadorMulticicleMemoria                     ;
-; Top-level Entity Name              ; MemoryController                                ;
+; Top-level Entity Name              ; sisa                                            ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 3                                               ;
-;     Total combinational functions  ; 3                                               ;
-;     Dedicated logic registers      ; 2                                               ;
-; Total registers                    ; 2                                               ;
-; Total pins                         ; 90                                              ;
+; Total logic elements               ; 39                                              ;
+;     Total combinational functions  ; 37                                              ;
+;     Dedicated logic registers      ; 19                                              ;
+; Total registers                    ; 19                                              ;
+; Total pins                         ; 41                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -68,7 +72,7 @@ applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value               ;
 +----------------------------------------------------------------------------+--------------------+-----------------------------+
 ; Device                                                                     ; EP2C20F484C7       ;                             ;
-; Top-level entity name                                                      ; MemoryController   ; ProcesadorMulticicleMemoria ;
+; Top-level entity name                                                      ; sisa               ; ProcesadorMulticicleMemoria ;
 ; Family name                                                                ; Cyclone II         ; Cyclone IV GX               ;
 ; Use smart compilation                                                      ; Off                ; Off                         ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                          ;
@@ -158,108 +162,450 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                     ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                              ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
-; SRAMController.vhd               ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd   ;         ;
-; MemoryController.vhd             ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                               ;
++--------------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path           ; Used in Netlist ; File Type       ; File Name with Absolute Path                                              ; Library ;
++--------------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
+; ../ProcesadorMulticicle/unidad_control.vhd ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd          ;         ;
+; ../ProcesadorMulticicle/regfile.vhd        ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd                 ;         ;
+; ../ProcesadorMulticicle/proc.vhd           ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd                    ;         ;
+; ../ProcesadorMulticicle/multi.vhd          ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd                   ;         ;
+; ../ProcesadorMulticicle/datapath.vhd       ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd                ;         ;
+; ../ProcesadorMulticicle/control_l.vhd      ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd               ;         ;
+; ../ProcesadorMulticicle/alu.vhd            ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/alu.vhd                     ;         ;
+; SRAMController.vhd                         ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd   ;         ;
+; sisa.vhd                                   ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd             ;         ;
+; MemoryController.vhd                       ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd ;         ;
++--------------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                        ;
-+---------------------------------------------+--------------------------------------+
-; Resource                                    ; Usage                                ;
-+---------------------------------------------+--------------------------------------+
-; Estimated Total logic elements              ; 3                                    ;
-;                                             ;                                      ;
-; Total combinational functions               ; 3                                    ;
-; Logic element usage by number of LUT inputs ;                                      ;
-;     -- 4 input functions                    ; 1                                    ;
-;     -- 3 input functions                    ; 0                                    ;
-;     -- <=2 input functions                  ; 2                                    ;
-;                                             ;                                      ;
-; Logic elements by mode                      ;                                      ;
-;     -- normal mode                          ; 3                                    ;
-;     -- arithmetic mode                      ; 0                                    ;
-;                                             ;                                      ;
-; Total registers                             ; 2                                    ;
-;     -- Dedicated logic registers            ; 2                                    ;
-;     -- I/O registers                        ; 0                                    ;
-;                                             ;                                      ;
-; I/O pins                                    ; 90                                   ;
-; Embedded Multiplier 9-bit elements          ; 0                                    ;
-; Maximum fan-out node                        ; SRAMController:controller0|SRAM_OE_N ;
-; Maximum fan-out                             ; 3                                    ;
-; Total fan-out                               ; 29                                   ;
-; Average fan-out                             ; 0.31                                 ;
-+---------------------------------------------+--------------------------------------+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++---------------------------------------------+------------+
+; Resource                                    ; Usage      ;
++---------------------------------------------+------------+
+; Estimated Total logic elements              ; 39         ;
+;                                             ;            ;
+; Total combinational functions               ; 37         ;
+; Logic element usage by number of LUT inputs ;            ;
+;     -- 4 input functions                    ; 1          ;
+;     -- 3 input functions                    ; 1          ;
+;     -- <=2 input functions                  ; 35         ;
+;                                             ;            ;
+; Logic elements by mode                      ;            ;
+;     -- normal mode                          ; 23         ;
+;     -- arithmetic mode                      ; 14         ;
+;                                             ;            ;
+; Total registers                             ; 19         ;
+;     -- Dedicated logic registers            ; 19         ;
+;     -- I/O registers                        ; 0          ;
+;                                             ;            ;
+; I/O pins                                    ; 41         ;
+; Embedded Multiplier 9-bit elements          ; 0          ;
+; Maximum fan-out node                        ; clk_proc~0 ;
+; Maximum fan-out                             ; 19         ;
+; Total fan-out                               ; 170        ;
+; Average fan-out                             ; 1.75       ;
++---------------------------------------------+------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                       ;
-+---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
-; Compilation Hierarchy Node      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                          ; Library Name ;
-+---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
-; |MemoryController               ; 3 (0)             ; 2 (0)        ; 0           ; 0            ; 0       ; 0         ; 90   ; 0            ; |MemoryController                            ; work         ;
-;    |SRAMController:controller0| ; 3 (3)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |MemoryController|SRAMController:controller0 ; work         ;
-+---------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                              ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node             ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                          ; Library Name ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------+--------------+
+; |sisa                                  ; 37 (4)            ; 19 (0)       ; 0           ; 0            ; 0       ; 0         ; 41   ; 0            ; |sisa                                                        ; work         ;
+;    |MemoryController:mem_ctrl0|        ; 1 (0)             ; 1 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0                             ; work         ;
+;       |SRAMController:controller0|     ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0|SRAMController:controller0  ; work         ;
+;    |proc:proc0|                        ; 32 (0)            ; 18 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0                                             ; work         ;
+;       |datapath:datapath0|             ; 15 (15)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0                          ; work         ;
+;       |unidad_control:unidad_control0| ; 17 (16)           ; 18 (15)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0              ; work         ;
+;          |multi:multi0|                ; 1 (1)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0 ; work         ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+--------------------------------------------------------------------+
-; State Machine - |MemoryController|SRAMController:controller0|state ;
-+---------------+-------------+-------------+------------------------+
-; Name          ; state.WR_ST ; state.RD_ST ; state.IDLE_ST          ;
-+---------------+-------------+-------------+------------------------+
-; state.IDLE_ST ; 0           ; 0           ; 0                      ;
-; state.RD_ST   ; 0           ; 1           ; 1                      ;
-; state.WR_ST   ; 1           ; 0           ; 1                      ;
-+---------------+-------------+-------------+------------------------+
++-----------------------------------------------------------------------------------+
+; State Machine - |sisa|MemoryController:mem_ctrl0|SRAMController:controller0|state ;
++---------------+-------------+-------------+---------------------------------------+
+; Name          ; state.WR_ST ; state.RD_ST ; state.IDLE_ST                         ;
++---------------+-------------+-------------+---------------------------------------+
+; state.IDLE_ST ; 0           ; 0           ; 0                                     ;
+; state.RD_ST   ; 0           ; 1           ; 1                                     ;
+; state.WR_ST   ; 1           ; 0           ; 1                                     ;
++---------------+-------------+-------------+---------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                    ;
-+---------------------------------------------+---------------------------------------------------------+
-; Register name                               ; Reason for Removal                                      ;
-+---------------------------------------------+---------------------------------------------------------+
-; SRAMController:controller0|SRAM_WE_N        ; Stuck at VCC due to stuck port data_in                  ;
-; SRAMController:controller0|SRAM_UB_N        ; Stuck at GND due to stuck port data_in                  ;
-; SRAMController:controller0|SRAM_LB_N        ; Stuck at GND due to stuck port data_in                  ;
-; SRAMController:controller0|SRAM_CE_N        ; Merged with SRAMController:controller0|SRAM_OE_N        ;
-; SRAMController:controller0|state.WR_ST      ; Lost fanout                                             ;
-; SRAMController:controller0|SRAM_DQ[15]~reg0 ; Merged with SRAMController:controller0|SRAM_DQ[14]~reg0 ;
-; SRAMController:controller0|SRAM_DQ[14]~reg0 ; Merged with SRAMController:controller0|SRAM_DQ[13]~reg0 ;
-; SRAMController:controller0|SRAM_DQ[13]~reg0 ; Merged with SRAMController:controller0|SRAM_DQ[12]~reg0 ;
-; SRAMController:controller0|SRAM_DQ[12]~reg0 ; Merged with SRAMController:controller0|SRAM_DQ[11]~reg0 ;
-; SRAMController:controller0|SRAM_DQ[11]~reg0 ; Merged with SRAMController:controller0|SRAM_DQ[10]~reg0 ;
-; SRAMController:controller0|SRAM_DQ[10]~reg0 ; Merged with SRAMController:controller0|SRAM_DQ[9]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[9]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[8]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[8]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[7]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[7]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[6]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[6]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[5]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[5]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[4]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[4]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[3]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[3]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[2]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[2]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[1]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[1]~reg0  ; Merged with SRAMController:controller0|SRAM_DQ[0]~reg0  ;
-; SRAMController:controller0|SRAM_DQ[0]~reg0  ; Stuck at GND due to stuck port data_in                  ;
-; SRAMController:controller0|state.RD_ST      ; Lost fanout                                             ;
-; Total Number of Removed Registers = 22      ;                                                         ;
-+---------------------------------------------+---------------------------------------------------------+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------+
+; State Machine - |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0|state ;
++-------------+------------+-------------+-------------------------------------------+
+; Name        ; state.DEMW ; state.FETCH ; state.IDLE                                ;
++-------------+------------+-------------+-------------------------------------------+
+; state.IDLE  ; 0          ; 0           ; 0                                         ;
+; state.FETCH ; 0          ; 1           ; 1                                         ;
+; state.DEMW  ; 1          ; 0           ; 1                                         ;
++-------------+------------+-------------+-------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                     ;
-+--------------------------------------------+---------------------------+----------------------------------------+
-; Register name                              ; Reason for Removal        ; Registers Removed due to This Register ;
-+--------------------------------------------+---------------------------+----------------------------------------+
-; SRAMController:controller0|SRAM_DQ[0]~reg0 ; Stuck at GND              ; SRAMController:controller0|state.RD_ST ;
-;                                            ; due to stuck port data_in ;                                        ;
-+--------------------------------------------+---------------------------+----------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                                                                          ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+------------------------+
+; Latch Name                                                               ; Latch Enable Signal                                                      ; Free of Timing Hazards ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+------------------------+
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[0]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|op[0]     ; GND                                                                      ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|op[1]     ; GND                                                                      ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[1]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[2]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[3]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[4]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[5]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[6]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[8]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[9]  ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[10] ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[11] ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[12] ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[13] ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[14] ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15] ; yes                    ;
+; clk_proc                                                                 ; Equal0                                                                   ; yes                    ;
+; Number of user-specified and inferred latches = 19                       ;                                                                          ;                        ;
++--------------------------------------------------------------------------+--------------------------------------------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------------+
+; Logic Cells Representing Combinational Loops               ;
++--------------------------------------------------------+---+
+; Logic Cell Name                                        ;   ;
++--------------------------------------------------------+---+
+; Equal0~0                                               ;   ;
+; Equal0~1                                               ;   ;
+; Equal0~2                                               ;   ;
+; Number of logic cells representing combinational loops ; 3 ;
++--------------------------------------------------------+---+
+Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                          ;
++------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+; Register name                                                          ; Reason for Removal                                                                 ;
++------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_WE_N        ; Stuck at VCC due to stuck port data_in                                             ;
+; proc:proc0|unidad_control:unidad_control0|new_pc[0]                    ; Stuck at GND due to stuck port data_in                                             ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N        ; Stuck at GND due to stuck port data_in                                             ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_LB_N        ; Stuck at GND due to stuck port data_in                                             ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_CE_N        ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N        ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|state.WR_ST      ; Lost fanout                                                                        ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[15]~reg0 ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[14]~reg0 ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[14]~reg0 ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[13]~reg0 ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[13]~reg0 ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[12]~reg0 ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[12]~reg0 ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[11]~reg0 ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[11]~reg0 ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[10]~reg0 ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[10]~reg0 ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[9]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[9]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[8]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[8]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[7]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[7]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[6]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[6]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[5]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[5]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[4]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[4]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[3]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[3]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[2]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[2]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[1]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[1]~reg0  ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]~reg0  ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]~reg0  ; Stuck at GND due to stuck port data_in                                             ;
+; proc:proc0|unidad_control:unidad_control0|bus_ir[0..5,9..11]           ; Stuck at GND due to stuck port data_in                                             ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|state.RD_ST      ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~52                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|unidad_control:unidad_control0|bus_ir[7]                    ; Stuck at GND due to stuck port data_in                                             ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~36                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|unidad_control:unidad_control0|bus_ir[6]                    ; Stuck at GND due to stuck port data_in                                             ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~68                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~100                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~116                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~84                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~132                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|unidad_control:unidad_control0|bus_ir[8,12..15]             ; Stuck at GND due to stuck port data_in                                             ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~53                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~37                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~69                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~101                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~117                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~85                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~133                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~54                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~38                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~70                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~102                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~118                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~86                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~134                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~55                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~39                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~71                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~103                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~119                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~87                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~135                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~56                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~40                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~72                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~104                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~120                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~88                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~136                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~57                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~41                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~73                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~105                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~121                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~89                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~137                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~58                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~42                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~74                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~106                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~122                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~90                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~138                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~59                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~43                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~75                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~107                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~123                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~91                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~139                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~60                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~44                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~76                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~108                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~124                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~92                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~140                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~61                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~45                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~77                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~109                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~125                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~93                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~141                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~62                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~46                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~78                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~110                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~126                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~94                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~142                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~63                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~47                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~79                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~111                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~127                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~95                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~143                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~64                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~48                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~80                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~112                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~128                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~96                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~144                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~65                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~49                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~81                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~113                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~129                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~97                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~145                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~66                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~50                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~82                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~114                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~130                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~98                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~146                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~67                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~51                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~83                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~115                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~131                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~99                 ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~147                ; Stuck at GND due to stuck port clock_enable                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~20                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~21                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~22                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~23                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~24                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~25                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~26                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~27                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~28                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~29                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~30                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~31                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~32                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~33                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~34                 ; Lost fanout                                                                        ;
+; proc:proc0|datapath:datapath0|regfile:regfile0|regs~35                 ; Lost fanout                                                                        ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST    ; Merged with MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N        ;
+; Total Number of Removed Registers = 168                                ;                                                                                    ;
++------------------------------------------------------------------------+------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                            ;
++-----------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------+
+; Register name                                                         ; Reason for Removal        ; Registers Removed due to This Register                             ;
++-----------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------+
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]~reg0 ; Stuck at GND              ; proc:proc0|unidad_control:unidad_control0|bus_ir[9],               ;
+;                                                                       ; due to stuck port data_in ; proc:proc0|unidad_control:unidad_control0|bus_ir[10],              ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[11],              ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[0],               ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[1],               ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[2],               ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[3],               ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[4],               ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[5],               ;
+;                                                                       ;                           ; MemoryController:mem_ctrl0|SRAMController:controller0|state.RD_ST, ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~52,            ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[7],               ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~36,            ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[6],               ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~68,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~100,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~116,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~84,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~132,           ;
+;                                                                       ;                           ; proc:proc0|unidad_control:unidad_control0|bus_ir[8],               ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~53,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~37,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~69,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~101,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~117,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~85,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~133,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~54,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~38,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~70,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~102,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~118,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~86,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~134,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~55,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~39,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~71,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~103,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~119,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~87,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~135,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~56,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~40,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~72,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~104,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~120,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~88,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~136,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~57,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~41,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~73,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~105,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~121,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~89,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~137,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~58,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~42,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~74,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~106,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~122,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~90,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~138,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~59,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~43,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~75,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~107,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~123,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~91,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~139,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~60,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~44,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~76,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~108,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~124,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~92,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~140,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~61,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~45,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~77,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~109,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~125,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~93,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~141,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~62,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~46,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~78,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~110,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~126,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~94,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~142,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~63,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~47,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~79,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~111,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~127,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~95,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~143,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~64,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~48,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~80,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~112,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~128,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~96,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~144,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~65,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~49,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~81,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~113,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~129,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~97,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~145,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~66,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~50,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~82,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~114,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~130,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~98,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~146,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~67,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~51,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~83,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~115,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~131,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~99,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~147,           ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~20,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~21,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~22,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~23,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~24,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~25,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~26,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~27,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~28,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~29,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~30,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~31,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~32,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~33,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~34,            ;
+;                                                                       ;                           ; proc:proc0|datapath:datapath0|regfile:regfile0|regs~35             ;
+; proc:proc0|unidad_control:unidad_control0|new_pc[0]                   ; Stuck at GND              ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N,   ;
+;                                                                       ; due to stuck port data_in ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_LB_N    ;
++-----------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -267,24 +613,35 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 2     ;
+; Total registers                              ; 19    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Synchronous Load   ; 15    ;
+; Number of registers using Asynchronous Clear ; 3     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 15    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; SRAMController:controller0|SRAM_OE_N   ; 3       ;
-; Total number of inverted registers = 1 ;         ;
-+----------------------------------------+---------+
++---------------------------------------------------------------------------+
+; Inverted Register Statistics                                              ;
++-----------------------------------------------------------------+---------+
+; Inverted Register                                               ; Fan out ;
++-----------------------------------------------------------------+---------+
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; 3       ;
+; Total number of inverted registers = 1                          ;         ;
++-----------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|bus_ir[7] ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|new_pc[2] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|Mux12        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
 
 
 +-------------------------------+
@@ -302,7 +659,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Mar 29 19:40:44 2018
+    Info: Processing started: Fri Mar 30 09:39:35 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProcesadorMulticicleMemoria -c ProcesadorMulticicleMemoria
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticicle/unidad_control.vhd
@@ -338,9 +695,42 @@ Info (12021): Found 2 design units, including 1 entities, in source file sisa.vh
 Info (12021): Found 2 design units, including 1 entities, in source file memorycontroller.vhd
     Info (12022): Found design unit 1: MemoryController-comportament
     Info (12023): Found entity 1: MemoryController
-Info (12127): Elaborating entity "MemoryController" for the top level hierarchy
+Info (12127): Elaborating entity "sisa" for the top level hierarchy
+Warning (10492): VHDL Process Statement warning at sisa.vhd(63): signal "clk_proc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at sisa.vhd(57): inferring latch(es) for signal or variable "clk_proc", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "clk_proc" at sisa.vhd(57)
+Info (12128): Elaborating entity "proc" for hierarchy "proc:proc0"
+Info (12128): Elaborating entity "unidad_control" for hierarchy "proc:proc0|unidad_control:unidad_control0"
+Info (12128): Elaborating entity "control_l" for hierarchy "proc:proc0|unidad_control:unidad_control0|control_l:control_l0"
+Info (10041): Inferred latch for "op[0]" at control_l.vhd(61)
+Info (10041): Inferred latch for "op[1]" at control_l.vhd(61)
+Info (10041): Inferred latch for "immed[0]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[1]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[2]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[3]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[4]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[5]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[6]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[7]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[8]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[9]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[10]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[11]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[12]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[13]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[14]" at control_l.vhd(54)
+Info (10041): Inferred latch for "immed[15]" at control_l.vhd(54)
+Info (12128): Elaborating entity "multi" for hierarchy "proc:proc0|unidad_control:unidad_control0|multi:multi0"
+Warning (10492): VHDL Process Statement warning at multi.vhd(30): signal "boot" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "datapath" for hierarchy "proc:proc0|datapath:datapath0"
+Info (12128): Elaborating entity "alu" for hierarchy "proc:proc0|datapath:datapath0|alu:alu0"
+Info (12128): Elaborating entity "regfile" for hierarchy "proc:proc0|datapath:datapath0|regfile:regfile0"
+Warning (10492): VHDL Process Statement warning at regfile.vhd(26): signal "wrd" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "MemoryController" for hierarchy "MemoryController:mem_ctrl0"
 Warning (10540): VHDL Signal Declaration warning at MemoryController.vhd(48): used explicit default value for signal "instr_memory_limit" because signal was never assigned a value
-Info (12128): Elaborating entity "SRAMController" for hierarchy "SRAMController:controller0"
+Info (12128): Elaborating entity "SRAMController" for hierarchy "MemoryController:mem_ctrl0|SRAMController:controller0"
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "proc:proc0|datapath:datapath0|regfile:regfile0|regs" is uninferred due to inappropriate RAM size
 Warning (13034): The following nodes have both tri-state and non-tri-state drivers
     Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[0]" and its non-tri-state driver.
     Warning (13035): Inserted always-enabled tri-state buffer between "SRAM_DQ[1]" and its non-tri-state driver.
@@ -375,6 +765,19 @@ Info (13060): One or more bidirs are fed by always enabled tri-state buffers
     Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidir "SRAM_DQ[13]" is moved to its source
     Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidir "SRAM_DQ[14]" is moved to its source
     Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidir "SRAM_DQ[15]" is moved to its source
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[14]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[13]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[12]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[11]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[10]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[9]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+    Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[8]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7]"
+Warning (13012): Latch proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[6] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|control_l:control_l0|in_d
+Warning (13012): Latch proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[7] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|control_l:control_l0|in_d
 Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "SRAM_DQ[0]~synth"
     Warning (13010): Node "SRAM_DQ[1]~synth"
@@ -393,56 +796,23 @@ Warning (13009): TRI or OPNDRN buffers permanently enabled
     Warning (13010): Node "SRAM_DQ[14]~synth"
     Warning (13010): Node "SRAM_DQ[15]~synth"
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "rd_data[0]" is stuck at GND
-    Warning (13410): Pin "rd_data[1]" is stuck at GND
-    Warning (13410): Pin "rd_data[2]" is stuck at GND
-    Warning (13410): Pin "rd_data[3]" is stuck at GND
-    Warning (13410): Pin "rd_data[4]" is stuck at GND
-    Warning (13410): Pin "rd_data[5]" is stuck at GND
-    Warning (13410): Pin "rd_data[6]" is stuck at GND
-    Warning (13410): Pin "rd_data[7]" is stuck at GND
-    Warning (13410): Pin "rd_data[8]" is stuck at GND
-    Warning (13410): Pin "rd_data[9]" is stuck at GND
-    Warning (13410): Pin "rd_data[10]" is stuck at GND
-    Warning (13410): Pin "rd_data[11]" is stuck at GND
-    Warning (13410): Pin "rd_data[12]" is stuck at GND
-    Warning (13410): Pin "rd_data[13]" is stuck at GND
-    Warning (13410): Pin "rd_data[14]" is stuck at GND
-    Warning (13410): Pin "rd_data[15]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[0]" is stuck at GND
     Warning (13410): Pin "SRAM_ADDR[16]" is stuck at GND
     Warning (13410): Pin "SRAM_ADDR[17]" is stuck at GND
     Warning (13410): Pin "SRAM_UB_N" is stuck at GND
     Warning (13410): Pin "SRAM_LB_N" is stuck at GND
     Warning (13410): Pin "SRAM_WE_N" is stuck at VCC
-Info (17049): 2 registers lost all their fanouts during netlist optimizations.
+Info (17049): 18 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 17 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "wr_data[0]"
-    Warning (15610): No output dependent on input pin "wr_data[1]"
-    Warning (15610): No output dependent on input pin "wr_data[2]"
-    Warning (15610): No output dependent on input pin "wr_data[3]"
-    Warning (15610): No output dependent on input pin "wr_data[4]"
-    Warning (15610): No output dependent on input pin "wr_data[5]"
-    Warning (15610): No output dependent on input pin "wr_data[6]"
-    Warning (15610): No output dependent on input pin "wr_data[7]"
-    Warning (15610): No output dependent on input pin "wr_data[8]"
-    Warning (15610): No output dependent on input pin "wr_data[9]"
-    Warning (15610): No output dependent on input pin "wr_data[10]"
-    Warning (15610): No output dependent on input pin "wr_data[11]"
-    Warning (15610): No output dependent on input pin "wr_data[12]"
-    Warning (15610): No output dependent on input pin "wr_data[13]"
-    Warning (15610): No output dependent on input pin "wr_data[14]"
-    Warning (15610): No output dependent on input pin "wr_data[15]"
-    Warning (15610): No output dependent on input pin "byte_m"
-Info (21057): Implemented 93 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 35 input pins
-    Info (21059): Implemented 39 output pins
+Info (21057): Implemented 80 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 23 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 3 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 76 warnings
-    Info: Peak virtual memory: 572 megabytes
-    Info: Processing ended: Thu Mar 29 19:40:46 2018
+    Info (21061): Implemented 39 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 51 warnings
+    Info: Peak virtual memory: 567 megabytes
+    Info: Processing ended: Fri Mar 30 09:39:37 2018
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

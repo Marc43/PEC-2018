@@ -12,7 +12,7 @@ ENTITY sisa IS
           SRAM_CE_N : out   std_logic := '1';
           SRAM_OE_N : out   std_logic := '1';
           SRAM_WE_N : out   std_logic := '1';
-          SW        : in std_logic_vector(9 downto 9));
+          SW        : in 	 std_logic_vector(9 downto 9));
 END sisa;
 
 ARCHITECTURE Structure OF sisa IS
@@ -95,5 +95,5 @@ BEGIN
 		SRAM_OE_N=> SRAM_OE_N,
 		SRAM_WE_N=> SRAM_WE_N
 	);
-	
+		
 END Structure;

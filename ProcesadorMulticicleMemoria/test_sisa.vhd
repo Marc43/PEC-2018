@@ -56,9 +56,10 @@ architecture comportament of test_sisa is
    signal ce_m           : std_logic;
    signal oe_m           : std_logic;
    signal we_m           : std_logic;
-   signal ce_m2           : std_logic;
+   signal ce_m2          : std_logic;
 
-   signal botones      : std_logic_vector(9 downto 9);
+   signal botones      	: std_logic_vector(9 downto 9);
+	signal bypass_sw		: std_logic_vector(0 downto 0) := "1";
 
 	
 begin
@@ -68,7 +69,7 @@ begin
    SoC : sisa
       port map (
          CLOCK_50   => clk,
-         SW        => botones,
+         SW        => bypass_sw,
 
          SRAM_ADDR  => addr_SoC,
          SRAM_DQ    => data_mem,
@@ -99,11 +100,11 @@ begin
 		botones(9) <= reset_proc;
 		
    -- Descripcio del comportament
+	bypass_sw <= "1" after 75 ns, "0" after 85 ns;
 	clk <= not clk after 10 ns;
 	reset_ram <= '1' after 15 ns, '0' after 50 ns;    -- reseteamos la RAm en el primer ciclo
 	reset_proc <= '1' after 25 ns, '0' after 320 ns;  -- reseteamos el procesador en el segundo ciclo
 
-	
 end comportament;
 
 

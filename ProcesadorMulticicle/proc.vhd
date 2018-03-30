@@ -48,6 +48,7 @@ COMPONENT datapath IS
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
 END COMPONENT;
 
+
 SIGNAL bus_op 				: STD_LOGIC_VECTOR (1 DOWNTO 0);
 SIGNAL bus_wrd				: STD_LOGIC;
 SIGNAL bus_addr_a 		: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -107,5 +108,5 @@ BEGIN
 	
 	wr_m <= bus_wr_m;
 	word_byte <= bus_word_byte;
-   
+	
 END Structure;
