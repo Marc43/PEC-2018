@@ -48,15 +48,16 @@ begin
 					SRAM_OE_N <= '1'; -- Output not enabled 
 					SRAM_CE_N <= '1'; -- Chip input not enabled
 					SRAM_WE_N <= '1'; -- Write not enabled
+					SRAM_LB_N <= '1';
+					SRAM_UB_N <= '1';
 					IF(WR = '0') THEN
-						SRAM_DQ <= "ZZZZZZZZZZZZZZZZ"; 
 						next_state <= RD_ST;
 					ELSE
-						SRAM_DQ <= dataToWrite; 
 						next_state <= WR_ST;
 					END IF;
 					
 				WHEN RD_ST =>
+					SRAM_DQ <= "ZZZZZZZZZZZZZZZZ";
 					SRAM_CE_N 	<= '0';
 					IF(byte_m = '1') THEN
 						SRAM_LB_N <= address(0);
@@ -68,8 +69,10 @@ begin
 					
 					SRAM_OE_N 	<= '0';
 					next_state	<= RES_ST;
-					--ELSE THEN -- goes to WR
-
+					
+				WHEN WR_ST =>-- goes to WR
+						SRAM_DQ <= dataToWrite;
+						next_state <= RES_ST;
 					-- TODO
 				WHEN RES_ST =>
 					CASE WR IS 
@@ -82,8 +85,6 @@ begin
 						WHEN OTHERS => --escritura
 					END CASE;
 					next_state <= IDLE_ST;
-				WHEN WR_ST =>
-					next_state <= RES_ST;
 			END CASE;
 		END PROCESS;
 		

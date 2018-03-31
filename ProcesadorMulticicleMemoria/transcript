@@ -472,3 +472,175 @@ run 1000ns
 #    Time: 870 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
 # ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
 #    Time: 870 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# Compile of async_64Kx16.vhd was successful.
+# Compile of MemoryController.vhd was successful.
+# Compile of package_timing.vhd was successful.
+# Compile of package_utility.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd was successful.
+# Compile of test_sisa.vhd was successful with warnings.
+# Compile of test_states.vhd was successful.
+# 8 compiles, 0 failed with no errors. 
+# Compile of async_64Kx16.vhd was successful.
+# Compile of MemoryController.vhd was successful.
+# Compile of package_timing.vhd was successful.
+# Compile of package_utility.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd was successful.
+# Compile of test_sisa.vhd was successful with warnings.
+# Compile of test_states.vhd was successful.
+# 8 compiles, 0 failed with no errors. 
+restart f
+# Loading work.test_sisa(comportament)
+# Loading work.sisa(structure)
+# Loading work.memorycontroller(comportament)
+# Loading work.sramcontroller(comportament)
+# Loading work.package_timing(body)
+# Loading work.package_utility(body)
+# Loading work.async_64kx16(behave_arch)
+run 1000ns
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/unidad_control0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/unidad_control0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 390 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 550 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 550 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 710 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 870 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 870 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+run 1000ns
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1030 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1190 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 1190 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1350 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1510 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 1510 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1670 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1830 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 1830 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1990 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# Compile of async_64Kx16.vhd was successful.
+# Compile of MemoryController.vhd was successful.
+# Compile of package_timing.vhd was successful.
+# Compile of package_utility.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of test_sisa.vhd was successful with warnings.
+# Compile of test_states.vhd was successful.
+# 8 compiles, 1 failed with 1 error. 
+# Compile of async_64Kx16.vhd was successful.
+# Compile of MemoryController.vhd was successful.
+# Compile of package_timing.vhd was successful.
+# Compile of package_utility.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd failed with 1 errors.
+# Compile of test_sisa.vhd was successful with warnings.
+# Compile of test_states.vhd was successful.
+# 8 compiles, 1 failed with 1 error. 
+# Compile of async_64Kx16.vhd was successful.
+# Compile of MemoryController.vhd was successful.
+# Compile of package_timing.vhd was successful.
+# Compile of package_utility.vhd was successful.
+# Compile of sisa.vhd was successful.
+# Compile of SRAMController.vhd was successful.
+# Compile of test_sisa.vhd was successful with warnings.
+# Compile of test_states.vhd was successful.
+# 8 compiles, 0 failed with no errors. 
+restart f
+# Loading work.test_sisa(comportament)
+# Loading work.sisa(structure)
+# Loading work.memorycontroller(comportament)
+# Loading work.sramcontroller(comportament)
+# Loading work.package_timing(body)
+# Loading work.package_utility(body)
+# Loading work.async_64kx16(behave_arch)
+run 1000ns
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/unidad_control0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /test_sisa/SoC/proc0/unidad_control0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 390 ns  Iteration: 4  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 390 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 550 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 550 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 550 ns  Iteration: 2  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 710 ns  Iteration: 5  Instance: /test_sisa/SoC/mem_ctrl0
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 870 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 870 ns  Iteration: 1  Instance: /test_sisa/SoC/proc0/datapath0/regfile0

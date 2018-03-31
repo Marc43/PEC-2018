@@ -2,35 +2,35 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow Model Setup 'clk'
-Slack : 0.015
-TNS   : 0.000
+Type  : Slow Model Setup 'state.IDLE_ST'
+Slack : -1.450
+TNS   : -1.450
 
 Type  : Slow Model Setup 'state.RES_ST'
-Slack : 1.133
+Slack : -0.183
+TNS   : -0.359
+
+Type  : Slow Model Setup 'clk'
+Slack : 1.001
 TNS   : 0.000
 
 Type  : Slow Model Hold 'clk'
-Slack : -2.692
-TNS   : -8.201
+Slack : -2.500
+TNS   : -8.682
 
 Type  : Slow Model Hold 'state.RES_ST'
-Slack : -1.427
-TNS   : -1.427
+Slack : -0.474
+TNS   : -0.924
+
+Type  : Slow Model Hold 'state.IDLE_ST'
+Slack : 1.293
+TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'clk'
 Slack : -1.631
 TNS   : -6.519
 
-Type  : Slow Model Minimum Pulse Width 'WR'
-Slack : -1.469
-TNS   : -1.469
-
 Type  : Slow Model Minimum Pulse Width 'state.IDLE_ST'
-Slack : 0.500
-TNS   : 0.000
-
-Type  : Slow Model Minimum Pulse Width 'state.RD_ST'
 Slack : 0.500
 TNS   : 0.000
 
@@ -38,35 +38,35 @@ Type  : Slow Model Minimum Pulse Width 'state.RES_ST'
 Slack : 0.500
 TNS   : 0.000
 
-Type  : Fast Model Setup 'clk'
-Slack : 0.315
-TNS   : 0.000
+Type  : Fast Model Setup 'state.IDLE_ST'
+Slack : -0.438
+TNS   : -0.438
 
 Type  : Fast Model Setup 'state.RES_ST'
-Slack : 0.784
+Slack : 0.417
+TNS   : 0.000
+
+Type  : Fast Model Setup 'clk'
+Slack : 1.311
 TNS   : 0.000
 
 Type  : Fast Model Hold 'clk'
-Slack : -1.720
-TNS   : -5.574
+Slack : -1.689
+TNS   : -5.761
 
 Type  : Fast Model Hold 'state.RES_ST'
-Slack : -0.555
-TNS   : -0.555
+Slack : -0.002
+TNS   : -0.002
+
+Type  : Fast Model Hold 'state.IDLE_ST'
+Slack : 1.034
+TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'clk'
 Slack : -1.380
 TNS   : -5.380
 
-Type  : Fast Model Minimum Pulse Width 'WR'
-Slack : -1.222
-TNS   : -1.222
-
 Type  : Fast Model Minimum Pulse Width 'state.IDLE_ST'
-Slack : 0.500
-TNS   : 0.000
-
-Type  : Fast Model Minimum Pulse Width 'state.RD_ST'
 Slack : 0.500
 TNS   : 0.000
 

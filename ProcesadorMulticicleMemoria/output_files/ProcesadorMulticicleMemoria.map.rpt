@@ -1,5 +1,5 @@
 Analysis & Synthesis report for ProcesadorMulticicleMemoria
-Sat Mar 31 17:41:30 2018
+Sat Mar 31 18:29:11 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -43,13 +43,13 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Mar 31 17:41:29 2018           ;
+; Analysis & Synthesis Status        ; Successful - Sat Mar 31 18:29:11 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; ProcesadorMulticicleMemoria                     ;
 ; Top-level Entity Name              ; SRAMController                                  ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 58                                              ;
-;     Total combinational functions  ; 58                                              ;
+; Total logic elements               ; 76                                              ;
+;     Total combinational functions  ; 76                                              ;
 ;     Dedicated logic registers      ; 4                                               ;
 ; Total registers                    ; 4                                               ;
 ; Total pins                         ; 90                                              ;
@@ -170,16 +170,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+---------------+
 ; Resource                                    ; Usage         ;
 +---------------------------------------------+---------------+
-; Estimated Total logic elements              ; 58            ;
+; Estimated Total logic elements              ; 76            ;
 ;                                             ;               ;
-; Total combinational functions               ; 58            ;
+; Total combinational functions               ; 76            ;
 ; Logic element usage by number of LUT inputs ;               ;
 ;     -- 4 input functions                    ; 15            ;
-;     -- 3 input functions                    ; 35            ;
-;     -- <=2 input functions                  ; 8             ;
+;     -- 3 input functions                    ; 54            ;
+;     -- <=2 input functions                  ; 7             ;
 ;                                             ;               ;
 ; Logic elements by mode                      ;               ;
-;     -- normal mode                          ; 58            ;
+;     -- normal mode                          ; 76            ;
 ;     -- arithmetic mode                      ; 0             ;
 ;                                             ;               ;
 ; Total registers                             ; 4             ;
@@ -190,8 +190,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Embedded Multiplier 9-bit elements          ; 0             ;
 ; Maximum fan-out node                        ; state.IDLE_ST ;
 ; Maximum fan-out                             ; 19            ;
-; Total fan-out                               ; 240           ;
-; Average fan-out                             ; 1.58          ;
+; Total fan-out                               ; 310           ;
+; Average fan-out                             ; 1.82          ;
 +---------------------------------------------+---------------+
 
 
@@ -200,7 +200,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |SRAMController            ; 58 (58)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 90   ; 0            ; |SRAMController     ; work         ;
+; |SRAMController            ; 76 (76)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 90   ; 0            ; |SRAMController     ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -239,10 +239,10 @@ Encoding Type:  One-Hot
 ; SRAM_ADDR[13]$latch                                 ; state.IDLE_ST       ; yes                    ;
 ; SRAM_ADDR[14]$latch                                 ; state.IDLE_ST       ; yes                    ;
 ; SRAM_ADDR[15]$latch                                 ; state.IDLE_ST       ; yes                    ;
-; SRAM_UB_N$latch                                     ; state.RD_ST         ; yes                    ;
-; SRAM_LB_N$latch                                     ; state.RD_ST         ; yes                    ;
-; SRAM_CE_N$latch                                     ; SRAM_CE_N           ; yes                    ;
-; SRAM_OE_N$latch                                     ; SRAM_CE_N           ; yes                    ;
+; SRAM_UB_N$latch                                     ; SRAM_UB_N           ; yes                    ;
+; SRAM_LB_N$latch                                     ; SRAM_UB_N           ; yes                    ;
+; SRAM_CE_N$latch                                     ; SRAM_UB_N           ; yes                    ;
+; SRAM_OE_N$latch                                     ; SRAM_UB_N           ; yes                    ;
 ; data_ext[0]                                         ; data_ext[15]        ; yes                    ;
 ; data_ext[1]                                         ; data_ext[15]        ; yes                    ;
 ; data_ext[2]                                         ; data_ext[15]        ; yes                    ;
@@ -259,8 +259,24 @@ Encoding Type:  One-Hot
 ; data_ext[13]                                        ; data_ext[15]        ; yes                    ;
 ; data_ext[14]                                        ; data_ext[15]        ; yes                    ;
 ; data_ext[15]                                        ; data_ext[15]        ; yes                    ;
-; SRAM_DQ[0]_444                                      ; SRAM_CE_N           ; yes                    ;
-; Number of user-specified and inferred latches = 37  ;                     ;                        ;
+; SRAM_DQ[0]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[0]_418                                      ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[1]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[2]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[3]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[4]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[5]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[6]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[7]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[8]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[9]$latch                                    ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[10]$latch                                   ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[11]$latch                                   ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[12]$latch                                   ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[13]$latch                                   ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[14]$latch                                   ; SRAM_DQ             ; yes                    ;
+; SRAM_DQ[15]$latch                                   ; SRAM_DQ             ; yes                    ;
+; Number of user-specified and inferred latches = 53  ;                     ;                        ;
 +-----------------------------------------------------+---------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
@@ -295,7 +311,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat Mar 31 17:41:28 2018
+    Info: Processing started: Sat Mar 31 18:29:09 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ProcesadorMulticicleMemoria -c ProcesadorMulticicleMemoria
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file /home/alfredu/Documents/PEC-2018/ProcesadorMulticicle/unidad_control.vhd
@@ -333,22 +349,23 @@ Info (12021): Found 2 design units, including 1 entities, in source file MemoryC
     Info (12023): Found entity 1: MemoryController
 Info (12127): Elaborating entity "SRAMController" for the top level hierarchy
 Warning (10492): VHDL Process Statement warning at SRAMController.vhd(47): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at SRAMController.vhd(52): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(53): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at SRAMController.vhd(62): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at SRAMController.vhd(63): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at SRAMController.vhd(64): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at SRAMController.vhd(76): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at SRAMController.vhd(78): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at SRAMController.vhd(78): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at SRAMController.vhd(79): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(74): signal "dataToWrite" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(78): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(80): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(80): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at SRAMController.vhd(81): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(83): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_ADDR", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_DQ", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_OE_N", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_CE_N", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_WE_N", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_LB_N", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_UB_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "SRAM_DQ", which holds its previous value in one or more paths through the process
 Warning (10631): VHDL Process Statement warning at SRAMController.vhd(43): inferring latch(es) for signal or variable "data_ext", which holds its previous value in one or more paths through the process
 Info (10041): Inferred latch for "data_ext[0]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "data_ext[1]" at SRAMController.vhd(43)
@@ -366,11 +383,6 @@ Info (10041): Inferred latch for "data_ext[12]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "data_ext[13]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "data_ext[14]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "data_ext[15]" at SRAMController.vhd(43)
-Info (10041): Inferred latch for "SRAM_UB_N" at SRAMController.vhd(43)
-Info (10041): Inferred latch for "SRAM_LB_N" at SRAMController.vhd(43)
-Info (10041): Inferred latch for "SRAM_WE_N" at SRAMController.vhd(43)
-Info (10041): Inferred latch for "SRAM_CE_N" at SRAMController.vhd(43)
-Info (10041): Inferred latch for "SRAM_OE_N" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_DQ[0]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_DQ[1]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_DQ[2]" at SRAMController.vhd(43)
@@ -387,6 +399,11 @@ Info (10041): Inferred latch for "SRAM_DQ[12]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_DQ[13]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_DQ[14]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_DQ[15]" at SRAMController.vhd(43)
+Info (10041): Inferred latch for "SRAM_UB_N" at SRAMController.vhd(43)
+Info (10041): Inferred latch for "SRAM_LB_N" at SRAMController.vhd(43)
+Info (10041): Inferred latch for "SRAM_WE_N" at SRAMController.vhd(43)
+Info (10041): Inferred latch for "SRAM_CE_N" at SRAMController.vhd(43)
+Info (10041): Inferred latch for "SRAM_OE_N" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_ADDR[0]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_ADDR[1]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_ADDR[2]" at SRAMController.vhd(43)
@@ -407,38 +424,20 @@ Info (10041): Inferred latch for "SRAM_ADDR[16]" at SRAMController.vhd(43)
 Info (10041): Inferred latch for "SRAM_ADDR[17]" at SRAMController.vhd(43)
 Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
     Info (13026): Duplicate LATCH primitive "SRAM_OE_N$latch" merged with LATCH primitive "SRAM_CE_N$latch"
-    Info (13026): Duplicate LATCH primitive "SRAM_DQ[0]_444" merged with LATCH primitive "SRAM_CE_N$latch"
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "SRAM_ADDR[16]" is stuck at GND
     Warning (13410): Pin "SRAM_ADDR[17]" is stuck at GND
     Warning (13410): Pin "SRAM_WE_N" is stuck at VCC
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 16 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "dataToWrite[0]"
-    Warning (15610): No output dependent on input pin "dataToWrite[1]"
-    Warning (15610): No output dependent on input pin "dataToWrite[2]"
-    Warning (15610): No output dependent on input pin "dataToWrite[3]"
-    Warning (15610): No output dependent on input pin "dataToWrite[4]"
-    Warning (15610): No output dependent on input pin "dataToWrite[5]"
-    Warning (15610): No output dependent on input pin "dataToWrite[6]"
-    Warning (15610): No output dependent on input pin "dataToWrite[7]"
-    Warning (15610): No output dependent on input pin "dataToWrite[8]"
-    Warning (15610): No output dependent on input pin "dataToWrite[9]"
-    Warning (15610): No output dependent on input pin "dataToWrite[10]"
-    Warning (15610): No output dependent on input pin "dataToWrite[11]"
-    Warning (15610): No output dependent on input pin "dataToWrite[12]"
-    Warning (15610): No output dependent on input pin "dataToWrite[13]"
-    Warning (15610): No output dependent on input pin "dataToWrite[14]"
-    Warning (15610): No output dependent on input pin "dataToWrite[15]"
-Info (21057): Implemented 148 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 166 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 35 input pins
     Info (21059): Implemented 39 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 58 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 40 warnings
-    Info: Peak virtual memory: 635 megabytes
-    Info: Processing ended: Sat Mar 31 17:41:30 2018
+    Info (21061): Implemented 76 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 24 warnings
+    Info: Peak virtual memory: 650 megabytes
+    Info: Processing ended: Sat Mar 31 18:29:11 2018
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
