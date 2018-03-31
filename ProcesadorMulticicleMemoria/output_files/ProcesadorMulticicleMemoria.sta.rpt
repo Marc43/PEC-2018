@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for ProcesadorMulticicleMemoria
-Fri Mar 30 09:39:48 2018
+Sat Mar 31 15:27:41 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -16,30 +16,48 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   8. Slow Model Recovery Summary
   9. Slow Model Removal Summary
  10. Slow Model Minimum Pulse Width Summary
- 11. Slow Model Setup: 'CLOCK_50'
- 12. Slow Model Hold: 'CLOCK_50'
- 13. Slow Model Minimum Pulse Width: 'CLOCK_50'
- 14. Clock to Output Times
- 15. Minimum Clock to Output Times
- 16. Fast Model Setup Summary
- 17. Fast Model Hold Summary
- 18. Fast Model Recovery Summary
- 19. Fast Model Removal Summary
- 20. Fast Model Minimum Pulse Width Summary
- 21. Fast Model Setup: 'CLOCK_50'
- 22. Fast Model Hold: 'CLOCK_50'
- 23. Fast Model Minimum Pulse Width: 'CLOCK_50'
- 24. Clock to Output Times
- 25. Minimum Clock to Output Times
- 26. Multicorner Timing Analysis Summary
- 27. Clock to Output Times
- 28. Minimum Clock to Output Times
- 29. Setup Transfers
- 30. Hold Transfers
- 31. Report TCCS
- 32. Report RSKM
- 33. Unconstrained Paths
- 34. TimeQuest Timing Analyzer Messages
+ 11. Slow Model Setup: 'WR'
+ 12. Slow Model Setup: 'clk'
+ 13. Slow Model Hold: 'clk'
+ 14. Slow Model Hold: 'WR'
+ 15. Slow Model Minimum Pulse Width: 'clk'
+ 16. Slow Model Minimum Pulse Width: 'WR'
+ 17. Setup Times
+ 18. Hold Times
+ 19. Clock to Output Times
+ 20. Minimum Clock to Output Times
+ 21. Propagation Delay
+ 22. Minimum Propagation Delay
+ 23. Fast Model Setup Summary
+ 24. Fast Model Hold Summary
+ 25. Fast Model Recovery Summary
+ 26. Fast Model Removal Summary
+ 27. Fast Model Minimum Pulse Width Summary
+ 28. Fast Model Setup: 'WR'
+ 29. Fast Model Setup: 'clk'
+ 30. Fast Model Hold: 'clk'
+ 31. Fast Model Hold: 'WR'
+ 32. Fast Model Minimum Pulse Width: 'clk'
+ 33. Fast Model Minimum Pulse Width: 'WR'
+ 34. Setup Times
+ 35. Hold Times
+ 36. Clock to Output Times
+ 37. Minimum Clock to Output Times
+ 38. Propagation Delay
+ 39. Minimum Propagation Delay
+ 40. Multicorner Timing Analysis Summary
+ 41. Setup Times
+ 42. Hold Times
+ 43. Clock to Output Times
+ 44. Minimum Clock to Output Times
+ 45. Progagation Delay
+ 46. Minimum Progagation Delay
+ 47. Setup Transfers
+ 48. Hold Transfers
+ 49. Report TCCS
+ 50. Report RSKM
+ 51. Unconstrained Paths
+ 52. TimeQuest Timing Analyzer Messages
 
 
 
@@ -86,13 +104,14 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Clocks                                                                                                                                                                               ;
-+------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
-; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets      ;
-+------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
-; CLOCK_50   ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CLOCK_50 } ;
-+------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Clocks                                                                                                                                                                          ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; Clock Name ; Type ; Period ; Frequency  ; Rise  ; Fall  ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master ; Source ; Targets ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
+; clk        ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk } ;
+; WR         ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { WR }  ;
++------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------+
 
 
 +-----------------------------------------------------------------------------------------------------------+
@@ -100,27 +119,29 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------+-----------------+------------+---------------------------------------------------------------+
 ; Fmax       ; Restricted Fmax ; Clock Name ; Note                                                          ;
 +------------+-----------------+------------+---------------------------------------------------------------+
-; 1443.0 MHz ; 405.02 MHz      ; CLOCK_50   ; limit due to minimum period restriction (max I/O toggle rate) ;
+; 733.14 MHz ; 405.02 MHz      ; clk        ; limit due to minimum period restriction (max I/O toggle rate) ;
 +------------+-----------------+------------+---------------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+----------------------------------+
-; Slow Model Setup Summary         ;
-+----------+-------+---------------+
-; Clock    ; Slack ; End Point TNS ;
-+----------+-------+---------------+
-; CLOCK_50 ; 0.307 ; 0.000         ;
-+----------+-------+---------------+
++--------------------------------+
+; Slow Model Setup Summary       ;
++-------+--------+---------------+
+; Clock ; Slack  ; End Point TNS ;
++-------+--------+---------------+
+; WR    ; -0.596 ; -0.596        ;
+; clk   ; -0.364 ; -0.364        ;
++-------+--------+---------------+
 
 
-+----------------------------------+
-; Slow Model Hold Summary          ;
-+----------+-------+---------------+
-; Clock    ; Slack ; End Point TNS ;
-+----------+-------+---------------+
-; CLOCK_50 ; 0.445 ; 0.000         ;
-+----------+-------+---------------+
++-------------------------------+
+; Slow Model Hold Summary       ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; clk   ; 0.261 ; 0.000         ;
+; WR    ; 0.455 ; 0.000         ;
++-------+-------+---------------+
 
 
 -------------------------------
@@ -137,82 +158,298 @@ No paths to report.
 
 +----------------------------------------+
 ; Slow Model Minimum Pulse Width Summary ;
-+----------+--------+--------------------+
-; Clock    ; Slack  ; End Point TNS      ;
-+----------+--------+--------------------+
-; CLOCK_50 ; -1.469 ; -2.691             ;
-+----------+--------+--------------------+
++-------+--------+-----------------------+
+; Clock ; Slack  ; End Point TNS         ;
++-------+--------+-----------------------+
+; clk   ; -1.469 ; -3.913                ;
+; WR    ; -1.469 ; -1.469                ;
++-------+--------+-----------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow Model Setup: 'CLOCK_50'                                                                                                                                                                                    ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; Slack ; From Node                                                       ; To Node                                                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; 0.307 ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; CLOCK_50     ; CLOCK_50    ; 1.000        ; 0.000      ; 0.731      ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
++---------------------------------------------------------------------------------------------------------------+
+; Slow Model Setup: 'WR'                                                                                        ;
++--------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node     ; To Node        ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; -0.596 ; state.IDLE_ST ; SRAM_DQ[0]_224 ; clk          ; WR          ; 1.000        ; 0.377      ; 0.832      ;
++--------+---------------+----------------+--------------+-------------+--------------+------------+------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow Model Hold: 'CLOCK_50'                                                                                                                                                                                     ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; Slack ; From Node                                                       ; To Node                                                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; 0.445 ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.000      ; 0.731      ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
++--------------------------------------------------------------------------------------------------------------+
+; Slow Model Setup: 'clk'                                                                                      ;
++--------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node     ; To Node       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; -0.364 ; state.IDLE_ST ; state.RD_ST   ; clk          ; clk         ; 1.000        ; 0.000      ; 1.402      ;
+; -0.009 ; WR            ; state.RD_ST   ; WR           ; clk         ; 0.500        ; 2.240      ; 2.787      ;
+; 0.307  ; state.IDLE_ST ; state.IDLE_ST ; clk          ; clk         ; 1.000        ; 0.000      ; 0.731      ;
+; 0.491  ; WR            ; state.RD_ST   ; WR           ; clk         ; 1.000        ; 2.240      ; 2.787      ;
++--------+---------------+---------------+--------------+-------------+--------------+------------+------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow Model Minimum Pulse Width: 'CLOCK_50'                                                                                                          ;
-+--------+--------------+----------------+------------------+----------+------------+-----------------------------------------------------------------+
-; Slack  ; Actual Width ; Required Width ; Type             ; Clock    ; Clock Edge ; Target                                                          ;
-+--------+--------------+----------------+------------------+----------+------------+-----------------------------------------------------------------+
-; -1.469 ; 1.000        ; 2.469          ; Port Rate        ; CLOCK_50 ; Rise       ; CLOCK_50                                                        ;
-; -0.611 ; 0.500        ; 1.111          ; High Pulse Width ; CLOCK_50 ; Rise       ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ;
-; -0.611 ; 0.500        ; 1.111          ; Low Pulse Width  ; CLOCK_50 ; Rise       ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ;
-; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; CLOCK_50 ; Rise       ; CLOCK_50|combout                                                ;
-; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; CLOCK_50 ; Rise       ; CLOCK_50|combout                                                ;
-; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; CLOCK_50 ; Rise       ; mem_ctrl0|controller0|SRAM_OE_N|clk                             ;
-; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; CLOCK_50 ; Rise       ; mem_ctrl0|controller0|SRAM_OE_N|clk                             ;
-+--------+--------------+----------------+------------------+----------+------------+-----------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------+
+; Slow Model Hold: 'clk'                                                                                      ;
++-------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node     ; To Node       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; 0.261 ; WR            ; state.RD_ST   ; WR           ; clk         ; 0.000        ; 2.240      ; 2.787      ;
+; 0.445 ; state.IDLE_ST ; state.IDLE_ST ; clk          ; clk         ; 0.000        ; 0.000      ; 0.731      ;
+; 0.761 ; WR            ; state.RD_ST   ; WR           ; clk         ; -0.500       ; 2.240      ; 2.787      ;
+; 1.116 ; state.IDLE_ST ; state.RD_ST   ; clk          ; clk         ; 0.000        ; 0.000      ; 1.402      ;
++-------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Slow Model Hold: 'WR'                                                                                        ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node     ; To Node        ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; 0.455 ; state.IDLE_ST ; SRAM_DQ[0]_224 ; clk          ; WR          ; 0.000        ; 0.377      ; 0.832      ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Slow Model Minimum Pulse Width: 'clk'                                                              ;
++--------+--------------+----------------+------------------+-------+------------+-------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target            ;
++--------+--------------+----------------+------------------+-------+------------+-------------------+
+; -1.469 ; 1.000        ; 2.469          ; Port Rate        ; clk   ; Rise       ; clk               ;
+; -0.611 ; 0.500        ; 1.111          ; High Pulse Width ; clk   ; Rise       ; state.IDLE_ST     ;
+; -0.611 ; 0.500        ; 1.111          ; Low Pulse Width  ; clk   ; Rise       ; state.IDLE_ST     ;
+; -0.611 ; 0.500        ; 1.111          ; High Pulse Width ; clk   ; Rise       ; state.RD_ST       ;
+; -0.611 ; 0.500        ; 1.111          ; Low Pulse Width  ; clk   ; Rise       ; state.RD_ST       ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; clk   ; Rise       ; clk|combout       ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; clk   ; Rise       ; clk|combout       ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; clk   ; Rise       ; state.IDLE_ST|clk ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; clk   ; Rise       ; state.IDLE_ST|clk ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; clk   ; Rise       ; state.RD_ST|clk   ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; clk   ; Rise       ; state.RD_ST|clk   ;
++--------+--------------+----------------+------------------+-------+------------+-------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; Slow Model Minimum Pulse Width: 'WR'                                                                  ;
++--------+--------------+----------------+------------------+-------+------------+----------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target               ;
++--------+--------------+----------------+------------------+-------+------------+----------------------+
+; -1.469 ; 1.000        ; 2.469          ; Port Rate        ; WR    ; Rise       ; WR                   ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Rise       ; SRAM_DQ[0]_224       ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Rise       ; SRAM_DQ[0]_224       ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Fall       ; SRAM_DQ[0]_224|datac ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Fall       ; SRAM_DQ[0]_224|datac ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Fall       ; Selector0~0|combout  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Fall       ; Selector0~0|combout  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Rise       ; Selector0~0|datac    ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Rise       ; Selector0~0|datac    ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Rise       ; WR|combout           ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Rise       ; WR|combout           ;
++--------+--------------+----------------+------------------+-------+------------+----------------------+
 
 
 +-----------------------------------------------------------------------+
-; Clock to Output Times                                                 ;
+; Setup Times                                                           ;
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SRAM_CE_N ; CLOCK_50   ; 5.884 ; 5.884 ; Rise       ; CLOCK_50        ;
-; SRAM_OE_N ; CLOCK_50   ; 5.904 ; 5.904 ; Rise       ; CLOCK_50        ;
+; WR        ; clk        ; 0.509 ; 0.509 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
-+-----------------------------------------------------------------------+
-; Minimum Clock to Output Times                                         ;
-+-----------+------------+-------+-------+------------+-----------------+
-; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
-+-----------+------------+-------+-------+------------+-----------------+
-; SRAM_CE_N ; CLOCK_50   ; 5.884 ; 5.884 ; Rise       ; CLOCK_50        ;
-; SRAM_OE_N ; CLOCK_50   ; 5.904 ; 5.904 ; Rise       ; CLOCK_50        ;
-+-----------+------------+-------+-------+------------+-----------------+
++-------------------------------------------------------------------------+
+; Hold Times                                                              ;
++-----------+------------+--------+--------+------------+-----------------+
+; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
++-----------+------------+--------+--------+------------+-----------------+
+; WR        ; clk        ; -0.261 ; -0.261 ; Rise       ; clk             ;
++-----------+------------+--------+--------+------------+-----------------+
 
 
-+----------------------------------+
-; Fast Model Setup Summary         ;
-+----------+-------+---------------+
-; Clock    ; Slack ; End Point TNS ;
-+----------+-------+---------------+
-; CLOCK_50 ; 0.665 ; 0.000         ;
-+----------+-------+---------------+
++-----------------------------------------------------------------------------+
+; Clock to Output Times                                                       ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; SRAM_DQ[*]      ; WR         ; 6.988 ; 6.988 ; Rise       ; WR              ;
+;  SRAM_DQ[0]     ; WR         ; 6.978 ; 6.978 ; Rise       ; WR              ;
+;  SRAM_DQ[1]     ; WR         ; 6.952 ; 6.952 ; Rise       ; WR              ;
+;  SRAM_DQ[2]     ; WR         ; 6.932 ; 6.932 ; Rise       ; WR              ;
+;  SRAM_DQ[3]     ; WR         ; 6.958 ; 6.958 ; Rise       ; WR              ;
+;  SRAM_DQ[4]     ; WR         ; 6.579 ; 6.579 ; Rise       ; WR              ;
+;  SRAM_DQ[5]     ; WR         ; 6.988 ; 6.988 ; Rise       ; WR              ;
+;  SRAM_DQ[6]     ; WR         ; 6.958 ; 6.958 ; Rise       ; WR              ;
+;  SRAM_DQ[7]     ; WR         ; 6.292 ; 6.292 ; Rise       ; WR              ;
+;  SRAM_DQ[8]     ; WR         ; 6.322 ; 6.322 ; Rise       ; WR              ;
+;  SRAM_DQ[9]     ; WR         ; 6.363 ; 6.363 ; Rise       ; WR              ;
+;  SRAM_DQ[10]    ; WR         ; 6.349 ; 6.349 ; Rise       ; WR              ;
+;  SRAM_DQ[11]    ; WR         ; 6.363 ; 6.363 ; Rise       ; WR              ;
+;  SRAM_DQ[12]    ; WR         ; 6.599 ; 6.599 ; Rise       ; WR              ;
+;  SRAM_DQ[13]    ; WR         ; 6.332 ; 6.332 ; Rise       ; WR              ;
+;  SRAM_DQ[14]    ; WR         ; 6.349 ; 6.349 ; Rise       ; WR              ;
+;  SRAM_DQ[15]    ; WR         ; 6.352 ; 6.352 ; Rise       ; WR              ;
+; dataReaded[*]   ; clk        ; 7.367 ; 7.367 ; Rise       ; clk             ;
+;  dataReaded[8]  ; clk        ; 7.357 ; 7.357 ; Rise       ; clk             ;
+;  dataReaded[9]  ; clk        ; 7.019 ; 7.019 ; Rise       ; clk             ;
+;  dataReaded[10] ; clk        ; 7.034 ; 7.034 ; Rise       ; clk             ;
+;  dataReaded[11] ; clk        ; 7.019 ; 7.019 ; Rise       ; clk             ;
+;  dataReaded[12] ; clk        ; 7.367 ; 7.367 ; Rise       ; clk             ;
+;  dataReaded[13] ; clk        ; 6.987 ; 6.987 ; Rise       ; clk             ;
+;  dataReaded[14] ; clk        ; 7.034 ; 7.034 ; Rise       ; clk             ;
+;  dataReaded[15] ; clk        ; 7.008 ; 7.008 ; Rise       ; clk             ;
++-----------------+------------+-------+-------+------------+-----------------+
 
 
-+----------------------------------+
-; Fast Model Hold Summary          ;
-+----------+-------+---------------+
-; Clock    ; Slack ; End Point TNS ;
-+----------+-------+---------------+
-; CLOCK_50 ; 0.215 ; 0.000         ;
-+----------+-------+---------------+
++-----------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                               ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; SRAM_DQ[*]      ; WR         ; 6.292 ; 6.292 ; Rise       ; WR              ;
+;  SRAM_DQ[0]     ; WR         ; 6.978 ; 6.978 ; Rise       ; WR              ;
+;  SRAM_DQ[1]     ; WR         ; 6.952 ; 6.952 ; Rise       ; WR              ;
+;  SRAM_DQ[2]     ; WR         ; 6.932 ; 6.932 ; Rise       ; WR              ;
+;  SRAM_DQ[3]     ; WR         ; 6.958 ; 6.958 ; Rise       ; WR              ;
+;  SRAM_DQ[4]     ; WR         ; 6.579 ; 6.579 ; Rise       ; WR              ;
+;  SRAM_DQ[5]     ; WR         ; 6.988 ; 6.988 ; Rise       ; WR              ;
+;  SRAM_DQ[6]     ; WR         ; 6.958 ; 6.958 ; Rise       ; WR              ;
+;  SRAM_DQ[7]     ; WR         ; 6.292 ; 6.292 ; Rise       ; WR              ;
+;  SRAM_DQ[8]     ; WR         ; 6.322 ; 6.322 ; Rise       ; WR              ;
+;  SRAM_DQ[9]     ; WR         ; 6.363 ; 6.363 ; Rise       ; WR              ;
+;  SRAM_DQ[10]    ; WR         ; 6.349 ; 6.349 ; Rise       ; WR              ;
+;  SRAM_DQ[11]    ; WR         ; 6.363 ; 6.363 ; Rise       ; WR              ;
+;  SRAM_DQ[12]    ; WR         ; 6.599 ; 6.599 ; Rise       ; WR              ;
+;  SRAM_DQ[13]    ; WR         ; 6.332 ; 6.332 ; Rise       ; WR              ;
+;  SRAM_DQ[14]    ; WR         ; 6.349 ; 6.349 ; Rise       ; WR              ;
+;  SRAM_DQ[15]    ; WR         ; 6.352 ; 6.352 ; Rise       ; WR              ;
+; dataReaded[*]   ; clk        ; 6.987 ; 6.987 ; Rise       ; clk             ;
+;  dataReaded[8]  ; clk        ; 7.357 ; 7.357 ; Rise       ; clk             ;
+;  dataReaded[9]  ; clk        ; 7.019 ; 7.019 ; Rise       ; clk             ;
+;  dataReaded[10] ; clk        ; 7.034 ; 7.034 ; Rise       ; clk             ;
+;  dataReaded[11] ; clk        ; 7.019 ; 7.019 ; Rise       ; clk             ;
+;  dataReaded[12] ; clk        ; 7.367 ; 7.367 ; Rise       ; clk             ;
+;  dataReaded[13] ; clk        ; 6.987 ; 6.987 ; Rise       ; clk             ;
+;  dataReaded[14] ; clk        ; 7.034 ; 7.034 ; Rise       ; clk             ;
+;  dataReaded[15] ; clk        ; 7.008 ; 7.008 ; Rise       ; clk             ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------------------------------------+
+; Propagation Delay                                                ;
++-------------+----------------+--------+--------+--------+--------+
+; Input Port  ; Output Port    ; RR     ; RF     ; FR     ; FF     ;
++-------------+----------------+--------+--------+--------+--------+
+; SRAM_DQ[0]  ; dataReaded[0]  ; 8.573  ;        ;        ; 8.573  ;
+; SRAM_DQ[1]  ; dataReaded[1]  ; 8.764  ;        ;        ; 8.764  ;
+; SRAM_DQ[2]  ; dataReaded[2]  ; 8.524  ;        ;        ; 8.524  ;
+; SRAM_DQ[3]  ; dataReaded[3]  ; 8.514  ;        ;        ; 8.514  ;
+; SRAM_DQ[4]  ; dataReaded[4]  ; 8.514  ;        ;        ; 8.514  ;
+; SRAM_DQ[5]  ; dataReaded[5]  ; 8.574  ;        ;        ; 8.574  ;
+; SRAM_DQ[6]  ; dataReaded[6]  ; 8.533  ;        ;        ; 8.533  ;
+; SRAM_DQ[7]  ; dataReaded[7]  ; 8.749  ;        ;        ; 8.749  ;
+; SRAM_DQ[7]  ; dataReaded[8]  ; 9.913  ;        ;        ; 9.913  ;
+; SRAM_DQ[7]  ; dataReaded[12] ; 9.578  ;        ;        ; 9.578  ;
+; SRAM_DQ[8]  ; dataReaded[8]  ; 9.576  ;        ;        ; 9.576  ;
+; SRAM_DQ[9]  ; dataReaded[9]  ; 9.394  ;        ;        ; 9.394  ;
+; SRAM_DQ[10] ; dataReaded[10] ; 9.381  ;        ;        ; 9.381  ;
+; SRAM_DQ[11] ; dataReaded[11] ; 9.391  ;        ;        ; 9.391  ;
+; SRAM_DQ[12] ; dataReaded[12] ; 10.181 ;        ;        ; 10.181 ;
+; SRAM_DQ[13] ; dataReaded[13] ; 9.541  ;        ;        ; 9.541  ;
+; SRAM_DQ[14] ; dataReaded[14] ; 9.384  ;        ;        ; 9.384  ;
+; SRAM_DQ[15] ; dataReaded[15] ; 9.570  ;        ;        ; 9.570  ;
+; address[0]  ; SRAM_ADDR[0]   ; 9.644  ;        ;        ; 9.644  ;
+; address[1]  ; SRAM_ADDR[1]   ; 9.579  ;        ;        ; 9.579  ;
+; address[2]  ; SRAM_ADDR[2]   ; 8.549  ;        ;        ; 8.549  ;
+; address[3]  ; SRAM_ADDR[3]   ; 8.593  ;        ;        ; 8.593  ;
+; address[4]  ; SRAM_ADDR[4]   ; 8.503  ;        ;        ; 8.503  ;
+; address[5]  ; SRAM_ADDR[5]   ; 9.512  ;        ;        ; 9.512  ;
+; address[6]  ; SRAM_ADDR[6]   ; 8.523  ;        ;        ; 8.523  ;
+; address[7]  ; SRAM_ADDR[7]   ; 9.569  ;        ;        ; 9.569  ;
+; address[8]  ; SRAM_ADDR[8]   ; 9.340  ;        ;        ; 9.340  ;
+; address[9]  ; SRAM_ADDR[9]   ; 8.503  ;        ;        ; 8.503  ;
+; address[10] ; SRAM_ADDR[10]  ; 9.590  ;        ;        ; 9.590  ;
+; address[11] ; SRAM_ADDR[11]  ; 8.549  ;        ;        ; 8.549  ;
+; address[12] ; SRAM_ADDR[12]  ; 8.584  ;        ;        ; 8.584  ;
+; address[13] ; SRAM_ADDR[13]  ; 9.603  ;        ;        ; 9.603  ;
+; address[14] ; SRAM_ADDR[14]  ; 9.556  ;        ;        ; 9.556  ;
+; address[15] ; SRAM_ADDR[15]  ; 9.582  ;        ;        ; 9.582  ;
+; byte_m      ; dataReaded[8]  ; 9.545  ; 9.545  ; 9.545  ; 9.545  ;
+; byte_m      ; dataReaded[9]  ;        ; 10.000 ; 10.000 ;        ;
+; byte_m      ; dataReaded[10] ;        ; 9.973  ; 9.973  ;        ;
+; byte_m      ; dataReaded[11] ;        ; 10.000 ; 10.000 ;        ;
+; byte_m      ; dataReaded[12] ; 9.551  ; 9.551  ; 9.551  ; 9.551  ;
+; byte_m      ; dataReaded[13] ;        ; 9.726  ; 9.726  ;        ;
+; byte_m      ; dataReaded[14] ;        ; 9.973  ; 9.973  ;        ;
+; byte_m      ; dataReaded[15] ;        ; 9.942  ; 9.942  ;        ;
++-------------+----------------+--------+--------+--------+--------+
+
+
++------------------------------------------------------------------+
+; Minimum Propagation Delay                                        ;
++-------------+----------------+--------+--------+--------+--------+
+; Input Port  ; Output Port    ; RR     ; RF     ; FR     ; FF     ;
++-------------+----------------+--------+--------+--------+--------+
+; SRAM_DQ[0]  ; dataReaded[0]  ; 8.573  ;        ;        ; 8.573  ;
+; SRAM_DQ[1]  ; dataReaded[1]  ; 8.764  ;        ;        ; 8.764  ;
+; SRAM_DQ[2]  ; dataReaded[2]  ; 8.524  ;        ;        ; 8.524  ;
+; SRAM_DQ[3]  ; dataReaded[3]  ; 8.514  ;        ;        ; 8.514  ;
+; SRAM_DQ[4]  ; dataReaded[4]  ; 8.514  ;        ;        ; 8.514  ;
+; SRAM_DQ[5]  ; dataReaded[5]  ; 8.574  ;        ;        ; 8.574  ;
+; SRAM_DQ[6]  ; dataReaded[6]  ; 8.533  ;        ;        ; 8.533  ;
+; SRAM_DQ[7]  ; dataReaded[7]  ; 8.749  ;        ;        ; 8.749  ;
+; SRAM_DQ[7]  ; dataReaded[8]  ; 9.913  ;        ;        ; 9.913  ;
+; SRAM_DQ[7]  ; dataReaded[12] ; 9.578  ;        ;        ; 9.578  ;
+; SRAM_DQ[8]  ; dataReaded[8]  ; 9.576  ;        ;        ; 9.576  ;
+; SRAM_DQ[9]  ; dataReaded[9]  ; 9.394  ;        ;        ; 9.394  ;
+; SRAM_DQ[10] ; dataReaded[10] ; 9.381  ;        ;        ; 9.381  ;
+; SRAM_DQ[11] ; dataReaded[11] ; 9.391  ;        ;        ; 9.391  ;
+; SRAM_DQ[12] ; dataReaded[12] ; 10.181 ;        ;        ; 10.181 ;
+; SRAM_DQ[13] ; dataReaded[13] ; 9.541  ;        ;        ; 9.541  ;
+; SRAM_DQ[14] ; dataReaded[14] ; 9.384  ;        ;        ; 9.384  ;
+; SRAM_DQ[15] ; dataReaded[15] ; 9.570  ;        ;        ; 9.570  ;
+; address[0]  ; SRAM_ADDR[0]   ; 9.644  ;        ;        ; 9.644  ;
+; address[1]  ; SRAM_ADDR[1]   ; 9.579  ;        ;        ; 9.579  ;
+; address[2]  ; SRAM_ADDR[2]   ; 8.549  ;        ;        ; 8.549  ;
+; address[3]  ; SRAM_ADDR[3]   ; 8.593  ;        ;        ; 8.593  ;
+; address[4]  ; SRAM_ADDR[4]   ; 8.503  ;        ;        ; 8.503  ;
+; address[5]  ; SRAM_ADDR[5]   ; 9.512  ;        ;        ; 9.512  ;
+; address[6]  ; SRAM_ADDR[6]   ; 8.523  ;        ;        ; 8.523  ;
+; address[7]  ; SRAM_ADDR[7]   ; 9.569  ;        ;        ; 9.569  ;
+; address[8]  ; SRAM_ADDR[8]   ; 9.340  ;        ;        ; 9.340  ;
+; address[9]  ; SRAM_ADDR[9]   ; 8.503  ;        ;        ; 8.503  ;
+; address[10] ; SRAM_ADDR[10]  ; 9.590  ;        ;        ; 9.590  ;
+; address[11] ; SRAM_ADDR[11]  ; 8.549  ;        ;        ; 8.549  ;
+; address[12] ; SRAM_ADDR[12]  ; 8.584  ;        ;        ; 8.584  ;
+; address[13] ; SRAM_ADDR[13]  ; 9.603  ;        ;        ; 9.603  ;
+; address[14] ; SRAM_ADDR[14]  ; 9.556  ;        ;        ; 9.556  ;
+; address[15] ; SRAM_ADDR[15]  ; 9.582  ;        ;        ; 9.582  ;
+; byte_m      ; dataReaded[8]  ; 9.545  ; 9.545  ; 9.545  ; 9.545  ;
+; byte_m      ; dataReaded[9]  ;        ; 10.000 ; 10.000 ;        ;
+; byte_m      ; dataReaded[10] ;        ; 9.973  ; 9.973  ;        ;
+; byte_m      ; dataReaded[11] ;        ; 10.000 ; 10.000 ;        ;
+; byte_m      ; dataReaded[12] ; 9.551  ; 9.551  ; 9.551  ; 9.551  ;
+; byte_m      ; dataReaded[13] ;        ; 9.726  ; 9.726  ;        ;
+; byte_m      ; dataReaded[14] ;        ; 9.973  ; 9.973  ;        ;
+; byte_m      ; dataReaded[15] ;        ; 9.942  ; 9.942  ;        ;
++-------------+----------------+--------+--------+--------+--------+
+
+
++-------------------------------+
+; Fast Model Setup Summary      ;
++-------+-------+---------------+
+; Clock ; Slack ; End Point TNS ;
++-------+-------+---------------+
+; WR    ; 0.262 ; 0.000         ;
+; clk   ; 0.420 ; 0.000         ;
++-------+-------+---------------+
+
+
++--------------------------------+
+; Fast Model Hold Summary        ;
++-------+--------+---------------+
+; Clock ; Slack  ; End Point TNS ;
++-------+--------+---------------+
+; clk   ; -0.040 ; -0.040        ;
+; WR    ; 0.349  ; 0.000         ;
++-------+--------+---------------+
 
 
 -------------------------------
@@ -229,96 +466,478 @@ No paths to report.
 
 +----------------------------------------+
 ; Fast Model Minimum Pulse Width Summary ;
-+----------+--------+--------------------+
-; Clock    ; Slack  ; End Point TNS      ;
-+----------+--------+--------------------+
-; CLOCK_50 ; -1.222 ; -2.222             ;
-+----------+--------+--------------------+
++-------+--------+-----------------------+
+; Clock ; Slack  ; End Point TNS         ;
++-------+--------+-----------------------+
+; clk   ; -1.222 ; -3.222                ;
+; WR    ; -1.222 ; -1.222                ;
++-------+--------+-----------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fast Model Setup: 'CLOCK_50'                                                                                                                                                                                    ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; Slack ; From Node                                                       ; To Node                                                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; 0.665 ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; CLOCK_50     ; CLOCK_50    ; 1.000        ; 0.000      ; 0.367      ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
++--------------------------------------------------------------------------------------------------------------+
+; Fast Model Setup: 'WR'                                                                                       ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node     ; To Node        ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; 0.262 ; state.IDLE_ST ; SRAM_DQ[0]_224 ; clk          ; WR          ; 1.000        ; 0.012      ; 0.361      ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fast Model Hold: 'CLOCK_50'                                                                                                                                                                                     ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; Slack ; From Node                                                       ; To Node                                                         ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
-; 0.215 ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ; CLOCK_50     ; CLOCK_50    ; 0.000        ; 0.000      ; 0.367      ;
-+-------+-----------------------------------------------------------------+-----------------------------------------------------------------+--------------+-------------+--------------+------------+------------+
++-------------------------------------------------------------------------------------------------------------+
+; Fast Model Setup: 'clk'                                                                                     ;
++-------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node     ; To Node       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; 0.420 ; WR            ; state.RD_ST   ; WR           ; clk         ; 0.500        ; 1.134      ; 1.246      ;
+; 0.444 ; state.IDLE_ST ; state.RD_ST   ; clk          ; clk         ; 1.000        ; 0.000      ; 0.588      ;
+; 0.665 ; state.IDLE_ST ; state.IDLE_ST ; clk          ; clk         ; 1.000        ; 0.000      ; 0.367      ;
+; 0.920 ; WR            ; state.RD_ST   ; WR           ; clk         ; 1.000        ; 1.134      ; 1.246      ;
++-------+---------------+---------------+--------------+-------------+--------------+------------+------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fast Model Minimum Pulse Width: 'CLOCK_50'                                                                                                          ;
-+--------+--------------+----------------+------------------+----------+------------+-----------------------------------------------------------------+
-; Slack  ; Actual Width ; Required Width ; Type             ; Clock    ; Clock Edge ; Target                                                          ;
-+--------+--------------+----------------+------------------+----------+------------+-----------------------------------------------------------------+
-; -1.222 ; 1.000        ; 2.222          ; Port Rate        ; CLOCK_50 ; Rise       ; CLOCK_50                                                        ;
-; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; CLOCK_50 ; Rise       ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ;
-; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; CLOCK_50 ; Rise       ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N ;
-; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; CLOCK_50 ; Rise       ; CLOCK_50|combout                                                ;
-; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; CLOCK_50 ; Rise       ; CLOCK_50|combout                                                ;
-; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; CLOCK_50 ; Rise       ; mem_ctrl0|controller0|SRAM_OE_N|clk                             ;
-; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; CLOCK_50 ; Rise       ; mem_ctrl0|controller0|SRAM_OE_N|clk                             ;
-+--------+--------------+----------------+------------------+----------+------------+-----------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------+
+; Fast Model Hold: 'clk'                                                                                       ;
++--------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; Slack  ; From Node     ; To Node       ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++--------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+; -0.040 ; WR            ; state.RD_ST   ; WR           ; clk         ; 0.000        ; 1.134      ; 1.246      ;
+; 0.215  ; state.IDLE_ST ; state.IDLE_ST ; clk          ; clk         ; 0.000        ; 0.000      ; 0.367      ;
+; 0.436  ; state.IDLE_ST ; state.RD_ST   ; clk          ; clk         ; 0.000        ; 0.000      ; 0.588      ;
+; 0.460  ; WR            ; state.RD_ST   ; WR           ; clk         ; -0.500       ; 1.134      ; 1.246      ;
++--------+---------------+---------------+--------------+-------------+--------------+------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------+
+; Fast Model Hold: 'WR'                                                                                        ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; Slack ; From Node     ; To Node        ; Launch Clock ; Latch Clock ; Relationship ; Clock Skew ; Data Delay ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+; 0.349 ; state.IDLE_ST ; SRAM_DQ[0]_224 ; clk          ; WR          ; 0.000        ; 0.012      ; 0.361      ;
++-------+---------------+----------------+--------------+-------------+--------------+------------+------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Fast Model Minimum Pulse Width: 'clk'                                                              ;
++--------+--------------+----------------+------------------+-------+------------+-------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target            ;
++--------+--------------+----------------+------------------+-------+------------+-------------------+
+; -1.222 ; 1.000        ; 2.222          ; Port Rate        ; clk   ; Rise       ; clk               ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; clk   ; Rise       ; state.IDLE_ST     ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; clk   ; Rise       ; state.IDLE_ST     ;
+; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; clk   ; Rise       ; state.RD_ST       ;
+; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; clk   ; Rise       ; state.RD_ST       ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; clk   ; Rise       ; clk|combout       ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; clk   ; Rise       ; clk|combout       ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; clk   ; Rise       ; state.IDLE_ST|clk ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; clk   ; Rise       ; state.IDLE_ST|clk ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; clk   ; Rise       ; state.RD_ST|clk   ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; clk   ; Rise       ; state.RD_ST|clk   ;
++--------+--------------+----------------+------------------+-------+------------+-------------------+
+
+
++-------------------------------------------------------------------------------------------------------+
+; Fast Model Minimum Pulse Width: 'WR'                                                                  ;
++--------+--------------+----------------+------------------+-------+------------+----------------------+
+; Slack  ; Actual Width ; Required Width ; Type             ; Clock ; Clock Edge ; Target               ;
++--------+--------------+----------------+------------------+-------+------------+----------------------+
+; -1.222 ; 1.000        ; 2.222          ; Port Rate        ; WR    ; Rise       ; WR                   ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Rise       ; SRAM_DQ[0]_224       ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Rise       ; SRAM_DQ[0]_224       ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Fall       ; SRAM_DQ[0]_224|datac ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Fall       ; SRAM_DQ[0]_224|datac ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Fall       ; Selector0~0|combout  ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Fall       ; Selector0~0|combout  ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Rise       ; Selector0~0|datac    ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Rise       ; Selector0~0|datac    ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; WR    ; Rise       ; WR|combout           ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; WR    ; Rise       ; WR|combout           ;
++--------+--------------+----------------+------------------+-------+------------+----------------------+
 
 
 +-----------------------------------------------------------------------+
-; Clock to Output Times                                                 ;
+; Setup Times                                                           ;
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SRAM_CE_N ; CLOCK_50   ; 2.935 ; 2.935 ; Rise       ; CLOCK_50        ;
-; SRAM_OE_N ; CLOCK_50   ; 2.955 ; 2.955 ; Rise       ; CLOCK_50        ;
+; WR        ; clk        ; 0.080 ; 0.080 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
 +-----------------------------------------------------------------------+
-; Minimum Clock to Output Times                                         ;
+; Hold Times                                                            ;
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SRAM_CE_N ; CLOCK_50   ; 2.935 ; 2.935 ; Rise       ; CLOCK_50        ;
-; SRAM_OE_N ; CLOCK_50   ; 2.955 ; 2.955 ; Rise       ; CLOCK_50        ;
+; WR        ; clk        ; 0.040 ; 0.040 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
 +-----------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                         ;
-+------------------+-------+-------+----------+---------+---------------------+
-; Clock            ; Setup ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
-+------------------+-------+-------+----------+---------+---------------------+
-; Worst-case Slack ; 0.307 ; 0.215 ; N/A      ; N/A     ; -1.469              ;
-;  CLOCK_50        ; 0.307 ; 0.215 ; N/A      ; N/A     ; -1.469              ;
-; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; -2.691              ;
-;  CLOCK_50        ; 0.000 ; 0.000 ; N/A      ; N/A     ; -2.691              ;
-+------------------+-------+-------+----------+---------+---------------------+
+; Clock to Output Times                                                       ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; SRAM_DQ[*]      ; WR         ; 3.236 ; 3.236 ; Rise       ; WR              ;
+;  SRAM_DQ[0]     ; WR         ; 3.226 ; 3.226 ; Rise       ; WR              ;
+;  SRAM_DQ[1]     ; WR         ; 3.202 ; 3.202 ; Rise       ; WR              ;
+;  SRAM_DQ[2]     ; WR         ; 3.182 ; 3.182 ; Rise       ; WR              ;
+;  SRAM_DQ[3]     ; WR         ; 3.205 ; 3.205 ; Rise       ; WR              ;
+;  SRAM_DQ[4]     ; WR         ; 3.042 ; 3.042 ; Rise       ; WR              ;
+;  SRAM_DQ[5]     ; WR         ; 3.236 ; 3.236 ; Rise       ; WR              ;
+;  SRAM_DQ[6]     ; WR         ; 3.205 ; 3.205 ; Rise       ; WR              ;
+;  SRAM_DQ[7]     ; WR         ; 2.868 ; 2.868 ; Rise       ; WR              ;
+;  SRAM_DQ[8]     ; WR         ; 2.898 ; 2.898 ; Rise       ; WR              ;
+;  SRAM_DQ[9]     ; WR         ; 2.929 ; 2.929 ; Rise       ; WR              ;
+;  SRAM_DQ[10]    ; WR         ; 2.914 ; 2.914 ; Rise       ; WR              ;
+;  SRAM_DQ[11]    ; WR         ; 2.929 ; 2.929 ; Rise       ; WR              ;
+;  SRAM_DQ[12]    ; WR         ; 3.062 ; 3.062 ; Rise       ; WR              ;
+;  SRAM_DQ[13]    ; WR         ; 2.900 ; 2.900 ; Rise       ; WR              ;
+;  SRAM_DQ[14]    ; WR         ; 2.914 ; 2.914 ; Rise       ; WR              ;
+;  SRAM_DQ[15]    ; WR         ; 2.920 ; 2.920 ; Rise       ; WR              ;
+; dataReaded[*]   ; clk        ; 3.449 ; 3.449 ; Rise       ; clk             ;
+;  dataReaded[8]  ; clk        ; 3.439 ; 3.439 ; Rise       ; clk             ;
+;  dataReaded[9]  ; clk        ; 3.349 ; 3.349 ; Rise       ; clk             ;
+;  dataReaded[10] ; clk        ; 3.364 ; 3.364 ; Rise       ; clk             ;
+;  dataReaded[11] ; clk        ; 3.349 ; 3.349 ; Rise       ; clk             ;
+;  dataReaded[12] ; clk        ; 3.449 ; 3.449 ; Rise       ; clk             ;
+;  dataReaded[13] ; clk        ; 3.317 ; 3.317 ; Rise       ; clk             ;
+;  dataReaded[14] ; clk        ; 3.364 ; 3.364 ; Rise       ; clk             ;
+;  dataReaded[15] ; clk        ; 3.339 ; 3.339 ; Rise       ; clk             ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                               ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; SRAM_DQ[*]      ; WR         ; 2.868 ; 2.868 ; Rise       ; WR              ;
+;  SRAM_DQ[0]     ; WR         ; 3.226 ; 3.226 ; Rise       ; WR              ;
+;  SRAM_DQ[1]     ; WR         ; 3.202 ; 3.202 ; Rise       ; WR              ;
+;  SRAM_DQ[2]     ; WR         ; 3.182 ; 3.182 ; Rise       ; WR              ;
+;  SRAM_DQ[3]     ; WR         ; 3.205 ; 3.205 ; Rise       ; WR              ;
+;  SRAM_DQ[4]     ; WR         ; 3.042 ; 3.042 ; Rise       ; WR              ;
+;  SRAM_DQ[5]     ; WR         ; 3.236 ; 3.236 ; Rise       ; WR              ;
+;  SRAM_DQ[6]     ; WR         ; 3.205 ; 3.205 ; Rise       ; WR              ;
+;  SRAM_DQ[7]     ; WR         ; 2.868 ; 2.868 ; Rise       ; WR              ;
+;  SRAM_DQ[8]     ; WR         ; 2.898 ; 2.898 ; Rise       ; WR              ;
+;  SRAM_DQ[9]     ; WR         ; 2.929 ; 2.929 ; Rise       ; WR              ;
+;  SRAM_DQ[10]    ; WR         ; 2.914 ; 2.914 ; Rise       ; WR              ;
+;  SRAM_DQ[11]    ; WR         ; 2.929 ; 2.929 ; Rise       ; WR              ;
+;  SRAM_DQ[12]    ; WR         ; 3.062 ; 3.062 ; Rise       ; WR              ;
+;  SRAM_DQ[13]    ; WR         ; 2.900 ; 2.900 ; Rise       ; WR              ;
+;  SRAM_DQ[14]    ; WR         ; 2.914 ; 2.914 ; Rise       ; WR              ;
+;  SRAM_DQ[15]    ; WR         ; 2.920 ; 2.920 ; Rise       ; WR              ;
+; dataReaded[*]   ; clk        ; 3.317 ; 3.317 ; Rise       ; clk             ;
+;  dataReaded[8]  ; clk        ; 3.439 ; 3.439 ; Rise       ; clk             ;
+;  dataReaded[9]  ; clk        ; 3.349 ; 3.349 ; Rise       ; clk             ;
+;  dataReaded[10] ; clk        ; 3.364 ; 3.364 ; Rise       ; clk             ;
+;  dataReaded[11] ; clk        ; 3.349 ; 3.349 ; Rise       ; clk             ;
+;  dataReaded[12] ; clk        ; 3.449 ; 3.449 ; Rise       ; clk             ;
+;  dataReaded[13] ; clk        ; 3.317 ; 3.317 ; Rise       ; clk             ;
+;  dataReaded[14] ; clk        ; 3.364 ; 3.364 ; Rise       ; clk             ;
+;  dataReaded[15] ; clk        ; 3.339 ; 3.339 ; Rise       ; clk             ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++--------------------------------------------------------------+
+; Propagation Delay                                            ;
++-------------+----------------+-------+-------+-------+-------+
+; Input Port  ; Output Port    ; RR    ; RF    ; FR    ; FF    ;
++-------------+----------------+-------+-------+-------+-------+
+; SRAM_DQ[0]  ; dataReaded[0]  ; 4.632 ;       ;       ; 4.632 ;
+; SRAM_DQ[1]  ; dataReaded[1]  ; 4.680 ;       ;       ; 4.680 ;
+; SRAM_DQ[2]  ; dataReaded[2]  ; 4.586 ;       ;       ; 4.586 ;
+; SRAM_DQ[3]  ; dataReaded[3]  ; 4.576 ;       ;       ; 4.576 ;
+; SRAM_DQ[4]  ; dataReaded[4]  ; 4.576 ;       ;       ; 4.576 ;
+; SRAM_DQ[5]  ; dataReaded[5]  ; 4.636 ;       ;       ; 4.636 ;
+; SRAM_DQ[6]  ; dataReaded[6]  ; 4.592 ;       ;       ; 4.592 ;
+; SRAM_DQ[7]  ; dataReaded[7]  ; 4.661 ;       ;       ; 4.661 ;
+; SRAM_DQ[7]  ; dataReaded[8]  ; 5.075 ;       ;       ; 5.075 ;
+; SRAM_DQ[7]  ; dataReaded[12] ; 4.968 ;       ;       ; 4.968 ;
+; SRAM_DQ[8]  ; dataReaded[8]  ; 4.975 ;       ;       ; 4.975 ;
+; SRAM_DQ[9]  ; dataReaded[9]  ; 4.931 ;       ;       ; 4.931 ;
+; SRAM_DQ[10] ; dataReaded[10] ; 4.920 ;       ;       ; 4.920 ;
+; SRAM_DQ[11] ; dataReaded[11] ; 4.930 ;       ;       ; 4.930 ;
+; SRAM_DQ[12] ; dataReaded[12] ; 5.260 ;       ;       ; 5.260 ;
+; SRAM_DQ[13] ; dataReaded[13] ; 4.931 ;       ;       ; 4.931 ;
+; SRAM_DQ[14] ; dataReaded[14] ; 4.921 ;       ;       ; 4.921 ;
+; SRAM_DQ[15] ; dataReaded[15] ; 4.978 ;       ;       ; 4.978 ;
+; address[0]  ; SRAM_ADDR[0]   ; 5.064 ;       ;       ; 5.064 ;
+; address[1]  ; SRAM_ADDR[1]   ; 5.043 ;       ;       ; 5.043 ;
+; address[2]  ; SRAM_ADDR[2]   ; 4.620 ;       ;       ; 4.620 ;
+; address[3]  ; SRAM_ADDR[3]   ; 4.652 ;       ;       ; 4.652 ;
+; address[4]  ; SRAM_ADDR[4]   ; 4.582 ;       ;       ; 4.582 ;
+; address[5]  ; SRAM_ADDR[5]   ; 4.976 ;       ;       ; 4.976 ;
+; address[6]  ; SRAM_ADDR[6]   ; 4.602 ;       ;       ; 4.602 ;
+; address[7]  ; SRAM_ADDR[7]   ; 5.020 ;       ;       ; 5.020 ;
+; address[8]  ; SRAM_ADDR[8]   ; 4.960 ;       ;       ; 4.960 ;
+; address[9]  ; SRAM_ADDR[9]   ; 4.582 ;       ;       ; 4.582 ;
+; address[10] ; SRAM_ADDR[10]  ; 5.032 ;       ;       ; 5.032 ;
+; address[11] ; SRAM_ADDR[11]  ; 4.620 ;       ;       ; 4.620 ;
+; address[12] ; SRAM_ADDR[12]  ; 4.646 ;       ;       ; 4.646 ;
+; address[13] ; SRAM_ADDR[13]  ; 5.043 ;       ;       ; 5.043 ;
+; address[14] ; SRAM_ADDR[14]  ; 5.019 ;       ;       ; 5.019 ;
+; address[15] ; SRAM_ADDR[15]  ; 5.038 ;       ;       ; 5.038 ;
+; byte_m      ; dataReaded[8]  ; 4.943 ; 4.943 ; 4.943 ; 4.943 ;
+; byte_m      ; dataReaded[9]  ;       ; 5.127 ; 5.127 ;       ;
+; byte_m      ; dataReaded[10] ;       ; 5.140 ; 5.140 ;       ;
+; byte_m      ; dataReaded[11] ;       ; 5.127 ; 5.127 ;       ;
+; byte_m      ; dataReaded[12] ; 4.952 ; 4.952 ; 4.952 ; 4.952 ;
+; byte_m      ; dataReaded[13] ;       ; 5.015 ; 5.015 ;       ;
+; byte_m      ; dataReaded[14] ;       ; 5.140 ; 5.140 ;       ;
+; byte_m      ; dataReaded[15] ;       ; 5.106 ; 5.106 ;       ;
++-------------+----------------+-------+-------+-------+-------+
+
+
++--------------------------------------------------------------+
+; Minimum Propagation Delay                                    ;
++-------------+----------------+-------+-------+-------+-------+
+; Input Port  ; Output Port    ; RR    ; RF    ; FR    ; FF    ;
++-------------+----------------+-------+-------+-------+-------+
+; SRAM_DQ[0]  ; dataReaded[0]  ; 4.632 ;       ;       ; 4.632 ;
+; SRAM_DQ[1]  ; dataReaded[1]  ; 4.680 ;       ;       ; 4.680 ;
+; SRAM_DQ[2]  ; dataReaded[2]  ; 4.586 ;       ;       ; 4.586 ;
+; SRAM_DQ[3]  ; dataReaded[3]  ; 4.576 ;       ;       ; 4.576 ;
+; SRAM_DQ[4]  ; dataReaded[4]  ; 4.576 ;       ;       ; 4.576 ;
+; SRAM_DQ[5]  ; dataReaded[5]  ; 4.636 ;       ;       ; 4.636 ;
+; SRAM_DQ[6]  ; dataReaded[6]  ; 4.592 ;       ;       ; 4.592 ;
+; SRAM_DQ[7]  ; dataReaded[7]  ; 4.661 ;       ;       ; 4.661 ;
+; SRAM_DQ[7]  ; dataReaded[8]  ; 5.075 ;       ;       ; 5.075 ;
+; SRAM_DQ[7]  ; dataReaded[12] ; 4.968 ;       ;       ; 4.968 ;
+; SRAM_DQ[8]  ; dataReaded[8]  ; 4.975 ;       ;       ; 4.975 ;
+; SRAM_DQ[9]  ; dataReaded[9]  ; 4.931 ;       ;       ; 4.931 ;
+; SRAM_DQ[10] ; dataReaded[10] ; 4.920 ;       ;       ; 4.920 ;
+; SRAM_DQ[11] ; dataReaded[11] ; 4.930 ;       ;       ; 4.930 ;
+; SRAM_DQ[12] ; dataReaded[12] ; 5.260 ;       ;       ; 5.260 ;
+; SRAM_DQ[13] ; dataReaded[13] ; 4.931 ;       ;       ; 4.931 ;
+; SRAM_DQ[14] ; dataReaded[14] ; 4.921 ;       ;       ; 4.921 ;
+; SRAM_DQ[15] ; dataReaded[15] ; 4.978 ;       ;       ; 4.978 ;
+; address[0]  ; SRAM_ADDR[0]   ; 5.064 ;       ;       ; 5.064 ;
+; address[1]  ; SRAM_ADDR[1]   ; 5.043 ;       ;       ; 5.043 ;
+; address[2]  ; SRAM_ADDR[2]   ; 4.620 ;       ;       ; 4.620 ;
+; address[3]  ; SRAM_ADDR[3]   ; 4.652 ;       ;       ; 4.652 ;
+; address[4]  ; SRAM_ADDR[4]   ; 4.582 ;       ;       ; 4.582 ;
+; address[5]  ; SRAM_ADDR[5]   ; 4.976 ;       ;       ; 4.976 ;
+; address[6]  ; SRAM_ADDR[6]   ; 4.602 ;       ;       ; 4.602 ;
+; address[7]  ; SRAM_ADDR[7]   ; 5.020 ;       ;       ; 5.020 ;
+; address[8]  ; SRAM_ADDR[8]   ; 4.960 ;       ;       ; 4.960 ;
+; address[9]  ; SRAM_ADDR[9]   ; 4.582 ;       ;       ; 4.582 ;
+; address[10] ; SRAM_ADDR[10]  ; 5.032 ;       ;       ; 5.032 ;
+; address[11] ; SRAM_ADDR[11]  ; 4.620 ;       ;       ; 4.620 ;
+; address[12] ; SRAM_ADDR[12]  ; 4.646 ;       ;       ; 4.646 ;
+; address[13] ; SRAM_ADDR[13]  ; 5.043 ;       ;       ; 5.043 ;
+; address[14] ; SRAM_ADDR[14]  ; 5.019 ;       ;       ; 5.019 ;
+; address[15] ; SRAM_ADDR[15]  ; 5.038 ;       ;       ; 5.038 ;
+; byte_m      ; dataReaded[8]  ; 4.943 ; 4.943 ; 4.943 ; 4.943 ;
+; byte_m      ; dataReaded[9]  ;       ; 5.127 ; 5.127 ;       ;
+; byte_m      ; dataReaded[10] ;       ; 5.140 ; 5.140 ;       ;
+; byte_m      ; dataReaded[11] ;       ; 5.127 ; 5.127 ;       ;
+; byte_m      ; dataReaded[12] ; 4.952 ; 4.952 ; 4.952 ; 4.952 ;
+; byte_m      ; dataReaded[13] ;       ; 5.015 ; 5.015 ;       ;
+; byte_m      ; dataReaded[14] ;       ; 5.140 ; 5.140 ;       ;
+; byte_m      ; dataReaded[15] ;       ; 5.106 ; 5.106 ;       ;
++-------------+----------------+-------+-------+-------+-------+
+
+
++-------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                           ;
++------------------+--------+--------+----------+---------+---------------------+
+; Clock            ; Setup  ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
++------------------+--------+--------+----------+---------+---------------------+
+; Worst-case Slack ; -0.596 ; -0.040 ; N/A      ; N/A     ; -1.469              ;
+;  WR              ; -0.596 ; 0.349  ; N/A      ; N/A     ; -1.469              ;
+;  clk             ; -0.364 ; -0.040 ; N/A      ; N/A     ; -1.469              ;
+; Design-wide TNS  ; -0.96  ; -0.04  ; 0.0      ; 0.0     ; -5.382              ;
+;  WR              ; -0.596 ; 0.000  ; N/A      ; N/A     ; -1.469              ;
+;  clk             ; -0.364 ; -0.040 ; N/A      ; N/A     ; -3.913              ;
++------------------+--------+--------+----------+---------+---------------------+
 
 
 +-----------------------------------------------------------------------+
-; Clock to Output Times                                                 ;
+; Setup Times                                                           ;
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SRAM_CE_N ; CLOCK_50   ; 5.884 ; 5.884 ; Rise       ; CLOCK_50        ;
-; SRAM_OE_N ; CLOCK_50   ; 5.904 ; 5.904 ; Rise       ; CLOCK_50        ;
+; WR        ; clk        ; 0.509 ; 0.509 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
 +-----------------------------------------------------------------------+
-; Minimum Clock to Output Times                                         ;
+; Hold Times                                                            ;
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SRAM_CE_N ; CLOCK_50   ; 2.935 ; 2.935 ; Rise       ; CLOCK_50        ;
-; SRAM_OE_N ; CLOCK_50   ; 2.955 ; 2.955 ; Rise       ; CLOCK_50        ;
+; WR        ; clk        ; 0.040 ; 0.040 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Clock to Output Times                                                       ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; SRAM_DQ[*]      ; WR         ; 6.988 ; 6.988 ; Rise       ; WR              ;
+;  SRAM_DQ[0]     ; WR         ; 6.978 ; 6.978 ; Rise       ; WR              ;
+;  SRAM_DQ[1]     ; WR         ; 6.952 ; 6.952 ; Rise       ; WR              ;
+;  SRAM_DQ[2]     ; WR         ; 6.932 ; 6.932 ; Rise       ; WR              ;
+;  SRAM_DQ[3]     ; WR         ; 6.958 ; 6.958 ; Rise       ; WR              ;
+;  SRAM_DQ[4]     ; WR         ; 6.579 ; 6.579 ; Rise       ; WR              ;
+;  SRAM_DQ[5]     ; WR         ; 6.988 ; 6.988 ; Rise       ; WR              ;
+;  SRAM_DQ[6]     ; WR         ; 6.958 ; 6.958 ; Rise       ; WR              ;
+;  SRAM_DQ[7]     ; WR         ; 6.292 ; 6.292 ; Rise       ; WR              ;
+;  SRAM_DQ[8]     ; WR         ; 6.322 ; 6.322 ; Rise       ; WR              ;
+;  SRAM_DQ[9]     ; WR         ; 6.363 ; 6.363 ; Rise       ; WR              ;
+;  SRAM_DQ[10]    ; WR         ; 6.349 ; 6.349 ; Rise       ; WR              ;
+;  SRAM_DQ[11]    ; WR         ; 6.363 ; 6.363 ; Rise       ; WR              ;
+;  SRAM_DQ[12]    ; WR         ; 6.599 ; 6.599 ; Rise       ; WR              ;
+;  SRAM_DQ[13]    ; WR         ; 6.332 ; 6.332 ; Rise       ; WR              ;
+;  SRAM_DQ[14]    ; WR         ; 6.349 ; 6.349 ; Rise       ; WR              ;
+;  SRAM_DQ[15]    ; WR         ; 6.352 ; 6.352 ; Rise       ; WR              ;
+; dataReaded[*]   ; clk        ; 7.367 ; 7.367 ; Rise       ; clk             ;
+;  dataReaded[8]  ; clk        ; 7.357 ; 7.357 ; Rise       ; clk             ;
+;  dataReaded[9]  ; clk        ; 7.019 ; 7.019 ; Rise       ; clk             ;
+;  dataReaded[10] ; clk        ; 7.034 ; 7.034 ; Rise       ; clk             ;
+;  dataReaded[11] ; clk        ; 7.019 ; 7.019 ; Rise       ; clk             ;
+;  dataReaded[12] ; clk        ; 7.367 ; 7.367 ; Rise       ; clk             ;
+;  dataReaded[13] ; clk        ; 6.987 ; 6.987 ; Rise       ; clk             ;
+;  dataReaded[14] ; clk        ; 7.034 ; 7.034 ; Rise       ; clk             ;
+;  dataReaded[15] ; clk        ; 7.008 ; 7.008 ; Rise       ; clk             ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++-----------------------------------------------------------------------------+
+; Minimum Clock to Output Times                                               ;
++-----------------+------------+-------+-------+------------+-----------------+
+; Data Port       ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
++-----------------+------------+-------+-------+------------+-----------------+
+; SRAM_DQ[*]      ; WR         ; 2.868 ; 2.868 ; Rise       ; WR              ;
+;  SRAM_DQ[0]     ; WR         ; 3.226 ; 3.226 ; Rise       ; WR              ;
+;  SRAM_DQ[1]     ; WR         ; 3.202 ; 3.202 ; Rise       ; WR              ;
+;  SRAM_DQ[2]     ; WR         ; 3.182 ; 3.182 ; Rise       ; WR              ;
+;  SRAM_DQ[3]     ; WR         ; 3.205 ; 3.205 ; Rise       ; WR              ;
+;  SRAM_DQ[4]     ; WR         ; 3.042 ; 3.042 ; Rise       ; WR              ;
+;  SRAM_DQ[5]     ; WR         ; 3.236 ; 3.236 ; Rise       ; WR              ;
+;  SRAM_DQ[6]     ; WR         ; 3.205 ; 3.205 ; Rise       ; WR              ;
+;  SRAM_DQ[7]     ; WR         ; 2.868 ; 2.868 ; Rise       ; WR              ;
+;  SRAM_DQ[8]     ; WR         ; 2.898 ; 2.898 ; Rise       ; WR              ;
+;  SRAM_DQ[9]     ; WR         ; 2.929 ; 2.929 ; Rise       ; WR              ;
+;  SRAM_DQ[10]    ; WR         ; 2.914 ; 2.914 ; Rise       ; WR              ;
+;  SRAM_DQ[11]    ; WR         ; 2.929 ; 2.929 ; Rise       ; WR              ;
+;  SRAM_DQ[12]    ; WR         ; 3.062 ; 3.062 ; Rise       ; WR              ;
+;  SRAM_DQ[13]    ; WR         ; 2.900 ; 2.900 ; Rise       ; WR              ;
+;  SRAM_DQ[14]    ; WR         ; 2.914 ; 2.914 ; Rise       ; WR              ;
+;  SRAM_DQ[15]    ; WR         ; 2.920 ; 2.920 ; Rise       ; WR              ;
+; dataReaded[*]   ; clk        ; 3.317 ; 3.317 ; Rise       ; clk             ;
+;  dataReaded[8]  ; clk        ; 3.439 ; 3.439 ; Rise       ; clk             ;
+;  dataReaded[9]  ; clk        ; 3.349 ; 3.349 ; Rise       ; clk             ;
+;  dataReaded[10] ; clk        ; 3.364 ; 3.364 ; Rise       ; clk             ;
+;  dataReaded[11] ; clk        ; 3.349 ; 3.349 ; Rise       ; clk             ;
+;  dataReaded[12] ; clk        ; 3.449 ; 3.449 ; Rise       ; clk             ;
+;  dataReaded[13] ; clk        ; 3.317 ; 3.317 ; Rise       ; clk             ;
+;  dataReaded[14] ; clk        ; 3.364 ; 3.364 ; Rise       ; clk             ;
+;  dataReaded[15] ; clk        ; 3.339 ; 3.339 ; Rise       ; clk             ;
++-----------------+------------+-------+-------+------------+-----------------+
+
+
++------------------------------------------------------------------+
+; Progagation Delay                                                ;
++-------------+----------------+--------+--------+--------+--------+
+; Input Port  ; Output Port    ; RR     ; RF     ; FR     ; FF     ;
++-------------+----------------+--------+--------+--------+--------+
+; SRAM_DQ[0]  ; dataReaded[0]  ; 8.573  ;        ;        ; 8.573  ;
+; SRAM_DQ[1]  ; dataReaded[1]  ; 8.764  ;        ;        ; 8.764  ;
+; SRAM_DQ[2]  ; dataReaded[2]  ; 8.524  ;        ;        ; 8.524  ;
+; SRAM_DQ[3]  ; dataReaded[3]  ; 8.514  ;        ;        ; 8.514  ;
+; SRAM_DQ[4]  ; dataReaded[4]  ; 8.514  ;        ;        ; 8.514  ;
+; SRAM_DQ[5]  ; dataReaded[5]  ; 8.574  ;        ;        ; 8.574  ;
+; SRAM_DQ[6]  ; dataReaded[6]  ; 8.533  ;        ;        ; 8.533  ;
+; SRAM_DQ[7]  ; dataReaded[7]  ; 8.749  ;        ;        ; 8.749  ;
+; SRAM_DQ[7]  ; dataReaded[8]  ; 9.913  ;        ;        ; 9.913  ;
+; SRAM_DQ[7]  ; dataReaded[12] ; 9.578  ;        ;        ; 9.578  ;
+; SRAM_DQ[8]  ; dataReaded[8]  ; 9.576  ;        ;        ; 9.576  ;
+; SRAM_DQ[9]  ; dataReaded[9]  ; 9.394  ;        ;        ; 9.394  ;
+; SRAM_DQ[10] ; dataReaded[10] ; 9.381  ;        ;        ; 9.381  ;
+; SRAM_DQ[11] ; dataReaded[11] ; 9.391  ;        ;        ; 9.391  ;
+; SRAM_DQ[12] ; dataReaded[12] ; 10.181 ;        ;        ; 10.181 ;
+; SRAM_DQ[13] ; dataReaded[13] ; 9.541  ;        ;        ; 9.541  ;
+; SRAM_DQ[14] ; dataReaded[14] ; 9.384  ;        ;        ; 9.384  ;
+; SRAM_DQ[15] ; dataReaded[15] ; 9.570  ;        ;        ; 9.570  ;
+; address[0]  ; SRAM_ADDR[0]   ; 9.644  ;        ;        ; 9.644  ;
+; address[1]  ; SRAM_ADDR[1]   ; 9.579  ;        ;        ; 9.579  ;
+; address[2]  ; SRAM_ADDR[2]   ; 8.549  ;        ;        ; 8.549  ;
+; address[3]  ; SRAM_ADDR[3]   ; 8.593  ;        ;        ; 8.593  ;
+; address[4]  ; SRAM_ADDR[4]   ; 8.503  ;        ;        ; 8.503  ;
+; address[5]  ; SRAM_ADDR[5]   ; 9.512  ;        ;        ; 9.512  ;
+; address[6]  ; SRAM_ADDR[6]   ; 8.523  ;        ;        ; 8.523  ;
+; address[7]  ; SRAM_ADDR[7]   ; 9.569  ;        ;        ; 9.569  ;
+; address[8]  ; SRAM_ADDR[8]   ; 9.340  ;        ;        ; 9.340  ;
+; address[9]  ; SRAM_ADDR[9]   ; 8.503  ;        ;        ; 8.503  ;
+; address[10] ; SRAM_ADDR[10]  ; 9.590  ;        ;        ; 9.590  ;
+; address[11] ; SRAM_ADDR[11]  ; 8.549  ;        ;        ; 8.549  ;
+; address[12] ; SRAM_ADDR[12]  ; 8.584  ;        ;        ; 8.584  ;
+; address[13] ; SRAM_ADDR[13]  ; 9.603  ;        ;        ; 9.603  ;
+; address[14] ; SRAM_ADDR[14]  ; 9.556  ;        ;        ; 9.556  ;
+; address[15] ; SRAM_ADDR[15]  ; 9.582  ;        ;        ; 9.582  ;
+; byte_m      ; dataReaded[8]  ; 9.545  ; 9.545  ; 9.545  ; 9.545  ;
+; byte_m      ; dataReaded[9]  ;        ; 10.000 ; 10.000 ;        ;
+; byte_m      ; dataReaded[10] ;        ; 9.973  ; 9.973  ;        ;
+; byte_m      ; dataReaded[11] ;        ; 10.000 ; 10.000 ;        ;
+; byte_m      ; dataReaded[12] ; 9.551  ; 9.551  ; 9.551  ; 9.551  ;
+; byte_m      ; dataReaded[13] ;        ; 9.726  ; 9.726  ;        ;
+; byte_m      ; dataReaded[14] ;        ; 9.973  ; 9.973  ;        ;
+; byte_m      ; dataReaded[15] ;        ; 9.942  ; 9.942  ;        ;
++-------------+----------------+--------+--------+--------+--------+
+
+
++--------------------------------------------------------------+
+; Minimum Progagation Delay                                    ;
++-------------+----------------+-------+-------+-------+-------+
+; Input Port  ; Output Port    ; RR    ; RF    ; FR    ; FF    ;
++-------------+----------------+-------+-------+-------+-------+
+; SRAM_DQ[0]  ; dataReaded[0]  ; 4.632 ;       ;       ; 4.632 ;
+; SRAM_DQ[1]  ; dataReaded[1]  ; 4.680 ;       ;       ; 4.680 ;
+; SRAM_DQ[2]  ; dataReaded[2]  ; 4.586 ;       ;       ; 4.586 ;
+; SRAM_DQ[3]  ; dataReaded[3]  ; 4.576 ;       ;       ; 4.576 ;
+; SRAM_DQ[4]  ; dataReaded[4]  ; 4.576 ;       ;       ; 4.576 ;
+; SRAM_DQ[5]  ; dataReaded[5]  ; 4.636 ;       ;       ; 4.636 ;
+; SRAM_DQ[6]  ; dataReaded[6]  ; 4.592 ;       ;       ; 4.592 ;
+; SRAM_DQ[7]  ; dataReaded[7]  ; 4.661 ;       ;       ; 4.661 ;
+; SRAM_DQ[7]  ; dataReaded[8]  ; 5.075 ;       ;       ; 5.075 ;
+; SRAM_DQ[7]  ; dataReaded[12] ; 4.968 ;       ;       ; 4.968 ;
+; SRAM_DQ[8]  ; dataReaded[8]  ; 4.975 ;       ;       ; 4.975 ;
+; SRAM_DQ[9]  ; dataReaded[9]  ; 4.931 ;       ;       ; 4.931 ;
+; SRAM_DQ[10] ; dataReaded[10] ; 4.920 ;       ;       ; 4.920 ;
+; SRAM_DQ[11] ; dataReaded[11] ; 4.930 ;       ;       ; 4.930 ;
+; SRAM_DQ[12] ; dataReaded[12] ; 5.260 ;       ;       ; 5.260 ;
+; SRAM_DQ[13] ; dataReaded[13] ; 4.931 ;       ;       ; 4.931 ;
+; SRAM_DQ[14] ; dataReaded[14] ; 4.921 ;       ;       ; 4.921 ;
+; SRAM_DQ[15] ; dataReaded[15] ; 4.978 ;       ;       ; 4.978 ;
+; address[0]  ; SRAM_ADDR[0]   ; 5.064 ;       ;       ; 5.064 ;
+; address[1]  ; SRAM_ADDR[1]   ; 5.043 ;       ;       ; 5.043 ;
+; address[2]  ; SRAM_ADDR[2]   ; 4.620 ;       ;       ; 4.620 ;
+; address[3]  ; SRAM_ADDR[3]   ; 4.652 ;       ;       ; 4.652 ;
+; address[4]  ; SRAM_ADDR[4]   ; 4.582 ;       ;       ; 4.582 ;
+; address[5]  ; SRAM_ADDR[5]   ; 4.976 ;       ;       ; 4.976 ;
+; address[6]  ; SRAM_ADDR[6]   ; 4.602 ;       ;       ; 4.602 ;
+; address[7]  ; SRAM_ADDR[7]   ; 5.020 ;       ;       ; 5.020 ;
+; address[8]  ; SRAM_ADDR[8]   ; 4.960 ;       ;       ; 4.960 ;
+; address[9]  ; SRAM_ADDR[9]   ; 4.582 ;       ;       ; 4.582 ;
+; address[10] ; SRAM_ADDR[10]  ; 5.032 ;       ;       ; 5.032 ;
+; address[11] ; SRAM_ADDR[11]  ; 4.620 ;       ;       ; 4.620 ;
+; address[12] ; SRAM_ADDR[12]  ; 4.646 ;       ;       ; 4.646 ;
+; address[13] ; SRAM_ADDR[13]  ; 5.043 ;       ;       ; 5.043 ;
+; address[14] ; SRAM_ADDR[14]  ; 5.019 ;       ;       ; 5.019 ;
+; address[15] ; SRAM_ADDR[15]  ; 5.038 ;       ;       ; 5.038 ;
+; byte_m      ; dataReaded[8]  ; 4.943 ; 4.943 ; 4.943 ; 4.943 ;
+; byte_m      ; dataReaded[9]  ;       ; 5.127 ; 5.127 ;       ;
+; byte_m      ; dataReaded[10] ;       ; 5.140 ; 5.140 ;       ;
+; byte_m      ; dataReaded[11] ;       ; 5.127 ; 5.127 ;       ;
+; byte_m      ; dataReaded[12] ; 4.952 ; 4.952 ; 4.952 ; 4.952 ;
+; byte_m      ; dataReaded[13] ;       ; 5.015 ; 5.015 ;       ;
+; byte_m      ; dataReaded[14] ;       ; 5.140 ; 5.140 ;       ;
+; byte_m      ; dataReaded[15] ;       ; 5.106 ; 5.106 ;       ;
++-------------+----------------+-------+-------+-------+-------+
 
 
 +-------------------------------------------------------------------+
@@ -326,7 +945,9 @@ No paths to report.
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; CLOCK_50   ; CLOCK_50 ; 1        ; 0        ; 0        ; 0        ;
+; clk        ; clk      ; 2        ; 0        ; 0        ; 0        ;
+; WR         ; clk      ; 1        ; 1        ; 0        ; 0        ;
+; clk        ; WR       ; 1        ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -336,7 +957,9 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------+----------+----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+----------+----------+----------+----------+
-; CLOCK_50   ; CLOCK_50 ; 1        ; 0        ; 0        ; 0        ;
+; clk        ; clk      ; 2        ; 0        ; 0        ; 0        ;
+; WR         ; clk      ; 1        ; 1        ; 0        ; 0        ;
+; clk        ; WR       ; 1        ; 0        ; 0        ; 0        ;
 +------------+----------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -360,10 +983,10 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 1     ; 1    ;
-; Unconstrained Input Port Paths  ; 18    ; 18   ;
-; Unconstrained Output Ports      ; 17    ; 17   ;
-; Unconstrained Output Port Paths ; 32    ; 32   ;
+; Unconstrained Input Ports       ; 33    ; 33   ;
+; Unconstrained Input Port Paths  ; 42    ; 42   ;
+; Unconstrained Output Ports      ; 50    ; 50   ;
+; Unconstrained Output Port Paths ; 68    ; 68   ;
 +---------------------------------+-------+------+
 
 
@@ -373,65 +996,64 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Mar 30 09:39:47 2018
+    Info: Processing started: Sat Mar 31 15:27:40 2018
 Info: Command: quartus_sta ProcesadorMulticicleMemoria -c ProcesadorMulticicleMemoria
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
+Warning (335093): TimeQuest Timing Analyzer is analyzing 3 combinational loops as latches.
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'ProcesadorMulticicleMemoria.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name CLOCK_50 CLOCK_50
-Warning (332125): Found combinational loop of 2 nodes
-    Warning (332126): Node "clk_proc~0|combout"
-    Warning (332126): Node "clk_proc~0|datac"
-Warning (332125): Found combinational loop of 2 nodes
-    Warning (332126): Node "Add0~0|combout"
-    Warning (332126): Node "Add0~0|datad"
-Warning (332125): Found combinational loop of 2 nodes
-    Warning (332126): Node "Add0~1|combout"
-    Warning (332126): Node "Add0~1|datad"
+    Info (332105): create_clock -period 1.000 -name clk clk
+    Info (332105): create_clock -period 1.000 -name WR WR
 Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow Model
-Info (332146): Worst-case setup slack is 0.307
+Critical Warning (332148): Timing requirements not met
+Info (332146): Worst-case setup slack is -0.596
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):     0.307         0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.445
+    Info (332119):    -0.596        -0.596 WR 
+    Info (332119):    -0.364        -0.364 clk 
+Info (332146): Worst-case hold slack is 0.261
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):     0.445         0.000 CLOCK_50 
+    Info (332119):     0.261         0.000 clk 
+    Info (332119):     0.455         0.000 WR 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Critical Warning (332148): Timing requirements not met
 Info (332146): Worst-case minimum pulse width slack is -1.469
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):    -1.469        -2.691 CLOCK_50 
+    Info (332119):    -1.469        -3.913 clk 
+    Info (332119):    -1.469        -1.469 WR 
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info: Analyzing Fast Model
-Info (332146): Worst-case setup slack is 0.665
+Info (332146): Worst-case setup slack is 0.262
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):     0.665         0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.215
+    Info (332119):     0.262         0.000 WR 
+    Info (332119):     0.420         0.000 clk 
+Critical Warning (332148): Timing requirements not met
+Info (332146): Worst-case hold slack is -0.040
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):     0.215         0.000 CLOCK_50 
+    Info (332119):    -0.040        -0.040 clk 
+    Info (332119):     0.349         0.000 WR 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Critical Warning (332148): Timing requirements not met
 Info (332146): Worst-case minimum pulse width slack is -1.222
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):    -1.222        -2.222 CLOCK_50 
+    Info (332119):    -1.222        -3.222 clk 
+    Info (332119):    -1.222        -1.222 WR 
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 13 warnings
-    Info: Peak virtual memory: 461 megabytes
-    Info: Processing ended: Fri Mar 30 09:39:48 2018
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 499 megabytes
+    Info: Processing ended: Sat Mar 31 15:27:41 2018
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

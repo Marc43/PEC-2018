@@ -22,9 +22,10 @@ end SRAMController;
 
 architecture comportament of SRAMController is                 
 	
-	TYPE states_t IS (IDLE_ST, RD_ST, WR_ST); 
+	TYPE states_t IS (IDLE_ST, RD_ST, WR_ST, RES_ST); --En RES_ST recogemos resultado/escribimos
 	
 	SIGNAL state : states_t := IDLE_ST;
+	SIGNAL next_state : states_t := IDLE_ST;
 	
 	signal data_ext : std_logic_vector (15 downto 0);
 
@@ -34,58 +35,52 @@ begin
 		BEGIN
 		
 			IF rising_edge(clk) THEN
-			
-				CASE state IS
-					WHEN IDLE_ST =>
-						IF WR = '1' THEN
-							state <= WR_ST;
-						ELSE
-							state <= RD_ST; 
-						END IF;
-					WHEN RD_ST =>
-						state <= IDLE_ST;
-					WHEN WR_ST =>
-						state <= IDLE_ST;
-				END CASE;
+				state <= next_state;
 			END IF;
 		END PROCESS;
 		
-		senyales: PROCESS (clk) -- Checks the actual state and assigns the signals for the jumping state
+		salidas: PROCESS (state) -- Checks the actual state and assigns the signals for the jumping state
 		BEGIN
-		  
-		  IF rising_edge(clk) THEN
-		    
-    		    CASE state IS
-		        WHEN WR_ST | RD_ST => -- goes to IDLE (ensures that writes nor reads are performed)
-		          SRAM_DQ <= "XXXXXXXXXXXXXXXX"; 
-		          SRAM_OE_N <= '1'; -- Output not enabled 
-		          SRAM_CE_N <= '1'; -- Chip input not enabled
-		          SRAM_WE_N <= '1'; -- Write not enabled
-		        WHEN IDLE_ST =>
-		          IF WR = '0' THEN -- goes to RD
-		             SRAM_OE_N <= '0';
-		             SRAM_CE_N <= '0';
-		             SRAM_UB_N <= '0'; 
-		             SRAM_LB_N <= '0'; 
-		          --ELSE THEN -- goes to WR
-		            
-		            -- TODO
-		            
-		          END IF;
-		       END CASE;
-		    END IF;
-		  
-		END PROCESS;
-			
-		SRAM_ADDR 	<= "00" & address;
-		
-		data_ext		<= X"11" & SRAM_DQ (7 downto 0) when SRAM_DQ (7) = '1' else
-							X"00" & SRAM_DQ (7 downto 0);
-							
-		dataReaded	<= data_ext when state = RD_ST and byte_m = '1' else
-							SRAM_DQ	when state = RD_ST and byte_m = '0' else
-							SRAM_DQ;
-		
-		-- TODO, where is the readed data obtained????????? !!!!!•
+			CASE state IS
+				WHEN IDLE => -- outputs to IDLE (ensures that writes nor reads are performed)
+					SRAM_ADDR 	<= "00" & address;
+					SRAM_DQ <= "XXXXXXXXXXXXXXXX"; 
+					SRAM_OE_N <= '1'; -- Output not enabled 
+					SRAM_CE_N <= '1'; -- Chip input not enabled
+					SRAM_WE_N <= '1'; -- Write not enabled
+					IF(WR = '0') THEN
+						next_state <= RD_ST;
+					ELSE
+						next_state <= WR_ST;
+					END IF;
+					
+				WHEN RD_ST =>
+				
+					SRAM_DQ <= "ZZZZZZZZZZZZZZZZ";
+					SRAM_CE_N 	<= '0';
+					IF(byte_m = '1') THEN
+						SRAM_LB_N = address(0)
+						SRAM_UB_N = not address(0) --Si la direccion es par, addr(0) vale 0
+					ELSE
+						SRAM_UB_N 	<= '0'; 
+						SRAM_LB_N 	<= '0';
+					END IF;
+					
+					SRAM_OE_N 	<= '0';
+					next_state	<= RES_ST;
+					--ELSE THEN -- goes to WR
 
+					-- TODO
+				WHEN RES_ST =>
+					CASE WR IS 
+						WHEN '0' => --lectura
+							IF byte_m = '1' AND address(0) = '1' THEN
+								data_ext <= STD_LOGIC_VECTOR(shift_right(signed(SRAM_DQ), 8));
+							ELSE
+								data_ext <= SRAM_DQ;
+					END CASE;
+				END CASE;
+		END PROCESS;					
+		dataReaded	<= data_ext
+		
 end comportament;
