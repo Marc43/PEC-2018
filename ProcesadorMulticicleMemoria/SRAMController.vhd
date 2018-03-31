@@ -1,7 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
+USE ieee.numeric_std.all;
+
 
 entity SRAMController is
     port (clk         : in    std_logic;
@@ -42,25 +43,24 @@ begin
 		salidas: PROCESS (state) -- Checks the actual state and assigns the signals for the jumping state
 		BEGIN
 			CASE state IS
-				WHEN IDLE => -- outputs to IDLE (ensures that writes nor reads are performed)
+				WHEN IDLE_ST => -- outputs to IDLE (ensures that writes nor reads are performed)
 					SRAM_ADDR 	<= "00" & address;
-					SRAM_DQ <= "XXXXXXXXXXXXXXXX"; 
 					SRAM_OE_N <= '1'; -- Output not enabled 
 					SRAM_CE_N <= '1'; -- Chip input not enabled
 					SRAM_WE_N <= '1'; -- Write not enabled
 					IF(WR = '0') THEN
+						SRAM_DQ <= "ZZZZZZZZZZZZZZZZ"; 
 						next_state <= RD_ST;
 					ELSE
+						SRAM_DQ <= dataToWrite; 
 						next_state <= WR_ST;
 					END IF;
 					
 				WHEN RD_ST =>
-				
-					SRAM_DQ <= "ZZZZZZZZZZZZZZZZ";
 					SRAM_CE_N 	<= '0';
 					IF(byte_m = '1') THEN
-						SRAM_LB_N = address(0)
-						SRAM_UB_N = not address(0) --Si la direccion es par, addr(0) vale 0
+						SRAM_LB_N <= address(0);
+						SRAM_UB_N <= not address(0); --Si la direccion es par, addr(0) vale 0
 					ELSE
 						SRAM_UB_N 	<= '0'; 
 						SRAM_LB_N 	<= '0';
@@ -78,9 +78,15 @@ begin
 								data_ext <= STD_LOGIC_VECTOR(shift_right(signed(SRAM_DQ), 8));
 							ELSE
 								data_ext <= SRAM_DQ;
+							END IF;
+						WHEN OTHERS => --escritura
 					END CASE;
-				END CASE;
-		END PROCESS;					
-		dataReaded	<= data_ext
+					next_state <= IDLE_ST;
+				WHEN WR_ST =>
+					next_state <= RES_ST;
+			END CASE;
+		END PROCESS;
+		
+		dataReaded	<= data_ext;
 		
 end comportament;

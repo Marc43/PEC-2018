@@ -1,4 +1,17 @@
-/home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd
+/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd {1 {vcom -work work -2002 -explicit /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package std_logic_textio
+-- Loading package package_timing
+-- Loading package package_utility
+-- Compiling entity async_64Kx16
+-- Compiling architecture behave_arch of async_64Kx16
+
+} {} {}} /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -9,15 +22,13 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling package body package_utility
 -- Loading package package_utility
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd
+} {} {}} /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd {1 {vcom -work work -2002 -explicit /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity sisa
--- Compiling architecture Structure of sisa
+-- Compiling entity test_mem
+-- Compiling architecture comportament of test_mem
 
 } {} {}} /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -29,13 +40,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity sisa
 -- Compiling architecture Structure of sisa
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd
+} {} {}} /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd {1 {vcom -work work -2002 -explicit /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity proc
--- Compiling architecture Structure of proc
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity MemoryController
+-- Compiling architecture comportament of MemoryController
 
 } {} {}} /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -57,24 +70,24 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling package body package_timing
 -- Loading package package_timing
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd {2 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd
+} {} {}} /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd {2 {vcom -work work -2002 -explicit /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling entity test_sisa
 -- Compiling architecture comportament of test_sisa
-** Warning: [4] X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd(67): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+** Warning: [4] /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd(67): (vcom-1207) An abstract literal and an identifier must have a separator between them.
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd
+} {} {}} /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd {1 {vcom -work work -2002 -explicit /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
 -- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity SRAMController
--- Compiling architecture comportament of SRAMController
+-- Compiling entity sisa
+-- Compiling architecture Structure of sisa
 
 } {} {}} /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd {2 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -95,23 +108,17 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity SRAMController
 -- Compiling architecture comportament of SRAMController
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/alu.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/alu.vhd
+} {} {}} /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd {1 {vcom -work work -2002 -explicit /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
 -- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity alu
--- Compiling architecture Structure of alu
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity multi
--- Compiling architecture Structure of multi
+-- Loading package std_logic_textio
+-- Compiling package package_timing
+-- Compiling package body package_timing
+-- Loading package package_timing
 
 } {} {}} /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -126,68 +133,16 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity async_64Kx16
 -- Compiling architecture behave_arch of async_64Kx16
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
+} {} {}} /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd {1 {vcom -work work -2002 -explicit /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
 -- Loading package std_logic_textio
--- Loading package package_timing
+-- Compiling package package_utility
+-- Compiling package body package_utility
 -- Loading package package_utility
--- Compiling entity async_64Kx16
--- Compiling architecture behave_arch of async_64Kx16
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity control_l
--- Compiling architecture Structure of control_l
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity unidad_control
--- Compiling architecture Structure of unidad_control
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Loading package NUMERIC_STD
--- Compiling entity regfile
--- Compiling architecture Structure of regfile
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity datapath
--- Compiling architecture Structure of datapath
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity MemoryController
--- Compiling architecture comportament of MemoryController
 
 } {} {}} /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd {1 {vcom -work work -2002 -explicit /home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012

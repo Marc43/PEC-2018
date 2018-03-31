@@ -1,6 +1,7 @@
 
 State Machine - |SRAMController|state
-Name state.WR_ST state.RD_ST state.IDLE_ST 
-state.IDLE_ST 0 0 0 
-state.RD_ST 0 1 1 
-state.WR_ST 1 0 1 
+Name state.RES_ST state.WR_ST state.RD_ST state.IDLE_ST 
+state.IDLE_ST 0 0 0 0 
+state.RD_ST 0 0 1 1 
+state.WR_ST 0 1 0 1 
+state.RES_ST 1 0 0 1 
