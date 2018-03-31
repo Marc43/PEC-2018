@@ -50,14 +50,16 @@ begin
 					SRAM_WE_N <= '1'; -- Write not enabled
 					SRAM_LB_N <= '1';
 					SRAM_UB_N <= '1';
+					
 					IF(WR = '0') THEN
+						SRAM_DQ <= "ZZZZZZZZZZZZZZZZ";
 						next_state <= RD_ST;
 					ELSE
+						SRAM_DQ <= dataToWrite;
 						next_state <= WR_ST;
 					END IF;
 					
 				WHEN RD_ST =>
-					SRAM_DQ <= "ZZZZZZZZZZZZZZZZ";
 					SRAM_CE_N 	<= '0';
 					IF(byte_m = '1') THEN
 						SRAM_LB_N <= address(0);
@@ -71,8 +73,17 @@ begin
 					next_state	<= RES_ST;
 					
 				WHEN WR_ST =>-- goes to WR
-						SRAM_DQ <= dataToWrite;
-						next_state <= RES_ST;
+						SRAM_CE_N 	<= '0';
+						
+					IF(byte_m = '1') THEN
+						SRAM_LB_N <= address(0);
+						SRAM_UB_N <= not address(0); --Si la direccion es par, addr(0) vale 0
+					ELSE
+						SRAM_UB_N 	<= '0'; 
+						SRAM_LB_N 	<= '0';
+					END IF;
+					SRAM_WE_N <= '0';
+					next_state <= RES_ST;
 					-- TODO
 				WHEN RES_ST =>
 					CASE WR IS 

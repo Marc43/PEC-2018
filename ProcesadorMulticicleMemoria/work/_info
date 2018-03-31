@@ -59,7 +59,7 @@ L22
 Vz7=:g106kSL^?zZa1_k1i2
 R8
 32
-Z21 !s108 1522513772.710022
+Z21 !s108 1522514327.878310
 Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
 Z23 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
 R12
@@ -175,7 +175,7 @@ L6
 VPLoMf0oj;RB<P=VUa6jkS2
 R8
 32
-Z38 !s108 1522513772.762500
+Z38 !s108 1522514327.931945
 Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd|
 Z40 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd|
 R12
@@ -250,7 +250,7 @@ L17
 V]QljGNTG0EJQ?X:f3a>TX1
 R8
 32
-Z49 !s108 1522513772.798670
+Z49 !s108 1522514327.967400
 Z50 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
 Z51 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
 R12
@@ -292,7 +292,7 @@ VabW^FY0na:iFW@RR:Fofg0
 R8
 32
 b1
-Z54 !s108 1522513772.831698
+Z54 !s108 1522514327.999349
 Z55 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
 Z56 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
 R12
@@ -408,7 +408,7 @@ L6
 V]?dIDgGAC;a^66WmSeQE?1
 R8
 32
-Z70 !s108 1522513772.861000
+Z70 !s108 1522514328.028136
 Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd|
 Z72 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd|
 R12
@@ -434,7 +434,7 @@ R13
 !s100 ZOHkoi:bKO>PNj@FK]ERh0
 !i10b 1
 Esramcontroller
-Z73 w1522513746
+Z73 w1522514157
 R25
 R1
 R2
@@ -448,7 +448,7 @@ L7
 Vjjn044l<>f1hjRRH94@o;0
 R8
 32
-Z76 !s108 1522513772.890539
+Z76 !s108 1522514328.057657
 Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd|
 Z78 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd|
 R12
@@ -464,7 +464,7 @@ R4
 DEx4 work 14 sramcontroller 0 22 jjn044l<>f1hjRRH94@o;0
 l33
 L24
-V1E85zT[BfSnkD2Pl<f<;_3
+VXTU28T4liV]g:g<ZE2;CF2
 R8
 32
 R76
@@ -472,7 +472,7 @@ R77
 R78
 R12
 R13
-!s100 cn2SSOKo?2HfjG:f=FOWT2
+!s100 TNM<JKfZCKFb_NOOI2>ci0
 !i10b 1
 Etest_mem
 R14
@@ -488,7 +488,7 @@ V4b<;fRciFfMZ:7nb9:]V`1
 R8
 32
 !i10b 1
-Z81 !s108 1522513772.951246
+Z81 !s108 1522514328.119825
 Z82 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd|
 Z83 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd|
 R12
@@ -521,7 +521,7 @@ L5
 VkAdhfn89W5`mY_=KPlfV]3
 R8
 32
-Z89 !s108 1522513772.926074
+Z89 !s108 1522514328.094100
 Z90 !s90 -reportprogress|300|-work|work|-2002|-explicit|/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd|
 Z91 !s107 /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd|
 R12

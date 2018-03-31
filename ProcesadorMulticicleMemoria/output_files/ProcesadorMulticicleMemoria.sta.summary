@@ -2,29 +2,21 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow Model Setup 'state.IDLE_ST'
-Slack : -1.450
-TNS   : -1.450
-
 Type  : Slow Model Setup 'state.RES_ST'
-Slack : -0.183
-TNS   : -0.359
+Slack : -0.654
+TNS   : -1.897
 
 Type  : Slow Model Setup 'clk'
-Slack : 1.001
+Slack : 1.901
 TNS   : 0.000
 
 Type  : Slow Model Hold 'clk'
-Slack : -2.500
-TNS   : -8.682
+Slack : -2.694
+TNS   : -8.496
 
 Type  : Slow Model Hold 'state.RES_ST'
-Slack : -0.474
-TNS   : -0.924
-
-Type  : Slow Model Hold 'state.IDLE_ST'
-Slack : 1.293
-TNS   : 0.000
+Slack : -1.617
+TNS   : -3.216
 
 Type  : Slow Model Minimum Pulse Width 'clk'
 Slack : -1.631
@@ -38,29 +30,21 @@ Type  : Slow Model Minimum Pulse Width 'state.RES_ST'
 Slack : 0.500
 TNS   : 0.000
 
-Type  : Fast Model Setup 'state.IDLE_ST'
-Slack : -0.438
-TNS   : -0.438
-
 Type  : Fast Model Setup 'state.RES_ST'
-Slack : 0.417
+Slack : 0.143
 TNS   : 0.000
 
 Type  : Fast Model Setup 'clk'
-Slack : 1.311
+Slack : 1.296
 TNS   : 0.000
 
 Type  : Fast Model Hold 'clk'
-Slack : -1.689
-TNS   : -5.761
+Slack : -1.722
+TNS   : -5.224
 
 Type  : Fast Model Hold 'state.RES_ST'
-Slack : -0.002
-TNS   : -0.002
-
-Type  : Fast Model Hold 'state.IDLE_ST'
-Slack : 1.034
-TNS   : 0.000
+Slack : -1.121
+TNS   : -2.294
 
 Type  : Fast Model Minimum Pulse Width 'clk'
 Slack : -1.380
