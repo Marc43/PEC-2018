@@ -29,6 +29,8 @@ architecture comportament of SRAMController is
 	SIGNAL next_state : states_t := IDLE_ST;
 	
 	signal data_ext : std_logic_vector (15 downto 0);
+	signal permiso_lectura	: std_logic;
+	signal permiso_escritura: std_logic;
 
 begin
 
@@ -44,7 +46,6 @@ begin
 		BEGIN
 			CASE state IS
 				WHEN IDLE_ST => -- outputs to IDLE (ensures that writes nor reads are performed)
-					SRAM_ADDR 	<= "00" & address;
 					SRAM_OE_N <= '1'; -- Output not enabled 
 					SRAM_CE_N <= '1'; -- Chip input not enabled
 					SRAM_WE_N <= '1'; -- Write not enabled
@@ -98,7 +99,7 @@ begin
 					next_state <= IDLE_ST;
 			END CASE;
 		END PROCESS;
-		
+		SRAM_ADDR 	<= "00" & address;
 		dataReaded	<= data_ext;
 		
 end comportament;
