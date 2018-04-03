@@ -1,5 +1,5 @@
 EDA Netlist Writer report for ProcesadorMulticicleMemoria
-Sat Mar 31 18:36:46 2018
+Tue Apr 03 15:37:02 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -36,9 +36,9 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Sat Mar 31 18:36:46 2018 ;
+; EDA Netlist Writer Status ; Successful - Tue Apr 03 15:37:02 2018 ;
 ; Revision Name             ; ProcesadorMulticicleMemoria           ;
-; Top-level Entity Name     ; SRAMController                        ;
+; Top-level Entity Name     ; sisa                                  ;
 ; Family                    ; Cyclone II                            ;
 ; Simulation Files Creation ; Successful                            ;
 +---------------------------+---------------------------------------+
@@ -66,16 +66,16 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------------------+------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------+
-; Simulation Generated Files                                                                                                ;
-+---------------------------------------------------------------------------------------------------------------------------+
-; Generated Files                                                                                                           ;
-+---------------------------------------------------------------------------------------------------------------------------+
-; /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria.vho          ;
-; /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria_fast.vho     ;
-; /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria_vhd.sdo      ;
-; /home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria_vhd_fast.sdo ;
-+---------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------+
+; Simulation Generated Files                                                                                                 ;
++----------------------------------------------------------------------------------------------------------------------------+
+; Generated Files                                                                                                            ;
++----------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria.vho          ;
+; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria_fast.vho     ;
+; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria_vhd.sdo      ;
+; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/simulation/modelsim/ProcesadorMulticicleMemoria_vhd_fast.sdo ;
++----------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------+
@@ -84,13 +84,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit EDA Netlist Writer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat Mar 31 18:36:46 2018
+    Info: Processing started: Tue Apr 03 15:37:01 2018
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off ProcesadorMulticicleMemoria -c ProcesadorMulticicleMemoria
-Info (204026): Generated files "ProcesadorMulticicleMemoria.vho", "ProcesadorMulticicleMemoria_fast.vho", "ProcesadorMulticicleMemoria_vhd.sdo" and "ProcesadorMulticicleMemoria_vhd_fast.sdo" in directory "/home/alfredu/Documents/PEC-2018/ProcesadorMulticicleMemoria/simulation/modelsim/" for EDA simulation tool
+Info (204026): Generated files "ProcesadorMulticicleMemoria.vho", "ProcesadorMulticicleMemoria_fast.vho", "ProcesadorMulticicleMemoria_vhd.sdo" and "ProcesadorMulticicleMemoria_vhd_fast.sdo" in directory "C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 806 megabytes
-    Info: Processing ended: Sat Mar 31 18:36:46 2018
-    Info: Elapsed time: 00:00:00
+    Info: Peak virtual memory: 425 megabytes
+    Info: Processing ended: Tue Apr 03 15:37:02 2018
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 

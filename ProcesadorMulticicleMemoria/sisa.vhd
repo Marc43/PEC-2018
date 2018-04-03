@@ -52,21 +52,32 @@ ARCHITECTURE Structure OF sisa IS
 	
 	signal bus_data_rd		: std_logic_vector (15 downto 0); -- Out from devices
 	
-BEGIN
-
-	clk_calc : process (CLOCK_50)
-		variable ticks : std_logic_vector (2 downto 0) := "000";
-	begin
+	signal ticks : std_logic_vector (2 downto 0) := "000";
 	
-			if ticks = "111" then
-				
-				clk_proc <= not clk_proc; -- As the signal is assigned at the 
-												  -- end of the process, the 7th will be the 8th tick
+BEGIN
+	clk_calc : process (CLOCK_50)
+	begin
+		if rising_edge(CLOCK_50) then
+			ticks <= ticks+1;
+			if ticks="111" then
+				clk_proc <= not clk_proc;
 			end if;
-			
-			ticks := ticks + 1;
-			
-	end process;
+		end if;
+	end process;	
+	
+--	clk_calc : process (CLOCK_50)
+--		variable ticks : std_logic_vector (2 downto 0) := "000";
+--	begin
+--	
+--			if ticks = "111" then
+--				
+--				clk_proc <= not clk_proc; -- As the signal is assigned at the 
+--												  -- end of the process, the 7th will be the 8th tick
+--			end if;
+--			
+--			ticks := ticks + 1;
+--			
+--	end process;
 	
 	proc0 : proc
 	port map (
