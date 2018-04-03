@@ -5,6 +5,7 @@ ENTITY proc IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 HEX		  : IN  STD_LOGIC_VECTOR( 3 DOWNTO 0);
           addr_m    : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           wr_m      : OUT STD_LOGIC;
@@ -48,6 +49,10 @@ COMPONENT datapath IS
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
 END COMPONENT;
 
+COMPONENT Display7 IS
+ PORT(VALOR : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+ bitsCaracter : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
+END COMPONENT;
 
 SIGNAL bus_op 				: STD_LOGIC_VECTOR (1 DOWNTO 0);
 SIGNAL bus_wrd				: STD_LOGIC;

@@ -48,7 +48,7 @@ architecture comportament of MemoryController is
 	signal instr_memory_limit : std_logic_vector (15 downto 0) := X"C000"; -- Any address >= to this one is invalid to write
 	
 begin
-
+	
 	controller0 : SRAMController
 	PORT MAP (
 		clk 			=> CLOCK_50,

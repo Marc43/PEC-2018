@@ -1,5 +1,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+
 ENTITY Display7 IS
  PORT(VALOR : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
  bitsCaracter : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));

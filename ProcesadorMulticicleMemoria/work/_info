@@ -4,22 +4,22 @@ K3
 cModel Technology
 d/home/akuja/akuja_drive/Marc/Universidad/FIB/q2-2017-2018/PEC/PEC-2018/ProcesadorMulticicleMemoria
 Ealu
-Z0 w1522338589
+Z0 w1521546697
 Z1 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
 Z2 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
 Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
 Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
-Z5 dX:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleMemoria
-Z6 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/alu.vhd
-Z7 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/alu.vhd
+Z5 dC:\Users\pec02\Documents\pec-2018\ProcesadorMulticicleMemoria
+Z6 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/alu.vhd
+Z7 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/alu.vhd
 l0
 L5
 VeL56O0IZ]G8fTfV>IeY]@1
 Z8 OV;C;10.1d;51
 32
-Z9 !s108 1522395679.634000
-Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/alu.vhd|
-Z11 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/alu.vhd|
+Z9 !s108 1522754105.954000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/alu.vhd|
+Z11 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/alu.vhd|
 Z12 o-work work -2002 -explicit -O0
 Z13 tExplicit 1
 !s100 3eaS0?P@@KDRC5hIVa9=[0
@@ -43,7 +43,7 @@ R13
 !s100 cfddM>h4=Kh4@9oEaO>6Q0
 !i10b 1
 Easync_64kx16
-Z14 w1522338589
+Z14 w1522740578
 Z15 DPx4 work 15 package_utility 0 22 abW^FY0na:iFW@RR:Fofg0
 Z16 DPx4 work 14 package_timing 0 22 ]QljGNTG0EJQ?X:f3a>TX1
 Z17 DPx4 ieee 16 std_logic_textio 0 22 ?Il0a149GV276[?[UMDWh2
@@ -52,16 +52,16 @@ R2
 R3
 R4
 R5
-Z18 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
-Z19 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
+Z18 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
+Z19 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
 l0
 L22
 Vz7=:g106kSL^?zZa1_k1i2
 R8
 32
-Z20 !s108 1522395677.758000
-Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
-Z22 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
+Z20 !s108 1522754104.316000
+Z21 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
+Z22 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
 R12
 R13
 !s100 >mUGlnEO[;>2_SQSo6jO>0
@@ -88,64 +88,64 @@ R13
 !s100 ;PMTN0Wle:CWX6W[Y:e7_2
 !i10b 1
 Econtrol_l
-R14
-Z23 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z23 w1522746789
+Z24 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
 R3
 R4
 R5
-Z24 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd
-Z25 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd
+Z25 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/control_l.vhd
+Z26 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/control_l.vhd
 l0
 L5
 VLT2J2dSfT6[?TbJe1J;7P2
 R8
 32
-Z26 !s108 1522395678.763000
-Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd|
-Z28 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd|
+Z27 !s108 1522754106.266000
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/control_l.vhd|
+Z29 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/control_l.vhd|
 R12
 R13
 !s100 AK;ZYlc^akan@LIUh11oH0
 !i10b 1
 Astructure
-R23
+R24
 R3
 R4
 DEx4 work 9 control_l 0 22 LT2J2dSfT6[?TbJe1J;7P2
 l41
 L20
-VdQ:@dG1YXnCi834QKZJon0
+VLBIOgF`Fl400EMJbZg>j;1
 R8
 32
-R26
 R27
 R28
+R29
 R12
 R13
-!s100 Y][Wm>ok_iXZThoA@`fGN2
+!s100 PnSI<VVjQBE;eIF6dS8X42
 !i10b 1
 Edatapath
-R14
-R23
+Z30 w1521546697
+R24
 R3
 R4
 R5
-Z29 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd
-Z30 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd
+Z31 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/datapath.vhd
+Z32 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/datapath.vhd
 l0
 L5
 V<KkCMdkNEo@PzeR[Uaa_;2
 R8
 32
-Z31 !s108 1522395679.862000
-Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd|
-Z33 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd|
+Z33 !s108 1522754106.484000
+Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/datapath.vhd|
+Z35 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/datapath.vhd|
 R12
 R13
 !s100 n`2^O48n@_8L7ITPSc73W1
 !i10b 1
 Astructure
-R23
+R24
 R3
 R4
 DEx4 work 8 datapath 0 22 <KkCMdkNEo@PzeR[Uaa_;2
@@ -154,30 +154,30 @@ L22
 V`jS5o1T[O<Ga3ICK]S?zV3
 R8
 32
-R31
-R32
 R33
+R34
+R35
 R12
 R13
 !s100 75=U9ZCDNlUVSFB<^K83S1
 !i10b 1
 Ememorycontroller
-Z34 w1522342919
+Z36 w1522754007
 R2
 R1
 R3
 R4
 R5
-Z35 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd
-Z36 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd
+Z37 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/MemoryController.vhd
+Z38 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/MemoryController.vhd
 l0
 L6
 VPLoMf0oj;RB<P=VUa6jkS2
 R8
 32
-Z37 !s108 1522395677.962000
-Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd|
-Z39 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd|
+Z39 !s108 1522754104.581000
+Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/MemoryController.vhd|
+Z41 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/MemoryController.vhd|
 R12
 R13
 !s100 :K4;^k=AgYVOh=G_LZCm[3
@@ -193,28 +193,28 @@ L23
 V?AYk9kA19H_IEUN5U0WPj0
 R8
 32
-R37
-R38
 R39
+R40
+R41
 R12
 R13
 !s100 X9J8?Vj[H`]8Q75A@:RGN0
 !i10b 1
 Emulti
-Z40 w1522394220
+Z42 w1522737902
 R3
 R4
 R5
-Z41 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd
-Z42 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd
+Z43 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/multi.vhd
+Z44 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/multi.vhd
 l0
 L4
 V14NBh5f7z`nUY<]C1Om_?2
 R8
 32
-Z43 !s108 1522395679.215000
-Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd|
-Z45 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd|
+Z45 !s108 1522754106.702000
+Z46 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/multi.vhd|
+Z47 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/multi.vhd|
 R12
 R13
 !s100 Vdh>l=a_@F>fVk^7NLZ710
@@ -228,9 +228,9 @@ L19
 VDk`KT778jbBZ03LGVoUf62
 R8
 32
-R43
-R44
 R45
+R46
+R47
 R12
 R13
 !s100 3JT:jgYggUz:NUPeIjTmK3
@@ -241,18 +241,18 @@ R2
 R1
 R3
 R4
-R14
+R42
 R5
-Z46 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd
-Z47 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd
+Z48 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd
+Z49 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd
 l0
 L17
 V]QljGNTG0EJQ?X:f3a>TX1
 R8
 32
-Z48 !s108 1522345959.536000
-Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
-Z50 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
+Z50 !s108 1522754104.050000
+Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
+Z52 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
 R12
 R13
 !s100 7[5MEfJ`HFPK=zP7G66<i1
@@ -269,9 +269,9 @@ L59
 VfeQXi[8kmeXD5NlH1A^G91
 R8
 32
-R48
-R49
 R50
+R51
+R52
 R12
 R13
 nbody
@@ -282,19 +282,19 @@ R17
 R1
 R3
 R4
-R14
+R42
 R5
-Z51 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd
-Z52 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd
+Z53 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_utility.vhd
+Z54 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_utility.vhd
 l0
 L15
 VabW^FY0na:iFW@RR:Fofg0
 R8
 32
 b1
-Z53 !s108 1522345959.775000
-Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
-Z55 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
+Z55 !s108 1522754103.879000
+Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
+Z57 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
 R12
 R13
 !s100 n9b5dM?H5oLDz7geaYPkN1
@@ -310,29 +310,29 @@ L22
 V1dAT5_E6[=Q4>0kGEF5@]3
 R8
 32
-R53
-R54
 R55
+R56
+R57
 R12
 R13
 nbody
 !s100 =i4<XdWXU:J]Ih;Vo<NgP3
 !i10b 1
 Eproc
-Z56 w1522395567
+R42
 R3
 R4
 R5
-Z57 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd
-Z58 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd
+Z58 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/proc.vhd
+Z59 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/proc.vhd
 l0
 L4
 VE07>PX[gFbcoX5M:Gg6jG0
 R8
 32
-Z59 !s108 1522395678.973000
-Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd|
-Z61 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd|
+Z60 !s108 1522754106.921000
+Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/proc.vhd|
+Z62 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/proc.vhd|
 R12
 R13
 !s100 =[42X6i88AZ<:DNoAz`4`2
@@ -346,37 +346,37 @@ L14
 VjeJRRaSmJQED1RQkKXO:H0
 R8
 32
-R59
 R60
 R61
+R62
 R12
 R13
 !s100 Wi;eGMJXEDdQISe>gf1z:2
 !i10b 1
 Eregfile
-R14
-R23
+R30
+R24
 R1
 R2
 R3
 R4
 R5
-Z62 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd
-Z63 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd
+Z63 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/regfile.vhd
+Z64 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/regfile.vhd
 l0
 L6
 V37]zL7g]h0ZD9Voj^5`Oh0
-!s100 _G112JZ7^[[`Y11NZF<SD0
 R8
 32
-!i10b 1
-Z64 !s108 1522395680.090000
-Z65 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd|
-Z66 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd|
+Z65 !s108 1522754107.155000
+Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/regfile.vhd|
+Z67 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/regfile.vhd|
 R12
 R13
+!s100 _G112JZ7^[[`Y11NZF<SD0
+!i10b 1
 Astructure
-R23
+R24
 R1
 R2
 R3
@@ -388,29 +388,29 @@ Vhelf49YlEziER=7J1mg421
 !s100 :74geO]KCPB_i0?[]4k6D0
 R8
 32
-!i10b 1
-R64
 R65
 R66
+R67
 R12
 R13
+!i10b 1
 Esisa
-Z67 w1522395305
+R42
 R2
 R1
 R3
 R4
 R5
-Z68 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd
-Z69 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd
+Z68 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/sisa.vhd
+Z69 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/sisa.vhd
 l0
 L6
 V]?dIDgGAC;a^66WmSeQE?1
 R8
 32
-Z70 !s108 1522395678.156000
-Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd|
-Z72 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd|
+Z70 !s108 1522754104.815000
+Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/sisa.vhd|
+Z72 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/sisa.vhd|
 R12
 R13
 !s100 nilQ`j3cP3H9IL5fb^dZN0
@@ -434,35 +434,37 @@ R13
 !s100 ZOHkoi:bKO>PNj@FK]ERh0
 !i10b 1
 Esramcontroller
-Z73 w1522345220
-R2
+Z73 w1522754100
+R24
 R1
+R2
 R3
 R4
 R5
-Z74 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd
-Z75 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd
+Z74 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/SRAMController.vhd
+Z75 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/SRAMController.vhd
 l0
-L6
-V@7:E=S91cFe8HM:6o@ADe3
+L7
+Vjjn044l<>f1hjRRH94@o;0
 R8
 32
-Z76 !s108 1522395678.375000
-Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd|
-Z78 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd|
+Z76 !s108 1522754105.049000
+Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/SRAMController.vhd|
+Z78 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/SRAMController.vhd|
 R12
 R13
-!s100 YlafY8G_>Zjb<J>3_Z]:j3
+!s100 <FSc_Qzi@@deA1M8@=TIF2
 !i10b 1
 Acomportament
-R2
+R24
 R1
+R2
 R3
 R4
-DEx4 work 14 sramcontroller 0 22 @7:E=S91cFe8HM:6o@ADe3
-l31
-L23
-VAGVk1ABfW5Oi?=iAaV3?H2
+DEx4 work 14 sramcontroller 0 22 jjn044l<>f1hjRRH94@o;0
+l35
+L24
+VCYlfD3TS;96hzQ@]NYhn^0
 R8
 32
 R76
@@ -470,23 +472,23 @@ R77
 R78
 R12
 R13
-!s100 YL<H4OGM]7MzNGz:X^f:Z0
+!s100 obbPZJIR9gbF@L9z^@JzE1
 !i10b 1
 Etest_mem
-Z79 w1522341006
+R42
 R3
 R4
 R5
-Z80 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd
-Z81 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd
+Z79 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_states.vhd
+Z80 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_states.vhd
 l0
 L4
 V4b<;fRciFfMZ:7nb9:]V`1
 R8
 32
-Z82 !s108 1522341027.695000
-Z83 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd|
-Z84 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_states.vhd|
+Z81 !s108 1522754105.642000
+Z82 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_states.vhd|
+Z83 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_states.vhd|
 R12
 R13
 !s100 k^SkQPd:zVYHg0WXAn0Uz3
@@ -500,28 +502,28 @@ L7
 Vnl_l7bYTLFb1IoK>SiJ3z2
 R8
 32
+R81
 R82
 R83
-R84
 R12
 R13
 !s100 7[575JIJ5kzTjh`A1QVFC1
 !i10b 1
 Etest_sisa
-Z85 w1522394578
+R42
 R3
 R4
 R5
-Z86 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd
-Z87 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd
+Z84 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_sisa.vhd
+Z85 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_sisa.vhd
 l0
 L5
 VkAdhfn89W5`mY_=KPlfV]3
 R8
 32
-Z88 !s108 1522395678.557000
-Z89 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd|
-Z90 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/test_sisa.vhd|
+Z86 !s108 1522754105.423000
+Z87 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_sisa.vhd|
+Z88 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/test_sisa.vhd|
 R12
 R13
 !s100 688X_8OZ0BkG::B3fT5kf3
@@ -535,51 +537,51 @@ L8
 V]<Z[TZ8of5X9X385`b?9K3
 R8
 32
+R86
+R87
 R88
-R89
-R90
 R12
 R13
 !s100 CJXEBPaHoFFb:IJ:;JOcQ0
 !i10b 1
 Eunidad_control
-R14
+Z89 w1522754014
 R1
 R2
-R23
+R24
 R3
 R4
 R5
-Z91 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd
-Z92 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd
+Z90 8C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/unidad_control.vhd
+Z91 FC:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/unidad_control.vhd
 l0
 L6
 VckeOI?8oP7Uk^obI8;0a[3
+!s100 f>mK^S?naDBi[DDL9e;VH3
 R8
 32
-Z93 !s108 1522395679.415000
-Z94 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd|
-Z95 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd|
+!i10b 1
+Z92 !s108 1522754107.373000
+Z93 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/unidad_control.vhd|
+Z94 !s107 C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/unidad_control.vhd|
 R12
 R13
-!s100 f>mK^S?naDBi[DDL9e;VH3
-!i10b 1
 Astructure
 R1
 R2
-R23
+R24
 R3
 R4
-DEx4 work 14 unidad_control 0 22 ckeOI?8oP7Uk^obI8;0a[3
+Z95 DEx4 work 14 unidad_control 0 22 ckeOI?8oP7Uk^obI8;0a[3
 l73
 L25
-V5KnRY78O8=6Q<i>@lRW[]3
+Z96 V5KnRY78O8=6Q<i>@lRW[]3
+Z97 !s100 L^GU7ok<5A_PXB2KbCUY30
 R8
 32
+!i10b 1
+R92
 R93
 R94
-R95
 R12
 R13
-!s100 L^GU7ok<5A_PXB2KbCUY30
-!i10b 1

@@ -44,7 +44,9 @@ BEGIN
 	reg_src1		<= ir(11 DOWNTO 9);
 	reg_src2		<=	ir(8	DOWNTO 6);
 	
-	addr_a 	<= reg_src2; -- Constant for every LDX STX instruction
+	addr_a 	<= reg_src1 when op_code = MOV else
+					reg_src2; -- Constant for every LDX STX instructio
+	
 	addr_b 	<= reg_src1;
 	addr_d 	<= reg_src1;
 	
