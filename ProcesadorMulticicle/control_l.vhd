@@ -18,20 +18,53 @@ ENTITY control_l IS
 END control_l;
 
 ARCHITECTURE Structure OF control_l IS
+	-- Op. codes
+	--TYPE opcode_t	IS STD_LOGIC_VECTOR (3 DOWNTO 0);
+
+	CONSTANT ARITHLOG	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0000";
+	CONSTANT CMP		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0001";
+	CONSTANT ADDI		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0010";
+	CONSTANT ARITHEXT	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1000";
+	CONSTANT MOV 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0101";
+	CONSTANT LD 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0011";
+	CONSTANT ST 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0100";
+	CONSTANT LDB 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1101";
+	CONSTANT STB 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1110";
+	CONSTANT HALT		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1111"; 
+	
+	-- Function codes
+	
+	-- ARITHLOG
+	CONSTANT AND_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "000";
+	CONSTANT OR_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "001";
+	CONSTANT XOR_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "010";
+	CONSTANT NOT_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "011";
+	CONSTANT ADD_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "100";
+	CONSTANT SUB_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "101";
+	CONSTANT SHA_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "110";
+	CONSTANT SHL_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "111";
+	
+	-- CMP
+	CONSTANT CMPLT_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "000";
+	CONSTANT CMPLE_f	 	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "001";
+	CONSTANT CMPEQ_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "011";
+	CONSTANT CMPLTU_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "100";
+	CONSTANT CMPLEU_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "101";
+	
+	-- ARITHEXT
+	CONSTANT MUL_f			: STD_LOGIC_VECTOR (2 DOWNTO 0):= "000";
+	CONSTANT MULH_f	 	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "001";
+	CONSTANT MULHU_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "010";
+	CONSTANT DIV_f			: STD_LOGIC_VECTOR (2 DOWNTO 0):= "100";
+	CONSTANT DIVU_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "101";
+	
 	-- Alu operations
 	CONSTANT MOVI	: STD_LOGIC_VECTOR(1 DOWNTO 0) := "00";
 	CONSTANT MOVHI	: STD_LOGIC_VECTOR(1 DOWNTO 0) := "01";
 	CONSTANT ADD	: STD_LOGIC_VECTOR(1 DOWNTO 0) := "10";
-
-	-- Op. codes
-	CONSTANT MOV 	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0101";
-	CONSTANT LD 	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0011";
-	CONSTANT ST 	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "0100";
-	CONSTANT LDB 	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1101";
-	CONSTANT STB 	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1110";
-	CONSTANT HALT	: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1111"; -- By the moment stands for HALT
 	
 	SIGNAL op_code 	: STD_LOGIC_VECTOR (3 DOWNTO 0);
+	SIGNAL f_code		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL reg_src1	: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL reg_src2	: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	
@@ -44,8 +77,10 @@ BEGIN
 	reg_src1		<= ir(11 DOWNTO 9);
 	reg_src2		<=	ir(8	DOWNTO 6);
 	
+	f_code		<= ir(5	DOWNTO 3);
+	
 	addr_a 	<= reg_src1 when op_code = MOV else
-					reg_src2; -- Constant for every LDX STX instructio
+					reg_src2;
 	
 	addr_b 	<= reg_src1;
 	addr_d 	<= reg_src1;
@@ -53,12 +88,13 @@ BEGIN
 	immed_ma 	<= ir(5 DOWNTO 0);
 	immed_alu	<= ir(7 DOWNTO 0);
 	
-	immed			<= std_logic_vector(resize(signed(immed_ma), immed'length)) 	WHEN 		op_code = LD 	OR
-																													op_code = LDB 	OR
-																													op_code = ST 	OR
-																													op_code = STB	ELSE
+	immed			<= std_logic_vector(resize(signed(immed_ma), immed'length)) WHEN 		op_code = ADDI OR
+																												op_code = LD 	OR
+																												op_code = LDB 	OR
+																												op_code = ST 	OR
+																												op_code = STB	ELSE
 					
-						std_logic_vector(resize(signed(immed_alu), immed'length)) WHEN 		op_code = MOV;
+					std_logic_vector(resize(signed(immed_alu), immed'length)) WHEN 		op_code = MOV;
 
 	op		<= ADD 	WHEN 		op_code = LD	OR 
 									op_code = ST	OR 
