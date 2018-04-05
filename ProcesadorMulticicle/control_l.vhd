@@ -122,7 +122,7 @@ BEGIN
 			
 				CMP_op		WHEN		op_code = CMP 	ELSE
 				
-				EXT_op		WHEN		op_code = EXT;
+				EXT_op		WHEN		op_code = ARITHEXT;
 --ELSE
 --				
 --				CMP_op		WHEN	others; -- ??? Any not aggresive operation ??? 
@@ -157,7 +157,7 @@ BEGIN
 									op_code = STB 	OR
 									op_code = LD	OR
 									op_code = LDB	OR
-									op_code = MOV	OR ELSE
+									op_code = MOV	ELSE
 						
 						'0' WHEN op_code = ARITHLOG OR
 									op_code = ARITHEXT OR

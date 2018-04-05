@@ -1,5 +1,5 @@
 Analysis & Synthesis report for full_alu
-Wed Apr 04 11:51:41 2018
+Thu Apr 05 23:14:01 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -10,7 +10,20 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |sisa|MemoryController:mem_ctrl0|SRAMController:controller0|state
+  9. State Machine - |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0|state
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Port Connectivity Checks: "proc:proc0|datapath:datapath0"
+ 15. Port Connectivity Checks: "proc:proc0|unidad_control:unidad_control0|control_l:control_l0"
+ 16. Port Connectivity Checks: "proc:proc0"
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
 
 
 
@@ -36,20 +49,20 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Apr 04 11:51:41 2018               ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 05 23:14:01 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; full_alu                                        ;
 ; Top-level Entity Name              ; sisa                                            ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; N/A until Partition Merge                       ;
-;     Total combinational functions  ; N/A until Partition Merge                       ;
-;     Dedicated logic registers      ; N/A until Partition Merge                       ;
-; Total registers                    ; N/A until Partition Merge                       ;
-; Total pins                         ; N/A until Partition Merge                       ;
-; Total virtual pins                 ; N/A until Partition Merge                       ;
-; Total memory bits                  ; N/A until Partition Merge                       ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
-; Total PLLs                         ; N/A until Partition Merge                       ;
+; Total logic elements               ; 375                                             ;
+;     Total combinational functions  ; 261                                             ;
+;     Dedicated logic registers      ; 165                                             ;
+; Total registers                    ; 165                                             ;
+; Total pins                         ; 41                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -138,21 +151,248 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 8           ;
-; Maximum allowed            ; 4           ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-;     Processors 2-8         ;   0.0%      ;
-+----------------------------+-------------+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                        ;
++-----------------------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                    ; Used in Netlist ; File Type       ; File Name with Absolute Path                                              ; Library ;
++-----------------------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
+; ../ProcesadorMulticicle/unidad_control.vhd          ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/unidad_control.vhd          ;         ;
+; ../ProcesadorMulticicle/regfile.vhd                 ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/regfile.vhd                 ;         ;
+; ../ProcesadorMulticicle/proc.vhd                    ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/proc.vhd                    ;         ;
+; ../ProcesadorMulticicle/multi.vhd                   ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/multi.vhd                   ;         ;
+; ../ProcesadorMulticicle/datapath.vhd                ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/datapath.vhd                ;         ;
+; ../ProcesadorMulticicle/control_l.vhd               ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicle/control_l.vhd               ;         ;
+; ../ProcesadorMulticicleMemoria/SRAMController.vhd   ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/SRAMController.vhd   ;         ;
+; ../ProcesadorMulticicleMemoria/sisa.vhd             ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/sisa.vhd             ;         ;
+; ../ProcesadorMulticicleMemoria/MemoryController.vhd ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleMemoria/MemoryController.vhd ;         ;
+; alu.vhd                                             ; yes             ; User VHDL File  ; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleAlu/alu.vhd                  ;         ;
++-----------------------------------------------------+-----------------+-----------------+---------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++---------------------------------------------+----------+
+; Resource                                    ; Usage    ;
++---------------------------------------------+----------+
+; Estimated Total logic elements              ; 375      ;
+;                                             ;          ;
+; Total combinational functions               ; 261      ;
+; Logic element usage by number of LUT inputs ;          ;
+;     -- 4 input functions                    ; 104      ;
+;     -- 3 input functions                    ; 115      ;
+;     -- <=2 input functions                  ; 42       ;
+;                                             ;          ;
+; Logic elements by mode                      ;          ;
+;     -- normal mode                          ; 247      ;
+;     -- arithmetic mode                      ; 14       ;
+;                                             ;          ;
+; Total registers                             ; 165      ;
+;     -- Dedicated logic registers            ; 165      ;
+;     -- I/O registers                        ; 0        ;
+;                                             ;          ;
+; I/O pins                                    ; 41       ;
+; Embedded Multiplier 9-bit elements          ; 0        ;
+; Maximum fan-out node                        ; clk_proc ;
+; Maximum fan-out                             ; 157      ;
+; Total fan-out                               ; 1403     ;
+; Average fan-out                             ; 3.00     ;
++---------------------------------------------+----------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                      ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node             ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                  ; Library Name ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
+; |sisa                                  ; 261 (5)           ; 165 (4)      ; 0           ; 0            ; 0       ; 0         ; 41   ; 0            ; |sisa                                                                ; work         ;
+;    |MemoryController:mem_ctrl0|        ; 77 (1)            ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0                                     ; work         ;
+;       |SRAMController:controller0|     ; 76 (76)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0|SRAMController:controller0          ; work         ;
+;    |proc:proc0|                        ; 179 (0)           ; 156 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0                                                     ; work         ;
+;       |datapath:datapath0|             ; 140 (31)          ; 128 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0                                  ; work         ;
+;          |alu:alu0|                    ; 17 (17)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0                         ; work         ;
+;          |regfile:regfile0|            ; 92 (92)           ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|regfile:regfile0                 ; work         ;
+;       |unidad_control:unidad_control0| ; 39 (28)           ; 28 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0                      ; work         ;
+;          |control_l:control_l0|        ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|control_l:control_l0 ; work         ;
+;          |multi:multi0|                ; 1 (1)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0         ; work         ;
++----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------+
+; State Machine - |sisa|MemoryController:mem_ctrl0|SRAMController:controller0|state            ;
++-----------------+--------------+-------------+-------------+-----------------+---------------+
+; Name            ; state.RES_ST ; state.WR_ST ; state.RD_ST ; state.BRANCH_ST ; state.IDLE_ST ;
++-----------------+--------------+-------------+-------------+-----------------+---------------+
+; state.IDLE_ST   ; 0            ; 0           ; 0           ; 0               ; 0             ;
+; state.BRANCH_ST ; 0            ; 0           ; 0           ; 1               ; 1             ;
+; state.RD_ST     ; 0            ; 0           ; 1           ; 0               ; 1             ;
+; state.WR_ST     ; 0            ; 1           ; 0           ; 0               ; 1             ;
+; state.RES_ST    ; 1            ; 0           ; 0           ; 0               ; 1             ;
++-----------------+--------------+-------------+-------------+-----------------+---------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------+
+; State Machine - |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0|state ;
++-------------+------------+-------------+-------------------------------------------+
+; Name        ; state.DEMW ; state.FETCH ; state.IDLE                                ;
++-------------+------------+-------------+-------------------------------------------+
+; state.IDLE  ; 0          ; 0           ; 0                                         ;
+; state.FETCH ; 0          ; 1           ; 1                                         ;
+; state.DEMW  ; 1          ; 0           ; 1                                         ;
++-------------+------------+-------------+-------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                                                                      ;
++-------------------------------------------------------------------------+-----------------------------------------------------------------------+------------------------+
+; Latch Name                                                              ; Latch Enable Signal                                                   ; Free of Timing Hazards ;
++-------------------------------------------------------------------------+-----------------------------------------------------------------------+------------------------+
+; proc:proc0|datapath:datapath0|alu:alu0|w[1]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[2]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[3]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[4]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[5]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[6]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[7]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[8]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[9]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[10]                            ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[11]                            ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[12]                            ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[13]                            ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[14]                            ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[15]                            ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N       ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_LB_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N       ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|WideOr0         ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_WE_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|WideOr1         ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|op[0]    ; GND                                                                   ; yes                    ;
+; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|op[1]    ; GND                                                                   ; yes                    ;
+; proc:proc0|datapath:datapath0|alu:alu0|w[0]                             ; proc:proc0|datapath:datapath0|alu:alu0|Equal0                         ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[12]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[13]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[14]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[1]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[0]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[2]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[3]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[4]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[5]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[6]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[8]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[9]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[10]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[11]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]_464    ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[1]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[2]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[3]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[4]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[5]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[6]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[7]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[8]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[9]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[10]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[11]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[12]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[13]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[14]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[15]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
+; Number of user-specified and inferred latches = 55                      ;                                                                       ;                        ;
++-------------------------------------------------------------------------+-----------------------------------------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++-------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                              ;
++--------------------------------------------------------+----------------------------------------+
+; Register name                                          ; Reason for Removal                     ;
++--------------------------------------------------------+----------------------------------------+
+; proc:proc0|unidad_control:unidad_control0|new_pc[0]    ; Stuck at GND due to stuck port data_in ;
+; proc:proc0|unidad_control:unidad_control0|bus_ir[3..8] ; Lost fanout                            ;
+; Total Number of Removed Registers = 7                  ;                                        ;
++--------------------------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 165   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 15    ;
+; Number of registers using Asynchronous Clear ; 3     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 153   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
+; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|bus_ir[6]            ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|new_pc[14]           ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |sisa|MemoryController:mem_ctrl0|SRAMController:controller0|data_ext ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "proc:proc0|datapath:datapath0"                                                                                                                   ;
++-----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                                                                                      ;
++-----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; func      ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; immed_reg ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++-----------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "proc:proc0|unidad_control:unidad_control0|control_l:control_l0"                                               ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                  ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; func      ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; immed_reg ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "proc:proc0"                                                                                                                                 ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                      ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; hex  ; Input ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
++------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -161,51 +401,212 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Apr 04 11:51:40 2018
+    Info: Processing started: Thu Apr 05 23:13:56 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off full_alu -c full_alu
-Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticicle/unidad_control.vhd
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticicle/unidad_control.vhd
     Info (12022): Found design unit 1: unidad_control-Structure
     Info (12023): Found entity 1: unidad_control
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticicle/regfile.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticicle/regfile.vhd
     Info (12022): Found design unit 1: regfile-Structure
     Info (12023): Found entity 1: regfile
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticicle/proc.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticicle/proc.vhd
     Info (12022): Found design unit 1: proc-Structure
     Info (12023): Found entity 1: proc
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticicle/multi.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticicle/multi.vhd
     Info (12022): Found design unit 1: multi-Structure
     Info (12023): Found entity 1: multi
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticicle/datapath.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticicle/datapath.vhd
     Info (12022): Found design unit 1: datapath-Structure
     Info (12023): Found entity 1: datapath
-Error (10500): VHDL syntax error at control_l.vhd(34) near text "STD_LOGIC_VECTOR";  expecting "(", or "access", or "array", or "file", or "range", or "record" File: C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/control_l.vhd Line: 34
-Info (12021): Found 0 design units, including 0 entities, in source file /users/pec02/documents/pec-2018/procesadormulticicle/control_l.vhd
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticiclememoria/sramcontroller.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticicle/control_l.vhd
+    Info (12022): Found design unit 1: control_l-Structure
+    Info (12023): Found entity 1: control_l
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticiclememoria/sramcontroller.vhd
     Info (12022): Found design unit 1: SRAMController-comportament
     Info (12023): Found entity 1: SRAMController
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticiclememoria/sisa.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticiclememoria/sisa.vhd
     Info (12022): Found design unit 1: sisa-Structure
     Info (12023): Found entity 1: sisa
-Info (12021): Found 2 design units, including 0 entities, in source file /users/pec02/documents/pec-2018/procesadormulticiclememoria/package_utility.vhd
+Info (12021): Found 2 design units, including 0 entities, in source file /marc/uni/pec/pec-2018/procesadormulticiclememoria/package_utility.vhd
     Info (12022): Found design unit 1: package_utility
     Info (12022): Found design unit 2: package_utility-body
-Info (12021): Found 2 design units, including 0 entities, in source file /users/pec02/documents/pec-2018/procesadormulticiclememoria/package_timing.vhd
+Info (12021): Found 2 design units, including 0 entities, in source file /marc/uni/pec/pec-2018/procesadormulticiclememoria/package_timing.vhd
     Info (12022): Found design unit 1: package_timing
     Info (12022): Found design unit 2: package_timing-body
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticiclememoria/memorycontroller.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticiclememoria/memorycontroller.vhd
     Info (12022): Found design unit 1: MemoryController-comportament
     Info (12023): Found entity 1: MemoryController
-Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticiclememoria/async_64kx16.vhd
+Info (12021): Found 2 design units, including 1 entities, in source file /marc/uni/pec/pec-2018/procesadormulticiclememoria/async_64kx16.vhd
     Info (12022): Found design unit 1: async_64Kx16-behave_arch
     Info (12023): Found entity 1: async_64Kx16
 Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
     Info (12022): Found design unit 1: alu-Structure
     Info (12023): Found entity 1: alu
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 1 error, 0 warnings
-    Error: Peak virtual memory: 476 megabytes
-    Error: Processing ended: Wed Apr 04 11:51:41 2018
-    Error: Elapsed time: 00:00:01
-    Error: Total CPU time (on all processors): 00:00:01
+Info (12127): Elaborating entity "sisa" for the top level hierarchy
+Info (12128): Elaborating entity "proc" for hierarchy "proc:proc0"
+Info (12128): Elaborating entity "unidad_control" for hierarchy "proc:proc0|unidad_control:unidad_control0"
+Info (12128): Elaborating entity "control_l" for hierarchy "proc:proc0|unidad_control:unidad_control0|control_l:control_l0"
+Info (10041): Inferred latch for "immed_reg" at control_l.vhd(155)
+Info (10041): Inferred latch for "op[0]" at control_l.vhd(114)
+Info (10041): Inferred latch for "op[1]" at control_l.vhd(114)
+Info (10041): Inferred latch for "immed[0]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[1]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[2]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[3]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[4]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[5]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[6]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[7]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[8]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[9]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[10]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[11]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[12]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[13]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[14]" at control_l.vhd(106)
+Info (10041): Inferred latch for "immed[15]" at control_l.vhd(106)
+Info (12128): Elaborating entity "multi" for hierarchy "proc:proc0|unidad_control:unidad_control0|multi:multi0"
+Warning (10492): VHDL Process Statement warning at multi.vhd(30): signal "boot" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "datapath" for hierarchy "proc:proc0|datapath:datapath0"
+Info (12128): Elaborating entity "alu" for hierarchy "proc:proc0|datapath:datapath0|alu:alu0"
+Info (10041): Inferred latch for "w[0]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[1]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[2]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[3]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[4]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[5]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[6]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[7]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[8]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[9]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[10]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[11]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[12]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[13]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[14]" at alu.vhd(53)
+Info (10041): Inferred latch for "w[15]" at alu.vhd(53)
+Info (12128): Elaborating entity "regfile" for hierarchy "proc:proc0|datapath:datapath0|regfile:regfile0"
+Warning (10492): VHDL Process Statement warning at regfile.vhd(26): signal "wrd" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "MemoryController" for hierarchy "MemoryController:mem_ctrl0"
+Warning (10540): VHDL Signal Declaration warning at MemoryController.vhd(48): used explicit default value for signal "instr_memory_limit" because signal was never assigned a value
+Info (12128): Elaborating entity "SRAMController" for hierarchy "MemoryController:mem_ctrl0|SRAMController:controller0"
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(58): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(62): signal "dataToWrite" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(68): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(69): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(70): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(80): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(81): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(82): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(91): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(94): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(94): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(95): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(97): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(97): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(98): signal "data_ext" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(100): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(44): inferring latch(es) for signal or variable "SRAM_OE_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(44): inferring latch(es) for signal or variable "SRAM_CE_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(44): inferring latch(es) for signal or variable "SRAM_WE_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(44): inferring latch(es) for signal or variable "SRAM_LB_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(44): inferring latch(es) for signal or variable "SRAM_UB_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(44): inferring latch(es) for signal or variable "SRAM_DQ", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(44): inferring latch(es) for signal or variable "data_ext", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "data_ext[0]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[1]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[2]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[3]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[4]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[5]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[6]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[7]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[8]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[9]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[10]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[11]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[12]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[13]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[14]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "data_ext[15]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[0]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[1]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[2]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[3]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[4]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[5]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[6]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[7]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[8]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[9]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[10]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[11]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[12]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[13]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[14]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_DQ[15]" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_UB_N" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_LB_N" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_WE_N" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_CE_N" at SRAMController.vhd(44)
+Info (10041): Inferred latch for "SRAM_OE_N" at SRAMController.vhd(44)
+Info (276014): Found 1 instances of uninferred RAM logic
+    Info (276004): RAM logic "proc:proc0|datapath:datapath0|regfile:regfile0|regs" is uninferred due to inappropriate RAM size
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal MemoryController:mem_ctrl0|SRAMController:controller0|state.RD_ST
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_WE_N has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal MemoryController:mem_ctrl0|SRAMController:controller0|state.WR_ST
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[12] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[13] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[14] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[4] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[5] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[6] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|datapath:datapath0|alu:alu0|w[0]
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[8] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[9] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[10] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[11] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "SRAM_ADDR[15]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[16]" is stuck at GND
+    Warning (13410): Pin "SRAM_ADDR[17]" is stuck at GND
+    Warning (13410): Pin "SRAM_CE_N" is stuck at GND
+Info (17049): 6 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 432 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 23 output pins
+    Info (21060): Implemented 16 bidirectional pins
+    Info (21061): Implemented 391 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 69 warnings
+    Info: Peak virtual memory: 566 megabytes
+    Info: Processing ended: Thu Apr 05 23:14:01 2018
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:02
 
 
