@@ -12,6 +12,7 @@ ENTITY control_l IS
           addr_b    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 immed_reg : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
           in_d      : OUT STD_LOGIC;
           immed_x2  : OUT STD_LOGIC;
@@ -77,6 +78,7 @@ ARCHITECTURE Structure OF control_l IS
 	
 	SIGNAL op_code 	: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	SIGNAL f_code		: STD_LOGIC_VECTOR (2 DOWNTO 0);
+	SIGNAL reg_d		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL reg_src1	: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL reg_src2	: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	
@@ -86,16 +88,17 @@ ARCHITECTURE Structure OF control_l IS
 BEGIN
 
 	op_code 		<= ir(15 DOWNTO 12);
-	reg_src1		<= ir(11 DOWNTO 9);
-	reg_src2		<=	ir(8	DOWNTO 6);
+	reg_d			<= ir(11 DOWNTO 9);
+	reg_src1		<= ir (8 DOWNTO 6);
+	reg_src2		<=	ir (2	DOWNTO 0);
 	
 	f_code		<= ir(5	DOWNTO 3);
 	
-	addr_a 	<= reg_src1 when op_code = MOV else
-					reg_src2;
+	addr_a 	<= reg_d WHEN op_code = MOV ELSE
+					reg_src1;
 	
-	addr_b 	<= reg_src1;
-	addr_d 	<= reg_src1;
+	addr_b 	<= reg_src2;
+	addr_d 	<= reg_d;
 	
 	immed_ma 	<= ir(5 DOWNTO 0);
 	immed_alu	<= ir(7 DOWNTO 0);
@@ -108,27 +111,35 @@ BEGIN
 					
 					std_logic_vector(resize(signed(immed_alu), immed'length)) WHEN 		op_code = MOV;
 
-	op		<= ARITHLOG	WHEN 	    op_code = LD	OR 
-										 op_code = ST	OR 
-										 op_code = LDB	OR 
-										 op_code = STB OR
-										 op_code = ADDI ELSE
+	op		<= ARITHLOG_op	WHEN 	   op_code = LD	OR 
+											op_code = ST	OR 
+											op_code = LDB	OR 
+											op_code = STB 	OR
+											op_code = ADDI OR
+											op_code = ARITHLOG ELSE
 				
-				MOVI 		WHEN		op_code = MOV 	AND
-										ir(8) = '0' 	ELSE 	-- MOVI
+				MOV_op 		WHEN		op_code = MOV 	ELSE
+			
+				CMP_op		WHEN		op_code = CMP 	ELSE
 				
-				MOVHI 	WHEN		op_code = MOV 	AND 
-										ir(8) = '1'		ELSE		-- MOVHI
+				EXT_op		WHEN		op_code = EXT;
+--ELSE
+--				
+--				CMP_op		WHEN	others; -- ??? Any not aggresive operation ??? 
 				
-				op_code WHEN others; -- Then the operation group coincides with the op_code, for example, ADD instruction
+	func	<= ADD_f 	WHEN	op_code = LD	OR 
+									op_code = ST	OR 
+									op_code = LDB	OR 
+									op_code = STB 	OR
+									op_code = ADDI ELSE
 				
-	func	<= ADD_f WHEN	op_code = LD	OR 
-								op_code = ST	OR 
-								op_code = LDB	OR 
-								op_code = STB 	OR
-								op_code = ADDI ELSE
+				MOVI_f 	WHEN	op_code = MOV 	AND
+									ir(8) = '0'		ELSE
 								
-				f_code WHEN others;
+				MOVHI_f 	WHEN 	op_code = MOV 	AND
+									ir(8) = '1'		ELSE
+								
+				f_code;
 				
 	ldpc	<=	'0' 	WHEN op_code = HALT ELSE
 				'1';
@@ -140,6 +151,17 @@ BEGIN
 	in_d	<= '1' 	WHEN op_code = LD 	OR
 							  op_code = LDB 	ELSE
 				'0';
+				
+	immed_reg	<= '1' WHEN op_code = ADDI OR		-- 1 when we choose the value from the immediate
+									op_code = ST	OR		-- 0 when we choose it from the register b
+									op_code = STB 	OR
+									op_code = LD	OR
+									op_code = LDB	OR
+									op_code = MOV	OR ELSE
+						
+						'0' WHEN op_code = ARITHLOG OR
+									op_code = ARITHEXT OR
+									op_code = CMP;					
 				
 	immed_x2 	<= '1' WHEN op_code = LD OR
 									op_code = ST ELSE		
