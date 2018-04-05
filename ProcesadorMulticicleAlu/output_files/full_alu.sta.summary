@@ -3,56 +3,56 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'clk_proc'
-Slack : -15.719
-TNS   : -2056.988
+Slack : -66.158
+TNS   : -9263.480
 
 Type  : Slow Model Setup 'MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST'
-Slack : -12.715
-TNS   : -187.272
+Slack : -64.993
+TNS   : -1096.612
 
 Type  : Slow Model Setup 'proc:proc0|unidad_control:unidad_control0|bus_ir[12]'
-Slack : -9.809
-TNS   : -172.854
+Slack : -62.598
+TNS   : -1052.162
 
 Type  : Slow Model Setup 'MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST'
-Slack : -9.023
-TNS   : -99.350
+Slack : -59.975
+TNS   : -274.660
 
 Type  : Slow Model Setup 'CLOCK_50'
-Slack : -6.014
-TNS   : -13.525
+Slack : -58.334
+TNS   : -117.721
 
 Type  : Slow Model Setup 'MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST'
-Slack : -3.759
-TNS   : -7.418
+Slack : -3.265
+TNS   : -6.136
 
 Type  : Slow Model Hold 'proc:proc0|unidad_control:unidad_control0|bus_ir[12]'
-Slack : -10.288
-TNS   : -148.071
-
-Type  : Slow Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST'
-Slack : -2.938
-TNS   : -7.197
-
-Type  : Slow Model Hold 'CLOCK_50'
-Slack : -2.690
-TNS   : -9.033
-
-Type  : Slow Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST'
-Slack : -2.186
-TNS   : -4.365
+Slack : -60.898
+TNS   : -955.553
 
 Type  : Slow Model Hold 'clk_proc'
-Slack : -0.616
-TNS   : -9.240
+Slack : -22.083
+TNS   : -430.341
+
+Type  : Slow Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST'
+Slack : -2.846
+TNS   : -10.472
+
+Type  : Slow Model Hold 'CLOCK_50'
+Slack : -2.738
+TNS   : -12.220
+
+Type  : Slow Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST'
+Slack : -1.962
+TNS   : -4.475
 
 Type  : Slow Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST'
-Slack : 3.295
+Slack : 2.706
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'proc:proc0|unidad_control:unidad_control0|bus_ir[12]'
-Slack : -9.142
-TNS   : -2502.480
+Slack : -58.997
+TNS   : -135518.988
 
 Type  : Slow Model Minimum Pulse Width 'CLOCK_50'
 Slack : -1.631
@@ -75,56 +75,56 @@ Slack : 0.500
 TNS   : 0.000
 
 Type  : Fast Model Setup 'clk_proc'
-Slack : -5.927
-TNS   : -772.834
+Slack : -24.818
+TNS   : -3464.022
 
 Type  : Fast Model Setup 'MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST'
-Slack : -4.268
-TNS   : -58.550
+Slack : -23.830
+TNS   : -396.446
 
 Type  : Fast Model Setup 'proc:proc0|unidad_control:unidad_control0|bus_ir[12]'
-Slack : -3.220
-TNS   : -55.838
+Slack : -22.903
+TNS   : -383.121
 
 Type  : Fast Model Setup 'MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST'
-Slack : -2.375
-TNS   : -21.531
+Slack : -21.559
+TNS   : -87.820
 
 Type  : Fast Model Setup 'CLOCK_50'
-Slack : -1.374
-TNS   : -2.748
+Slack : -20.894
+TNS   : -41.785
 
 Type  : Fast Model Setup 'MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST'
-Slack : -1.227
-TNS   : -2.410
+Slack : -0.997
+TNS   : -1.858
 
 Type  : Fast Model Hold 'proc:proc0|unidad_control:unidad_control0|bus_ir[12]'
-Slack : -4.404
-TNS   : -64.690
-
-Type  : Fast Model Hold 'CLOCK_50'
-Slack : -1.721
-TNS   : -6.454
-
-Type  : Fast Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST'
-Slack : -1.612
-TNS   : -12.692
-
-Type  : Fast Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST'
-Slack : -1.338
-TNS   : -3.157
+Slack : -23.260
+TNS   : -365.915
 
 Type  : Fast Model Hold 'clk_proc'
-Slack : -0.822
-TNS   : -12.670
+Slack : -8.984
+TNS   : -173.525
+
+Type  : Fast Model Hold 'CLOCK_50'
+Slack : -1.714
+TNS   : -7.587
+
+Type  : Fast Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST'
+Slack : -1.567
+TNS   : -13.271
+
+Type  : Fast Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST'
+Slack : -1.243
+TNS   : -3.283
 
 Type  : Fast Model Hold 'MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST'
-Slack : 1.718
+Slack : 1.455
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'proc:proc0|unidad_control:unidad_control0|bus_ir[12]'
-Slack : -3.079
-TNS   : -629.650
+Slack : -21.667
+TNS   : -47734.828
 
 Type  : Fast Model Minimum Pulse Width 'CLOCK_50'
 Slack : -1.380
@@ -140,10 +140,4 @@ TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST'
 Slack : 0.500
-TNS   : 0.000
-
-Type  : Fast Model Minimum Pulse Width 'MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST'
-Slack : 0.500
-TNS   : 0.000
-
-------------------------------------------------------------
+TN

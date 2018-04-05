@@ -1,5 +1,5 @@
 Analysis & Synthesis report for full_alu
-Thu Apr 05 16:09:07 2018
+Thu Apr 05 16:56:26 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -19,9 +19,10 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
  11. Registers Removed During Synthesis
  12. General Register Statistics
  13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Port Connectivity Checks: "proc:proc0"
- 15. Elapsed Time Per Partition
- 16. Analysis & Synthesis Messages
+ 14. Parameter Settings for Inferred Entity Instance: proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0
+ 15. Port Connectivity Checks: "proc:proc0"
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
 
 
 
@@ -47,13 +48,13 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 05 16:09:07 2018           ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 05 16:56:26 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; full_alu                                        ;
 ; Top-level Entity Name              ; sisa                                            ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 597                                             ;
-;     Total combinational functions  ; 483                                             ;
+; Total logic elements               ; 936                                             ;
+;     Total combinational functions  ; 822                                             ;
 ;     Dedicated logic registers      ; 171                                             ;
 ; Total registers                    ; 171                                             ;
 ; Total pins                         ; 41                                              ;
@@ -166,22 +167,32 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                 ;
-+-----------------------------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path                    ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                       ; Library ;
-+-----------------------------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------+---------+
-; ../ProcesadorMulticicle/unidad_control.vhd          ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/unidad_control.vhd          ;         ;
-; ../ProcesadorMulticicle/regfile.vhd                 ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/regfile.vhd                 ;         ;
-; ../ProcesadorMulticicle/proc.vhd                    ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/proc.vhd                    ;         ;
-; ../ProcesadorMulticicle/multi.vhd                   ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/multi.vhd                   ;         ;
-; ../ProcesadorMulticicle/datapath.vhd                ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/datapath.vhd                ;         ;
-; ../ProcesadorMulticicle/control_l.vhd               ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/control_l.vhd               ;         ;
-; ../ProcesadorMulticicleMemoria/SRAMController.vhd   ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/SRAMController.vhd   ;         ;
-; ../ProcesadorMulticicleMemoria/sisa.vhd             ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/sisa.vhd             ;         ;
-; ../ProcesadorMulticicleMemoria/MemoryController.vhd ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/MemoryController.vhd ;         ;
-; alu.vhd                                             ; yes             ; User VHDL File  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/alu.vhd                  ;         ;
-+-----------------------------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                              ;
++-----------------------------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                    ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                       ; Library ;
++-----------------------------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
+; ../ProcesadorMulticicle/unidad_control.vhd          ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/unidad_control.vhd          ;         ;
+; ../ProcesadorMulticicle/regfile.vhd                 ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/regfile.vhd                 ;         ;
+; ../ProcesadorMulticicle/proc.vhd                    ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/proc.vhd                    ;         ;
+; ../ProcesadorMulticicle/multi.vhd                   ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/multi.vhd                   ;         ;
+; ../ProcesadorMulticicle/datapath.vhd                ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/datapath.vhd                ;         ;
+; ../ProcesadorMulticicle/control_l.vhd               ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicle/control_l.vhd               ;         ;
+; ../ProcesadorMulticicleMemoria/SRAMController.vhd   ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/SRAMController.vhd   ;         ;
+; ../ProcesadorMulticicleMemoria/sisa.vhd             ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/sisa.vhd             ;         ;
+; ../ProcesadorMulticicleMemoria/MemoryController.vhd ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/MemoryController.vhd ;         ;
+; alu.vhd                                             ; yes             ; User VHDL File               ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/alu.vhd                  ;         ;
+; lpm_divide.tdf                                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_divide.tdf                   ;         ;
+; abs_divider.inc                                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/abs_divider.inc                  ;         ;
+; sign_div_unsign.inc                                 ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/sign_div_unsign.inc              ;         ;
+; aglobal130.inc                                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc                   ;         ;
+; db/lpm_divide_rto.tdf                               ; yes             ; Auto-Generated Megafunction  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/db/lpm_divide_rto.tdf    ;         ;
+; db/abs_divider_8dg.tdf                              ; yes             ; Auto-Generated Megafunction  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/db/abs_divider_8dg.tdf   ;         ;
+; db/alt_u_div_s5f.tdf                                ; yes             ; Auto-Generated Megafunction  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/db/alt_u_div_s5f.tdf     ;         ;
+; db/add_sub_lkc.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/db/add_sub_lkc.tdf       ;         ;
+; db/add_sub_mkc.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/db/add_sub_mkc.tdf       ;         ;
+; db/lpm_abs_2s9.tdf                                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleAlu/db/lpm_abs_2s9.tdf       ;         ;
++-----------------------------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------+
@@ -189,17 +200,17 @@ applicable agreement for further details.
 +---------------------------------------------+----------+
 ; Resource                                    ; Usage    ;
 +---------------------------------------------+----------+
-; Estimated Total logic elements              ; 597      ;
+; Estimated Total logic elements              ; 936      ;
 ;                                             ;          ;
-; Total combinational functions               ; 483      ;
+; Total combinational functions               ; 822      ;
 ; Logic element usage by number of LUT inputs ;          ;
-;     -- 4 input functions                    ; 205      ;
-;     -- 3 input functions                    ; 228      ;
-;     -- <=2 input functions                  ; 50       ;
+;     -- 4 input functions                    ; 293      ;
+;     -- 3 input functions                    ; 425      ;
+;     -- <=2 input functions                  ; 104      ;
 ;                                             ;          ;
 ; Logic elements by mode                      ;          ;
-;     -- normal mode                          ; 394      ;
-;     -- arithmetic mode                      ; 89       ;
+;     -- normal mode                          ; 600      ;
+;     -- arithmetic mode                      ; 222      ;
 ;                                             ;          ;
 ; Total registers                             ; 171      ;
 ;     -- Dedicated logic registers            ; 171      ;
@@ -209,27 +220,35 @@ applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0        ;
 ; Maximum fan-out node                        ; clk_proc ;
 ; Maximum fan-out                             ; 163      ;
-; Total fan-out                               ; 2180     ;
-; Average fan-out                             ; 3.14     ;
+; Total fan-out                               ; 3203     ;
+; Average fan-out                             ; 3.10     ;
 +---------------------------------------------+----------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                      ;
-+----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node             ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                  ; Library Name ;
-+----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
-; |sisa                                  ; 483 (5)           ; 171 (4)      ; 0           ; 0            ; 0       ; 0         ; 41   ; 0            ; |sisa                                                                ; work         ;
-;    |MemoryController:mem_ctrl0|        ; 75 (0)            ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0                                     ; work         ;
-;       |SRAMController:controller0|     ; 75 (75)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0|SRAMController:controller0          ; work         ;
-;    |proc:proc0|                        ; 403 (0)           ; 162 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0                                                     ; work         ;
-;       |datapath:datapath0|             ; 345 (39)          ; 128 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0                                  ; work         ;
-;          |alu:alu0|                    ; 136 (136)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0                         ; work         ;
-;          |regfile:regfile0|            ; 170 (170)         ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|regfile:regfile0                 ; work         ;
-;       |unidad_control:unidad_control0| ; 58 (33)           ; 34 (31)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0                      ; work         ;
-;          |control_l:control_l0|        ; 23 (23)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|control_l:control_l0 ; work         ;
-;          |multi:multi0|                ; 2 (2)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0         ; work         ;
-+----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                         ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                            ; Library Name ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |sisa                                           ; 822 (5)           ; 171 (4)      ; 0           ; 0            ; 0       ; 0         ; 41   ; 0            ; |sisa                                                                                                                                                          ; work         ;
+;    |MemoryController:mem_ctrl0|                 ; 76 (0)            ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0                                                                                                                               ; work         ;
+;       |SRAMController:controller0|              ; 76 (76)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0|SRAMController:controller0                                                                                                    ; work         ;
+;    |proc:proc0|                                 ; 741 (0)           ; 162 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0                                                                                                                                               ; work         ;
+;       |datapath:datapath0|                      ; 683 (39)          ; 128 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0                                                                                                                            ; work         ;
+;          |alu:alu0|                             ; 474 (143)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0                                                                                                                   ; work         ;
+;             |lpm_divide:Div0|                   ; 331 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0                                                                                                   ; work         ;
+;                |lpm_divide_rto:auto_generated|  ; 331 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_rto:auto_generated                                                                     ; work         ;
+;                   |abs_divider_8dg:divider|     ; 331 (16)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_rto:auto_generated|abs_divider_8dg:divider                                             ; work         ;
+;                      |alt_u_div_s5f:divider|    ; 277 (274)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|alt_u_div_s5f:divider                       ; work         ;
+;                         |add_sub_lkc:add_sub_0| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|alt_u_div_s5f:divider|add_sub_lkc:add_sub_0 ; work         ;
+;                         |add_sub_mkc:add_sub_1| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|alt_u_div_s5f:divider|add_sub_mkc:add_sub_1 ; work         ;
+;                      |lpm_abs_2s9:my_abs_den|   ; 13 (13)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|lpm_abs_2s9:my_abs_den                      ; work         ;
+;                      |lpm_abs_2s9:my_abs_num|   ; 25 (25)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|lpm_abs_2s9:my_abs_num                      ; work         ;
+;          |regfile:regfile0|                     ; 170 (170)         ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|regfile:regfile0                                                                                                           ; work         ;
+;       |unidad_control:unidad_control0|          ; 58 (33)           ; 34 (31)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0                                                                                                                ; work         ;
+;          |control_l:control_l0|                 ; 23 (23)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|control_l:control_l0                                                                                           ; work         ;
+;          |multi:multi0|                         ; 2 (2)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0                                                                                                   ; work         ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -360,6 +379,29 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------+
 
 
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0 ;
++------------------------+----------------+---------------------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                                          ;
++------------------------+----------------+---------------------------------------------------------------+
+; LPM_WIDTHN             ; 16             ; Untyped                                                       ;
+; LPM_WIDTHD             ; 16             ; Untyped                                                       ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                                       ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                                       ;
+; LPM_PIPELINE           ; 0              ; Untyped                                                       ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                                       ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                                       ;
+; CBXI_PARAMETER         ; lpm_divide_rto ; Untyped                                                       ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                                       ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                                       ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                                    ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                                  ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                                  ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                                ;
++------------------------+----------------+---------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "proc:proc0"                                                                                                                                 ;
 +------+-------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
@@ -374,7 +416,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -384,7 +426,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Apr 05 16:09:05 2018
+    Info: Processing started: Thu Apr 05 16:56:23 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off full_alu -c full_alu
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
 Info (12021): Found 2 design units, including 1 entities, in source file /users/pec02/documents/pec-2018/procesadormulticicle/unidad_control.vhd
@@ -517,7 +559,30 @@ Info (10041): Inferred latch for "SRAM_CE_N" at SRAMController.vhd(44)
 Info (10041): Inferred latch for "SRAM_OE_N" at SRAMController.vhd(44)
 Info (276014): Found 1 instances of uninferred RAM logic
     Info (276004): RAM logic "proc:proc0|datapath:datapath0|regfile:regfile0|regs" is uninferred due to inappropriate RAM size
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "proc:proc0|datapath:datapath0|alu:alu0|Div0"
+Info (12130): Elaborated megafunction instantiation "proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0"
+Info (12133): Instantiated megafunction "proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "16"
+    Info (12134): Parameter "LPM_WIDTHD" = "16"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_rto.tdf
+    Info (12023): Found entity 1: lpm_divide_rto
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_8dg.tdf
+    Info (12023): Found entity 1: abs_divider_8dg
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_s5f.tdf
+    Info (12023): Found entity 1: alt_u_div_s5f
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_lkc.tdf
+    Info (12023): Found entity 1: add_sub_lkc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_mkc.tdf
+    Info (12023): Found entity 1: add_sub_mkc
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_2s9.tdf
+    Info (12023): Found entity 1: lpm_abs_2s9
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13014): Ignored 30 buffer(s)
+    Info (13016): Ignored 30 CARRY_SUM buffer(s)
 Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
     Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[14]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15]"
     Info (13026): Duplicate LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[13]" merged with LATCH primitive "proc:proc0|unidad_control:unidad_control0|control_l:control_l0|immed[15]"
@@ -574,15 +639,15 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "SRAM_CE_N" is stuck at GND
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 654 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 993 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 23 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 613 logic cells
+    Info (21061): Implemented 952 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 72 warnings
-    Info: Peak virtual memory: 509 megabytes
-    Info: Processing ended: Thu Apr 05 16:09:07 2018
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 498 megabytes
+    Info: Processing ended: Thu Apr 05 16:56:26 2018
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
 
 

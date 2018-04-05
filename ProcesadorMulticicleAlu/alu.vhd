@@ -1,6 +1,5 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
-USE ieee.std_logic_unsigned.all;
 USE ieee.numeric_std.all;
 
 ENTITY alu IS
@@ -73,6 +72,5 @@ BEGIN
 					X"0000" WHEN op = CMP_op AND f = CMPLEU_f AND unsigned(x) <= unsigned(y) ELSE
 					X"0001" WHEN op = CMP_op AND f = CMPLEU_f AND unsigned(x) > 	unsigned(y) ELSE
 					
-					x + y WHEN op = ARITHLOG_op ELSE
 					(others => 'X');
 END Structure;

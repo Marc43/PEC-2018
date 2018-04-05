@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="full_alu">
+		<CBX_INST_ENTRY INSTANCE_NAME="|sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_rto.tdf"/>
 	</PROJECT>
 </LOG_ROOT>
