@@ -103,14 +103,15 @@ BEGIN
 					
 					std_logic_vector(resize(signed(immed_alu), immed'length)) WHEN 		op_code = MOV;
 
-	op		<= ARITHLOG_op	WHEN 	 op_code = LD	OR 
-										 op_code = ST	OR 
-										 op_code = LDB	OR 
-										 op_code = STB OR
-										 op_code = ADDI ELSE
+	op	<= ARITHLOG_op	WHEN 	 	op_code = LD	OR 
+										op_code = ST	OR 
+										op_code = LDB	OR 
+										op_code = STB	OR
+										op_code = ADDI ELSE
 				
-				MOV_op 	WHEN		 op_code = MOV	ELSE
+				MOV_op 	WHEN		op_code = MOV	ELSE
 				
+				CMP_op	WHEN		op_code = CMP	ELSE
 				"XX"; --cuando se mergee esto es basura
 				
 	func	<= ADD_f WHEN	op_code = LD	OR 

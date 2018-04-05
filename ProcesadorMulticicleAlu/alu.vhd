@@ -1,6 +1,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
+USE ieee.numeric_std.all;
 
 ENTITY alu IS
     PORT (x  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -56,6 +57,22 @@ BEGIN
 	
 			w 	<= y WHEN op = MOV_op AND f = MOVI_f ELSE
 					y(7 DOWNTO 0) & x(7 DOWNTO 0) WHEN op = MOV_op AND f = MOVHI_f ELSE
+					--comparaciones
+					X"0001" WHEN op = CMP_op AND f = CMPLT_f AND signed(x) < signed(y) ELSE
+					X"0000" WHEN op = CMP_op AND f = CMPLT_f AND signed(x) >= signed(y) ELSE
+					
+					X"0001" WHEN op = CMP_op AND f = CMPLE_f AND signed(x) <= signed(y) ELSE
+					X"0000" WHEN op = CMP_op AND f = CMPLE_f AND signed(x) > signed(y) ELSE
+					
+					X"0001" WHEN op = CMP_op AND f = CMPEQ_f AND x = y ELSE
+					X"0000" WHEN op = CMP_op AND f = CMPEQ_f AND x /= y ELSE
+					
+					X"0001" WHEN op = CMP_op AND f = CMPLTU_f AND unsigned(x) < 	unsigned(y) ELSE
+					X"0000" WHEN op = CMP_op AND f = CMPLTU_f AND unsigned(x) >= unsigned(y) ELSE
+					
+					X"0000" WHEN op = CMP_op AND f = CMPLEU_f AND unsigned(x) <= unsigned(y) ELSE
+					X"0001" WHEN op = CMP_op AND f = CMPLEU_f AND unsigned(x) > 	unsigned(y) ELSE
+					
 					x + y WHEN op = ARITHLOG_op ELSE
 					(others => 'X');
 END Structure;
