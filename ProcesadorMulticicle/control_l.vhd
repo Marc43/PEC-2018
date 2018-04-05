@@ -70,11 +70,6 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT DIV_f			: STD_LOGIC_VECTOR (2 DOWNTO 0):= "100";
 	CONSTANT DIVU_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "101";
 	
-	-- Alu operations
-	CONSTANT MOVI	: STD_LOGIC_VECTOR(1 DOWNTO 0) := "00";
-	CONSTANT MOVHI	: STD_LOGIC_VECTOR(1 DOWNTO 0) := "01";
-	CONSTANT ADD	: STD_LOGIC_VECTOR(1 DOWNTO 0) := "10";
-	
 	SIGNAL op_code 	: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	SIGNAL f_code		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL reg_src1	: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -108,19 +103,15 @@ BEGIN
 					
 					std_logic_vector(resize(signed(immed_alu), immed'length)) WHEN 		op_code = MOV;
 
-	op		<= ARITHLOG	WHEN 	    op_code = LD	OR 
+	op		<= ARITHLOG_op	WHEN 	 op_code = LD	OR 
 										 op_code = ST	OR 
 										 op_code = LDB	OR 
 										 op_code = STB OR
 										 op_code = ADDI ELSE
 				
-				MOVI 		WHEN		op_code = MOV 	AND
-										ir(8) = '0' 	ELSE 	-- MOVI
+				MOV_op 	WHEN		 op_code = MOV	ELSE
 				
-				MOVHI 	WHEN		op_code = MOV 	AND 
-										ir(8) = '1'		ELSE		-- MOVHI
-				
-				op_code WHEN others; -- Then the operation group coincides with the op_code, for example, ADD instruction
+				"XX"; --cuando se mergee esto es basura
 				
 	func	<= ADD_f WHEN	op_code = LD	OR 
 								op_code = ST	OR 
@@ -128,7 +119,11 @@ BEGIN
 								op_code = STB 	OR
 								op_code = ADDI ELSE
 								
-				f_code WHEN others;
+				MOVI_f	WHEN op_code = MOV AND ir(8) = '0' ELSE
+				
+				MOVHI_f	WHEN op_code = MOV AND ir(8) = '1' ELSE
+				
+				f_code;
 				
 	ldpc	<=	'0' 	WHEN op_code = HALT ELSE
 				'1';
