@@ -56,6 +56,6 @@ BEGIN
 	
 			w 	<= y WHEN op = MOV_op AND f = MOVI_f ELSE
 					y(7 DOWNTO 0) & x(7 DOWNTO 0) WHEN op = MOV_op AND f = MOVHI_f ELSE
-					x + y WHEN op = ADD ELSE
+					x + y WHEN op = ARITHLOG_op ELSE
 					(others => 'X');
 END Structure;

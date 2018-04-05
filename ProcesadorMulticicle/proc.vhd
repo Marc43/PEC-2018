@@ -19,6 +19,7 @@ COMPONENT unidad_control IS
           clk       : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd       : OUT STD_LOGIC;
           addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -35,6 +36,7 @@ END COMPONENT;
 COMPONENT datapath IS
     PORT (clk      : IN  STD_LOGIC;
           op       : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 func		 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd      : IN  STD_LOGIC;
           addr_a   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -69,6 +71,7 @@ SIGNAL bus_word_byte		: STD_LOGIC;
 
 SIGNAL bus_addr_m			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_data_wr		: STD_LOGIC_VECTOR (15 DOWNTO 0);
+SIGNAL bus_func			: STD_LOGIC_VECTOR (2 DOWNTO 0);
 
 BEGIN
 
@@ -79,6 +82,7 @@ BEGIN
 		clk		=> clk,
 		datard_m => datard_m,
 		op			=> bus_op,
+		func		=> bus_func,
 		wrd		=> bus_wrd,
 		addr_a	=> bus_addr_a,
 		addr_b	=> bus_addr_b,
@@ -96,6 +100,7 @@ BEGIN
 	PORT MAP (
 		clk		=> clk,
 		op			=> bus_op,
+		func		=> bus_func,
 		wrd		=>	bus_wrd,
 		addr_a	=> bus_addr_a,
 		addr_b	=> bus_addr_b,
