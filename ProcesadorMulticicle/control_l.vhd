@@ -5,6 +5,7 @@ USE ieee.numeric_std.all;
 ENTITY control_l IS
     PORT (ir        : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           ldpc      : OUT STD_LOGIC;
           wrd       : OUT STD_LOGIC;
           addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -32,7 +33,14 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT STB 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1110";
 	CONSTANT HALT		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1111"; 
 	
-	-- Function codes
+	-- Alu operation codes
+	
+	CONSTANT ARITHLOG_op	: STD_LOGIC_VECTOR (1 DOWNTO 0) := "00";
+	CONSTANT MOV_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "01";
+	CONSTANT CMP_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "10";
+	CONSTANT EXT_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "11";
+	
+	-- Alu function codes
 	
 	-- ARITHLOG
 	CONSTANT AND_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "000";
@@ -43,6 +51,10 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT SUB_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "101";
 	CONSTANT SHA_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "110";
 	CONSTANT SHL_f	: STD_LOGIC_VECTOR (2 DOWNTO 0):= "111";
+	
+	-- MOV
+	CONSTANT MOVI_f	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "000";
+	CONSTANT MOVHI_f	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
 	
 	-- CMP
 	CONSTANT CMPLT_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "000";
@@ -96,16 +108,27 @@ BEGIN
 					
 					std_logic_vector(resize(signed(immed_alu), immed'length)) WHEN 		op_code = MOV;
 
-	op		<= ADD 	WHEN 		op_code = LD	OR 
-									op_code = ST	OR 
-									op_code = LDB	OR 
-									op_code = STB 	ELSE
+	op		<= ARITHLOG	WHEN 	    op_code = LD	OR 
+										 op_code = ST	OR 
+										 op_code = LDB	OR 
+										 op_code = STB OR
+										 op_code = ADDI ELSE
 				
-				MOVI 	WHEN		op_code = MOV 	AND
-									ir(8) = '0' 	ELSE 	-- MOVI
+				MOVI 		WHEN		op_code = MOV 	AND
+										ir(8) = '0' 	ELSE 	-- MOVI
 				
-				MOVHI WHEN		op_code = MOV 	AND 
-									ir(8) = '1'; 			-- MOVHI
+				MOVHI 	WHEN		op_code = MOV 	AND 
+										ir(8) = '1'		ELSE		-- MOVHI
+				
+				op_code WHEN others; -- Then the operation group coincides with the op_code, for example, ADD instruction
+				
+	func	<= ADD_f WHEN	op_code = LD	OR 
+								op_code = ST	OR 
+								op_code = LDB	OR 
+								op_code = STB 	OR
+								op_code = ADDI ELSE
+								
+				f_code WHEN others;
 				
 	ldpc	<=	'0' 	WHEN op_code = HALT ELSE
 				'1';
