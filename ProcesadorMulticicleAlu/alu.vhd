@@ -57,6 +57,7 @@ BEGIN
 			x OR y WHEN op = ARITHLOG_op AND func = OR_f ELSE
 			x XOR y WHEN op = ARITHLOG_op AND func = XOR_f	ELSE
 			NOT x WHEN op = ARITHLOG_op AND func = NOT_f	ELSE
+			
 			STD_LOGIC_VECTOR(signed(x) - signed(y)) WHEN op = ARITHLOG_op AND func = SUB_f	ELSE
 			STD_LOGIC_VECTOR(shift_right(signed(x),   to_integer(signed(y))))		WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '1' ELSE
 			STD_LOGIC_VECTOR(shift_left (signed(x),	  to_integer(unsigned(y))))	WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '0' ELSE
