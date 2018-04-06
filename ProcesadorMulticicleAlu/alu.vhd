@@ -59,10 +59,10 @@ BEGIN
 			NOT x WHEN op = ARITHLOG_op AND func = NOT_f	ELSE
 			
 			STD_LOGIC_VECTOR(signed(x) - signed(y)) WHEN op = ARITHLOG_op AND func = SUB_f	ELSE
-			STD_LOGIC_VECTOR(shift_right(signed(x),   to_integer(signed(y))))		WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '1' ELSE
-			STD_LOGIC_VECTOR(shift_left (signed(x),	  to_integer(unsigned(y))))	WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '0' ELSE
-			STD_LOGIC_VECTOR(shift_right(unsigned(x), to_integer(signed(y))))		WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '1' ELSE
-			STD_LOGIC_VECTOR(shift_left (unsigned(x), to_integer(unsigned(y))))	WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '0' ELSE
+			STD_LOGIC_VECTOR(shift_right(signed(x),   abs(to_integer(signed(y)))))	WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '1' ELSE
+			STD_LOGIC_VECTOR(shift_left (signed(x),	abs(to_integer(signed(y)))))	WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '0' ELSE
+			STD_LOGIC_VECTOR(shift_right(unsigned(x), abs(to_integer(signed(y)))))	WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '1' ELSE
+			STD_LOGIC_VECTOR(shift_left (unsigned(x), abs(to_integer(signed(y)))))	WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '0' ELSE
 			--MOV
 			y WHEN op = MOV_op AND func = MOVI_f ELSE
 			y(7 DOWNTO 0) & x(7 DOWNTO 0) WHEN op = MOV_op AND func = MOVHI_f ELSE
@@ -88,16 +88,15 @@ BEGIN
 			(others => 'X');
 			
 			--MULT
-	mult_result <= 
-						STD_LOGIC_VECTOR(signed(x) * signed(y)) WHEN op = EXT_op AND func = MUL_f ELSE
-						STD_LOGIC_VECTOR(signed(x) * signed(y)) 	WHEN op = EXT_op AND func = MULH_f ELSE
-						STD_LOGIC_VECTOR(unsigned(x) * unsigned(y)) WHEN op = EXT_op AND func = MULHU_f ELSE
+	mult_result <= STD_LOGIC_VECTOR(signed(x) * signed(y)) 		WHEN op = EXT_op AND func = MUL_f 	ELSE
+						STD_LOGIC_VECTOR(signed(x) * signed(y)) 		WHEN op = EXT_op AND func = MULH_f 	ELSE
+						STD_LOGIC_VECTOR(unsigned(x) * unsigned(y)) 	WHEN op = EXT_op AND func = MULHU_f ELSE
 			(others => 'X');
 			
 
 	Z 	<= '1' WHEN w_dummy = X"0000" ELSE '0';
 
-	w 	<= mult_result(15 DOWNTO 0) WHEN op = EXT_op AND func = MUL_f                      ELSE
-	      mult_result(31 DOWNTO 16) WHEN op = EXT_op AND (func = MULH_f OR func = MULHU_f) ELSE
+	w 	<= mult_result(15 DOWNTO 0) 	WHEN op = EXT_op AND func = MUL_f                      ELSE
+	      mult_result(31 DOWNTO 16) 	WHEN op = EXT_op AND (func = MULH_f OR func = MULHU_f) ELSE
 	      w_dummy;
 END Structure;
