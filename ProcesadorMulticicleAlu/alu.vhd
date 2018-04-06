@@ -49,7 +49,8 @@ ARCHITECTURE Structure OF alu IS
 	CONSTANT DIV_f			: STD_LOGIC_VECTOR (2 DOWNTO 0):= "100";
 	CONSTANT DIVU_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "101";
 
-	SIGNAL w_dummy		: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL w_dummy			: STD_LOGIC_VECTOR(15 DOWNTO 0);
+	SIGNAL mult_result	: STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
 			--ARITHLOG
 	w_dummy 	<= 	STD_LOGIC_VECTOR(signed(x) + signed(y)) WHEN op = ARITHLOG_op AND func = ADD_f	ELSE
@@ -77,19 +78,25 @@ BEGIN
 			X"0001" WHEN op = CMP_op AND func = CMPLTU_f AND unsigned(x) < unsigned(y) ELSE
 			X"0000" WHEN op = CMP_op AND func = CMPLTU_f AND unsigned(x) >= unsigned(y) ELSE
 			
-			X"0000" WHEN op = CMP_op AND func = CMPLEU_f AND unsigned(x) <= unsigned(y) ELSE
-			X"0001" WHEN op = CMP_op AND func = CMPLEU_f AND unsigned(x) > unsigned(y) ELSE
-			--ARITHMEX
+			X"0001" WHEN op = CMP_op AND func = CMPLEU_f AND unsigned(x) <= unsigned(y) ELSE
+			X"0000" WHEN op = CMP_op AND func = CMPLEU_f AND unsigned(x) > unsigned(y) ELSE
+			
+			--DIV
 			STD_LOGIC_VECTOR(signed(x) / signed(y)) WHEN op=EXT_op AND func = DIV_f ELSE
 			STD_LOGIC_VECTOR(unsigned(x) / unsigned(y)) WHEN op=EXT_op AND func = DIVU_f ELSE
-			STD_LOGIC_VECTOR(signed(x) * signed(y))(15 DOWNTO 0) WHEN op = EXT_op AND func = MUL_f ELSE
-			STD_LOGIC_VECTOR(signed(x) * signed(y))(31 DOWNTO 16) WHEN op = EXT_op AND func = MULH_f ELSE
-			STD_LOGIC_VECTOR(unsigned(x) * unsigned(y))(31 DOWNTO 16) WHEN op = EXT_op AND func = MULH_f ELSE
-
-			--falta la multiplicacio saludos jeje
 			(others => 'X');
+			
+			--MULT
+	mult_result <= 
+						STD_LOGIC_VECTOR(signed(x) * signed(y)) WHEN op = EXT_op AND func = MUL_f ELSE
+						STD_LOGIC_VECTOR(signed(x) * signed(y)) 	WHEN op = EXT_op AND func = MULH_f ELSE
+						STD_LOGIC_VECTOR(unsigned(x) * unsigned(y)) WHEN op = EXT_op AND func = MULHU_f ELSE
+			(others => 'X');
+			
 
 	Z 	<= '1' WHEN w_dummy = X"0000" ELSE '0';
 
-	w 	<= w_dummy;
+	w 	<= mult_result(15 DOWNTO 0) WHEN op = EXT_op AND func = MUL_f                      ELSE
+	      mult_result(31 DOWNTO 16) WHEN op = EXT_op AND (func = MULH_f OR func = MULHU_f) ELSE
+	      w_dummy;
 END Structure;
