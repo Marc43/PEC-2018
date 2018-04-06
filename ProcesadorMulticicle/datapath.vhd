@@ -5,13 +5,13 @@ USE ieee.numeric_std.all;
 ENTITY datapath IS
     PORT (clk      : IN  STD_LOGIC;
           op       : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-			 func     : IN	 STD_LOGIC_VECTOR(2 DOWNTO 0);
+		  func 	   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd      : IN  STD_LOGIC;
           addr_a   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 immed_reg: IN	 STD_LOGIC;
+		  immed_reg: IN	 STD_LOGIC;
           immed_x2 : IN  STD_LOGIC;
           datard_m : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad  : IN  STD_LOGIC;
@@ -24,11 +24,19 @@ END datapath;
 ARCHITECTURE Structure OF datapath IS
 
 	COMPONENT alu IS
+<<<<<<< HEAD
     PORT (x  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           y  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           op 	: IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			 func	: IN	STD_LOGIC_VECTOR (2 DOWNTO 0);
           w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+=======
+    PORT (x  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+          y  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+          op : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 f	 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+          w  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+>>>>>>> alu_aleix
 	END COMPONENT;
 	
 	COMPONENT regfile IS
@@ -54,11 +62,19 @@ BEGIN
 
 	alu0 : alu
 	PORT MAP (
+<<<<<<< HEAD
 		x 		=> reg_a,
 		y 		=> mux_immed_reg,
 		op		=> op,
 		func 	=> func,
 		w		=> alu_out
+=======
+		x 	=> reg_a,
+		y 	=> mux_immed,
+		op	=> op,
+		f 	=> func,
+		w	=> alu_out
+>>>>>>> alu_aleix
 	);
 	
 	regfile0 : regfile
