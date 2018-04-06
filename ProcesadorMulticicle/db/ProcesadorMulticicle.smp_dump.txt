@@ -1,6 +1,0 @@
-
-State Machine - |proc|unidad_control:unidad_control0|multi:multi0|state
-Name state.DEMW state.FETCH state.IDLE 
-state.IDLE 0 0 0 
-state.FETCH 0 1 1 
-state.DEMW 1 0 1 
