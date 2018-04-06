@@ -5,7 +5,6 @@ ENTITY proc IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 HEX		  : IN  STD_LOGIC_VECTOR( 3 DOWNTO 0);
           addr_m    : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           wr_m      : OUT STD_LOGIC;
@@ -29,6 +28,7 @@ COMPONENT unidad_control IS
           ins_dad   : OUT STD_LOGIC;
           in_d      : OUT STD_LOGIC;
           immed_x2  : OUT STD_LOGIC;
+			 immed_reg : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC);
 END COMPONENT;
@@ -42,6 +42,7 @@ COMPONENT datapath IS
           addr_b   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 immed_reg : IN STD_LOGIC;
           immed_x2 : IN  STD_LOGIC;
           datard_m : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad  : IN  STD_LOGIC;
@@ -72,6 +73,7 @@ SIGNAL bus_word_byte		: STD_LOGIC;
 SIGNAL bus_addr_m			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_data_wr		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_func			: STD_LOGIC_VECTOR (2 DOWNTO 0);
+SIGNAL bus_immed_reg		: STD_LOGIC;
 
 BEGIN
 
@@ -88,6 +90,7 @@ BEGIN
 		addr_b	=> bus_addr_b,
 		addr_d	=> bus_addr_d,
 		immed		=> bus_immed,
+		immed_reg => bus_immed_reg,
 		pc			=> bus_pc,
 		ins_dad	=> bus_ins_dad,
 		immed_x2	=> bus_immed_x2,
@@ -107,6 +110,7 @@ BEGIN
 		addr_d	=> bus_addr_d,
 		immed		=> bus_immed,
 		immed_x2	=>	bus_immed_x2,
+		immed_reg => bus_immed_reg,
 		datard_m	=> datard_m,
 		ins_dad	=> bus_ins_dad,
 		pc			=> bus_pc,

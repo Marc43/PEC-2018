@@ -100,7 +100,7 @@ begin
 		botones(9) <= reset_proc;
 		
    -- Descripcio del comportament
-	bypass_sw <= "1" after 75 ns, "0" after 85 ns;
+	bypass_sw <= "1" after 150 ns, "0" after 200 ns;
 	clk <= not clk after 10 ns;
 	reset_ram <= '1' after 15 ns, '0' after 50 ns;    -- reseteamos la RAm en el primer ciclo
 	reset_proc <= '1' after 25 ns, '0' after 320 ns;  -- reseteamos el procesador en el segundo ciclo

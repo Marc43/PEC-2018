@@ -11,7 +11,7 @@ ENTITY datapath IS
           addr_b   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed    : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-		  immed_reg: IN	 STD_LOGIC;
+			 immed_reg: IN	 STD_LOGIC;
           immed_x2 : IN  STD_LOGIC;
           datard_m : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad  : IN  STD_LOGIC;

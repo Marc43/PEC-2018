@@ -92,7 +92,10 @@ BEGIN
 	addr_a 	<= 	reg_d WHEN op_code = MOV ELSE
 				reg_src1;
 	
-	addr_b 	<= reg_src2;
+	addr_b 	<= reg_src2 WHEN 	op_code = ARITHLOG OR
+										op_code = CMP OR
+										op_code = ARITHEXT ELSE
+					reg_d;
 	addr_d 	<= reg_d;
 	
 	immed_ma 	<= ir(5 DOWNTO 0);
