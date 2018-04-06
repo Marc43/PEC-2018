@@ -7,7 +7,8 @@ ENTITY alu IS
           y  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           op 	: IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
 		  func 	: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
-          w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+		  w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+		  z		: OUT STD_LOGIC);
 END alu;
 
 ARCHITECTURE Structure OF alu IS
@@ -48,35 +49,47 @@ ARCHITECTURE Structure OF alu IS
 	CONSTANT DIV_f			: STD_LOGIC_VECTOR (2 DOWNTO 0):= "100";
 	CONSTANT DIVU_f		: STD_LOGIC_VECTOR (2 DOWNTO 0):= "101";
 
+	SIGNAL w_dummy		: STD_LOGIC_VECTOR(15 DOWNTO 0);
 BEGIN
-					--ARITHLOG
-			w 	<= 	STD_LOGIC_VECTOR(signed(x) + signed(y)) WHEN op = ARITHLOG_op AND func = ADD_f	ELSE
-					x OR y WHEN op = ARITHLOG_op AND func = OR_f ELSE
-					x XOR y WHEN op = ARITHLOG_op AND func = XOR_f	ELSE
-					NOT x WHEN op = ARITHLOG_op AND func = NOT_f	ELSE
-					STD_LOGIC_VECTOR(signed(x) - signed(y)) WHEN op = ARITHLOG_op AND func = SUB_f	ELSE
-					STD_LOGIC_VECTOR(shift_right(signed(x),   to_integer(signed(y))))		WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '1' ELSE
-					STD_LOGIC_VECTOR(shift_left (signed(x),	  to_integer(unsigned(y))))	WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '0' ELSE
-					STD_LOGIC_VECTOR(shift_right(unsigned(x), to_integer(signed(y))))		WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '1' ELSE
-					STD_LOGIC_VECTOR(shift_left (unsigned(x), to_integer(unsigned(y))))	WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '0' ELSE
-					--MOV
-					y WHEN op = MOV_op AND f = MOVI_f ELSE
-					y(7 DOWNTO 0) & x(7 DOWNTO 0) WHEN op = MOV_op AND f = MOVHI_f ELSE
-					--COMP
-					X"0001" WHEN op = CMP_op AND f = CMPLT_f AND signed(x) < signed(y) ELSE
-					X"0000" WHEN op = CMP_op AND f = CMPLT_f AND signed(x) >= signed(y) ELSE
-					
-					X"0001" WHEN op = CMP_op AND f = CMPLE_f AND signed(x) <= signed(y) ELSE
-					X"0000" WHEN op = CMP_op AND f = CMPLE_f AND signed(x) > signed(y) ELSE
-					
-					X"0001" WHEN op = CMP_op AND f = CMPEQ_f AND x = y ELSE
-					X"0000" WHEN op = CMP_op AND f = CMPEQ_f AND x /= y ELSE
-					
-					X"0001" WHEN op = CMP_op AND f = CMPLTU_f AND unsigned(x) < 	unsigned(y) ELSE
-					X"0000" WHEN op = CMP_op AND f = CMPLTU_f AND unsigned(x) >= unsigned(y) ELSE
-					
-					X"0000" WHEN op = CMP_op AND f = CMPLEU_f AND unsigned(x) <= unsigned(y) ELSE
-					X"0001" WHEN op = CMP_op AND f = CMPLEU_f AND unsigned(x) > 	unsigned(y) ELSE
-					
-					(others => 'X');
+			--ARITHLOG
+	w_dummy 	<= 	STD_LOGIC_VECTOR(signed(x) + signed(y)) WHEN op = ARITHLOG_op AND func = ADD_f	ELSE
+			x OR y WHEN op = ARITHLOG_op AND func = OR_f ELSE
+			x XOR y WHEN op = ARITHLOG_op AND func = XOR_f	ELSE
+			NOT x WHEN op = ARITHLOG_op AND func = NOT_f	ELSE
+			STD_LOGIC_VECTOR(signed(x) - signed(y)) WHEN op = ARITHLOG_op AND func = SUB_f	ELSE
+			STD_LOGIC_VECTOR(shift_right(signed(x),   to_integer(signed(y))))		WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '1' ELSE
+			STD_LOGIC_VECTOR(shift_left (signed(x),	  to_integer(unsigned(y))))	WHEN op = ARITHLOG_op AND func = SHA_f AND y(15) = '0' ELSE
+			STD_LOGIC_VECTOR(shift_right(unsigned(x), to_integer(signed(y))))		WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '1' ELSE
+			STD_LOGIC_VECTOR(shift_left (unsigned(x), to_integer(unsigned(y))))	WHEN op = ARITHLOG_op AND func = SHL_f AND y(15) = '0' ELSE
+			--MOV
+			y WHEN op = MOV_op AND func = MOVI_f ELSE
+			y(7 DOWNTO 0) & x(7 DOWNTO 0) WHEN op = MOV_op AND func = MOVHI_f ELSE
+			--COMP
+			X"0001" WHEN op = CMP_op AND func = CMPLT_f AND signed(x) < signed(y) ELSE
+			X"0000" WHEN op = CMP_op AND func = CMPLT_f AND signed(x) >= signed(y) ELSE
+			
+			X"0001" WHEN op = CMP_op AND func = CMPLE_f AND signed(x) <= signed(y) ELSE
+			X"0000" WHEN op = CMP_op AND func = CMPLE_f AND signed(x) > signed(y) ELSE
+			
+			X"0001" WHEN op = CMP_op AND func = CMPEQ_f AND x = y ELSE
+			X"0000" WHEN op = CMP_op AND func = CMPEQ_f AND x /= y ELSE
+			
+			X"0001" WHEN op = CMP_op AND func = CMPLTU_f AND unsigned(x) < unsigned(y) ELSE
+			X"0000" WHEN op = CMP_op AND func = CMPLTU_f AND unsigned(x) >= unsigned(y) ELSE
+			
+			X"0000" WHEN op = CMP_op AND func = CMPLEU_f AND unsigned(x) <= unsigned(y) ELSE
+			X"0001" WHEN op = CMP_op AND func = CMPLEU_f AND unsigned(x) > unsigned(y) ELSE
+			--ARITHMEX
+			STD_LOGIC_VECTOR(signed(x) / signed(y)) WHEN op=EXT_op AND func = DIV_f ELSE
+			STD_LOGIC_VECTOR(unsigned(x) / unsigned(y)) WHEN op=EXT_op AND func = DIVU_f ELSE
+			STD_LOGIC_VECTOR(signed(x) * signed(y))(15 DOWNTO 0) WHEN op = EXT_op AND func = MUL_f ELSE
+			STD_LOGIC_VECTOR(signed(x) * signed(y))(31 DOWNTO 16) WHEN op = EXT_op AND func = MULH_f ELSE
+			STD_LOGIC_VECTOR(unsigned(x) * unsigned(y))(31 DOWNTO 16) WHEN op = EXT_op AND func = MULH_f ELSE
+
+			--falta la multiplicacio saludos jeje
+			(others => 'X');
+
+	Z 	<= '1' WHEN w_dummy = X"0000" ELSE '0';
+
+	w 	<= w_dummy;
 END Structure;

@@ -118,7 +118,7 @@ BEGIN
 				CMP_op		WHEN		op_code = CMP 	ELSE
 				
 				EXT_op		WHEN		op_code = ARITHEXT ELSE
-				(others=>"XXXX");
+				"00";
 
 	func	<= ADD_f 	WHEN	op_code = LD	OR 
 									op_code = ST	OR 

@@ -24,19 +24,11 @@ END datapath;
 ARCHITECTURE Structure OF datapath IS
 
 	COMPONENT alu IS
-<<<<<<< HEAD
     PORT (x  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           y  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           op 	: IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			 func	: IN	STD_LOGIC_VECTOR (2 DOWNTO 0);
           w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
-=======
-    PORT (x  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          y  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          op : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-			 f	 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-          w  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
->>>>>>> alu_aleix
 	END COMPONENT;
 	
 	COMPONENT regfile IS
@@ -62,19 +54,11 @@ BEGIN
 
 	alu0 : alu
 	PORT MAP (
-<<<<<<< HEAD
 		x 		=> reg_a,
 		y 		=> mux_immed_reg,
 		op		=> op,
 		func 	=> func,
 		w		=> alu_out
-=======
-		x 	=> reg_a,
-		y 	=> mux_immed,
-		op	=> op,
-		f 	=> func,
-		w	=> alu_out
->>>>>>> alu_aleix
 	);
 	
 	regfile0 : regfile
