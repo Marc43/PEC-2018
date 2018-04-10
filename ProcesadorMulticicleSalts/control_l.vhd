@@ -123,7 +123,7 @@ BEGIN
 																						op_code = ST 	OR
 																						op_code = STB	ELSE
 					
-						std_logic_vector(resize(signed(immed_alu), immed'length))	WHEN op_code = MOV;
+							std_logic_vector(resize(signed(immed_alu), immed'length))	WHEN op_code = MOV;
 
 	op		<= ARITHLOG_op	WHEN 	   op_code = LD			OR 
 											op_code = ST			OR 
@@ -160,17 +160,19 @@ BEGIN
 				'0'; 
 			
 	-- Add JAL		
-	in_d	<= "01" 	WHEN op_code = LD 	OR
+	in_d	<= "10"  WHEN op_code = JUMP AND jmp_f = JAL ELSE
+				
+				"01" 	WHEN op_code = LD 	OR
 							  op_code = LDB 	ELSE
 				"00";
 				
-	tknbr <= "10" WHEN op_code = JUMP AND jmp_f = JZ  AND eval = '1' OR
-							 op_code = JUMP AND jmp_f = JNZ AND eval = '0' OR
-							 op_code = JUMP AND jmp_f = JMP 					  OR 
-							 op_code = JUMP AND jmp_f = JAL 					  ELSE
+	tknbr <= "10" WHEN (op_code = JUMP AND jmp_f = JZ  AND eval = '1') OR
+							 (op_code = JUMP AND jmp_f = JNZ AND eval = '0') OR
+							 (op_code = JUMP AND jmp_f = JMP) 					 OR 
+							 (op_code = JUMP AND jmp_f = JAL) 					 ELSE
 							 
-				"01" WHEN op_code = BRANCH AND branch_f = BZ  AND eval = '1' OR
-							 op_code = BRANCH AND branch_f = BNZ AND eval = '0' ELSE
+				"01" WHEN (op_code = BRANCH AND branch_f = BZ  AND eval = '1') OR
+							 (op_code = BRANCH AND branch_f = BNZ AND eval = '0') ELSE
 							 
 				"00";
 								
@@ -189,7 +191,7 @@ BEGIN
 	immed_x2 	<= 	'1' WHEN op_code = LD OR
 										op_code = ST OR
 										op_code = BRANCH ELSE		
-					'0';
+							'0';
 					
 	word_byte 	<= '1' WHEN op_code = LDB OR
 									op_code = STB ELSE		
@@ -198,7 +200,8 @@ BEGIN
 	wrd			<= '0' WHEN op_code = HALT 	OR
 									op_code = STB 		OR
 									op_code = ST		OR
-									op_code = BRANCH 	ELSE
+									op_code = BRANCH  OR	
+								  (op_code = JUMP AND (jmp_f = JZ OR jmp_f = JNZ OR jmp_f = JMP)) ELSE
 						'1';
 	
 END Structure;

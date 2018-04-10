@@ -16,9 +16,11 @@ ENTITY datapath IS
           datard_m : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad  : IN  STD_LOGIC;
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 pcup		 : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           in_d     : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 aluout	 : OUT  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		 : OUT STD_LOGIC);
 END datapath;
 
@@ -80,6 +82,7 @@ BEGIN
 	WITH in_d SELECT		-- Data output or data from memory (loads)
 		mux_dreg <= alu_out 	WHEN "00",
 						datard_m	WHEN "01",
+						pcup		WHEN "10", -- JAL
 						alu_out	WHEN others;
 	
 	WITH immed_x2 SELECT -- Normal operations or memory access (aligment) 
@@ -98,6 +101,7 @@ BEGIN
 						pc			WHEN others;
 						
 	data_wr	<= reg_b;
+	aluout	<= alu_out;
 	addr_m	<= mux_addr;
 						 	 
 END Structure;
