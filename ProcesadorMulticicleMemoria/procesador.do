@@ -113,3 +113,5 @@ configure wave -timeline 0
 configure wave -timelineunits ps
 update
 WaveRestoreZoom {110107 ps} {569539 ps}
+add wave sim:/test_sisa/SoC/proc0/datapath0/regfile0/*
+add wave sim:/test_sisa/SoC/proc0/datapath0/alu0/*

@@ -4,8 +4,8 @@ USE ieee.numeric_std.all;
 
 ENTITY datapath IS
     PORT (clk      : IN  STD_LOGIC;
-          op       : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-		  func 	   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
+          op       : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
+			 func 	 : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd      : IN  STD_LOGIC;
           addr_a   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -16,9 +16,12 @@ ENTITY datapath IS
           datard_m : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad  : IN  STD_LOGIC;
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          in_d     : IN  STD_LOGIC;
+			 pcup		 : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+          in_d     : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-          data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+          data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 aluout	 : OUT  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 eval		 : OUT STD_LOGIC);
 END datapath;
 
 ARCHITECTURE Structure OF datapath IS
@@ -26,9 +29,10 @@ ARCHITECTURE Structure OF datapath IS
 	COMPONENT alu IS
     PORT (x  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           y  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          op 	: IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+          op 	: IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			 func	: IN	STD_LOGIC_VECTOR (2 DOWNTO 0);
-          w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+          w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 z		: OUT STD_LOGIC);
 	END COMPONENT;
 	
 	COMPONENT regfile IS
@@ -49,6 +53,7 @@ ARCHITECTURE Structure OF datapath IS
 	SIGNAL mux_dreg		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	SIGNAL mux_addr		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	SIGNAL alu_out			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	--SIGNAL alu_zero		: STD_LOGIC;
 	
 BEGIN
 
@@ -58,7 +63,8 @@ BEGIN
 		y 		=> mux_immed_reg,
 		op		=> op,
 		func 	=> func,
-		w		=> alu_out
+		w		=> alu_out,
+		z		=> eval
 	);
 	
 	regfile0 : regfile
@@ -74,8 +80,9 @@ BEGIN
 	);
 	
 	WITH in_d SELECT		-- Data output or data from memory (loads)
-		mux_dreg <= alu_out 	WHEN '0',
-						datard_m	WHEN '1',
+		mux_dreg <= alu_out 	WHEN "00",
+						datard_m	WHEN "01",
+						pcup		WHEN "10", -- JAL
 						alu_out	WHEN others;
 	
 	WITH immed_x2 SELECT -- Normal operations or memory access (aligment) 
@@ -94,6 +101,7 @@ BEGIN
 						pc			WHEN others;
 						
 	data_wr	<= reg_b;
+	aluout	<= alu_out;
 	addr_m	<= mux_addr;
 						 	 
 END Structure;

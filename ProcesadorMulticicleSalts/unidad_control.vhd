@@ -7,7 +7,9 @@ ENTITY unidad_control IS
     PORT (boot      : IN  STD_LOGIC;
           clk       : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 eval		  : IN  STD_LOGIC;
+          op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd       : OUT STD_LOGIC;
           addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -16,19 +18,20 @@ ENTITY unidad_control IS
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 immed_reg : OUT STD_LOGIC;
           pc        : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 pcup		  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad   : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC;
+          in_d      : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC);
 END unidad_control;
 
-
 ARCHITECTURE Structure OF unidad_control IS
 
 	COMPONENT control_l IS
     PORT (ir        : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 eval		  : IN  STD_LOGIC;
+          op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           ldpc      : OUT STD_LOGIC;
           wrd       : OUT STD_LOGIC;
@@ -38,7 +41,8 @@ ARCHITECTURE Structure OF unidad_control IS
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 immed_reg : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC;
+          in_d      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			 tknbr	  : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC);
 	END COMPONENT;
@@ -59,6 +63,8 @@ ARCHITECTURE Structure OF unidad_control IS
 	END COMPONENT;
 	
 	SIGNAL bus_ir			: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL bus_immed		: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL bus_immed_des	: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	SIGNAL bus_word_byte	: STD_LOGIC;
 	SIGNAL bus_ldpc		: STD_LOGIC;
 	SIGNAL bus_wr_m		: STD_LOGIC;
@@ -74,11 +80,15 @@ ARCHITECTURE Structure OF unidad_control IS
 	
 	SIGNAL new_pc					: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
+	SIGNAL tknbr_pc				: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL bus_tknbr				: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	
 BEGIN
 
 	control_l0 : control_l
 	PORT MAP (
 		ir 			=>	bus_ir,
+		eval			=> eval,
 		op				=>	op,
 		func			=> func,
 		ldpc			=> bus_ldpc,
@@ -86,10 +96,11 @@ BEGIN
 		addr_a		=> addr_a,
 		addr_b		=> addr_b,
 		addr_d		=> addr_d,
-		immed			=> immed,
+		immed			=> bus_immed,
 		immed_reg   => immed_reg,
 		wr_m			=>	bus_wr_m,
 		in_d			=> in_d,
+		tknbr			=> bus_tknbr,
 		immed_x2		=> immed_x2,
 		word_byte 	=> bus_word_byte
 	);
@@ -117,16 +128,23 @@ BEGIN
 	WITH boot SELECT
 		instr_mux_and	<= instrPC_mux_instrIR WHEN '0',
 								X"0000"				  WHEN others;
-								
+	
+	
+	tknbr_pc	<= 		  new_pc + 2 						WHEN bus_tknbr = "00" ELSE
+							  new_pc + 2 + bus_immed_des 	WHEN bus_tknbr = "01" ELSE -- Este immed deberia cogerse del datapath?
+							  aluout		 						WHEN bus_tknbr = "10" ELSE
+							  new_pc + 2; -- To change when CALLS is implemented
+							  
 	WITH multi_ldpc SELECT
 		pcmas2_mux_oldpc	<= new_pc		WHEN '0',
-									new_pc + 2 	WHEN others;
+									tknbr_pc		WHEN others;
 								
 	WITH boot SELECT
 		pc_mux_startaddr	<= pcmas2_mux_oldpc 	WHEN '0',
 									X"C000"				WHEN others;
-	
-	pc <= new_pc;
+
+	pc 	<= new_pc;
+	pcup 	<= new_pc + 2; -- pc updated?
 	PROCESS (clk, boot) 
 	BEGIN
 	
@@ -139,5 +157,8 @@ BEGIN
 	
 	END PROCESS;
 	
-
+	
+	immed 			<= bus_immed;
+	bus_immed_des	<= STD_LOGIC_VECTOR(shift_left(unsigned(bus_immed), 1));
+	
 END Structure;
