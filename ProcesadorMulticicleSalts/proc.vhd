@@ -19,7 +19,7 @@ COMPONENT unidad_control IS
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
-          op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+          op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd       : OUT STD_LOGIC;
           addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -38,7 +38,7 @@ END COMPONENT;
 
 COMPONENT datapath IS
     PORT (clk      : IN  STD_LOGIC;
-          op       : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+          op       : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd      : IN  STD_LOGIC;
           addr_a   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -63,7 +63,7 @@ COMPONENT Display7 IS
  bitsCaracter : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
 END COMPONENT;
 
-SIGNAL bus_op 				: STD_LOGIC_VECTOR (1 DOWNTO 0);
+SIGNAL bus_op 				: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL bus_wrd				: STD_LOGIC;
 SIGNAL bus_addr_a 		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL bus_addr_b			: STD_LOGIC_VECTOR (2 DOWNTO 0);

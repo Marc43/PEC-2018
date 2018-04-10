@@ -9,7 +9,7 @@ ENTITY unidad_control IS
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
-          op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+          op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd       : OUT STD_LOGIC;
           addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -31,7 +31,7 @@ ARCHITECTURE Structure OF unidad_control IS
 	COMPONENT control_l IS
     PORT (ir        : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
-          op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+          op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           ldpc      : OUT STD_LOGIC;
           wrd       : OUT STD_LOGIC;
@@ -144,7 +144,7 @@ BEGIN
 									X"C000"				WHEN others;
 
 	pc 	<= new_pc;
-	pcup 	<= pcmas2_mux_oldpc; -- pc updated?
+	pcup 	<= new_pc + 2; -- pc updated?
 	PROCESS (clk, boot) 
 	BEGIN
 	

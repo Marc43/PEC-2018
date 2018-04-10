@@ -5,7 +5,7 @@ USE ieee.numeric_std.all;
 ENTITY alu IS
     PORT (x  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           y  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 op 	: IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 op 	: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 z		: OUT STD_LOGIC);
@@ -15,10 +15,11 @@ ARCHITECTURE Structure OF alu IS
 	
 	-- Alu operation codes
 	
-	CONSTANT ARITHLOG_op	: STD_LOGIC_VECTOR (1 DOWNTO 0) := "00";
-	CONSTANT MOV_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "01";
-	CONSTANT CMP_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "10";
-	CONSTANT EXT_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "11";
+	CONSTANT ARITHLOG_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "000";
+	CONSTANT MOV_op			: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
+	CONSTANT CMP_op			: STD_LOGIC_VECTOR (2 DOWNTO 0) := "010";
+	CONSTANT EXT_op			: STD_LOGIC_VECTOR (2 DOWNTO 0) := "011";
+	CONSTANT BYPASSX_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "100";
 	
 	-- Alu function codes
 	
@@ -67,7 +68,7 @@ BEGIN
 			y WHEN op = MOV_op AND func = MOVI_f ELSE
 			y(7 DOWNTO 0) & x(7 DOWNTO 0) WHEN op = MOV_op AND func = MOVHI_f ELSE
 			--COMP
-			X"0001" WHEN op = CMP_op AND func = CMPLT_f AND signed(x) < signed(y) ELSE
+			X"0001" WHEN op = CMP_op AND func = CMPLT_f AND signed(x) < signed(y)	 ELSE
 			X"0000" WHEN op = CMP_op AND func = CMPLT_f AND signed(x) >= signed(y) ELSE
 			
 			X"0001" WHEN op = CMP_op AND func = CMPLE_f AND signed(x) <= signed(y) ELSE
@@ -85,6 +86,9 @@ BEGIN
 			--DIV
 			STD_LOGIC_VECTOR(signed(x) / signed(y)) WHEN op=EXT_op AND func = DIV_f ELSE
 			STD_LOGIC_VECTOR(unsigned(x) / unsigned(y)) WHEN op=EXT_op AND func = DIVU_f ELSE
+			
+			x WHEN op = BYPASSX_op ELSE
+			
 			(others => 'X');
 			
 			--MULT
@@ -93,7 +97,9 @@ BEGIN
 						STD_LOGIC_VECTOR(unsigned(x) * unsigned(y)) 	WHEN op = EXT_op AND func = MULHU_f ELSE
 			(others => 'X');
 			
-
+	
+			
+			
 	z 	<= '1' WHEN y = X"0000" ELSE '0'; -- To evaluate branch conditions
 
 	w 	<= mult_result(15 DOWNTO 0) 	WHEN op = EXT_op AND func = MUL_f                      ELSE

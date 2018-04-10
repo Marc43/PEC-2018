@@ -5,7 +5,7 @@ USE ieee.numeric_std.all;
 ENTITY control_l IS
     PORT (ir        : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
-          op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+          op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           ldpc      : OUT STD_LOGIC;
           wrd       : OUT STD_LOGIC;
@@ -38,10 +38,12 @@ ARCHITECTURE Structure OF control_l IS
 	
 	-- Alu operation codes
 	
-	CONSTANT ARITHLOG_op	: STD_LOGIC_VECTOR (1 DOWNTO 0) := "00";
-	CONSTANT MOV_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "01";
-	CONSTANT CMP_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "10";
-	CONSTANT EXT_op		: STD_LOGIC_VECTOR (1 DOWNTO 0) := "11";
+	CONSTANT ARITHLOG_op	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "000";
+	CONSTANT MOV_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
+	CONSTANT CMP_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "010";
+	CONSTANT EXT_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "011";
+	CONSTANT BYPASSX_op	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "100";
+
 	
 	-- Alu function codes
 	-- ARITHLOG
@@ -132,12 +134,15 @@ BEGIN
 											op_code = ADDI 		OR
 											op_code = ARITHLOG 	ELSE
 				
-				MOV_op 		WHEN		op_code = MOV 	ELSE
+				MOV_op 		WHEN		op_code = MOV 			ELSE
 			
-				CMP_op		WHEN		op_code = CMP 	ELSE
+				CMP_op		WHEN		op_code = CMP 			ELSE
 				
-				EXT_op		WHEN		op_code = ARITHEXT ELSE
-				"00";
+				EXT_op		WHEN		op_code = ARITHEXT 	ELSE
+				
+				BYPASSX_op  WHEN		op_code = JUMP 		ELSE
+				
+				"000";
 
 	func	<= ADD_f 	WHEN	op_code = LD	OR 
 									op_code = ST	OR 
@@ -146,13 +151,13 @@ BEGIN
 									op_code = ADDI ELSE
 				
 				MOVI_f 	WHEN	op_code = MOV 	AND
-									ir(8) = '0'	ELSE
+									ir(8) = '0'		ELSE
 
 				MOVHI_f 	WHEN 	op_code = MOV 	AND
 									ir(8) = '1'		ELSE
 				f_code;
 				
-	ldpc	<=	'0' 	WHEN op_code = HALT ELSE
+	ldpc	<=	'0' 	WHEN op_code = HALT 	ELSE
 				'1';
 	
 	wr_m	<= '1' 	WHEN op_code = ST 	OR 
@@ -183,10 +188,7 @@ BEGIN
 									op_code = LDB	OR
 									op_code = MOV	ELSE
 						
-						'0' WHEN op_code = ARITHLOG 	OR --Aqui se podria poner ELSE '0' y a correr no? afaktivament amic
-									op_code = ARITHEXT 	OR
-									op_code = BRANCH		OR
-									op_code = CMP;					
+						'0';					
 				
 	immed_x2 	<= 	'1' WHEN op_code = LD OR
 										op_code = ST OR
