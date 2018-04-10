@@ -5,10 +5,10 @@ USE ieee.numeric_std.all;
 ENTITY alu IS
     PORT (x  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           y  	: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          op 	: IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-		  func 	: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
-		  w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-		  z		: OUT STD_LOGIC);
+			 op 	: IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 func : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
+			 w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 z		: OUT STD_LOGIC);
 END alu;
 
 ARCHITECTURE Structure OF alu IS
@@ -94,9 +94,10 @@ BEGIN
 			(others => 'X');
 			
 
-	Z 	<= '1' WHEN w_dummy = X"0000" ELSE '0';
+	z 	<= '1' WHEN y = X"0000" ELSE '0'; -- To evaluate branch conditions
 
 	w 	<= mult_result(15 DOWNTO 0) 	WHEN op = EXT_op AND func = MUL_f                      ELSE
 	      mult_result(31 DOWNTO 16) 	WHEN op = EXT_op AND (func = MULH_f OR func = MULHU_f) ELSE
 	      w_dummy;
+			
 END Structure;

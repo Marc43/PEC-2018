@@ -7,6 +7,7 @@ ENTITY unidad_control IS
     PORT (boot      : IN  STD_LOGIC;
           clk       : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 eval		  : IN  STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd       : OUT STD_LOGIC;
@@ -17,17 +18,17 @@ ENTITY unidad_control IS
 			 immed_reg : OUT STD_LOGIC;
           pc        : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad   : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC;
+          in_d      : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC);
 END unidad_control;
 
-
 ARCHITECTURE Structure OF unidad_control IS
 
 	COMPONENT control_l IS
     PORT (ir        : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 eval		  : IN  STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           ldpc      : OUT STD_LOGIC;
@@ -38,7 +39,8 @@ ARCHITECTURE Structure OF unidad_control IS
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 immed_reg : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC;
+          in_d      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+			 tknbr	  : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC);
 	END COMPONENT;
@@ -74,11 +76,14 @@ ARCHITECTURE Structure OF unidad_control IS
 	
 	SIGNAL new_pc					: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
+	SIGNAL bus_tknbr				: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	
 BEGIN
 
 	control_l0 : control_l
 	PORT MAP (
 		ir 			=>	bus_ir,
+		eval			=> eval,
 		op				=>	op,
 		func			=> func,
 		ldpc			=> bus_ldpc,
@@ -90,6 +95,7 @@ BEGIN
 		immed_reg   => immed_reg,
 		wr_m			=>	bus_wr_m,
 		in_d			=> in_d,
+		tknbr			=> bus_tknbr,
 		immed_x2		=> immed_x2,
 		word_byte 	=> bus_word_byte
 	);
@@ -117,15 +123,16 @@ BEGIN
 	WITH boot SELECT
 		instr_mux_and	<= instrPC_mux_instrIR WHEN '0',
 								X"0000"				  WHEN others;
-								
-	WITH multi_ldpc SELECT
-		pcmas2_mux_oldpc	<= new_pc		WHEN '0',
-									new_pc + 2 	WHEN others;
+
+-- Use tknbr								
+--	WITH multi_ldpc SELECT
+--		pcmas2_mux_oldpc	<= new_pc		WHEN '0',
+--									new_pc + 2 	WHEN others;
 								
 	WITH boot SELECT
 		pc_mux_startaddr	<= pcmas2_mux_oldpc 	WHEN '0',
 									X"C000"				WHEN others;
-	
+
 	pc <= new_pc;
 	PROCESS (clk, boot) 
 	BEGIN
