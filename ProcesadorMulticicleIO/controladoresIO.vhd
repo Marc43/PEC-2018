@@ -1,5 +1,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all; --Esta libreria sera necesaria si usais conversiones CONV_INTEGER
 USE ieee.numeric_std.all;
 
 ENTITY controladores_IO IS  
@@ -20,9 +21,16 @@ ARCHITECTURE Structure OF controladores_IO IS
 	
 	SIGNAL ports : IO_address_space;
 
+	CONSTANT LED_V : STD_LOGIC_VECTOR (7 DOWNTO 0) := X"05"; --5
+	CONSTANT LED_R : STD_LOGIC_VECTOR (7 DOWNTO 0) := X"06"; --6
+
 BEGIN
-		led_verdes <= X"00";
-		led_rojos  <= X"00";
-		rd_io		  <= X"0000";
+
+		led_verdes <= ports(conv_integer(LED_V))(7 DOWNTO 0);  -- port 5
+		led_rojos  <= ports(conv_integer(LED_R))(7 DOWNTO 0);  -- port 6
+		
+		rd_io	<= ports(conv_integer(addr_io)) WHEN rd_in 	= '1'; -- Reads
+		
+		ports(conv_integer(addr_io)) <= wr_io WHEN wr_out 	= '1'; -- Writes
 		
 END Structure;

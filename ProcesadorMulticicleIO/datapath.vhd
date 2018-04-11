@@ -23,7 +23,8 @@ ENTITY datapath IS
 			 aluout	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		 : OUT STD_LOGIC;
 			 rd_io	 : IN	 STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 addr_port : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
 END datapath;
 
 ARCHITECTURE Structure OF datapath IS
@@ -101,10 +102,11 @@ BEGIN
 						alu_out	WHEN '1',
 						pc			WHEN others;
 						
-	data_wr	<= reg_b;
-	aluout	<= alu_out;
-	addr_m	<= mux_addr;
-	wr_io		<= alu_out; -- para el OUT, aunque tambien se podria coger directamente el registro B...
+	data_wr	 <= reg_b;
+	aluout	 <= alu_out;
+	addr_m	 <= mux_addr;
+	wr_io		 <= alu_out; -- para el OUT, aunque tambien se podria coger directamente el registro B...
+	addr_port <= immed(7 DOWNTO 0);	 -- Tanto para OUT como para IN, en caso que sea otra llamada wr_out = '0' && rd_in = '0'
 	-- Just connect the wires, the control will allow the write if necessary
 				
 END Structure;

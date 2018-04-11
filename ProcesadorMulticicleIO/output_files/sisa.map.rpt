@@ -1,5 +1,5 @@
 Analysis & Synthesis report for sisa
-Wed Apr 11 11:45:21 2018
+Wed Apr 11 13:08:59 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -52,13 +52,13 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Apr 11 11:45:21 2018           ;
+; Analysis & Synthesis Status        ; Successful - Wed Apr 11 13:08:59 2018           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; sisa                                            ;
 ; Top-level Entity Name              ; sisa                                            ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 1,764                                           ;
-;     Total combinational functions  ; 1,650                                           ;
+; Total logic elements               ; 1,780                                           ;
+;     Total combinational functions  ; 1,666                                           ;
 ;     Dedicated logic registers      ; 172                                             ;
 ; Total registers                    ; 172                                             ;
 ; Total pins                         ; 57                                              ;
@@ -208,16 +208,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------+
 ; Resource                                    ; Usage    ;
 +---------------------------------------------+----------+
-; Estimated Total logic elements              ; 1,764    ;
+; Estimated Total logic elements              ; 1,780    ;
 ;                                             ;          ;
-; Total combinational functions               ; 1650     ;
+; Total combinational functions               ; 1666     ;
 ; Logic element usage by number of LUT inputs ;          ;
-;     -- 4 input functions                    ; 862      ;
-;     -- 3 input functions                    ; 665      ;
-;     -- <=2 input functions                  ; 123      ;
+;     -- 4 input functions                    ; 864      ;
+;     -- 3 input functions                    ; 678      ;
+;     -- <=2 input functions                  ; 124      ;
 ;                                             ;          ;
 ; Logic elements by mode                      ;          ;
-;     -- normal mode                          ; 1250     ;
+;     -- normal mode                          ; 1266     ;
 ;     -- arithmetic mode                      ; 400      ;
 ;                                             ;          ;
 ; Total registers                             ; 172      ;
@@ -228,7 +228,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Embedded Multiplier 9-bit elements          ; 4        ;
 ; Maximum fan-out node                        ; clk_proc ;
 ; Maximum fan-out                             ; 164      ;
-; Total fan-out                               ; 6290     ;
+; Total fan-out                               ; 6339     ;
 ; Average fan-out                             ; 3.34     ;
 +---------------------------------------------+----------+
 
@@ -238,20 +238,21 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                ; Library Name ;
 +-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |sisa                                           ; 1650 (5)          ; 172 (4)      ; 0           ; 4            ; 0       ; 2         ; 57   ; 0            ; |sisa                                                                                                                                                              ; work         ;
+; |sisa                                           ; 1666 (5)          ; 172 (4)      ; 0           ; 4            ; 0       ; 2         ; 57   ; 0            ; |sisa                                                                                                                                                              ; work         ;
 ;    |MemoryController:mem_ctrl0|                 ; 78 (1)            ; 5 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0                                                                                                                                   ; work         ;
 ;       |SRAMController:controller0|              ; 77 (77)           ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|MemoryController:mem_ctrl0|SRAMController:controller0                                                                                                        ; work         ;
+;    |controladores_IO:controladores_IO0|         ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|controladores_IO:controladores_IO0                                                                                                                           ; work         ;
 ;    |proc:proc0|                                 ; 1567 (0)          ; 163 (0)      ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |sisa|proc:proc0                                                                                                                                                   ; work         ;
-;       |datapath:datapath0|                      ; 1462 (74)         ; 128 (0)      ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0                                                                                                                                ; work         ;
-;          |alu:alu0|                             ; 1218 (568)        ; 0 (0)        ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0                                                                                                                       ; work         ;
+;       |datapath:datapath0|                      ; 1461 (73)         ; 128 (0)      ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0                                                                                                                                ; work         ;
+;          |alu:alu0|                             ; 1218 (567)        ; 0 (0)        ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0                                                                                                                       ; work         ;
 ;             |lpm_divide:Div0|                   ; 289 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0                                                                                                       ; work         ;
 ;                |lpm_divide_3gm:auto_generated|  ; 289 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_3gm:auto_generated                                                                         ; work         ;
 ;                   |sign_div_unsign_dnh:divider| ; 289 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_3gm:auto_generated|sign_div_unsign_dnh:divider                                             ; work         ;
 ;                      |alt_u_div_s5f:divider|    ; 289 (288)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_3gm:auto_generated|sign_div_unsign_dnh:divider|alt_u_div_s5f:divider                       ; work         ;
 ;                         |add_sub_mkc:add_sub_1| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div0|lpm_divide_3gm:auto_generated|sign_div_unsign_dnh:divider|alt_u_div_s5f:divider|add_sub_mkc:add_sub_1 ; work         ;
-;             |lpm_divide:Div1|                   ; 361 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1                                                                                                       ; work         ;
-;                |lpm_divide_rto:auto_generated|  ; 361 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1|lpm_divide_rto:auto_generated                                                                         ; work         ;
-;                   |abs_divider_8dg:divider|     ; 361 (29)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1|lpm_divide_rto:auto_generated|abs_divider_8dg:divider                                                 ; work         ;
+;             |lpm_divide:Div1|                   ; 362 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1                                                                                                       ; work         ;
+;                |lpm_divide_rto:auto_generated|  ; 362 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1|lpm_divide_rto:auto_generated                                                                         ; work         ;
+;                   |abs_divider_8dg:divider|     ; 362 (30)          ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1|lpm_divide_rto:auto_generated|abs_divider_8dg:divider                                                 ; work         ;
 ;                      |alt_u_div_s5f:divider|    ; 284 (281)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|alt_u_div_s5f:divider                           ; work         ;
 ;                         |add_sub_lkc:add_sub_0| ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|alt_u_div_s5f:divider|add_sub_lkc:add_sub_0     ; work         ;
 ;                         |add_sub_mkc:add_sub_1| ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_divide:Div1|lpm_divide_rto:auto_generated|abs_divider_8dg:divider|alt_u_div_s5f:divider|add_sub_mkc:add_sub_1     ; work         ;
@@ -262,8 +263,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;             |lpm_mult:Mult1|                    ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_mult:Mult1                                                                                                        ; work         ;
 ;                |mult_h1t:auto_generated|        ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|lpm_mult:Mult1|mult_h1t:auto_generated                                                                                ; work         ;
 ;          |regfile:regfile0|                     ; 170 (170)         ; 128 (128)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|datapath:datapath0|regfile:regfile0                                                                                                               ; work         ;
-;       |unidad_control:unidad_control0|          ; 105 (67)          ; 35 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0                                                                                                                    ; work         ;
-;          |control_l:control_l0|                 ; 35 (35)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|control_l:control_l0                                                                                               ; work         ;
+;       |unidad_control:unidad_control0|          ; 106 (67)          ; 35 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0                                                                                                                    ; work         ;
+;          |control_l:control_l0|                 ; 36 (36)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|control_l:control_l0                                                                                               ; work         ;
 ;          |multi:multi0|                         ; 3 (3)             ; 3 (3)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0                                                                                                       ; work         ;
 +-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -313,50 +314,66 @@ Encoding Type:  One-Hot
 +-------------+------------+-------------+-------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                                                                                                      ;
-+-------------------------------------------------------------------------+-----------------------------------------------------------------------+------------------------+
-; Latch Name                                                              ; Latch Enable Signal                                                   ; Free of Timing Hazards ;
-+-------------------------------------------------------------------------+-----------------------------------------------------------------------+------------------------+
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N       ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_LB_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N       ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|WideOr0         ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_WE_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|WideOr1         ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[14]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[13]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[12]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[5]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[4]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[3]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[8]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[10]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[1]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[9]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[0]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[11]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]    ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[2]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[6]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]     ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]_464    ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[1]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[2]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[3]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[4]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[5]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[6]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[7]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[8]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[9]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[10]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[11]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[12]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[13]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[14]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[15]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST ; yes                    ;
-; Number of user-specified and inferred latches = 37                      ;                                                                       ;                        ;
-+-------------------------------------------------------------------------+-----------------------------------------------------------------------+------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                                                                       ;
++-------------------------------------------------------------------------+------------------------------------------------------------------------+------------------------+
+; Latch Name                                                              ; Latch Enable Signal                                                    ; Free of Timing Hazards ;
++-------------------------------------------------------------------------+------------------------------------------------------------------------+------------------------+
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N        ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_LB_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_UB_N        ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|WideOr0          ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_WE_N         ; MemoryController:mem_ctrl0|SRAMController:controller0|WideOr1          ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[14]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[13]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[12]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[5]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[4]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[3]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[8]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[15]                            ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[10]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[1]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[9]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[0]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[11]      ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[15]     ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[2]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[6]       ; MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[7]      ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[14]                            ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[13]                            ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[12]                            ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[11]                            ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[10]                            ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[9]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[8]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[7]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[6]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[5]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[4]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[3]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[2]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[1]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; controladores_IO:controladores_IO0|rd_io[0]                             ; proc:proc0|unidad_control:unidad_control0|control_l:control_l0|rd_port ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[0]_464    ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[1]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[2]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[3]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[4]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[5]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[6]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[7]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[8]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[9]$latch  ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[10]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[11]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[12]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[13]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[14]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_DQ[15]$latch ; MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST  ; yes                    ;
+; Number of user-specified and inferred latches = 53                      ;                                                                        ;                        ;
++-------------------------------------------------------------------------+------------------------------------------------------------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
@@ -380,16 +397,25 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------+
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|bus_ir[4]                  ;
-; 6:1                ; 15 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|new_pc[2]                  ;
-; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |sisa|proc:proc0|datapath:datapath0|mux_immed_reg[5]                       ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |sisa|proc:proc0|datapath:datapath0|Mux14                                  ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|bus_ir[14]                 ;
+; 6:1                ; 15 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |sisa|proc:proc0|unidad_control:unidad_control0|new_pc[11]                 ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |sisa|proc:proc0|datapath:datapath0|mux_immed_reg[7]                       ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |sisa|proc:proc0|datapath:datapath0|Mux15                                  ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|Mux15                             ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |sisa|proc:proc0|unidad_control:unidad_control0|control_l:control_l0|op[2] ;
 ; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |sisa|MemoryController:mem_ctrl0|SRAMController:controller0|data_ext       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[0][8]                       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[1][9]                       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[2][9]                       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[3][13]                      ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[4][14]                      ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[5][6]                       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[6][6]                       ;
+; 8:1                ; 16 bits   ; 80 LEs        ; 0 LEs                ; 80 LEs                 ; No         ; |sisa|controladores_IO:controladores_IO0|ports[7][5]                       ;
 ; 5:1                ; 15 bits   ; 45 LEs        ; 45 LEs               ; 0 LEs                  ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|w_dummy                       ;
 ; 62:1               ; 3 bits    ; 123 LEs       ; 33 LEs               ; 90 LEs                 ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|w[10]                         ;
-; 61:1               ; 3 bits    ; 120 LEs       ; 30 LEs               ; 90 LEs                 ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|w[4]                          ;
-; 63:1               ; 2 bits    ; 84 LEs        ; 24 LEs               ; 60 LEs                 ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|w[13]                         ;
+; 61:1               ; 3 bits    ; 120 LEs       ; 30 LEs               ; 90 LEs                 ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|w[5]                          ;
+; 63:1               ; 2 bits    ; 84 LEs        ; 24 LEs               ; 60 LEs                 ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|w[12]                         ;
 ; 62:1               ; 2 bits    ; 82 LEs        ; 22 LEs               ; 60 LEs                 ; No         ; |sisa|proc:proc0|datapath:datapath0|alu:alu0|w[2]                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------+
 
@@ -541,14 +567,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+-------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "proc:proc0|datapath:datapath0"                                                                                                                ;
-+-------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                                                                                      ;
-+-------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; rd_io ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; wr_io ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
-+-------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "proc:proc0|datapath:datapath0"                                                           ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; addr_port ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -556,7 +581,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:09     ;
+; Top            ; 00:00:08     ;
 +----------------+--------------+
 
 
@@ -566,7 +591,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Apr 11 11:45:09 2018
+    Info: Processing started: Wed Apr 11 13:08:47 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off sisa -c sisa
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file sramcontroller.vhd
@@ -608,7 +633,6 @@ Info (12021): Found 2 design units, including 1 entities, in source file control
 Info (12127): Elaborating entity "sisa" for the top level hierarchy
 Info (12128): Elaborating entity "proc" for hierarchy "proc:proc0"
 Warning (10541): VHDL Signal Declaration warning at proc.vhd(14): used implicit default value for signal "addr_port" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at proc.vhd(16): used implicit default value for signal "wr_io" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12128): Elaborating entity "unidad_control" for hierarchy "proc:proc0|unidad_control:unidad_control0"
 Info (12128): Elaborating entity "control_l" for hierarchy "proc:proc0|unidad_control:unidad_control0|control_l:control_l0"
 Info (12128): Elaborating entity "multi" for hierarchy "proc:proc0|unidad_control:unidad_control0|multi:multi0"
@@ -681,8 +705,276 @@ Info (10041): Inferred latch for "SRAM_WE_N" at SRAMController.vhd(44)
 Info (10041): Inferred latch for "SRAM_CE_N" at SRAMController.vhd(44)
 Info (10041): Inferred latch for "SRAM_OE_N" at SRAMController.vhd(44)
 Info (12128): Elaborating entity "controladores_IO" for hierarchy "controladores_IO:controladores_IO0"
+Info (10041): Inferred latch for "ports[0][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[0][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[1][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[2][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[3][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[4][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[5][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[6][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][0]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][1]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][2]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][3]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][4]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][5]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][6]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][7]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][8]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][9]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][10]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][11]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][12]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][13]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][14]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "ports[7][15]" at controladoresIO.vhd(34)
+Info (10041): Inferred latch for "rd_io[0]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[1]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[2]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[3]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[4]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[5]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[6]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[7]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[8]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[9]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[10]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[11]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[12]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[13]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[14]" at controladoresIO.vhd(32)
+Info (10041): Inferred latch for "rd_io[15]" at controladoresIO.vhd(32)
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][7]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][8]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][9]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][10]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][11]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][12]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][13]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][14]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[1][15]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][7]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][8]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][9]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][10]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][11]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][12]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][13]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][14]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[2][15]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][7]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][8]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][9]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][10]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][11]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][12]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][13]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][14]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[3][15]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][7]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][8]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][9]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][10]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][11]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][12]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][13]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][14]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[4][15]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][8]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][9]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][10]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][11]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][12]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][13]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][14]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][15]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][8]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][9]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][10]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][11]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][12]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][13]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][14]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][15]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][0]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][7]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][0]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][7]" is permanently disabled
 Info (276014): Found 1 instances of uninferred RAM logic
     Info (276004): RAM logic "proc:proc0|datapath:datapath0|regfile:regfile0|regs" is uninferred due to inappropriate RAM size
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][0]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][1]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][2]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][3]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][4]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][5]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][6]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][7]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][8]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][9]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][10]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][11]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][12]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][13]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][14]" is permanently enabled
+Warning (14026): LATCH primitive "controladores_IO:controladores_IO0|ports[0][15]" is permanently enabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][0]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[5][7]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][0]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][1]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][2]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][3]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][4]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][5]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][6]" is permanently disabled
+Warning (14025): LATCH primitive "controladores_IO:controladores_IO0|ports[6][7]" is permanently disabled
 Info (278001): Inferred 4 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "proc:proc0|datapath:datapath0|alu:alu0|Div0"
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "proc:proc0|datapath:datapath0|alu:alu0|Div1"
@@ -743,7 +1035,6 @@ Info (12133): Instantiated megafunction "proc:proc0|datapath:datapath0|alu:alu0|
     Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_h1t.tdf
     Info (12023): Found entity 1: mult_h1t
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (13014): Ignored 30 buffer(s)
     Info (13016): Ignored 30 CARRY_SUM buffer(s)
 Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|SRAM_OE_N has unsafe behavior
@@ -766,6 +1057,8 @@ Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|dat
     Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|new_pc[0]
 Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[8] has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[15] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
 Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[10] has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW
 Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[1] has unsafe behavior
@@ -782,6 +1075,36 @@ Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|dat
     Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|new_pc[0]
 Warning (13012): Latch MemoryController:mem_ctrl0|SRAMController:controller0|data_ext[6] has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|new_pc[0]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[14] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[13] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[12] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[11] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[10] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[8]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[9] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[8] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[7] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[6] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[8]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[5] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[4] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[8]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
+Warning (13012): Latch controladores_IO:controladores_IO0|rd_io[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal proc:proc0|unidad_control:unidad_control0|bus_ir[15]
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "SRAM_ADDR[15]" is stuck at GND
     Warning (13410): Pin "SRAM_ADDR[16]" is stuck at GND
@@ -805,16 +1128,16 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[7]" is stuck at GND
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1841 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1857 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 39 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 1780 logic cells
+    Info (21061): Implemented 1796 logic cells
     Info (21062): Implemented 4 DSP elements
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 87 warnings
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 241 warnings
     Info: Peak virtual memory: 583 megabytes
-    Info: Processing ended: Wed Apr 11 11:45:21 2018
+    Info: Processing ended: Wed Apr 11 13:08:59 2018
     Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:10
+    Info: Total CPU time (on all processors): 00:00:09
 
 

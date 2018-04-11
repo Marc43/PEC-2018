@@ -211,12 +211,14 @@ BEGIN
 								  (op_code = IO	AND ir(8) = '1') ELSE
 						'1';
 						
-	wr_port	<= '1' WHEN op_code = IO AND ir(8) = '1' ELSE
+	wr_port	<= '1' WHEN op_code = IO AND ir(8) = '1' 	ELSE
 	
 					'0';
 					
 	-- rd_port is unimplemented by the moment
-	rd_port	<= '0';
+	rd_port	<= '1' WHEN op_code = IO AND ir(8) = '0' 	ELSE
+	
+					'0';
 	
 	
 END Structure;

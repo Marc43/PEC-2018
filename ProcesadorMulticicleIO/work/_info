@@ -1,0 +1,591 @@
+m255
+K3
+13
+cModel Technology
+dX:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleAlu
+Ealu
+Z0 w1523439520
+Z1 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 dX:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleIO
+Z5 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/alu.vhd
+Z6 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/alu.vhd
+l0
+L5
+VWb__kAX0fzWc3@57=d5b01
+Z7 OV;C;10.1d;51
+32
+Z8 !s108 1523445978.321000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/alu.vhd|
+Z10 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/alu.vhd|
+Z11 o-work work -2002 -explicit -O0
+Z12 tExplicit 1
+!s100 AZa=lZzlHK`]R>obOG41n0
+!i10b 1
+Astructure
+R1
+R2
+R3
+DEx4 work 3 alu 0 22 Wb__kAX0fzWc3@57=d5b01
+l56
+L14
+VaIS@8[nS9GR7zFD0HTk222
+R7
+32
+R8
+R9
+R10
+R11
+R12
+!s100 JfESN0B7NkFST_06]Ud?z3
+!i10b 1
+Easync_64kx16
+Z13 w1523435618
+Z14 DPx4 work 15 package_utility 0 22 abW^FY0na:iFW@RR:Fofg0
+Z15 DPx4 work 14 package_timing 0 22 ]QljGNTG0EJQ?X:f3a>TX1
+Z16 DPx4 ieee 16 std_logic_textio 0 22 ?Il0a149GV276[?[UMDWh2
+Z17 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z18 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+R2
+R3
+R4
+Z19 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd
+Z20 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd
+l0
+L22
+Vz7=:g106kSL^?zZa1_k1i2
+R7
+32
+Z21 !s108 1523445978.559000
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd|
+Z23 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd|
+R11
+R12
+!s100 >mUGlnEO[;>2_SQSo6jO>0
+!i10b 1
+Abehave_arch
+R14
+R15
+R16
+R17
+R18
+R2
+R3
+DEx4 work 12 async_64kx16 0 22 z7=:g106kSL^?zZa1_k1i2
+l86
+L50
+VAJ7N2U7Oz?8b=Rk:ei_Pn2
+R7
+32
+R21
+R22
+R23
+R11
+R12
+!s100 ;PMTN0Wle:CWX6W[Y:e7_2
+!i10b 1
+Econtrol_l
+Z24 w1523444006
+R1
+R2
+R3
+R4
+Z25 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/control_l.vhd
+Z26 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/control_l.vhd
+l0
+L5
+V<MazUk9:S[JEKMIVIi`hN0
+R7
+32
+Z27 !s108 1523445978.789000
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/control_l.vhd|
+Z29 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/control_l.vhd|
+R11
+R12
+!s100 aJ60[IB1`VnUc9AF8SjDW3
+!i10b 1
+Astructure
+R1
+R2
+R3
+DEx4 work 9 control_l 0 22 <MazUk9:S[JEKMIVIi`hN0
+l100
+L26
+VXn6_;B`E_=ao;nD;NCH@=0
+R7
+32
+R27
+R28
+R29
+R11
+R12
+!s100 >ko@0FLaRKgf3h2am`0^=3
+!i10b 1
+Econtroladores_io
+Z30 w1523444882
+R1
+R17
+R18
+R2
+R3
+R4
+Z31 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/controladoresIO.vhd
+Z32 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/controladoresIO.vhd
+l0
+L6
+Vh@X3>R;@;GgCGVBdF17>z1
+R7
+32
+Z33 !s108 1523445979.013000
+Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/controladoresIO.vhd|
+Z35 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/controladoresIO.vhd|
+R11
+R12
+!s100 E@H><T6hRD0>ZVhE^MBCe0
+!i10b 1
+Astructure
+R1
+R17
+R18
+R2
+R3
+DEx4 work 16 controladores_io 0 22 h@X3>R;@;GgCGVBdF17>z1
+l27
+L18
+VQWhCk]^>@lIDgTWB1l3o[0
+R7
+32
+R33
+R34
+R35
+R11
+R12
+!s100 m4;<j2`;zaoCGM?^J4;=z3
+!i10b 1
+Edatapath
+Z36 w1523444926
+R1
+R2
+R3
+R4
+Z37 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/datapath.vhd
+Z38 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/datapath.vhd
+l0
+L5
+VhNS`URidZVcf`Ug[GE@470
+R7
+32
+Z39 !s108 1523445979.237000
+Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/datapath.vhd|
+Z41 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/datapath.vhd|
+R11
+R12
+!s100 nU:Z5K6`4T]E1^Z5m=nFJ0
+!i10b 1
+Astructure
+R1
+R2
+R3
+DEx4 work 8 datapath 0 22 hNS`URidZVcf`Ug[GE@470
+l60
+L30
+ViDJ^2G^09ll<7nF]4nn5T2
+R7
+32
+R39
+R40
+R41
+R11
+R12
+!s100 A;YlVgM]MhG7aeFXkYzZF0
+!i10b 1
+Ememorycontroller
+R13
+R18
+R17
+R2
+R3
+R4
+Z42 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/MemoryController.vhd
+Z43 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/MemoryController.vhd
+l0
+L6
+VPLoMf0oj;RB<P=VUa6jkS2
+R7
+32
+Z44 !s108 1523445979.478000
+Z45 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/MemoryController.vhd|
+Z46 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/MemoryController.vhd|
+R11
+R12
+!s100 :K4;^k=AgYVOh=G_LZCm[3
+!i10b 1
+Acomportament
+R18
+R17
+R2
+R3
+DEx4 work 16 memorycontroller 0 22 PLoMf0oj;RB<P=VUa6jkS2
+l50
+L23
+V?AYk9kA19H_IEUN5U0WPj0
+R7
+32
+R44
+R45
+R46
+R11
+R12
+!s100 X9J8?Vj[H`]8Q75A@:RGN0
+!i10b 1
+Emulti
+R13
+R2
+R3
+R4
+Z47 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/multi.vhd
+Z48 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/multi.vhd
+l0
+L4
+V14NBh5f7z`nUY<]C1Om_?2
+R7
+32
+Z49 !s108 1523445979.720000
+Z50 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/multi.vhd|
+Z51 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/multi.vhd|
+R11
+R12
+!s100 Vdh>l=a_@F>fVk^7NLZ710
+!i10b 1
+Astructure
+R2
+R3
+DEx4 work 5 multi 0 22 14NBh5f7z`nUY<]C1Om_?2
+l25
+L19
+VDk`KT778jbBZ03LGVoUf62
+R7
+32
+R49
+R50
+R51
+R11
+R12
+!s100 3JT:jgYggUz:NUPeIjTmK3
+!i10b 1
+Ppackage_timing
+R16
+R18
+R17
+R2
+R3
+R13
+R4
+Z52 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd
+Z53 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd
+l0
+L17
+V]QljGNTG0EJQ?X:f3a>TX1
+R7
+32
+Z54 !s108 1523445979.904000
+Z55 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd|
+Z56 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd|
+R11
+R12
+!s100 7[5MEfJ`HFPK=zP7G66<i1
+!i10b 1
+Bbody
+R15
+R16
+R18
+R17
+R2
+R3
+l0
+L59
+VfeQXi[8kmeXD5NlH1A^G91
+R7
+32
+R54
+R55
+R56
+R11
+R12
+nbody
+!s100 [;aAVGm330N:B:ZYX350a1
+!i10b 1
+Ppackage_utility
+R16
+R17
+R2
+R3
+R13
+R4
+Z57 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd
+Z58 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd
+l0
+L15
+VabW^FY0na:iFW@RR:Fofg0
+R7
+32
+b1
+Z59 !s108 1523445980.138000
+Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd|
+Z61 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd|
+R11
+R12
+!s100 n9b5dM?H5oLDz7geaYPkN1
+!i10b 1
+Bbody
+R14
+R16
+R17
+R2
+R3
+l0
+L22
+V1dAT5_E6[=Q4>0kGEF5@]3
+R7
+32
+R59
+R60
+R61
+R11
+R12
+nbody
+!s100 =i4<XdWXU:J]Ih;Vo<NgP3
+!i10b 1
+Eproc
+Z62 w1523444732
+R2
+R3
+R4
+Z63 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/proc.vhd
+Z64 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/proc.vhd
+l0
+L4
+V?W]l:D5`PAFz;b`PQX;6e0
+R7
+32
+Z65 !s108 1523445980.340000
+Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/proc.vhd|
+Z67 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/proc.vhd|
+R11
+R12
+!s100 @KIUTz=_bA[VV^gLY0aSU0
+!i10b 1
+Astructure
+R2
+R3
+DEx4 work 4 proc 0 22 ?W]l:D5`PAFz;b`PQX;6e0
+l99
+L19
+V`;kbUD]ai<BMQH66GgbRa1
+R7
+32
+R65
+R66
+R67
+R11
+R12
+!s100 K4ga6R[LeCejSfbHFgPCI2
+!i10b 1
+Eregfile
+R13
+R1
+R17
+R18
+R2
+R3
+R4
+Z68 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/regfile.vhd
+Z69 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/regfile.vhd
+l0
+L6
+V37]zL7g]h0ZD9Voj^5`Oh0
+R7
+32
+Z70 !s108 1523445980.517000
+Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/regfile.vhd|
+Z72 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/regfile.vhd|
+R11
+R12
+!s100 _G112JZ7^[[`Y11NZF<SD0
+!i10b 1
+Astructure
+R1
+R17
+R18
+R2
+R3
+DEx4 work 7 regfile 0 22 37]zL7g]h0ZD9Voj^5`Oh0
+l21
+L17
+Vhelf49YlEziER=7J1mg421
+R7
+32
+R70
+R71
+R72
+R11
+R12
+!s100 :74geO]KCPB_i0?[]4k6D0
+!i10b 1
+Esisa
+Z73 w1523439418
+R18
+R17
+R2
+R3
+R4
+Z74 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/sisa.vhd
+Z75 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/sisa.vhd
+l0
+L6
+V5A2h8LU_S;L:d0QgjdWG61
+R7
+32
+Z76 !s108 1523445980.751000
+Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/sisa.vhd|
+Z78 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/sisa.vhd|
+R11
+R12
+!s100 0F2Q=L]i[93VRV?N[ccB=2
+!i10b 1
+Astructure
+R18
+R17
+R2
+R3
+DEx4 work 4 sisa 0 22 5A2h8LU_S;L:d0QgjdWG61
+l84
+L20
+VC>GeLcCbKSXCKEMQEDQRf2
+R7
+32
+R76
+R77
+R78
+R11
+R12
+!s100 jRlP=:H5dMA[B6FXdzEzR3
+!i10b 1
+Esramcontroller
+R13
+R1
+R17
+R18
+R2
+R3
+R4
+Z79 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/SRAMController.vhd
+Z80 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/SRAMController.vhd
+l0
+L7
+Vjjn044l<>f1hjRRH94@o;0
+R7
+32
+Z81 !s108 1523445980.985000
+Z82 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/SRAMController.vhd|
+Z83 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/SRAMController.vhd|
+R11
+R12
+!s100 <FSc_Qzi@@deA1M8@=TIF2
+!i10b 1
+Acomportament
+R1
+R17
+R18
+R2
+R3
+DEx4 work 14 sramcontroller 0 22 jjn044l<>f1hjRRH94@o;0
+l35
+L24
+VCYlfD3TS;96hzQ@]NYhn^0
+R7
+32
+R81
+R82
+R83
+R11
+R12
+!s100 obbPZJIR9gbF@L9z^@JzE1
+!i10b 1
+Etest_sisa
+R13
+R2
+R3
+R4
+Z84 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/test_sisa.vhd
+Z85 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/test_sisa.vhd
+l0
+L5
+VkAdhfn89W5`mY_=KPlfV]3
+R7
+32
+Z86 !s108 1523445981.225000
+Z87 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/test_sisa.vhd|
+Z88 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/test_sisa.vhd|
+R11
+R12
+!s100 688X_8OZ0BkG::B3fT5kf3
+!i10b 1
+Acomportament
+R2
+R3
+DEx4 work 9 test_sisa 0 22 kAdhfn89W5`mY_=KPlfV]3
+l65
+L8
+V?m>f9FiW<;l]bP:O84Sjz1
+!s100 djRSTS27Mh1J0820l4;]g3
+R7
+32
+R86
+R87
+R88
+R11
+R12
+!i10b 1
+Eunidad_control
+Z89 w1523439835
+R17
+R18
+R1
+R2
+R3
+R4
+Z90 8X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/unidad_control.vhd
+Z91 FX:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/unidad_control.vhd
+l0
+L6
+VaTmmWf>42<ob^ddFbVVm_3
+!s100 ]Ihg[`WLfiz2Pb5djzD9d3
+R7
+32
+!i10b 1
+Z92 !s108 1523445981.434000
+Z93 !s90 -reportprogress|300|-work|work|-2002|-explicit|X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/unidad_control.vhd|
+Z94 !s107 X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/unidad_control.vhd|
+R11
+R12
+Astructure
+R17
+R18
+R1
+R2
+R3
+Z95 DEx4 work 14 unidad_control 0 22 aTmmWf>42<ob^ddFbVVm_3
+l90
+L31
+Z96 VX6Kf`M`f89OG10dWe@;B72
+Z97 !s100 k<0i70E[R:b28O_<Ea[J21
+R7
+32
+!i10b 1
+R92
+R93
+R94
+R11
+R12
