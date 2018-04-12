@@ -145,7 +145,7 @@ BEGIN
 				
 				BYPASSX_op  WHEN		op_code = JUMP 		ELSE
 				
-				BYPASSY_op; -- IO
+				BYPASSY_op; -- IO 
 
 	func	<= ADD_f 	WHEN	op_code = LD	OR 
 									op_code = ST	OR 
@@ -215,7 +215,6 @@ BEGIN
 	
 					'0';
 					
-	-- rd_port is unimplemented by the moment
 	rd_port	<= '1' WHEN op_code = IO AND ir(8) = '0' 	ELSE
 	
 					'0';

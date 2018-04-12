@@ -1,5 +1,5 @@
 Assembler report for sisa
-Wed Apr 11 13:10:10 2018
+Thu Apr 12 12:41:15 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -10,8 +10,8 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/output_files/sisa.sof
-  6. Assembler Device Options: X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/output_files/sisa.pof
+  5. Assembler Device Options: C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/output_files/sisa.sof
+  6. Assembler Device Options: C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/output_files/sisa.pof
   7. Assembler Messages
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Wed Apr 11 13:10:10 2018 ;
+; Assembler Status      ; Successful - Thu Apr 12 12:41:15 2018 ;
 ; Revision Name         ; sisa                                  ;
 ; Top-level Entity Name ; sisa                                  ;
 ; Family                ; Cyclone II                            ;
@@ -78,37 +78,37 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+-----------------------------------------------------------------------+
-; Assembler Generated Files                                             ;
-+-----------------------------------------------------------------------+
-; File Name                                                             ;
-+-----------------------------------------------------------------------+
-; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/output_files/sisa.sof ;
-; X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/output_files/sisa.pof ;
-+-----------------------------------------------------------------------+
++--------------------------------------------------------------------------------+
+; Assembler Generated Files                                                      ;
++--------------------------------------------------------------------------------+
+; File Name                                                                      ;
++--------------------------------------------------------------------------------+
+; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/output_files/sisa.sof ;
+; C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/output_files/sisa.pof ;
++--------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Assembler Device Options: X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/output_files/sisa.sof ;
-+----------------+--------------------------------------------------------------------------------+
-; Option         ; Setting                                                                        ;
-+----------------+--------------------------------------------------------------------------------+
-; Device         ; EP2C20F484C7                                                                   ;
-; JTAG usercode  ; 0x00314636                                                                     ;
-; Checksum       ; 0x00314636                                                                     ;
-+----------------+--------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/output_files/sisa.sof ;
++----------------+-----------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                 ;
++----------------+-----------------------------------------------------------------------------------------+
+; Device         ; EP2C20F484C7                                                                            ;
+; JTAG usercode  ; 0x0030F6CE                                                                              ;
+; Checksum       ; 0x0030F6CE                                                                              ;
++----------------+-----------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------+
-; Assembler Device Options: X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/output_files/sisa.pof ;
-+--------------------+----------------------------------------------------------------------------+
-; Option             ; Setting                                                                    ;
-+--------------------+----------------------------------------------------------------------------+
-; Device             ; EPCS16                                                                     ;
-; JTAG usercode      ; 0x00000000                                                                 ;
-; Checksum           ; 0x1DB64171                                                                 ;
-; Compression Ratio  ; 2                                                                          ;
-+--------------------+----------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/output_files/sisa.pof ;
++--------------------+-------------------------------------------------------------------------------------+
+; Option             ; Setting                                                                             ;
++--------------------+-------------------------------------------------------------------------------------+
+; Device             ; EPCS16                                                                              ;
+; JTAG usercode      ; 0x00000000                                                                          ;
+; Checksum           ; 0x1DB65FB6                                                                          ;
+; Compression Ratio  ; 2                                                                                   ;
++--------------------+-------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -117,14 +117,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Apr 11 13:10:08 2018
+    Info: Processing started: Thu Apr 12 12:41:14 2018
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off sisa -c sisa
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 471 megabytes
-    Info: Processing ended: Wed Apr 11 13:10:10 2018
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 430 megabytes
+    Info: Processing ended: Thu Apr 12 12:41:15 2018
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 
