@@ -15,7 +15,11 @@ ENTITY sisa IS
 			 LEDG   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			 LEDR   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			 KEY	  : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);
-          SW     : in  std_logic_vector(9 downto 0));
+          SW     : in  std_logic_vector(9 downto 0);
+			 HEX0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+			 HEX1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+			 HEX2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+			 HEX3 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
 END sisa;
 
 ARCHITECTURE Structure OF sisa IS
@@ -65,12 +69,14 @@ ARCHITECTURE Structure OF sisa IS
 			display		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			power_display : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 			keys			: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
-			switches		: IN STD_LOGIC_VECTOR (7 DOWNTO 0); 
+			switches		: IN STD_LOGIC_VECTOR (7 DOWNTO 0)); 
 	END COMPONENT; 
 	
 	COMPONENT Display7 IS
-	PORT(VALOR : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
-	bitsCaracter : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
+	PORT(
+		enable 			: IN STD_LOGIC;
+		VALOR 			: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+		bitsCaracter 	: OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
 	END COMPONENT;
 	
 	signal gboot : std_logic;
@@ -151,7 +157,37 @@ BEGIN
 		led_rojos   => LEDR,
 		display		=> bus_display,
 		power_display	=> bus_power_display,
-		key			=> KEY
+		keys			=> KEY,
+		switches		=> SW(7 DOWNTO 0)
+	);
+	
+	
+	display0 : Display7
+	port map (
+		enable 		 => bus_power_display(0),
+		bitsCaracter => HEX0,
+		VALOR			 => bus_display(3 downto 0)	
+	);
+	
+	display1 : Display7
+	port map (
+		enable 		 => bus_power_display(1),
+		bitsCaracter => HEX1,
+		VALOR			 => bus_display(7 downto 4)	
+	);
+	
+	display2 : Display7
+	port map (
+		enable 		 => bus_power_display(2),
+		bitsCaracter => HEX2,
+		VALOR			 => bus_display(11 downto 8)	
+	);
+	
+	display3 : Display7
+	port map (
+		enable 		 => bus_power_display(3),
+		bitsCaracter => HEX3,
+		VALOR			 => bus_display(15 downto 12)	
 	);
 	
 	gboot <= SW(9);

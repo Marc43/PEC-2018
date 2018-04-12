@@ -146,8 +146,8 @@ BEGIN
 		aluout   => bus_aluout,
 		eval		=> bus_eval,
 		rd_io		=> rd_io,
-		wr_io		=> wr_io
-		
+		wr_io		=> wr_io,
+		addr_port => addr_port
 	);
 	
 	wr_m <= bus_wr_m;

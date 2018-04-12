@@ -50,8 +50,8 @@ BEGIN
 					ports(conv_integer(addr_io)) <= wr_io; -- Writes
 				END IF;
 				
-				ports(conv_integer(KEY_P)) 	<= key;
-				ports(conv_integer(SWITCH_P)) <= switch;
+				ports(conv_integer(KEY_P)) 	<= X"000" & keys;
+				ports(conv_integer(SWITCH_P)) <=  X"00" & switches;
 				
 			END IF;
 		
