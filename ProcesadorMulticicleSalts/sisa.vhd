@@ -64,21 +64,7 @@ BEGIN
 			end if;
 		end if;
 	end process;	
-	
---	clk_calc : process (CLOCK_50)
---		variable ticks : std_logic_vector (2 downto 0) := "000";
---	begin
---	
---			if ticks = "111" then
---				
---				clk_proc <= not clk_proc; -- As the signal is assigned at the 
---												  -- end of the process, the 7th will be the 8th tick
---			end if;
---			
---			ticks := ticks + 1;
---			
---	end process;
-	
+
 	proc0 : proc
 	port map (
 		clk 		=> clk_proc,
