@@ -125,7 +125,7 @@ BEGIN
 																						op_code = ST 	OR
 																						op_code = STB	ELSE
 					
-							std_logic_vector(resize(signed(immed_alu), immed'length))	WHEN op_code = MOV;
+							std_logic_vector(resize(signed(immed_alu), immed'length));
 
 	op		<= ARITHLOG_op	WHEN 	   op_code = LD			OR 
 											op_code = ST			OR 
