@@ -89,15 +89,12 @@ BEGIN
 			STD_LOGIC_VECTOR(unsigned(x) / unsigned(y)) WHEN op=EXT_op AND func = DIVU_f ELSE
 			
 			x WHEN op = BYPASSX_op ELSE
-			y WHEN op = BYPASSY_op ELSE -- Aunque ya existe el MOVI...
-			
-			(others => 'X');
+			y;
 			
 			--MULT
 	mult_result <= STD_LOGIC_VECTOR(signed(x) * signed(y)) 		WHEN op = EXT_op AND func = MUL_f 	ELSE
 						STD_LOGIC_VECTOR(signed(x) * signed(y)) 		WHEN op = EXT_op AND func = MULH_f 	ELSE
-						STD_LOGIC_VECTOR(unsigned(x) * unsigned(y)) 	WHEN op = EXT_op AND func = MULHU_f ELSE
-			(others => 'X');
+						STD_LOGIC_VECTOR(unsigned(x) * unsigned(y));
 			
 	
 			
