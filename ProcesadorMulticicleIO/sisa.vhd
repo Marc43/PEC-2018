@@ -12,6 +12,8 @@ ENTITY sisa IS
           SRAM_CE_N : out   std_logic := '1';
           SRAM_OE_N : out   std_logic := '1';
           SRAM_WE_N : out   std_logic := '1';
+			 PS2_CLK	  : inout std_logic;
+			 PS2_DAT   : inout std_logic;
 			 LEDG   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			 LEDR   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			 KEY	  : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -64,6 +66,8 @@ ARCHITECTURE Structure OF sisa IS
 			rd_io 		: out std_logic_vector(15 downto 0); 
 			wr_out 		: in  std_logic; 
 			rd_in 		: in  std_logic; 
+			ps2_clk		: inout std_logic;
+			ps2_data		: inout std_logic;
 			led_verdes  : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			led_rojos   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 			display		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -99,7 +103,6 @@ ARCHITECTURE Structure OF sisa IS
 	
 	signal bus_display : std_logic_vector (15 downto 0);
 	signal bus_power_display : std_logic_vector (3 downto 0);
-	
 BEGIN
 
 	clk_calc : process (CLOCK_50)
@@ -152,7 +155,9 @@ BEGIN
 		wr_io  		=> bus_wr_io,
 		rd_io 		=> bus_rd_io,
 		wr_out 		=> bus_wr_port,
-		rd_in 		=> bus_rd_port, 
+		rd_in 		=> bus_rd_port,
+		ps2_clk 		=> PS2_CLK,
+		ps2_data		=> PS2_DAT,
 		led_verdes  => LEDG,
 		led_rojos   => LEDR,
 		display		=> bus_display,
@@ -161,7 +166,7 @@ BEGIN
 		switches		=> SW(7 DOWNTO 0)
 	);
 	
-	
+
 	display0 : Display7
 	port map (
 		enable 		 => bus_power_display(0),
