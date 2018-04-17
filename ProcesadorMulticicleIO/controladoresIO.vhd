@@ -18,7 +18,9 @@ ENTITY controladores_IO IS
 			display		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			power_display : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 			keys			: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
-			switches		: IN STD_LOGIC_VECTOR (7 DOWNTO 0)); 
+			switches		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+			vga_cursor : out std_logic_vector(15 downto 0);
+			vga_cursor_enable : out std_logic); 	
 END controladores_IO; 
 
 ARCHITECTURE Structure OF controladores_IO IS
@@ -75,7 +77,6 @@ BEGIN
 		PROCESS (CLOCK_50)
 		BEGIN
 			
-			
 			IF rising_edge(CLOCK_50) THEN
 				IF clear_char_bus = '1' THEN
 					clear_char_bus <= '0';
@@ -92,5 +93,8 @@ BEGIN
 			END IF;
 		
 		END PROCESS;
+		
+		vga_cursor <= X"0000";
+		vga_cursor_enable <= '0';
 		
 END Structure;

@@ -18,6 +18,11 @@ ENTITY sisa IS
 			 LEDR   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			 KEY	  : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);
           SW     : in  std_logic_vector(9 downto 0);
+			 VGA_R  : OUT STD_LOGIC_VECTOR (7 downto 0);
+			 VGA_G  : OUT STD_LOGIC_VECTOR (7 downto 0);
+			 VGA_B  : OUT STD_LOGIC_VECTOR (7 downto 0);
+			 VGA_HS : OUT STD_LOGIC;
+			 VGA_VS : OUT STD_LOGIC;
 			 HEX0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 			 HEX1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
 			 HEX2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
@@ -55,7 +60,13 @@ ARCHITECTURE Structure OF sisa IS
           SRAM_LB_N : out   std_logic;
           SRAM_CE_N : out   std_logic := '1';
           SRAM_OE_N : out   std_logic := '1';
-          SRAM_WE_N : out   std_logic := '1');
+          SRAM_WE_N : out   std_logic := '1';
+			 			 
+			 vga_addr : out std_logic_vector(12 downto 0);
+			 vga_we : out std_logic;
+			 vga_wr_data : out std_logic_vector(15 downto 0);
+			 vga_rd_data : in std_logic_vector(15 downto 0);
+			 vga_byte_m : out std_logic);
 	end component;
 	
   COMPONENT controladores_IO IS  
@@ -73,8 +84,31 @@ ARCHITECTURE Structure OF sisa IS
 			display		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			power_display : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
 			keys			: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
-			switches		: IN STD_LOGIC_VECTOR (7 DOWNTO 0)); 
+			switches		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+			vga_cursor : out std_logic_vector(15 downto 0);
+			vga_cursor_enable : out std_logic); 
 	END COMPONENT; 
+	
+	
+	COMPONENT vga_controller is
+    port(clk_50mhz      : in  std_logic; -- system clock signal
+         reset          : in  std_logic; -- system reset
+--         blank_out      : out std_logic; -- vga control signal
+--         csync_out      : out std_logic; -- vga control signal
+         red_out        : out std_logic_vector(7 downto 0); -- vga red pixel value
+         green_out      : out std_logic_vector(7 downto 0); -- vga green pixel value
+         blue_out       : out std_logic_vector(7 downto 0); -- vga blue pixel value
+         horiz_sync_out : out std_logic; -- vga control signal
+         vert_sync_out  : out std_logic; -- vga control signal
+         --
+         addr_vga          : in std_logic_vector(12 downto 0);
+         we                : in std_logic;
+         wr_data           : in std_logic_vector(15 downto 0);
+         rd_data           : out std_logic_vector(15 downto 0);
+         byte_m            : in std_logic;
+         vga_cursor        : in std_logic_vector(15 downto 0);  -- simplemente lo ignoramos, este controlador no lo tiene implementado
+         vga_cursor_enable : in std_logic);                     -- simplemente lo ignoramos, este controlador no lo tiene implementado
+	end COMPONENT;
 	
 	COMPONENT Display7 IS
 	PORT(
@@ -103,6 +137,20 @@ ARCHITECTURE Structure OF sisa IS
 	
 	signal bus_display : std_logic_vector (15 downto 0);
 	signal bus_power_display : std_logic_vector (3 downto 0);
+	
+	
+	signal bus_vga_addr 		: std_logic_vector (12 downto 0);
+	signal bus_vga_we 		: std_logic;
+	signal bus_vga_wr_data 	: std_logic_vector(15 downto 0);
+	signal bus_vga_rd_data 	: std_logic_vector(15 downto 0);
+	signal bus_vga_byte_m 	: std_logic;
+	signal bus_vga_cursor 	: std_logic_vector (15 downto 0);
+	signal bus_vga_cursor_enable : std_logic;
+	
+	signal bus_vga_r : std_logic_vector (7 downto 0);
+	signal bus_vga_g : std_logic_vector (7 downto 0);
+	signal bus_vga_b : std_logic_vector (7 downto 0);
+	
 BEGIN
 
 	clk_calc : process (CLOCK_50)
@@ -144,7 +192,12 @@ BEGIN
 		SRAM_LB_N=> SRAM_LB_N,
 		SRAM_CE_N=>	SRAM_CE_N,
 		SRAM_OE_N=> SRAM_OE_N,
-		SRAM_WE_N=> SRAM_WE_N
+		SRAM_WE_N=> SRAM_WE_N,
+		vga_addr => bus_vga_addr,
+		vga_we 	=> bus_vga_we,
+		vga_wr_data => bus_vga_wr_data,
+		vga_rd_data => bus_vga_rd_data,
+		vga_byte_m => bus_vga_byte_m
 	);
 	
 	controladores_IO0 : controladores_IO
@@ -163,10 +216,33 @@ BEGIN
 		display		=> bus_display,
 		power_display	=> bus_power_display,
 		keys			=> KEY,
-		switches		=> SW(7 DOWNTO 0)
+		switches		=> SW(7 DOWNTO 0),
+		vga_cursor => bus_vga_cursor,
+		vga_cursor_enable => bus_vga_cursor_enable
 	);
 	
 
+	vga_controller0 : vga_controller
+	port map (
+		clk_50mhz      => CLOCK_50,
+		reset          => gboot,
+--		blank_out      => 
+--		csync_out      => 
+		red_out        => bus_vga_r,
+		green_out      => bus_vga_g,
+		blue_out       => bus_vga_b,
+		horiz_sync_out => VGA_HS,
+		vert_sync_out  => VGA_VS,
+		addr_vga       => bus_vga_addr,
+		we             => bus_vga_we,
+		wr_data        => bus_vga_wr_data,
+		rd_data        => bus_vga_rd_data,
+		byte_m         => bus_vga_byte_m,
+		vga_cursor     => bus_vga_cursor,
+		vga_cursor_enable => bus_vga_cursor_enable
+	);
+	
+	
 	display0 : Display7
 	port map (
 		enable 		 => bus_power_display(0),
@@ -196,5 +272,10 @@ BEGIN
 	);
 	
 	gboot <= SW(9);
+	
+	
+	VGA_R <= "0000" & bus_vga_r(3 DOWNTO 0);
+	VGA_G <= "0000" & bus_vga_g(3 DOWNTO 0);
+	VGA_B <= "0000" & bus_vga_b(3 DOWNTO 0);
 		
 END Structure;

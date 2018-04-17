@@ -1,7 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_arith.all;
-use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
 
 entity MemoryController is
     port (CLOCK_50  : in  std_logic;
@@ -17,7 +16,13 @@ entity MemoryController is
           SRAM_LB_N : out   std_logic;
           SRAM_CE_N : out   std_logic := '1';
           SRAM_OE_N : out   std_logic := '1';
-          SRAM_WE_N : out   std_logic := '1');
+          SRAM_WE_N : out   std_logic := '1';
+			 
+			 vga_addr : out std_logic_vector(12 downto 0);
+			 vga_we : out std_logic;
+			 vga_wr_data : out std_logic_vector(15 downto 0);
+			 vga_rd_data : in std_logic_vector(15 downto 0);
+			 vga_byte_m : out std_logic );
 end MemoryController;
 
 architecture comportament of MemoryController is
@@ -46,6 +51,8 @@ architecture comportament of MemoryController is
 	signal bus_byte	: std_logic;
 	
 	signal instr_memory_limit : std_logic_vector (15 downto 0) := X"C000"; -- Any address >= to this one is invalid to write
+	signal vga_lower_limit : std_logic_vector (15 downto 0) := X"A000";
+	signal vga_upper_limit : std_logic_vector (15 downto 0) := X"B2BE";
 	
 begin
 	
@@ -67,11 +74,19 @@ begin
 		byte_m		=> bus_byte
 	);
 	
-	bus_we 		<= we when addr < instr_memory_limit else
+	bus_we 		<= we when unsigned(addr) < unsigned(instr_memory_limit) else
 						'0';
 						
 	bus_addr		<= addr;
 	bus_datawr	<= wr_data;
 	bus_byte 	<= byte_m;
+	
+	vga_addr <= addr(12 DOWNTO 0);
+	vga_we <= we WHEN unsigned(addr) >= unsigned(vga_lower_limit) AND 
+							unsigned(addr) <= unsigned(vga_upper_limit) ELSE
+				 '0';
+				 
+	vga_wr_data <= wr_data;
+	vga_byte_m  <= byte_m;
 
 end comportament;

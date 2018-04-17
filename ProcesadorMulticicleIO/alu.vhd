@@ -96,9 +96,6 @@ BEGIN
 						STD_LOGIC_VECTOR(signed(x) * signed(y)) 		WHEN op = EXT_op AND func = MULH_f 	ELSE
 						STD_LOGIC_VECTOR(unsigned(x) * unsigned(y));
 			
-	
-			
-			
 	z 	<= '1' WHEN y = X"0000" ELSE '0'; -- To evaluate branch conditions
 
 	w 	<= mult_result(15 DOWNTO 0) 	WHEN op = EXT_op AND func = MUL_f                      ELSE
