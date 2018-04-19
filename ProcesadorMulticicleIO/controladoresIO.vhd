@@ -37,6 +37,9 @@ ARCHITECTURE Structure OF controladores_IO IS
 	CONSTANT DISPLAY_P 			: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"0A"; 
 	CONSTANT KEYBOARD_READ_P	: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"0F";
 	CONSTANT KEYBOARD_ST_P		: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"10";
+	CONSTANT RAND_P				: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"14";
+	CONSTANT MS_COUNT_P			: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"15";
+
 	COMPONENT keyboard_controller is
    Port (clk        : in    STD_LOGIC;
           reset      : in    STD_LOGIC;
@@ -47,9 +50,24 @@ ARCHITECTURE Structure OF controladores_IO IS
           data_ready : out   STD_LOGIC);
 	END COMPONENT;
 	
+	COMPONENT counter_ms IS 
+	PORT (
+		CLOCK_50 		: IN 		std_logic;
+		ms_to_count		: IN	 	std_logic_vector(15 downto 0);
+		ms_value			: OUT		std_logic_vector(15 downto 0);
+		cycles_counted : OUT 	std_logic_vector(15 downto 0);
+		write_enable	: IN 		std_logic
+	);
+	END COMPONENT;
+	
 	signal read_char_bus : STD_LOGIC_VECTOR (7 downto 0);
 	signal clear_char_bus : STD_LOGIC := '0' ;
 	signal data_ready_bus : STD_LOGIC := '0' ;
+	
+	signal bus_ms_to_count 		: STD_LOGIC_VECTOR (15 downto 0);
+	signal bus_ms_value			: STD_LOGIC_VECTOR (15 downto 0);
+	signal bus_cycles_counted 	: STD_LOGIC_VECTOR (15 downto 0);
+	signal ms_counter_we			: std_logic;
 	
 BEGIN
 
@@ -63,6 +81,15 @@ BEGIN
 			clear_char=> clear_char_bus,
 			data_ready => data_ready_bus
 		);
+		
+		counter_ms0 : counter_ms 
+		PORT MAP(
+			CLOCK_50 		=> CLOCK_50,
+			ms_to_count 	=> bus_ms_to_count,
+			cycles_counted => bus_cycles_counted,
+			ms_value			=> bus_ms_value,
+			write_enable	=> ms_counter_we
+		);
 
 		led_verdes <= ports(conv_integer(LEDV_P))(7 DOWNTO 0);  -- port 5
 		led_rojos  <= ports(conv_integer(LEDR_P))(7 DOWNTO 0);  -- port 6
@@ -70,9 +97,11 @@ BEGIN
 		display 			<= ports(conv_integer(DISPLAY_P));
 		power_display 	<= ports(conv_integer(POWER_DISPLAY_P))(3 DOWNTO 0);
 		
-		rd_io	<= X"000" & "000" & data_ready_bus WHEN rd_in = '1' AND addr_io = KEYBOARD_ST_P ELSE
-					X"00" & read_char_bus	WHEN rd_in = '1' AND addr_io = KEYBOARD_READ_P ELSE
-					ports(conv_integer(addr_io)) WHEN rd_in = '1';  -- Reads
+		rd_io	<= X"000" & "000" & data_ready_bus 	WHEN rd_in = '1' AND addr_io = KEYBOARD_ST_P 	ELSE
+					X"00" & read_char_bus				WHEN rd_in = '1' AND addr_io = KEYBOARD_READ_P 	ELSE
+					bus_ms_value							WHEN rd_in = '1' AND addr_io = MS_COUNT_P			ELSE
+					bus_cycles_counted					WHEN rd_in = '1' AND addr_io = RAND_P				ELSE
+					ports(conv_integer(addr_io)) 		WHEN rd_in = '1';  -- Reads
 		
 		PROCESS (CLOCK_50)
 		BEGIN
@@ -84,6 +113,10 @@ BEGIN
 				
 				IF wr_out = '1' AND addr_io /= KEYBOARD_ST_P THEN
 					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
+					
+				ELSIF wr_out = '1' AND addr_io = MS_COUNT_P THEN
+					bus_ms_to_count <= wr_io; 
+				
 				ELSIF wr_out = '1' THEN
 					clear_char_bus <= '1';
 				END IF;
@@ -94,7 +127,61 @@ BEGIN
 		
 		END PROCESS;
 		
+		ms_counter_we <= wr_out WHEN addr_io = MS_COUNT_P ELSE
+								'0';
+		
 		vga_cursor <= X"0000";
 		vga_cursor_enable <= '0';
 		
 END Structure;
+
+--##############################################################################################################
+--##############################################################################################################
+--##############################################################################################################
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+USE ieee.numeric_std.all;
+
+ENTITY counter_ms IS 
+	PORT (
+		CLOCK_50 		: IN 	std_logic;
+		ms_to_count		: IN 	std_logic_vector(15 downto 0);
+		ms_value			: OUT std_logic_vector(15 downto 0);
+		cycles_counted : OUT std_logic_vector(15 downto 0);
+		write_enable	: IN 	std_logic
+	 );
+END counter_ms;
+
+ARCHITECTURE Structure OF counter_ms IS
+
+	SIGNAL counter_cyc 		: std_logic_vector (15 downto 0) := X"0000";
+	SIGNAL tmp_ms_counter	: std_logic_vector (15 downto 0) := X"0000";
+
+BEGIN
+
+	-- Every time the process is triggered 20ns past, then 
+	-- 50.000 cycles are equal to 1ms
+	
+	PROCESS (CLOCK_50) 
+	BEGIN
+		IF rising_edge(CLOCK_50) THEN
+			IF counter_cyc = 0 THEN
+				counter_cyc <= X"C350";
+				IF tmp_ms_counter > 0 AND write_enable = '0' THEN
+					tmp_ms_counter <= tmp_ms_counter - 1;
+				ELSIF write_enable = '1' THEN
+					tmp_ms_counter <= ms_to_count;
+				END IF;
+			ELSE  
+				counter_cyc <= counter_cyc - 1;
+			END IF;
+		END IF;
+	END PROCESS;
+
+	ms_value	<= tmp_ms_counter;
+	cycles_counted <= counter_cyc;
+
+END Structure;
+
