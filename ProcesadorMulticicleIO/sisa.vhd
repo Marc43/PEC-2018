@@ -157,9 +157,6 @@ BEGIN
 	begin
 		if rising_edge(CLOCK_50) then
 			ticks <= ticks+1;
-			if ticks="111" then
-				clk_proc <= not clk_proc;
-			end if;
 		end if;
 	end process;
 	proc0 : proc
@@ -272,7 +269,7 @@ BEGIN
 	);
 	
 	gboot <= SW(9);
-	
+	clk_proc <= ticks(2);
 	
 	VGA_R <= "0000" & bus_vga_r(3 DOWNTO 0);
 	VGA_G <= "0000" & bus_vga_g(3 DOWNTO 0);

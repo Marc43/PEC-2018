@@ -100,27 +100,30 @@ BEGIN
 		rd_io	<= X"000" & "000" & data_ready_bus 	WHEN rd_in = '1' AND addr_io = KEYBOARD_ST_P 	ELSE
 					X"00" & read_char_bus				WHEN rd_in = '1' AND addr_io = KEYBOARD_READ_P 	ELSE
 					bus_ms_value							WHEN rd_in = '1' AND addr_io = MS_COUNT_P			ELSE
-					bus_cycles_counted					WHEN rd_in = '1' AND addr_io = RAND_P				ELSE
-					ports(conv_integer(addr_io)) 		WHEN rd_in = '1';  -- Reads
+					--bus_cycles_counted					WHEN rd_in = '1' AND addr_io = RAND_P				ELSE
+					ports(conv_integer(addr_io));
 		
 		PROCESS (CLOCK_50)
 		BEGIN
 			
 			IF rising_edge(CLOCK_50) THEN
+			
 				IF clear_char_bus = '1' THEN
 					clear_char_bus <= '0';
 				END IF;
 				
 				IF wr_out = '1' AND addr_io = MS_COUNT_P THEN
 					bus_ms_to_count <= wr_io; 
-				ELSIF wr_out = '1' AND addr_io /= KEYBOARD_ST_P THEN
-					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
-				ELSIF wr_out = '1' THEN
+				ELSIF wr_out = '1' AND addr_io = KEYBOARD_ST_P THEN
 					clear_char_bus <= '1';
+				ELSIF wr_out = '1' THEN
+					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
 				END IF;
 				
 				ports(conv_integer(KEY_P)) 	<= X"000" & keys;
 				ports(conv_integer(SWITCH_P)) <=  X"00" & switches;
+				
+				ports(conv_integer(RAND_P)) <= bus_cycles_counted;
 			END IF;
 		
 		END PROCESS;
@@ -168,7 +171,6 @@ BEGIN
 		
 			IF write_enable = '1' THEN
 				tmp_ms_counter <= ms_to_count;
-				counter_cyc <= X"C350"; -- New timer, start again
 			END IF;
 			
 			IF counter_cyc = 0 THEN 
@@ -183,7 +185,7 @@ BEGIN
 	END PROCESS;
 
 	ms_value	<= tmp_ms_counter;
-	cycles_counted <= X"C012";
+	cycles_counted <= counter_cyc;
 
 END Structure;
 
