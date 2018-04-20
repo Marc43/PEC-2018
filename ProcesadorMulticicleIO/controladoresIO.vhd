@@ -111,12 +111,10 @@ BEGIN
 					clear_char_bus <= '0';
 				END IF;
 				
-				IF wr_out = '1' AND addr_io /= KEYBOARD_ST_P THEN
-					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
-					
-				ELSIF wr_out = '1' AND addr_io = MS_COUNT_P THEN
+				IF wr_out = '1' AND addr_io = MS_COUNT_P THEN
 					bus_ms_to_count <= wr_io; 
-				
+				ELSIF wr_out = '1' AND addr_io /= KEYBOARD_ST_P THEN
+					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
 				ELSIF wr_out = '1' THEN
 					clear_char_bus <= '1';
 				END IF;
@@ -128,7 +126,7 @@ BEGIN
 		END PROCESS;
 		
 		ms_counter_we <= wr_out WHEN addr_io = MS_COUNT_P ELSE
-								'0';
+							  '0';
 		
 		vga_cursor <= X"0000";
 		vga_cursor_enable <= '0';
@@ -167,12 +165,16 @@ BEGIN
 	PROCESS (CLOCK_50) 
 	BEGIN
 		IF rising_edge(CLOCK_50) THEN
-			IF counter_cyc = 0 THEN
+		
+			IF write_enable = '1' THEN
+				tmp_ms_counter <= ms_to_count;
+				counter_cyc <= X"C350"; -- New timer, start again
+			END IF;
+			
+			IF counter_cyc = 0 THEN 
 				counter_cyc <= X"C350";
 				IF tmp_ms_counter > 0 AND write_enable = '0' THEN
 					tmp_ms_counter <= tmp_ms_counter - 1;
-				ELSIF write_enable = '1' THEN
-					tmp_ms_counter <= ms_to_count;
 				END IF;
 			ELSE  
 				counter_cyc <= counter_cyc - 1;
@@ -181,7 +183,7 @@ BEGIN
 	END PROCESS;
 
 	ms_value	<= tmp_ms_counter;
-	cycles_counted <= counter_cyc;
+	cycles_counted <= X"C012";
 
 END Structure;
 
