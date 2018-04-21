@@ -26,8 +26,10 @@ COMPONENT unidad_control IS
 			 eval		  : IN  STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-          wrd       : OUT STD_LOGIC;
-          addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+          wrd_gp    : OUT STD_LOGIC;
+			 wrd_sys   : OUT STD_LOGIC;
+			 rd_sys_gp : OUT STD_LOGIC;
+			 addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -47,7 +49,9 @@ COMPONENT datapath IS
     PORT (clk      : IN  STD_LOGIC;
           op       : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-          wrd      : IN  STD_LOGIC;
+          wrd_gp   : IN  STD_LOGIC;
+			 wrd_sys  : IN  STD_LOGIC;
+			 rd_sys_gp: IN  STD_LOGIC;
           addr_a   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -74,7 +78,9 @@ COMPONENT Display7 IS
 END COMPONENT;
 
 SIGNAL bus_op 				: STD_LOGIC_VECTOR (2 DOWNTO 0);
-SIGNAL bus_wrd				: STD_LOGIC;
+SIGNAL bus_wrd_gp			: STD_LOGIC;
+SIGNAL bus_wrd_sys		: STD_LOGIC;
+SIGNAL bus_rd_sys_gp		: STD_LOGIC;
 SIGNAL bus_addr_a 		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL bus_addr_b			: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL bus_addr_d 		: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -107,7 +113,9 @@ BEGIN
 		eval		=> bus_eval,
 		op			=> bus_op,
 		func		=> bus_func,
-		wrd		=> bus_wrd,
+		wrd_gp	=> bus_wrd_gp,
+		wrd_sys  => bus_wrd_sys,
+		rd_sys_gp => bus_rd_sys_gp,
 		addr_a	=> bus_addr_a,
 		addr_b	=> bus_addr_b,
 		addr_d	=> bus_addr_d,
@@ -129,7 +137,9 @@ BEGIN
 		clk		=> clk,
 		op			=> bus_op,
 		func		=> bus_func,
-		wrd		=>	bus_wrd,
+		wrd_gp	=>	bus_wrd_gp,
+		wrd_sys	=>	bus_wrd_sys,
+		rd_sys_gp => bus_rd_sys_gp,
 		addr_a	=> bus_addr_a,
 		addr_b	=> bus_addr_b,
 		addr_d	=> bus_addr_d,

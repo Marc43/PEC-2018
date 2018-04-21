@@ -6,7 +6,9 @@ ENTITY datapath IS
     PORT (clk      : IN  STD_LOGIC;
           op       : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func 	 : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
-          wrd      : IN  STD_LOGIC;
+          wrd_gp   : IN  STD_LOGIC;
+			 wrd_sys  : IN  STD_LOGIC;
+			 rd_sys_gp: IN  STD_LOGIC;
           addr_a   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d   : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -40,7 +42,9 @@ ARCHITECTURE Structure OF datapath IS
 	
 	COMPONENT regfile IS
     PORT (clk    : IN  STD_LOGIC;
-          wrd    : IN  STD_LOGIC;
+          wrd_gp : IN  STD_LOGIC;
+			 wrd_sys: IN  STD_LOGIC;
+			 RD_SYS_GP	: IN 	STD_LOGIC;
           d      : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_a : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -72,7 +76,9 @@ BEGIN
 	regfile0 : regfile
    PORT MAP (
 		clk => clk,
-		wrd => wrd,
+		wrd_gp => wrd_gp,
+		wrd_sys => wrd_sys,
+		RD_SYS_GP => rd_sys_gp,
 		d	=> mux_dreg,
 		addr_a => addr_a,
 		addr_b => addr_b,

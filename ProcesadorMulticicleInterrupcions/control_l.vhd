@@ -10,6 +10,7 @@ ENTITY control_l IS
           ldpc      : OUT STD_LOGIC;
           wrd_gp    : OUT STD_LOGIC;
           wrd_sys   : OUT STD_LOGIC;
+			 rd_sys_gp : OUT STD_LOGIC;
 			 addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -92,6 +93,7 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT EI	 	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100000";
 	CONSTANT DI	 	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100001";
 	CONSTANT RETI	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100100";
+	CONSTANT HALT  : STD_LOGIC_VECTOR (5 DOWNTO 0) := "111111";
 	
 	SIGNAL op_code 	: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	SIGNAL f_code		: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -117,7 +119,7 @@ BEGIN
 	jmp_f		<= ir(2 DOWNTO 0);
 	
 	f_code		<= ir(5 DOWNTO 3);
-	spec_code 	<= ir(6 DOWNTO 0);
+	spec_code 	<= ir(5 DOWNTO 0);
 	
 	addr_a 	<= 	reg_d WHEN op_code = MOV ELSE
 	
@@ -171,7 +173,7 @@ BEGIN
 									ir(8) = '1'		ELSE
 				f_code;
 				
-	ldpc	<=	'0' 	WHEN op_code = HALT 	ELSE
+	ldpc	<=	'0' 	WHEN op_code = SPEC AND spec_code = HALT ELSE
 				'1';
 	
 	wr_m	<= '1' 	WHEN op_code = ST 	OR 
@@ -214,7 +216,7 @@ BEGIN
 									op_code = STB ELSE		
 						'0'; -- Note that could be "NOT immed_x2"
 						
-	wrd_gp		<= '0' WHEN op_code = HALT 	OR
+	wrd_gp		<= '0' WHEN(op_code = SPEC AND spec_code = HALT) OR
 									op_code = STB 		OR
 									op_code = ST		OR
 									op_code = BRANCH  OR	
@@ -226,6 +228,10 @@ BEGIN
 	wrd_sys		<= '1' WHEN op_code = SPEC AND (spec_code = WRS OR spec_code = EI OR spec_code = DI) ELSE
 	
 						'0';
+						
+	rd_sys_gp	<= '1' WHEN (op_code = SPEC AND spec_code = RDS) ELSE 
+									
+						'0'; 
 						
 	wr_port	<= '1' WHEN op_code = IO AND ir(8) = '1' 	ELSE
 	

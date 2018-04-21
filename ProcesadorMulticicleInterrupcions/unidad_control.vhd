@@ -13,6 +13,7 @@ ENTITY unidad_control IS
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd_gp    : OUT STD_LOGIC;
 			 wrd_sys   : OUT STD_LOGIC;
+			 rd_sys_gp : OUT STD_LOGIC;
           addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -39,6 +40,7 @@ ARCHITECTURE Structure OF unidad_control IS
           ldpc      : OUT STD_LOGIC;
           wrd_gp    : OUT STD_LOGIC;
 			 wrd_sys   : OUT STD_LOGIC;
+			 rd_sys_gp : OUT STD_LOGIC;
           addr_a    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -76,7 +78,8 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_wr_m		: STD_LOGIC;
 	SIGNAL bus_wrd_gp		: STD_LOGIC;
 	SIGNAL bus_wrd_sys	: STD_LOGIC;
-	
+	SIGNAL bus_rd_sys_gp : STD_LOGIC;
+
 	SIGNAL multi_ldpc		: STD_LOGIC;
 	SIGNAL multi_ldir		: STD_LOGIC;
 	
@@ -101,6 +104,7 @@ BEGIN
 		ldpc			=> bus_ldpc,
 		wrd_gp		=>	bus_wrd_gp,
 		wrd_sys		=>	bus_wrd_sys,
+		rd_sys_gp   => bus_rd_sys_gp,
 		addr_a		=> addr_a,
 		addr_b		=> addr_b,
 		addr_d		=> addr_d,
@@ -120,11 +124,11 @@ BEGIN
 		clk			=>	clk,
 		boot			=> boot,
 		ldpc_l		=> bus_ldpc,
-		wrd_l			=>	bus_wrd,
+		wrd_l			=>	bus_wrd_gp,
 		wr_m_l		=>	bus_wr_m,
 		w_b			=> bus_word_byte,
 		ldpc			=> multi_ldpc,
-		wrd			=>	wrd,
+		wrd			=>	wrd_gp,
 		wr_m			=>	wr_m,
 		ldir			=>	multi_ldir,
 		ins_dad		=>	ins_dad,
@@ -141,7 +145,7 @@ BEGIN
 	
 	
 	tknbr_pc	<= 		  new_pc + 2 						WHEN bus_tknbr = "00" ELSE
-							  new_pc + 2 + bus_immed_des 	WHEN bus_tknbr = "01" ELSE -- Este immed deberia cogerse del datapath?
+							  new_pc + 2 + bus_immed_des 	WHEN bus_tknbr = "01" ELSE
 							  aluout		 						WHEN bus_tknbr = "10" ELSE
 							  new_pc + 2; -- To change when CALLS is implemented
 							  

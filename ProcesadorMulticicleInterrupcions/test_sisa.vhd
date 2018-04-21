@@ -1,5 +1,5 @@
 library ieee;
-   use ieee.std_logic_1164.all;
+use ieee.std_logic_1164.all;
 
 
 entity test_sisa is
@@ -28,17 +28,29 @@ architecture comportament of test_sisa is
    end component;
    
    component sisa IS 
-	PORT (	CLOCK_50		: IN	STD_LOGIC;
-				SRAM_ADDR 	: out std_logic_vector(17 downto 0);
-				SRAM_DQ 		: inout std_logic_vector(15 downto 0);
-				SRAM_UB_N 	: out std_logic;
-				SRAM_LB_N 	: out std_logic;
-				SRAM_CE_N 	: out std_logic := '1';
-				SRAM_OE_N 	: out std_logic := '1';
-				SRAM_WE_N 	: out std_logic := '1';
-								
-				SW : in std_logic_vector(9 downto 9)
-				);
+    PORT (CLOCK_50  : IN    STD_LOGIC;
+          SRAM_ADDR : out   std_logic_vector(17 downto 0);
+          SRAM_DQ   : inout std_logic_vector(15 downto 0);
+          SRAM_UB_N : out   std_logic;
+          SRAM_LB_N : out   std_logic;
+          SRAM_CE_N : out   std_logic := '1';
+          SRAM_OE_N : out   std_logic := '1';
+          SRAM_WE_N : out   std_logic := '1';
+			 PS2_CLK	  : inout std_logic;
+			 PS2_DAT   : inout std_logic;
+			 LEDG   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
+			 LEDR   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
+			 KEY	  : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);
+          SW     : IN  std_logic_vector(9 downto 0);
+			 VGA_R  : OUT STD_LOGIC_VECTOR (7 downto 0);
+			 VGA_G  : OUT STD_LOGIC_VECTOR (7 downto 0);
+			 VGA_B  : OUT STD_LOGIC_VECTOR (7 downto 0);
+			 VGA_HS : OUT STD_LOGIC;
+			 VGA_VS : OUT STD_LOGIC;
+			 HEX0 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+			 HEX1 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+			 HEX2 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+			 HEX3 : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
    end component;
 
    
@@ -58,9 +70,13 @@ architecture comportament of test_sisa is
    signal we_m           : std_logic;
    signal ce_m2          : std_logic;
 
-   signal botones      	: std_logic_vector(9 downto 9);
-	signal bypass_sw		: std_logic_vector(0 downto 0) := "1";
+   signal botones      	: std_logic_vector(9 downto 0);
+	signal bypass_sw0		: std_logic_vector(8 downto 0) := "000000000";
+	signal keys				: std_logic_vector(3 downto 0) := "1111";
+	
+	signal bboot : std_logic;
 
+	signal bypass_sw : std_logic_vector(9 downto 0) := bboot & bypass_sw0;
 	
 begin
    
@@ -70,14 +86,15 @@ begin
       port map (
          CLOCK_50   => clk,
          SW        => bypass_sw,
-
          SRAM_ADDR  => addr_SoC,
          SRAM_DQ    => data_mem,
 			SRAM_UB_N 	=> ub_m,
 			SRAM_LB_N 	=> lb_m,
 			SRAM_CE_N 	=> ce_m,
 			SRAM_OE_N 	=> oe_m,
-			SRAM_WE_N 	=> we_m
+			SRAM_WE_N 	=> we_m, 
+			KEY	  => keys
+
       );
 
    mem0 : async_64Kx16
@@ -100,7 +117,7 @@ begin
 		botones(9) <= reset_proc;
 		
    -- Descripcio del comportament
-	bypass_sw <= "1" after 150 ns, "0" after 200 ns;
+	bboot <= '1' after 150 ns, '0' after 200 ns;
 	clk <= not clk after 10 ns;
 	reset_ram <= '1' after 15 ns, '0' after 50 ns;    -- reseteamos la RAm en el primer ciclo
 	reset_proc <= '1' after 25 ns, '0' after 320 ns;  -- reseteamos el procesador en el segundo ciclo

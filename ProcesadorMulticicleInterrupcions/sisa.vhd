@@ -17,7 +17,7 @@ ENTITY sisa IS
 			 LEDG   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			 LEDR   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			 KEY	  : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);
-          SW     : in  std_logic_vector(9 downto 0);
+          SW     : IN  std_logic_vector(9 downto 0);
 			 VGA_R  : OUT STD_LOGIC_VECTOR (7 downto 0);
 			 VGA_G  : OUT STD_LOGIC_VECTOR (7 downto 0);
 			 VGA_B  : OUT STD_LOGIC_VECTOR (7 downto 0);
@@ -157,11 +157,11 @@ BEGIN
 	begin
 		if rising_edge(CLOCK_50) then
 			ticks <= ticks+1;
-			if ticks="111" then
-				clk_proc <= not clk_proc;
-			end if;
 		end if;
 	end process;
+	
+	clk_proc <= ticks(2);
+	
 	proc0 : proc
 	port map (
 		clk 		=> clk_proc,
