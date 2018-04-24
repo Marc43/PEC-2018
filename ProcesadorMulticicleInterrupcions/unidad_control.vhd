@@ -27,7 +27,9 @@ ENTITY unidad_control IS
           wr_m      : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC;
 			 wr_port	  : OUT STD_LOGIC;
-			 rd_port	  : OUT STD_LOGIC);
+			 rd_port	  : OUT STD_LOGIC;
+			 e_int	  : OUT STD_LOGIC;
+			 d_int	  : OUT STD_LOGIC);
 END unidad_control;
 
 ARCHITECTURE Structure OF unidad_control IS
@@ -52,18 +54,22 @@ ARCHITECTURE Structure OF unidad_control IS
           immed_x2  : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC;
 			 wr_port	  : OUT STD_LOGIC;
-			 rd_port	  : OUT STD_LOGIC);
+			 rd_port	  : OUT STD_LOGIC;
+			 e_int	  : OUT STD_LOGIC;
+			 d_int	  : OUT STD_LOGIC);
 	END COMPONENT;
 	
 	COMPONENT multi IS
     port(clk       : IN  STD_LOGIC;
          boot      : IN  STD_LOGIC;
          ldpc_l    : IN  STD_LOGIC;
-         wrd_l     : IN  STD_LOGIC;
+         wrd_gp_l  : IN  STD_LOGIC;
+         wrd_sys_l : IN  STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
-         wrd       : OUT STD_LOGIC;
+         wrd_gp    : OUT STD_LOGIC;
+			wrd_sys	 : OUT STD_LOGIC;
          wr_m      : OUT STD_LOGIC;
          ldir      : OUT STD_LOGIC;
          ins_dad   : OUT STD_LOGIC;
@@ -78,7 +84,7 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_wr_m		: STD_LOGIC;
 	SIGNAL bus_wrd_gp		: STD_LOGIC;
 	SIGNAL bus_wrd_sys	: STD_LOGIC;
-	SIGNAL bus_rd_sys_gp : STD_LOGIC;
+--	SIGNAL bus_rd_sys_gp : STD_LOGIC;
 
 	SIGNAL multi_ldpc		: STD_LOGIC;
 	SIGNAL multi_ldir		: STD_LOGIC;
@@ -104,7 +110,7 @@ BEGIN
 		ldpc			=> bus_ldpc,
 		wrd_gp		=>	bus_wrd_gp,
 		wrd_sys		=>	bus_wrd_sys,
-		rd_sys_gp   => bus_rd_sys_gp,
+		rd_sys_gp   => rd_sys_gp,
 		addr_a		=> addr_a,
 		addr_b		=> addr_b,
 		addr_d		=> addr_d,
@@ -116,7 +122,9 @@ BEGIN
 		immed_x2		=> immed_x2,
 		word_byte 	=> bus_word_byte,
 		wr_port		=> wr_port,
-		rd_port		=> rd_port
+		rd_port		=> rd_port,
+		e_int			=> e_int,
+		d_int			=> d_int
 	);
 	
 	multi0 : multi
@@ -124,11 +132,13 @@ BEGIN
 		clk			=>	clk,
 		boot			=> boot,
 		ldpc_l		=> bus_ldpc,
-		wrd_l			=>	bus_wrd_gp,
+		wrd_gp_l		=>	bus_wrd_gp,
+		wrd_sys_l	=> bus_wrd_sys,
 		wr_m_l		=>	bus_wr_m,
 		w_b			=> bus_word_byte,
 		ldpc			=> multi_ldpc,
-		wrd			=>	wrd_gp,
+		wrd_gp		=>	wrd_gp,
+		wrd_sys		=> wrd_sys,
 		wr_m			=>	wr_m,
 		ldir			=>	multi_ldir,
 		ins_dad		=>	ins_dad,
@@ -158,7 +168,8 @@ BEGIN
 									X"C000"				WHEN others;
 
 	pc 	<= new_pc;
-	pcup 	<= new_pc + 2; -- pc updated?
+	pcup 	<= new_pc + 2; 
+	
 	PROCESS (clk, boot) 
 	BEGIN
 	
@@ -171,8 +182,10 @@ BEGIN
 	
 	END PROCESS;
 	
-	
 	immed 			<= bus_immed;
 	bus_immed_des	<= STD_LOGIC_VECTOR(shift_left(unsigned(bus_immed), 1));
+	
+	-- Hay que añadirle a multi todo el estado system... con las escrituras en los registros etc. analogo a el estado DEMW con losregistros gp
+	-- Falta tambien añadirle la señal interrupt a multi, que saldra del interrupt controller, si se nos olvida esto estamos DEPDEP
 	
 END Structure;

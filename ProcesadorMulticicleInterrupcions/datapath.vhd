@@ -26,7 +26,9 @@ ENTITY datapath IS
 			 eval		 : OUT STD_LOGIC;
 			 rd_io	 : IN	 STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 addr_port : OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+			 addr_port : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+			 e_int	 : IN STD_LOGIC;
+			 d_int	 : IN STD_LOGIC);
 END datapath;
 
 ARCHITECTURE Structure OF datapath IS
@@ -44,7 +46,9 @@ ARCHITECTURE Structure OF datapath IS
     PORT (clk    : IN  STD_LOGIC;
           wrd_gp : IN  STD_LOGIC;
 			 wrd_sys: IN  STD_LOGIC;
-			 RD_SYS_GP	: IN 	STD_LOGIC;
+			 RD_SYS_GP : IN 	STD_LOGIC;
+			 e_int  : IN  STD_LOGIC;
+			 d_int  : IN  STD_LOGIC;
           d      : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_a : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -79,6 +83,8 @@ BEGIN
 		wrd_gp => wrd_gp,
 		wrd_sys => wrd_sys,
 		RD_SYS_GP => rd_sys_gp,
+		e_int => e_int,
+		d_int => d_int,
 		d	=> mux_dreg,
 		addr_a => addr_a,
 		addr_b => addr_b,
@@ -111,8 +117,9 @@ BEGIN
 	data_wr	 <= reg_b;
 	aluout	 <= alu_out;
 	addr_m	 <= mux_addr;
-	wr_io		 <= alu_out; -- para el OUT, aunque tambien se podria coger directamente el registro B...
-	addr_port <= immed(7 DOWNTO 0);	 -- Tanto para OUT como para IN, en caso que sea otra llamada wr_out = '0' && rd_in = '0'
+	wr_io		 <= alu_out; 				-- para el OUT, aunque tambien se podria coger directamente el registro B...
+	addr_port <= immed(7 DOWNTO 0);	-- Tanto para OUT como para IN, en caso que sea otra llamada wr_out = '0' && rd_in = '0'
+	
 	-- Just connect the wires, the control will allow the write if necessary
 				
 END Structure;

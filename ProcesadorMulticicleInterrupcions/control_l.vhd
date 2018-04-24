@@ -22,7 +22,9 @@ ENTITY control_l IS
           immed_x2  : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC;
 			 wr_port	  : OUT STD_LOGIC;
-			 rd_port	  : OUT STD_LOGIC);
+			 rd_port	  : OUT STD_LOGIC;
+			 e_int	  : OUT STD_LOGIC;
+			 d_int	  : OUT STD_LOGIC);
 END control_l;
 
 ARCHITECTURE Structure OF control_l IS
@@ -95,6 +97,8 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT RETI	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100100";
 	CONSTANT HALT  : STD_LOGIC_VECTOR (5 DOWNTO 0) := "111111";
 	
+	CONSTANT S1		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
+	
 	SIGNAL op_code 	: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	SIGNAL f_code		: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL spec_code	: STD_LOGIC_VECTOR (5 DOWNTO 0);
@@ -121,9 +125,11 @@ BEGIN
 	f_code		<= ir(5 DOWNTO 3);
 	spec_code 	<= ir(5 DOWNTO 0);
 	
-	addr_a 	<= 	reg_d WHEN op_code = MOV ELSE
+	addr_a 	<= reg_d WHEN op_code = MOV ELSE
 	
-						reg_src1;
+					S1		WHEN op_code = SPEC 	 AND 
+								  spec_code = RETI ELSE  
+					reg_src1;
 	
 	addr_b 	<= reg_src2 WHEN 	op_code = ARITHLOG OR
 										op_code = ARITHEXT OR
@@ -156,7 +162,8 @@ BEGIN
 				
 				EXT_op		WHEN		op_code = ARITHEXT 	ELSE
 				
-				BYPASSX_op  WHEN		op_code = JUMP 		ELSE
+				BYPASSX_op  WHEN		op_code = JUMP	OR
+											op_code = SPEC ELSE
 				
 				BYPASSY_op; -- IO 
 
@@ -174,6 +181,7 @@ BEGIN
 				f_code;
 				
 	ldpc	<=	'0' 	WHEN op_code = SPEC AND spec_code = HALT ELSE
+	
 				'1';
 	
 	wr_m	<= '1' 	WHEN op_code = ST 	OR 
@@ -191,7 +199,8 @@ BEGIN
 	tknbr <= "10" WHEN (op_code = JUMP AND jmp_f = JZ  AND eval = '1') OR
 							 (op_code = JUMP AND jmp_f = JNZ AND eval = '0') OR
 							 (op_code = JUMP AND jmp_f = JMP) 					 OR 
-							 (op_code = JUMP AND jmp_f = JAL) 					 ELSE
+							 (op_code = JUMP AND jmp_f = JAL) 					 OR 
+							 (op_code = SPEC AND spec_code = RETI)				 ELSE
 							 
 				"01" WHEN (op_code = BRANCH AND branch_f = BZ  AND eval = '1') OR
 							 (op_code = BRANCH AND branch_f = BNZ AND eval = '0') ELSE
@@ -216,20 +225,19 @@ BEGIN
 									op_code = STB ELSE		
 						'0'; -- Note that could be "NOT immed_x2"
 						
-	wrd_gp		<= '0' WHEN(op_code = SPEC AND spec_code = HALT) OR
-									op_code = STB 		OR
+	wrd_gp		<= '0' WHEN op_code = STB 		OR
 									op_code = ST		OR
 									op_code = BRANCH  OR	
 								  (op_code = JUMP AND (jmp_f = JZ OR jmp_f = JNZ OR jmp_f = JMP)) OR
 								  (op_code = IO	AND ir(8) = '1') OR	
-								   op_code = SPEC ELSE
+								  (op_code = SPEC AND (spec_code = EI OR spec_code = DI OR spec_code = RETI OR spec_code = WRS)) ELSE
 						'1';
 						
 	wrd_sys		<= '1' WHEN op_code = SPEC AND (spec_code = WRS OR spec_code = EI OR spec_code = DI) ELSE
 	
 						'0';
 						
-	rd_sys_gp	<= '1' WHEN (op_code = SPEC AND spec_code = RDS) ELSE 
+	rd_sys_gp	<= '1' WHEN (op_code = SPEC AND (spec_code = RDS OR spec_code = RETI)) ELSE 
 									
 						'0'; 
 						
@@ -240,6 +248,13 @@ BEGIN
 	rd_port	<= '1' WHEN op_code = IO AND ir(8) = '0' 	ELSE
 	
 					'0';
+					
+	e_int <= '1' WHEN op_code = SPEC AND spec_code = EI ELSE
+				
+				'0';
+				
+	d_int	<= '1' WHEN op_code = SPEC AND spec_code = DI ELSE
 	
+				'0';
 	
 END Structure;

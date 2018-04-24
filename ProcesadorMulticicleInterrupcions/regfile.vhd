@@ -8,6 +8,8 @@ ENTITY regfile IS
           wrd_gp  	: IN  STD_LOGIC;
 			 wrd_sys		: IN	STD_LOGIC;
 			 RD_SYS_GP	: IN 	STD_LOGIC;
+			 e_int		: IN  STD_LOGIC;
+			 d_int		: IN  STD_LOGIC;
           d     		: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_a 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -23,6 +25,8 @@ ARCHITECTURE Structure OF regfile IS
 	SIGNAL regs_gp 	: register_set; -- General purpose registers
 	SIGNAL regs_sys 	: register_set; -- System registers
 	
+	CONSTANT PSW : STD_LOGIC_VECTOR (2 DOWNTO 0) := "111";
+	
 BEGIN
 
 	PROCESS (clk)
@@ -32,13 +36,23 @@ BEGIN
 			IF wrd_gp = '1' THEN
 				regs_gp(conv_integer(addr_d)) <= d;
 			ELSIF wrd_sys = '1' THEN
-				regs_sys(conv_integer(addr_d)) <= d;
+				IF e_int = '1' THEN
+					-- EI
+					regs_sys(conv_integer(PSW))(1) <= '1'; -- Bit that indicates enabled/disabled interruptions
+				ELSIF d_int = '1' THEN
+					-- DI
+					regs_sys(conv_integer(PSW))(1) <= '0';
+				ELSE
+					-- WRS
+					regs_sys(conv_integer(addr_d)) <= d;
+				END IF;
 			END IF;
 		END IF;
 	
 	END PROCESS;
 	
 	a <= regs_gp(conv_integer(addr_a)) WHEN RD_SYS_GP = '0' ELSE
+	
 		  regs_sys(conv_integer(addr_a));
 		  
 	b <= regs_gp(conv_integer(addr_b));

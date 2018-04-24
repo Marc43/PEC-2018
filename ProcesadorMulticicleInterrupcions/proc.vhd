@@ -42,7 +42,9 @@ COMPONENT unidad_control IS
           wr_m      : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC;
 			 wr_port	  : OUT STD_LOGIC;
-			 rd_port	  : OUT STD_LOGIC);
+			 rd_port	  : OUT STD_LOGIC;
+			 e_int	  : OUT STD_LOGIC;
+			 d_int	  : OUT STD_LOGIC);
 END COMPONENT;
 
 COMPONENT datapath IS
@@ -69,7 +71,9 @@ COMPONENT datapath IS
 			 eval		 : OUT STD_LOGIC;
 			 rd_io	 : IN	 STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 addr_port: OUT STD_LOGIC_VECTOR(7 DOWNTO 0));
+			 addr_port: OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+			 e_int	 : IN  STD_LOGIC;
+			 d_int	 : IN  STD_LOGIC);
 END COMPONENT;
 
 COMPONENT Display7 IS
@@ -102,6 +106,9 @@ SIGNAL bus_immed_reg		: STD_LOGIC;
 SIGNAL bus_eval			: STD_LOGIC;
 SIGNAL bus_aluout			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 
+SIGNAL bus_e_int			: STD_LOGIC;
+SIGNAL bus_d_int			: STD_LOGIC;
+
 BEGIN
 
 	unidad_control0 : unidad_control
@@ -129,7 +136,9 @@ BEGIN
 		word_byte=> bus_word_byte,
 		in_d 		=> bus_in_d,
 		wr_port	=> wr_port,
-		rd_port  => rd_port
+		rd_port  => rd_port,
+		e_int		=> bus_e_int,
+		d_int		=> bus_d_int
 	);
 	
 	datapath0 : datapath
@@ -157,7 +166,9 @@ BEGIN
 		eval		=> bus_eval,
 		rd_io		=> rd_io,
 		wr_io		=> wr_io,
-		addr_port => addr_port
+		addr_port => addr_port,
+		e_int		=> bus_e_int,
+		d_int		=> bus_d_int
 	);
 	
 	wr_m <= bus_wr_m;
