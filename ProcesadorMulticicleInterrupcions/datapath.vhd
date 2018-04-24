@@ -28,7 +28,8 @@ ENTITY datapath IS
 			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 addr_port : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 			 e_int	 : IN STD_LOGIC;
-			 d_int	 : IN STD_LOGIC);
+			 d_int	 : IN STD_LOGIC;
+			 ret_int	 : IN STD_LOGIC);
 END datapath;
 
 ARCHITECTURE Structure OF datapath IS
@@ -49,6 +50,7 @@ ARCHITECTURE Structure OF datapath IS
 			 RD_SYS_GP : IN 	STD_LOGIC;
 			 e_int  : IN  STD_LOGIC;
 			 d_int  : IN  STD_LOGIC;
+			 ret_int: IN  STD_LOGIC;
           d      : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_a : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -85,6 +87,7 @@ BEGIN
 		RD_SYS_GP => rd_sys_gp,
 		e_int => e_int,
 		d_int => d_int,
+		ret_int => ret_int,
 		d	=> mux_dreg,
 		addr_a => addr_a,
 		addr_b => addr_b,

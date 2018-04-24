@@ -10,6 +10,7 @@ ENTITY regfile IS
 			 RD_SYS_GP	: IN 	STD_LOGIC;
 			 e_int		: IN  STD_LOGIC;
 			 d_int		: IN  STD_LOGIC;
+			 ret_int    : IN  STD_LOGIC;
           d     		: IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_a 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_b 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -23,10 +24,10 @@ ARCHITECTURE Structure OF regfile IS
 	type register_set is array (7 downto 0) of std_logic_vector(15 downto 0); -- 8 registres de 16 bits cadascun
 	
 	SIGNAL regs_gp 	: register_set; -- General purpose registers
-	SIGNAL regs_sys 	: register_set; -- System registers
+	SIGNAL regs_sys 	: register_set := ((others => (others => '0'))); -- System registers
 	
-	CONSTANT PSW : STD_LOGIC_VECTOR (2 DOWNTO 0) := "111";
-	
+	CONSTANT PSWup 	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "111";
+	CONSTANT PSWold	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "000";	
 BEGIN
 
 	PROCESS (clk)
@@ -38,14 +39,21 @@ BEGIN
 			ELSIF wrd_sys = '1' THEN
 				IF e_int = '1' THEN
 					-- EI
-					regs_sys(conv_integer(PSW))(1) <= '1'; -- Bit that indicates enabled/disabled interruptions
+					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '1' & regs_sys(conv_integer(PSWup))(0); -- Bit that indicates enabled/disabled interruptions
 				ELSIF d_int = '1' THEN
 					-- DI
-					regs_sys(conv_integer(PSW))(1) <= '0';
+					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWup))(0);
 				ELSE
 					-- WRS
 					regs_sys(conv_integer(addr_d)) <= d;
 				END IF;
+			END IF;
+			
+			IF ret_int = '1' THEN
+			
+				regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWold));
+				-- When we return from an interruption we must restore the old state of the processor
+				-- Thus, the processor is in the same PC and state as before
 			END IF;
 		END IF;
 	

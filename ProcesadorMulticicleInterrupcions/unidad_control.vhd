@@ -29,7 +29,8 @@ ENTITY unidad_control IS
 			 wr_port	  : OUT STD_LOGIC;
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
-			 d_int	  : OUT STD_LOGIC);
+			 d_int	  : OUT STD_LOGIC;
+			 ret_int	  : OUT STD_LOGIC);
 END unidad_control;
 
 ARCHITECTURE Structure OF unidad_control IS
@@ -56,7 +57,8 @@ ARCHITECTURE Structure OF unidad_control IS
 			 wr_port	  : OUT STD_LOGIC;
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
-			 d_int	  : OUT STD_LOGIC);
+			 d_int	  : OUT STD_LOGIC;
+			 ret_int   : OUT STD_LOGIC);
 	END COMPONENT;
 	
 	COMPONENT multi IS
@@ -124,7 +126,8 @@ BEGIN
 		wr_port		=> wr_port,
 		rd_port		=> rd_port,
 		e_int			=> e_int,
-		d_int			=> d_int
+		d_int			=> d_int,
+		ret_int		=> ret_int
 	);
 	
 	multi0 : multi

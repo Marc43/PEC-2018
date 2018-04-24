@@ -24,7 +24,8 @@ ENTITY control_l IS
 			 wr_port	  : OUT STD_LOGIC;
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
-			 d_int	  : OUT STD_LOGIC);
+			 d_int	  : OUT STD_LOGIC;
+			 ret_int	  : OUT STD_LOGIC);
 END control_l;
 
 ARCHITECTURE Structure OF control_l IS
@@ -97,7 +98,9 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT RETI	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100100";
 	CONSTANT HALT  : STD_LOGIC_VECTOR (5 DOWNTO 0) := "111111";
 	
-	CONSTANT S1		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
+	CONSTANT S1		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001"; -- System register that contains the PCup when the system was interrupted
+	--CONSTANT S1		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001"; -- System register that contains the PCup when the system was interrupted
+
 	
 	SIGNAL op_code 	: STD_LOGIC_VECTOR (3 DOWNTO 0);
 	SIGNAL f_code		: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -129,6 +132,7 @@ BEGIN
 	
 					S1		WHEN op_code = SPEC 	 AND 
 								  spec_code = RETI ELSE  
+								  
 					reg_src1;
 	
 	addr_b 	<= reg_src2 WHEN 	op_code = ARITHLOG OR
@@ -254,6 +258,10 @@ BEGIN
 				'0';
 				
 	d_int	<= '1' WHEN op_code = SPEC AND spec_code = DI ELSE
+	
+				'0';
+				
+	ret_int <= '1' WHEN op_code = SPEC AND spec_code = RETI ELSE
 	
 				'0';
 	

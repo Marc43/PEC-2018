@@ -44,7 +44,8 @@ COMPONENT unidad_control IS
 			 wr_port	  : OUT STD_LOGIC;
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
-			 d_int	  : OUT STD_LOGIC);
+			 d_int	  : OUT STD_LOGIC;
+			 ret_int	  : OUT STD_LOGIC);
 END COMPONENT;
 
 COMPONENT datapath IS
@@ -73,7 +74,8 @@ COMPONENT datapath IS
 			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 addr_port: OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 			 e_int	 : IN  STD_LOGIC;
-			 d_int	 : IN  STD_LOGIC);
+			 d_int	 : IN  STD_LOGIC;
+			 ret_int  : IN  STD_LOGIC);
 END COMPONENT;
 
 COMPONENT Display7 IS
@@ -108,6 +110,7 @@ SIGNAL bus_aluout			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 
 SIGNAL bus_e_int			: STD_LOGIC;
 SIGNAL bus_d_int			: STD_LOGIC;
+SIGNAL bus_ret_int		: STD_LOGIC;
 
 BEGIN
 
@@ -138,7 +141,8 @@ BEGIN
 		wr_port	=> wr_port,
 		rd_port  => rd_port,
 		e_int		=> bus_e_int,
-		d_int		=> bus_d_int
+		d_int		=> bus_d_int,
+		ret_int	=> bus_ret_int
 	);
 	
 	datapath0 : datapath
@@ -168,7 +172,8 @@ BEGIN
 		wr_io		=> wr_io,
 		addr_port => addr_port,
 		e_int		=> bus_e_int,
-		d_int		=> bus_d_int
+		d_int		=> bus_d_int,
+		ret_int	=> bus_ret_int
 	);
 	
 	wr_m <= bus_wr_m;
