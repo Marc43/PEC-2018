@@ -111,7 +111,9 @@ BEGIN
 						reg_src1;
 	
 	addr_b 	<= reg_src2 WHEN 	op_code = ARITHLOG OR
-										op_code = CMP 		 ELSE
+								op_code = CMP OR 		 
+								op_code = ARITHEXT
+								ELSE
 					reg_d;
 					
 	addr_d 	<= reg_d;

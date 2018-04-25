@@ -31,6 +31,7 @@ architecture comportament of SRAMController is
 	signal data_ext : std_logic_vector (15 downto 0);
 	signal permiso_lectura	: std_logic;
 	signal permiso_escritura: std_logic;
+	signal dataToWrite0		: std_logic_VECTOR(15 DOWNTO 0);
 
 begin
 
@@ -55,12 +56,12 @@ begin
 					
 				WHEN BRANCH_ST=>
 					SRAM_CE_N <= '0';
-					IF(WR = '0') THEN
+					IF(WR = '1') THEN
+						SRAM_DQ <= dataToWrite0;
+						next_state <= WR_ST;
+					ELSE
 						SRAM_DQ <= "ZZZZZZZZZZZZZZZZ";
 						next_state <= RD_ST;
-					ELSE
-						SRAM_DQ <= dataToWrite;
-						next_state <= WR_ST;
 					END IF;
 					
 				WHEN RD_ST =>
@@ -84,6 +85,8 @@ begin
 						SRAM_UB_N 	<= '0'; 
 						SRAM_LB_N 	<= '0';
 					END IF;
+					
+					
 					SRAM_WE_N <= '0';
 					next_state <= RES_ST;
 					
@@ -92,10 +95,16 @@ begin
 						WHEN '0' => --lectura
 							
 							IF byte_m = '1' AND address(0) = '1' THEN
+							
+--								data_ext <= X"00" & SRAM_DQ(15 DOWNTO 8) WHEN SRAM_DQ(15) = '0' ELSE
+--												X"FF" & SRAM_DQ(15 DOWNTO 8);
 								data_ext <= STD_LOGIC_VECTOR(shift_right(signed(SRAM_DQ), 8));
 							
 							ELSIF byte_m = '1' AND address(0) = '0' THEN
-								data_ext <= STD_LOGIC_VECTOR(resize(signed(data_ext(7 DOWNTO 0)), 16));
+							
+--								data_ext <= X"00" & SRAM_DQ(7 DOWNTO 0) WHEN SRAM_DQ(7) = '0' ELSE
+--												X"FF" & SRAM_DQ(7 DOWNTO 0);
+								data_ext <= STD_LOGIC_VECTOR(resize(signed(SRAM_DQ(7 DOWNTO 0)), 16));
 							ELSE
 								data_ext <= SRAM_DQ;
 							END IF;
@@ -104,7 +113,9 @@ begin
 					next_state <= IDLE_ST;
 			END CASE;
 		END PROCESS;
-		
+		dataToWrite0(7 DOWNTO 0) <= dataToWrite(7 DOWNTO 0);
+		dataToWrite0(15 DOWNTO 8) <= dataToWrite(7 DOWNTO 0) WHEN address(0) = '1' AND byte_m = '1' ELSE
+												dataToWrite(15 DOWNTO 8);
 		SRAM_ADDR 	<= "00" & std_logic_vector(shift_right(unsigned(address), 1));
 		dataReaded	<= data_ext;
 		
