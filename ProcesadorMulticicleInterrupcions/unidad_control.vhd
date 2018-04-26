@@ -8,6 +8,7 @@ ENTITY unidad_control IS
           clk       : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 interrupt : IN  STD_LOGIC;
 			 eval		  : IN  STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -134,6 +135,7 @@ BEGIN
 	PORT MAP (
 		clk			=>	clk,
 		boot			=> boot,
+		interrupt	=> interrupt,
 		ldpc_l		=> bus_ldpc,
 		wrd_gp_l		=>	bus_wrd_gp,
 		wrd_sys_l	=> bus_wrd_sys,

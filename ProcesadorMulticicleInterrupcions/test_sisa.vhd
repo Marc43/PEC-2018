@@ -97,6 +97,7 @@ begin
 
       );
 
+	mem0: async_64Kx16
       port map (
 				A 	 => addr_mem,
 				DQ  => data_mem,
