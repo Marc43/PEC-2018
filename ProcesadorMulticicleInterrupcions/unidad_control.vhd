@@ -70,6 +70,7 @@ ARCHITECTURE Structure OF unidad_control IS
          wrd_sys_l : IN  STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
+			interrupt : IN  STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
 			wrd_sys	 : OUT STD_LOGIC;

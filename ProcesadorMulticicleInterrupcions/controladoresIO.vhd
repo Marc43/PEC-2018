@@ -1,18 +1,19 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
-USE ieee.std_logic_unsigned.all; --Esta libreria sera necesaria si usais conversiones CONV_INTEGER
+USE ieee.std_logic_unsigned.all;
 USE ieee.numeric_std.all;
 
 ENTITY controladores_IO IS  
   PORT (	boot			: IN  STD_LOGIC; 
 			CLOCK_50    : IN  std_logic; 
+			inta			: IN  STD_LOGIC;
+			intr			: OUT STD_LOGIC;
+			iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			addr_io     : IN  std_logic_vector(7 downto 0); 
 			wr_io  		: in  std_logic_vector(15 downto 0); 
 			rd_io 		: out std_logic_vector(15 downto 0); 
 			wr_out 		: in  std_logic; 
 			rd_in 		: in  std_logic; 
-			ps2_clk 		: inout std_logic;
-			ps2_data		: inout std_logic;
 			led_verdes  : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			led_rojos   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 			display		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -39,15 +40,49 @@ ARCHITECTURE Structure OF controladores_IO IS
 	CONSTANT KEYBOARD_ST_P		: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"10";
 	CONSTANT RAND_P				: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"14";
 	CONSTANT MS_COUNT_P			: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"15";
-
-	COMPONENT keyboard_controller is
-   Port (clk        : in    STD_LOGIC;
-          reset      : in    STD_LOGIC;
-          ps2_clk    : inout STD_LOGIC;
-          ps2_data   : inout STD_LOGIC;
-          read_char  : out   STD_LOGIC_VECTOR (7 downto 0);
-          clear_char : in    STD_LOGIC;
-          data_ready : out   STD_LOGIC);
+	
+	COMPONENT interrupt_controller IS
+	PORT (
+		boot 			: IN STD_LOGIC;
+		clk			: IN STD_LOGIC;
+		inta			: IN STD_LOGIC;
+		key_intr 	: IN STD_LOGIC;
+		ps2_intr		: IN STD_LOGIC;
+		switch_intr	: IN STD_LOGIC;
+		timer_intr	: IN STD_LOGIC;
+		intr			: OUT STD_LOGIC;
+		key_inta		: OUT STD_LOGIC;
+		ps2_inta		: OUT STD_LOGIC;
+		switch_inta : OUT STD_LOGIC;
+		timer_inta	: OUT STD_LOGIC;
+		iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+	);
+	END COMPONENT;
+	
+	COMPONENT input_controllers IS
+	PORT (
+		boot 					: IN STD_LOGIC;
+		clk  					: IN STD_LOGIC;
+		pulsadores_inta	: IN STD_LOGIC;
+		switches_inta		: IN STD_LOGIC;
+		ps2_inta				: IN STD_LOGIC;
+		timer_inta			: IN STD_LOGIC;
+		keys 					: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+		switches				: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
+		
+		ps2_clk 				: INOUT STD_LOGIC;
+		ps2_data				: INOUT STD_LOGIC;
+		clear_char 			: IN    STD_LOGIC;
+		read_char			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+		data_ready			: OUT STD_LOGIC;
+		
+		pulsadores_intr	: OUT STD_LOGIC;
+		switches_intr		: OUT STD_LOGIC;
+		ps2_intr				: OUT STD_LOGIC;
+		timer_intr			: OUT STD_LOGIC;
+		rd_key 				: OUT STD_LOGIC_VECTOR (3 DOWNTO 0);
+		rd_sw 				: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+	);
 	END COMPONENT;
 	
 	COMPONENT counter_ms IS 
@@ -59,27 +94,63 @@ ARCHITECTURE Structure OF controladores_IO IS
 		write_enable	: IN 		std_logic
 	);
 	END COMPONENT;
-	
-	signal read_char_bus : STD_LOGIC_VECTOR (7 downto 0);
-	signal clear_char_bus : STD_LOGIC := '0' ;
-	signal data_ready_bus : STD_LOGIC := '0' ;
-	
+
 	signal bus_ms_to_count 		: STD_LOGIC_VECTOR (15 downto 0);
 	signal bus_ms_value			: STD_LOGIC_VECTOR (15 downto 0);
 	signal bus_cycles_counted 	: STD_LOGIC_VECTOR (15 downto 0);
 	signal ms_counter_we			: std_logic;
 	
+	signal bus_key_intr 			: STD_LOGIC;
+	signal bus_ps2_intr			: STD_LOGIC;
+	signal bus_timer_intr      : STD_LOGIC;
+	signal bus_switch_intr		: STD_LOGIC;
+	
+	signal bus_key_inta 			: STD_LOGIC;
+	signal bus_ps2_inta			: STD_LOGIC;
+	signal bus_timer_inta      : STD_LOGIC;
+	signal bus_switch_inta		: STD_LOGIC;
+	
+	signal bus_wr_keys			: STD_LOGIC_VECTOR(3 DOWNTO 0);
+	signal bus_wr_switches		: STD_LOGIC_VECTOR(7 DOWNTO 0);
+	
+	signal bus_clear_char		: STD_LOGIC := '0';
+	
 BEGIN
-
-		keyboard_controller0 : keyboard_controller
-		port map(
-			clk => CLOCK_50,
-			reset => boot,
-			ps2_clk => ps2_clk,
-			ps2_data => ps2_data,
-			read_char =>read_char_bus,
-			clear_char=> clear_char_bus,
-			data_ready => data_ready_bus
+		
+		interrupt_controller0 : interrupt_controller
+		PORT MAP (
+			boot => boot,
+			clk  => CLOCK_50,
+			inta => inta,
+			key_intr		=> bus_key_intr,
+			timer_intr 	=> bus_timer_intr,
+			switch_intr => bus_switch_intr,
+			ps2_intr		=> bus_ps2_intr,
+			intr			=> intr,
+			key_inta 	=> bus_key_inta,
+			ps2_inta		=> bus_ps2_inta,
+			switch_inta	=> bus_switch_inta,
+			timer_inta	=> bus_timer_inta,
+			iid			=> iid
+		);
+		
+		input_controllers0 : input_controllers
+		PORT MAP (
+			boot	=> boot,
+			clk	=> CLOCK_50,
+			pulsadores_inta	=> bus_key_inta,
+			switches_inta		=> bus_switch_inta,
+			ps2_inta				=> bus_ps2_inta,
+			timer_inta			=> bus_timer_inta,
+			keys					=> keys,
+			switches				=> switches,
+			ps2_clk				=> ps2_clk,
+			pulsadores_intr	=> bus_key_intr,
+			switches_intr		=> bus_switch_intr,
+			ps2_intr				=> bus_ps2_intr,
+			timer_intr			=> bus_timer_intr,
+			rd_key				=> bus_wr_keys,
+			rd_sw					=> bus_wr_switches
 		);
 		
 		counter_ms0 : counter_ms 
@@ -107,22 +178,23 @@ BEGIN
 		BEGIN
 			
 			IF rising_edge(CLOCK_50) THEN
+			
 				IF clear_char_bus = '1' THEN
 					clear_char_bus <= '0';
 				END IF;
 				
-				IF wr_out = '1' AND addr_io /= KEYBOARD_ST_P THEN
-					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
-					
-				ELSIF wr_out = '1' AND addr_io = MS_COUNT_P THEN
+				IF wr_out = '1' AND addr_io = MS_COUNT_P THEN
 					bus_ms_to_count <= wr_io; 
-				
-				ELSIF wr_out = '1' THEN
+				ELSIF wr_out = '1' AND addr_io = KEYBOARD_ST_P THEN
+					--TODO && wr_io diferente de 0!!!!! check it out
 					clear_char_bus <= '1';
+				ELSIF wr_out = '1' THEN
+					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
 				END IF;
 				
-				ports(conv_integer(KEY_P)) 	<= X"000" & keys;
-				ports(conv_integer(SWITCH_P)) <=  X"00" & switches;
+				ports(conv_integer(KEY_P)) 	<= X"000" & bus_wr_keys;
+				ports(conv_integer(SWITCH_P)) <=  X"00" & bus_wr_switches;
+				
 			END IF;
 		
 		END PROCESS;
