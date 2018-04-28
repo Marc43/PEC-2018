@@ -72,6 +72,8 @@ ARCHITECTURE Structure OF datapath IS
 	SIGNAL mux_addr		: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	SIGNAL alu_out			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
+	SIGNAL mux_dreg_pcup : STD_LOGIC_VECTOR (15 DOWNTO 0);
+	
 BEGIN
 
 	alu0 : alu
@@ -86,28 +88,33 @@ BEGIN
 	
 	regfile0 : regfile
    PORT MAP (
-		clk => clk,
-		wrd_gp => wrd_gp,
-		wrd_sys => wrd_sys,
-		RD_SYS_GP => rd_sys_gp,
-		intr	=> intr,
-		e_int => e_int,
-		d_int => d_int,
-		ret_int => ret_int,
-		d	=> mux_dreg,
-		addr_a => addr_a,
-		addr_b => addr_b,
-		addr_d => addr_d,
-		a => reg_a,
-		b => reg_b,
-		intr_enabled => intr_enabled
+		clk 			=> clk,
+		wrd_gp 		=> wrd_gp,
+		wrd_sys	 	=> wrd_sys,
+		RD_SYS_GP 	=> rd_sys_gp,
+		intr			=> intr,
+		e_int 		=> e_int,
+		d_int 		=> d_int,
+		ret_int 		=> ret_int,
+		d				=> mux_dreg,
+		addr_a 		=> addr_a,
+		addr_b 		=> addr_b,
+		addr_d 		=> addr_d,
+		a 				=> reg_a,
+		b 				=> reg_b,
+		intr_enabled=> intr_enabled
 	);
 	
 	WITH in_d SELECT		-- Data output or data from memory (loads)
-		mux_dreg <= alu_out 	WHEN "00",
-						datard_m	WHEN "01",
+		mux_dreg <= alu_out 	WHEN "00",	 -- ALU
+						datard_m	WHEN "01",	 -- MEM
 						pcup		WHEN "10",	 -- JAL
 						rd_io		WHEN others; -- IO
+						
+	WITH intr SELECT	-- When an interrupt is triggered the pcuptaded must reach S1
+		mux_dreg_pcup <= mux_dreg 	WHEN '0',
+							  pcup 		WHEN '1',
+							  mux_dreg 	WHEN others;
 	
 	WITH immed_x2 SELECT -- Normal operations or memory access (aligment) 
 		mux_immed <= immed 															WHEN '0',

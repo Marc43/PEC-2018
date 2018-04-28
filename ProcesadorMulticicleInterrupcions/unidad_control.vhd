@@ -63,7 +63,8 @@ ARCHITECTURE Structure OF unidad_control IS
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
 			 d_int	  : OUT STD_LOGIC;
-			 ret_int   : OUT STD_LOGIC);
+			 ret_int   : OUT STD_LOGIC;
+			 inta		  : OUT STD_LOGIC);
 	END COMPONENT;
 	
 	COMPONENT multi IS
@@ -76,7 +77,6 @@ ARCHITECTURE Structure OF unidad_control IS
          w_b       : IN  STD_LOGIC;
 			intr_l	 : IN  STD_LOGIC;
 			intr		 : OUT STD_LOGIC;
-			inta		 : OUT STD_LOGIC;
 			intr_enabled : IN STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -136,7 +136,8 @@ BEGIN
 		rd_port		=> rd_port,
 		e_int			=> e_int,
 		d_int			=> d_int,
-		ret_int		=> ret_int
+		ret_int		=> ret_int,
+		inta			=> inta
 	);
 	
 	multi0 : multi
@@ -169,10 +170,10 @@ BEGIN
 								X"0000"				  WHEN others;
 	
 	
-	tknbr_pc	<= 		  new_pc + 2 						WHEN bus_tknbr = "00" ELSE
-							  new_pc + 2 + bus_immed_des 	WHEN bus_tknbr = "01" ELSE
-							  aluout		 						WHEN bus_tknbr = "10" ELSE
-							  new_pc + 2; -- To change when CALLS is implemented
+	tknbr_pc	<= 		  new_pc + 2 						WHEN bus_tknbr = "00" ELSE -- Implicit seq.
+							  new_pc + 2 + bus_immed_des 	WHEN bus_tknbr = "01" ELSE -- BNZ && BZ
+							  aluout		 						WHEN bus_tknbr = "10" ELSE -- Direct from the regfile
+							  new_pc + 2; 															-- To change when CALLS is implemented
 							  
 	WITH multi_ldpc SELECT
 		pcmas2_mux_oldpc	<= new_pc		WHEN '0',
@@ -183,7 +184,9 @@ BEGIN
 									X"C000"				WHEN others;
 
 	pc 	<= new_pc;
-	pcup 	<= new_pc + 2; 
+	pcup 	<= new_pc + 2; -- Si se lanzase una interrupcion justo cuando lanzamos un branch, esto no funcionaría?
+								-- Esto es debido a que un salto seria interrumpido y en vez de almacenar la direccion
+								-- de salto almacenariamos el pc+2, lo cual es un poco estupido...
 	
 	PROCESS (clk, boot) 
 	BEGIN

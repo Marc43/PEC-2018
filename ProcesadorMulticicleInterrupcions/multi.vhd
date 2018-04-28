@@ -11,7 +11,6 @@ entity multi is
          w_b       : IN  STD_LOGIC;
 			intr_l	 : IN  STD_LOGIC;
 			intr_enabled : IN STD_LOGIC;
-         inta		 : OUT STD_LOGIC;
 			intr		 : OUT STD_LOGIC;
 			ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -92,5 +91,9 @@ begin
 	ldir 			<= '1'			when state=FETCH 	else '0';
 	
 	intr		 	<= '1' when state=SYSTEM else '0'; -- Check...
+	
+	-- multi only changes the signal intr to tell every other module
+	-- to execute the procedure so at the end of the cycle we can do
+	-- the fetch of the RSG correctly
 
 end Structure;

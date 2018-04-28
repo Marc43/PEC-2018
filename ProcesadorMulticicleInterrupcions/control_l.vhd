@@ -25,7 +25,8 @@ ENTITY control_l IS
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
 			 d_int	  : OUT STD_LOGIC;
-			 ret_int	  : OUT STD_LOGIC);
+			 ret_int	  : OUT STD_LOGIC;
+			 inta		  : OUT STD_LOGIC);
 END control_l;
 
 ARCHITECTURE Structure OF control_l IS
@@ -152,7 +153,7 @@ BEGIN
 																												op_code = ST 	OR
 																												op_code = STB	ELSE
 																												
-							X"0016"																	WHEN op_code = SPEC AND 
+							X"0016"																	WHEN op_code = SPEC AND 	-- Hardcoded IO port!
 																											  spec_code = GETIID ELSE
 					
 							std_logic_vector(resize(signed(immed_alu), immed'length));
@@ -268,6 +269,10 @@ BEGIN
 				
 	ret_int <= '1' WHEN op_code = SPEC AND spec_code = RETI ELSE
 	
-				'0';
+				  '0';
+	
+	inta	  <= '1' WHEN op_code = SPEC AND spec_code = RETI ELSE
+	
+				  '0';
 	
 END Structure;
