@@ -8,8 +8,12 @@ ENTITY unidad_control IS
           clk       : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 interrupt : IN  STD_LOGIC;
+			 intr 	  : IN  STD_LOGIC;
 			 eval		  : IN  STD_LOGIC;
+			 intr_l	  : IN  STD_LOGIC; -- This one is provided by the controller
+			 intr_d	  : OUT STD_LOGIC; -- This one really indicates when an interrupt must be performed 
+			 intr_enabled : IN STD_LOGIC;
+			 inta		  : OUT STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd_gp    : OUT STD_LOGIC;
@@ -70,7 +74,10 @@ ARCHITECTURE Structure OF unidad_control IS
          wrd_sys_l : IN  STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
-			interrupt : IN  STD_LOGIC;
+			intr_l	 : IN  STD_LOGIC;
+			intr		 : OUT STD_LOGIC;
+			inta		 : OUT STD_LOGIC;
+			intr_enabled : IN STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
 			wrd_sys	 : OUT STD_LOGIC;
@@ -136,7 +143,9 @@ BEGIN
 	PORT MAP (
 		clk			=>	clk,
 		boot			=> boot,
-		interrupt	=> interrupt,
+		intr_l		=> intr_l,
+		intr			=> intr_d,
+		intr_enabled=> intr_enabled,
 		ldpc_l		=> bus_ldpc,
 		wrd_gp_l		=>	bus_wrd_gp,
 		wrd_sys_l	=> bus_wrd_sys,

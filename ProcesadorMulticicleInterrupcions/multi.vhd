@@ -9,8 +9,11 @@ entity multi is
 			wrd_sys_l : IN	 STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
-			interrupt : IN  STD_LOGIC;
-         ldpc      : OUT STD_LOGIC;
+			intr_l	 : IN  STD_LOGIC;
+			intr_enabled : IN STD_LOGIC;
+         inta		 : OUT STD_LOGIC;
+			intr		 : OUT STD_LOGIC;
+			ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
 			wrd_sys	 : OUT STD_LOGIC;
          wr_m      : OUT STD_LOGIC;
@@ -28,8 +31,22 @@ SIGNAL state : states_t := IDLE;
 begin
 
 	PROCESS (clk, boot)
+		variable interrupt 	: boolean := false;
+		variable interrupt_e : boolean := false;
 	BEGIN
 	
+		IF intr_l = '0' THEN
+			interrupt := false;
+		ELSE	
+			interrupt := true;
+		END IF;
+		
+		IF intr_enabled = '0' THEN
+			interrupt_e := false;
+		ELSE
+			interrupt_e := true;
+		END IF;
+		
 		IF boot = '1' THEN
 		
 			state <= IDLE;
@@ -47,13 +64,15 @@ begin
 		
 				WHEN DEMW	=>
 					
-					IF interrupt = '0' THEN
+					IF NOT (interrupt AND interrupt_e) THEN
 						state <= FETCH;
 					ELSE
 						state <= SYSTEM;
 					END IF;
 					
 				WHEN SYSTEM	=>
+					-- One or more SYSTEM cycles are executed 
+					-- once an interruption is triggered
 					state <= FETCH;
 					
 			END CASE;
@@ -71,5 +90,7 @@ begin
 	word_byte	<= w_b			when state=DEMW	else '0';
 	ins_dad 		<=	'1'			when state=DEMW 	else '0';
 	ldir 			<= '1'			when state=FETCH 	else '0';
+	
+	intr		 	<= '1' when state=SYSTEM else '0'; -- Check...
 
 end Structure;

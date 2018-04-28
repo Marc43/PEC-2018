@@ -8,6 +8,7 @@ ENTITY regfile IS
           wrd_gp  	: IN  STD_LOGIC;
 			 wrd_sys		: IN	STD_LOGIC;
 			 RD_SYS_GP	: IN 	STD_LOGIC;
+			 intr			: IN  STD_LOGIC;
 			 e_int		: IN  STD_LOGIC;
 			 d_int		: IN  STD_LOGIC;
 			 ret_int    : IN  STD_LOGIC;
@@ -16,7 +17,9 @@ ENTITY regfile IS
           addr_b 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           a      		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-          b      		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+          b      		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 intr_enabled : OUT STD_LOGIC
+			 );
 END regfile;
 
 ARCHITECTURE Structure OF regfile IS
@@ -64,5 +67,7 @@ BEGIN
 		  regs_sys(conv_integer(addr_a));
 		  
 	b <= regs_gp(conv_integer(addr_b));
+	
+	intr_enabled <= regs_sys(conv_integer(PSWup))(1); -- Bit indicating if interrupts are enabled or not
 
 END Structure;

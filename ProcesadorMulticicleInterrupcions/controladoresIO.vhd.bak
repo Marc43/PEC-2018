@@ -8,14 +8,12 @@ ENTITY controladores_IO IS
 			CLOCK_50    : IN  std_logic; 
 			inta			: IN  STD_LOGIC;
 			intr			: OUT STD_LOGIC;
---			iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
+			iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			addr_io     : IN  std_logic_vector(7 downto 0); 
 			wr_io  		: in  std_logic_vector(15 downto 0); 
 			rd_io 		: out std_logic_vector(15 downto 0); 
 			wr_out 		: in  std_logic; 
-			rd_in 		: in  std_logic;
-			ps2_clk 		: inout std_logic;
-			ps2_data		: inout std_logic;
+			rd_in 		: in  std_logic; 
 			led_verdes  : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			led_rojos   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 			display		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -42,7 +40,6 @@ ARCHITECTURE Structure OF controladores_IO IS
 	CONSTANT KEYBOARD_ST_P		: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"10";
 	CONSTANT RAND_P				: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"14";
 	CONSTANT MS_COUNT_P			: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"15";
-	CONSTANT GETIID_P				: STD_LOGIC_VECTOR (7 DOWNTO 0) := X"16";
 	
 	COMPONENT interrupt_controller IS
 	PORT (
@@ -58,7 +55,7 @@ ARCHITECTURE Structure OF controladores_IO IS
 		ps2_inta		: OUT STD_LOGIC;
 		switch_inta : OUT STD_LOGIC;
 		timer_inta	: OUT STD_LOGIC;
-		iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
+		iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 	);
 	END COMPONENT;
 	
@@ -116,19 +113,15 @@ ARCHITECTURE Structure OF controladores_IO IS
 	signal bus_wr_keys			: STD_LOGIC_VECTOR(3 DOWNTO 0);
 	signal bus_wr_switches		: STD_LOGIC_VECTOR(7 DOWNTO 0);
 	
-	signal clear_char_bus		: STD_LOGIC := '0';
-	signal read_char_bus			: STD_LOGIC_VECTOR (7 DOWNTO 0);
-	signal data_ready_bus		: STD_LOGIC;
-	
-	signal bus_iid   : std_logic_vector (7 downto 0);
+	signal bus_clear_char		: STD_LOGIC := '0';
 	
 BEGIN
 		
 		interrupt_controller0 : interrupt_controller
 		PORT MAP (
-			boot 			=> boot,
-			clk  			=> CLOCK_50,
-			inta 			=> inta,
+			boot => boot,
+			clk  => CLOCK_50,
+			inta => inta,
 			key_intr		=> bus_key_intr,
 			timer_intr 	=> bus_timer_intr,
 			switch_intr => bus_switch_intr,
@@ -138,7 +131,7 @@ BEGIN
 			ps2_inta		=> bus_ps2_inta,
 			switch_inta	=> bus_switch_inta,
 			timer_inta	=> bus_timer_inta,
-			iid			=> bus_iid
+			iid			=> iid
 		);
 		
 		input_controllers0 : input_controllers
@@ -152,10 +145,6 @@ BEGIN
 			keys					=> keys,
 			switches				=> switches,
 			ps2_clk				=> ps2_clk,
-			ps2_data				=> ps2_data,
-			clear_char			=> clear_char_bus,
-			read_char			=> read_char_bus,
-			data_ready			=> data_ready_bus,
 			pulsadores_intr	=> bus_key_intr,
 			switches_intr		=> bus_switch_intr,
 			ps2_intr				=> bus_ps2_intr,
@@ -183,7 +172,6 @@ BEGIN
 					X"00" & read_char_bus				WHEN rd_in = '1' AND addr_io = KEYBOARD_READ_P 	ELSE
 					bus_ms_value							WHEN rd_in = '1' AND addr_io = MS_COUNT_P			ELSE
 					bus_cycles_counted					WHEN rd_in = '1' AND addr_io = RAND_P				ELSE
-					X"00" & bus_iid						WHEN rd_in = '1' AND addr_io = GETIID_P 			ELSE
 					ports(conv_integer(addr_io)) 		WHEN rd_in = '1';  -- Reads
 		
 		PROCESS (CLOCK_50)
@@ -200,8 +188,7 @@ BEGIN
 				ELSIF wr_out = '1' AND addr_io = KEYBOARD_ST_P THEN
 					--TODO && wr_io diferente de 0!!!!! check it out
 					clear_char_bus <= '1';
-				ELSIF wr_out = '1' AND addr_io /= GETIID_P THEN
-					-- Writes within GETIID port are not allowed!
+				ELSIF wr_out = '1' THEN
 					ports(conv_integer(addr_io)) <= wr_io ; -- Writes
 				END IF;
 				

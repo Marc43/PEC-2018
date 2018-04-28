@@ -20,6 +20,7 @@ ENTITY datapath IS
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup		 : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           in_d     : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			 intr		 : IN	 STD_LOGIC;
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -27,6 +28,7 @@ ENTITY datapath IS
 			 rd_io	 : IN	 STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 addr_port : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+			 intr_enabled : OUT STD_LOGIC;
 			 e_int	 : IN STD_LOGIC;
 			 d_int	 : IN STD_LOGIC;
 			 ret_int	 : IN STD_LOGIC);
@@ -48,6 +50,7 @@ ARCHITECTURE Structure OF datapath IS
           wrd_gp : IN  STD_LOGIC;
 			 wrd_sys: IN  STD_LOGIC;
 			 RD_SYS_GP : IN 	STD_LOGIC;
+			 intr   : IN  STD_LOGIC;
 			 e_int  : IN  STD_LOGIC;
 			 d_int  : IN  STD_LOGIC;
 			 ret_int: IN  STD_LOGIC;
@@ -56,7 +59,9 @@ ARCHITECTURE Structure OF datapath IS
           addr_b : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           addr_d : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           a      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-          b      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+          b      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 intr_enabled : OUT STD_LOGIC
+			 );
 	END COMPONENT;
 	
 	SIGNAL reg_a			: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -85,6 +90,7 @@ BEGIN
 		wrd_gp => wrd_gp,
 		wrd_sys => wrd_sys,
 		RD_SYS_GP => rd_sys_gp,
+		intr	=> intr,
 		e_int => e_int,
 		d_int => d_int,
 		ret_int => ret_int,
@@ -93,7 +99,8 @@ BEGIN
 		addr_b => addr_b,
 		addr_d => addr_d,
 		a => reg_a,
-		b => reg_b
+		b => reg_b,
+		intr_enabled => intr_enabled
 	);
 	
 	WITH in_d SELECT		-- Data output or data from memory (loads)

@@ -46,33 +46,13 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
-set_global_assignment -name VHDL_FILE display16.vhd
-set_global_assignment -name VHDL_FILE vga_sync.vhd
-set_global_assignment -name VHDL_FILE vga_ram_dual.vhd
-set_global_assignment -name VHDL_FILE vga_font_rom.vhd
-set_global_assignment -name VHDL_FILE vga_controller.vhd
-set_global_assignment -name VHDL_FILE unidad_control.vhd
-set_global_assignment -name VHDL_FILE SRAMController.vhd
-set_global_assignment -name VHDL_FILE sisa.vhd
-set_global_assignment -name VHDL_FILE regfile.vhd
-set_global_assignment -name VHDL_FILE ps2_keyboard.vhd
-set_global_assignment -name VHDL_FILE proc.vhd
-set_global_assignment -name VHDL_FILE multi.vhd
-set_global_assignment -name VHDL_FILE MemoryController.vhd
-set_global_assignment -name VHDL_FILE keyboard_controller.vhd
-set_global_assignment -name VHDL_FILE datapath.vhd
-set_global_assignment -name VHDL_FILE control_l.vhd
-set_global_assignment -name VHDL_FILE controladoresIO.vhd
-set_global_assignment -name VHDL_FILE alu.vhd
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name CDF_FILE ../../../Desktop/DE1_CD_v08/DE1_CD_v0.8/DE1_control_panel/Chain2.cdf
 set_global_assignment -name ENABLE_SIGNALTAP ON
 set_global_assignment -name USE_SIGNALTAP_FILE stp2.stp
-set_global_assignment -name SIGNALTAP_FILE ../../../Desktop/DE1_CD_v08/DE1_CD_v0.8/DE1_control_panel/stp1.stp
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id auto_signaltap_0
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to CLOCK_50 -section_id auto_signaltap_0
@@ -91,7 +71,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIP
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=1024" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=1024" -section_id auto_signaltap_0
-set_global_assignment -name SIGNALTAP_FILE stp2.stp
 set_location_assignment PIN_A13 -to GPIO_0[0]
 set_location_assignment PIN_B13 -to GPIO_0[1]
 set_location_assignment PIN_A14 -to GPIO_0[2]
@@ -803,6 +782,26 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=00
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=414" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_LOWORD=42242" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_CRC_HIWORD=56707" -section_id auto_signaltap_0
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VHDL_FILE interrupt_controller.vhd
+set_global_assignment -name VHDL_FILE display16.vhd
+set_global_assignment -name VHDL_FILE vga_sync.vhd
+set_global_assignment -name VHDL_FILE vga_ram_dual.vhd
+set_global_assignment -name VHDL_FILE vga_font_rom.vhd
+set_global_assignment -name VHDL_FILE vga_controller.vhd
+set_global_assignment -name VHDL_FILE unidad_control.vhd
+set_global_assignment -name VHDL_FILE SRAMController.vhd
+set_global_assignment -name VHDL_FILE sisa.vhd
+set_global_assignment -name VHDL_FILE regfile.vhd
+set_global_assignment -name VHDL_FILE ps2_keyboard.vhd
+set_global_assignment -name VHDL_FILE proc.vhd
+set_global_assignment -name VHDL_FILE multi.vhd
+set_global_assignment -name VHDL_FILE MemoryController.vhd
+set_global_assignment -name VHDL_FILE keyboard_controller.vhd
+set_global_assignment -name VHDL_FILE datapath.vhd
+set_global_assignment -name VHDL_FILE control_l.vhd
+set_global_assignment -name VHDL_FILE controladoresIO.vhd
+set_global_assignment -name VHDL_FILE alu.vhd
+set_global_assignment -name SIGNALTAP_FILE stp2.stp
 set_global_assignment -name VHDL_FILE input_controllers.vhd
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE "X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/stp2_auto_stripped.stp"

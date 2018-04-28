@@ -96,6 +96,7 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT EI	 	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100000";
 	CONSTANT DI	 	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100001";
 	CONSTANT RETI	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100100";
+	CONSTANT GETIID: STD_LOGIC_VECTOR (5 DOWNTO 0) := "101000";
 	CONSTANT HALT  : STD_LOGIC_VECTOR (5 DOWNTO 0) := "111111";
 	
 	CONSTANT S1		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001"; -- System register that contains the PCup when the system was interrupted
@@ -130,7 +131,7 @@ BEGIN
 	
 	addr_a 	<= reg_d WHEN op_code = MOV ELSE
 	
-					S1		WHEN op_code = SPEC 	 AND 
+					S1		WHEN op_code = SPEC AND 
 								  spec_code = RETI ELSE  
 								  
 					reg_src1;
@@ -150,6 +151,9 @@ BEGIN
 																												op_code = LDB 	OR
 																												op_code = ST 	OR
 																												op_code = STB	ELSE
+																												
+							X"0016"																	WHEN op_code = SPEC AND 
+																											  spec_code = GETIID ELSE
 					
 							std_logic_vector(resize(signed(immed_alu), immed'length));
 
@@ -249,7 +253,8 @@ BEGIN
 	
 					'0';
 					
-	rd_port	<= '1' WHEN op_code = IO AND ir(8) = '0' 	ELSE
+	rd_port	<= '1' WHEN (op_code = IO 	AND ir(8) = '0') OR
+								(op_code = SPEC AND spec_code = GETIID) ELSE
 	
 					'0';
 					

@@ -70,8 +70,8 @@ ARCHITECTURE Structure of input_controllers IS
           data_ready : out   STD_LOGIC);
 	END COMPONENT;
 	
-	signal read_char_bus : STD_LOGIC_VECTOR (7 downto 0);
-	signal data_ready_bus : STD_LOGIC := '0' ;
+--	signal read_char_bus : STD_LOGIC_VECTOR (7 downto 0);
+--	signal data_ready_bus : STD_LOGIC := '0' ;
 	
 BEGIN
 		
@@ -81,7 +81,7 @@ BEGIN
 		reset 	=> boot,
 		ps2_clk 	=> ps2_clk,
 		ps2_data => ps2_data,
-		read_char 	=> read_char_bus,
+		read_char 	=> read_char,
 		clear_char	=> clear_char,
 		data_ready 	=> data_ready
 	);
@@ -89,7 +89,7 @@ BEGIN
 	pulsadores0 : pulsadores
 	PORT MAP (
 		boot	=> boot,
-		clk 	=> CLOCK_50,
+		clk 	=> clk,
 		inta 	=> pulsadores_inta,
 		keys 	=> keys,
 		intr 	=> pulsadores_intr,
@@ -99,7 +99,7 @@ BEGIN
 	interruptores0 : interruptores
 	PORT MAP (
 		boot 	=> boot,
-		clk 	=> CLOCK_50,
+		clk 	=> clk,
 		inta	=> switches_inta,
 		switches => switches,
 		intr		=> switches_intr,
@@ -110,7 +110,7 @@ BEGIN
 	PORT MAP (
 		boot	=> boot,
 		inta	=> timer_inta,
-		CLOCK_50 => CLOCK_50,
+		CLOCK_50 => clk,
 		intr	=> timer_intr
 	);
 
@@ -181,7 +181,7 @@ end interruptores;
 
 ARCHITECTURE Structure OF interruptores IS
 
- SIGNAL read_sw : STD_LOGIC_VECTOR (3 DOWNTO 0); -- Stores the read sw the last time (the state)
+ SIGNAL read_sw : STD_LOGIC_VECTOR (7 DOWNTO 0); -- Stores the read sw the last time (the state)
  
  SIGNAL bus_intr: STD_LOGIC := '0';
  
@@ -227,7 +227,7 @@ end timer;
 ARCHITECTURE Structure OF timer IS
 
 	SIGNAL cnt 		: STD_LOGIC_VECTOR (21 downto 0);
-	CONSTANT ms50 	: STD_LOGIC_VECTOR (21 downto 0):= X"2625A0";
+	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"2625A0";
 	
 	signal bus_intr : std_logic := '0';
 

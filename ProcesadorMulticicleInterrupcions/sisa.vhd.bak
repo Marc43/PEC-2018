@@ -34,8 +34,6 @@ ARCHITECTURE Structure OF sisa IS
 	component proc IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
-			 intr		  : IN  STD_LOGIC;
-			 inta		  : OUT STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_m    : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -74,15 +72,12 @@ ARCHITECTURE Structure OF sisa IS
   COMPONENT controladores_IO IS  
   PORT (	boot			: IN  STD_LOGIC; 
 			CLOCK_50    : IN  std_logic; 
-			inta			: IN  STD_LOGIC;
-			intr			: OUT STD_LOGIC;
---			iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			addr_io     : IN  std_logic_vector(7 downto 0); 
 			wr_io  		: in  std_logic_vector(15 downto 0); 
 			rd_io 		: out std_logic_vector(15 downto 0); 
 			wr_out 		: in  std_logic; 
-			rd_in 		: in  std_logic;
-			ps2_clk 		: inout std_logic;
+			rd_in 		: in  std_logic; 
+			ps2_clk		: inout std_logic;
 			ps2_data		: inout std_logic;
 			led_verdes  : OUT STD_LOGIC_VECTOR(7 DOWNTO 0); 
 			led_rojos   : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -143,6 +138,7 @@ ARCHITECTURE Structure OF sisa IS
 	signal bus_display : std_logic_vector (15 downto 0);
 	signal bus_power_display : std_logic_vector (3 downto 0);
 	
+	
 	signal bus_vga_addr 		: std_logic_vector (12 downto 0);
 	signal bus_vga_we 		: std_logic;
 	signal bus_vga_wr_data 	: std_logic_vector(15 downto 0);
@@ -154,10 +150,6 @@ ARCHITECTURE Structure OF sisa IS
 	signal bus_vga_r : std_logic_vector (7 downto 0);
 	signal bus_vga_g : std_logic_vector (7 downto 0);
 	signal bus_vga_b : std_logic_vector (7 downto 0);
-	
-	signal bus_inta  : std_logic;
-	signal bus_intr  : std_logic;
---	signal bus_iid   : std_logic_vector (7 downto 0);
 	
 BEGIN
 
@@ -174,8 +166,6 @@ BEGIN
 	port map (
 		clk 		=> clk_proc,
 		boot 		=> gboot,
-		intr		=> bus_intr,
-		inta		=> bus_inta,
 		datard_m	=> bus_data_rd,
 		addr_m	=> bus_addr,
 		data_wr	=> bus_data_wr,
@@ -214,9 +204,6 @@ BEGIN
 	port map (
 		boot			=> gboot,
 		CLOCK_50 	=> CLOCK_50,
-		inta			=> bus_inta,
-		intr			=> bus_intr,
---		iid			=> bus_iid,
 		addr_io  	=> bus_addr_io,
 		wr_io  		=> bus_wr_io,
 		rd_io 		=> bus_rd_io,

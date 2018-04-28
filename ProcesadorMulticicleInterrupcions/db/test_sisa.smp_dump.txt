@@ -1,5 +1,5 @@
 
-State Machine - |sisa|controladores_IO:controladores_IO0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0|m1_state
+State Machine - |sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0|m1_state
 Name m1_state.m1_tx_rising_edge_marker m1_state.m1_tx_error_no_keyboard_ack m1_state.m1_tx_done_recovery m1_state.m1_tx_wait_keyboard_ack m1_state.m1_tx_clk_l m1_state.m1_tx_clk_h m1_state.m1_tx_wait_clk_h m1_state.m1_tx_reset_timer m1_state.m1_tx_first_wait_clk_l m1_state.m1_tx_first_wait_clk_h m1_state.m1_tx_force_clk_l m1_state.m1_rx_rising_edge_marker m1_state.m1_rx_falling_edge_marker m1_state.m1_rx_clk_l m1_state.m1_rx_clk_h 
 m1_state.m1_rx_clk_h 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 m1_state.m1_rx_clk_l 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 

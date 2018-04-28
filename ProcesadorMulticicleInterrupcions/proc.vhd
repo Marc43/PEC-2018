@@ -4,6 +4,8 @@ USE ieee.std_logic_1164.all;
 ENTITY proc IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
+			 intr		  : IN  STD_LOGIC;
+			 inta		  : OUT STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_m    : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -24,6 +26,10 @@ COMPONENT unidad_control IS
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
+			 intr_l	  : IN  STD_LOGIC;
+			 intr_d	  : OUT STD_LOGIC;
+			 intr_enabled : IN STD_LOGIC;
+			 inta		  : OUT STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd_gp    : OUT STD_LOGIC;
@@ -34,7 +40,7 @@ COMPONENT unidad_control IS
           addr_d    : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           pc        : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 pcup      : OUT  STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 pcup      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad   : OUT STD_LOGIC;
           in_d      : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
@@ -66,6 +72,7 @@ COMPONENT datapath IS
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup     : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           in_d     : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+			 intr		 : IN	 STD_LOGIC;
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -73,6 +80,7 @@ COMPONENT datapath IS
 			 rd_io	 : IN	 STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 wr_io	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 addr_port: OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+			 intr_enabled : OUT STD_LOGIC;
 			 e_int	 : IN  STD_LOGIC;
 			 d_int	 : IN  STD_LOGIC;
 			 ret_int  : IN  STD_LOGIC);
@@ -98,7 +106,6 @@ SIGNAL bus_in_d			: STD_LOGIC_VECTOR(1 DOWNTO 0);
 SIGNAL bus_immed_x2		: STD_LOGIC;
 SIGNAL bus_wr_m			: STD_LOGIC;
 SIGNAL bus_word_byte		: STD_LOGIC;
---SIGNAL bus_wr_port		: STD_LOGIC;
 
 SIGNAL bus_addr_m			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_data_wr		: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -111,6 +118,8 @@ SIGNAL bus_aluout			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_e_int			: STD_LOGIC;
 SIGNAL bus_d_int			: STD_LOGIC;
 SIGNAL bus_ret_int		: STD_LOGIC;
+SIGNAL bus_intr			: STD_LOGIC;
+SIGNAL bus_intr_enabled : STD_LOGIC;
 
 BEGIN
 
@@ -121,6 +130,10 @@ BEGIN
 		datard_m => datard_m,
 		aluout	=> bus_aluout,
 		eval		=> bus_eval,
+		intr_l	=> intr,
+		intr_d		=> bus_intr,
+		intr_enabled => bus_intr_enabled,
+		inta		=> inta,
 		op			=> bus_op,
 		func		=> bus_func,
 		wrd_gp	=> bus_wrd_gp,
@@ -164,6 +177,7 @@ BEGIN
 		pc			=> bus_pc,
 		pcup		=> bus_pcup,
 		in_d		=> bus_in_d,
+		intr		=> bus_intr,
 		addr_m	=> addr_m,
 		data_wr	=> data_wr,
 		aluout   => bus_aluout,
@@ -171,6 +185,7 @@ BEGIN
 		rd_io		=> rd_io,
 		wr_io		=> wr_io,
 		addr_port => addr_port,
+		intr_enabled => bus_intr_enabled,
 		e_int		=> bus_e_int,
 		d_int		=> bus_d_int,
 		ret_int	=> bus_ret_int
