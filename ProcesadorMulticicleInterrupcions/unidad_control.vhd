@@ -8,7 +8,6 @@ ENTITY unidad_control IS
           clk       : IN  STD_LOGIC;
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 intr 	  : IN  STD_LOGIC;
 			 eval		  : IN  STD_LOGIC;
 			 intr_l	  : IN  STD_LOGIC; -- This one is provided by the controller
 			 intr_d	  : OUT STD_LOGIC; -- This one really indicates when an interrupt must be performed 

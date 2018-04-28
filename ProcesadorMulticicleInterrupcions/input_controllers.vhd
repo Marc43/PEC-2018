@@ -11,13 +11,11 @@ ENTITY input_controllers IS
 		timer_inta			: IN STD_LOGIC;
 		keys 					: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 		switches				: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-		
 		ps2_clk 				: INOUT STD_LOGIC;
 		ps2_data				: INOUT STD_LOGIC;
 		clear_char 			: IN    STD_LOGIC;
 		read_char			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 		data_ready			: OUT STD_LOGIC;
-		
 		pulsadores_intr	: OUT STD_LOGIC;
 		switches_intr		: OUT STD_LOGIC;
 		ps2_intr				: OUT STD_LOGIC;
@@ -28,6 +26,19 @@ ENTITY input_controllers IS
 END input_controllers;
 
 ARCHITECTURE Structure of input_controllers IS
+
+	COMPONENT keyboard_controller_intr is
+	Port (clk         : in    STD_LOGIC;
+			 reset      : in    STD_LOGIC;
+			 ps2_clk    : inout STD_LOGIC;
+			 ps2_data   : inout STD_LOGIC;
+			 read_char  : out   STD_LOGIC_VECTOR (7 downto 0);
+			 clear_char : in    STD_LOGIC;
+			 data_ready : out   STD_LOGIC;
+			 intr			: out	  STD_LOGIC;
+			 inta			: in   STD_LOGIC
+			 );
+	END COMPONENT;
 
 	COMPONENT pulsadores IS 
 	PORT (
@@ -60,47 +71,38 @@ ARCHITECTURE Structure of input_controllers IS
 	);
 	END COMPONENT;
 	
-	COMPONENT keyboard_controller is
-   Port (clk        : in    STD_LOGIC;
-          reset      : in    STD_LOGIC;
-          ps2_clk    : inout STD_LOGIC;
-          ps2_data   : inout STD_LOGIC;
-          read_char  : out   STD_LOGIC_VECTOR (7 downto 0);
-          clear_char : in    STD_LOGIC;
-          data_ready : out   STD_LOGIC);
-	END COMPONENT;
-	
 --	signal read_char_bus : STD_LOGIC_VECTOR (7 downto 0);
 --	signal data_ready_bus : STD_LOGIC := '0' ;
 	
 BEGIN
-		
-	keyboard_controller0 : keyboard_controller
-	port map(
-		clk => clk,
-		reset 	=> boot,
-		ps2_clk 	=> ps2_clk,
-		ps2_data => ps2_data,
-		read_char 	=> read_char,
-		clear_char	=> clear_char,
-		data_ready 	=> data_ready
+
+	keyboard_controller_intr0 : keyboard_controller_intr
+	PORT MAP (
+		clk 			=> clk,
+		reset 		=> boot,
+		ps2_clk		=> ps2_clk,
+		ps2_data 	=> ps2_data,
+		read_char	=> read_char,
+		data_ready	=> data_ready,
+		intr			=> ps2_intr,
+		inta			=> ps2_inta,
 	);
-		
+				
 	pulsadores0 : pulsadores
 	PORT MAP (
-		boot	=> boot,
-		clk 	=> clk,
-		inta 	=> pulsadores_inta,
-		keys 	=> keys,
-		intr 	=> pulsadores_intr,
-		rd_key => rd_key
+		boot		=> boot,
+		clk 		=> clk,
+		inta 		=> pulsadores_inta,
+		keys 		=> keys,
+		intr 		=> pulsadores_intr,
+		rd_key 	=> rd_key
 	);
 	
 	interruptores0 : interruptores
 	PORT MAP (
-		boot 	=> boot,
-		clk 	=> clk,
-		inta	=> switches_inta,
+		boot 		=> boot,
+		clk 		=> clk,
+		inta		=> switches_inta,
 		switches => switches,
 		intr		=> switches_intr,
 		rd_sw		=> rd_sw
@@ -108,11 +110,13 @@ BEGIN
 	
 	timer0 : timer 
 	PORT MAP (
-		boot	=> boot,
-		inta	=> timer_inta,
+		boot		=> boot,
+		inta		=> timer_inta,
 		CLOCK_50 => clk,
-		intr	=> timer_intr
+		intr		=> timer_intr
 	);
+	
+	
 
 END Structure;
 		
@@ -253,4 +257,60 @@ BEGIN
 	
 	intr <= bus_intr;
 
+END Structure;
+
+--##############################################################################################################
+--##############################################################################################################
+--##############################################################################################################
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+
+ENTITY keyboard_controller_intr is
+Port (clk         : in    STD_LOGIC;
+		 reset      : in    STD_LOGIC;
+		 ps2_clk    : inout STD_LOGIC;
+		 ps2_data   : inout STD_LOGIC;
+		 read_char  : out   STD_LOGIC_VECTOR (7 downto 0);
+		 clear_char : in    STD_LOGIC;
+		 data_ready : out   STD_LOGIC;
+		 intr			: out	  STD_LOGIC;
+		 inta			: in   STD_LOGIC
+		 );
+END keyboard_controller_intr;
+
+ARCHITECTURE Structure OF keyboard_controller_intr IS
+
+	ENTITY keyboard_controller is
+	Port (clk         : in    STD_LOGIC;
+			 reset      : in    STD_LOGIC;
+			 ps2_clk    : inout STD_LOGIC;
+			 ps2_data   : inout STD_LOGIC;
+			 read_char  : out   STD_LOGIC_VECTOR (7 downto 0);
+			 clear_char : in    STD_LOGIC;
+			 data_ready : out   STD_LOGIC);
+	END keyboard_controller;
+	
+	signal bus_data_ready : std_logic;
+
+BEGIN
+
+	keyboard_controller0 : keyboard_controller
+	port map(
+		clk 			=> clk,
+		reset 		=> boot,
+		ps2_clk 		=> ps2_clk,
+		ps2_data 	=> ps2_data,
+		read_char 	=> read_char,
+		clear_char	=> clear_char,
+		data_ready 	=> bus_data_ready
+	);
+	
+	data_ready <= data_ready_bus;
+	intr		  <= data_ready_bus; -- Both signals are equivalent, in order to preserve the original 
+											-- structure we maintaned the data_ready signal.
+											-- the same will be applied to inta and clear_char
+	
 END Structure;

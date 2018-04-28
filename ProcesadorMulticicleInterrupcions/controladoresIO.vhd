@@ -72,13 +72,11 @@ ARCHITECTURE Structure OF controladores_IO IS
 		timer_inta			: IN STD_LOGIC;
 		keys 					: IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 		switches				: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
-		
 		ps2_clk 				: INOUT STD_LOGIC;
 		ps2_data				: INOUT STD_LOGIC;
 		clear_char 			: IN    STD_LOGIC;
 		read_char			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 		data_ready			: OUT STD_LOGIC;
-		
 		pulsadores_intr	: OUT STD_LOGIC;
 		switches_intr		: OUT STD_LOGIC;
 		ps2_intr				: OUT STD_LOGIC;
@@ -130,9 +128,9 @@ BEGIN
 			clk  			=> CLOCK_50,
 			inta 			=> inta,
 			key_intr		=> bus_key_intr,
-			timer_intr 	=> bus_timer_intr,
-			switch_intr => bus_switch_intr,
 			ps2_intr		=> bus_ps2_intr,
+			switch_intr => bus_switch_intr,
+			timer_intr 	=> bus_timer_intr,
 			intr			=> intr,
 			key_inta 	=> bus_key_inta,
 			ps2_inta		=> bus_ps2_inta,
