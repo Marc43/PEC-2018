@@ -349,7 +349,6 @@ aluout[12] => tknbr_pc.DATAB
 aluout[13] => tknbr_pc.DATAB
 aluout[14] => tknbr_pc.DATAB
 aluout[15] => tknbr_pc.DATAB
-intr => ~NO_FANOUT~
 eval => control_l:control_l0.eval
 intr_l => multi:multi0.intr_l
 intr_d <= multi:multi0.intr
@@ -4176,17 +4175,17 @@ iid[7] <= iid[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0
-boot => keyboard_controller:keyboard_controller0.reset
+boot => keyboard_controller_intr:keyboard_controller_intr0.reset
 boot => pulsadores:pulsadores0.boot
 boot => interruptores:interruptores0.boot
 boot => timer:timer0.boot
-clk => keyboard_controller:keyboard_controller0.clk
+clk => keyboard_controller_intr:keyboard_controller_intr0.clk
 clk => pulsadores:pulsadores0.clk
 clk => interruptores:interruptores0.clk
 clk => timer:timer0.CLOCK_50
 pulsadores_inta => pulsadores:pulsadores0.inta
 switches_inta => interruptores:interruptores0.inta
-ps2_inta => ~NO_FANOUT~
+ps2_inta => keyboard_controller_intr:keyboard_controller_intr0.inta
 timer_inta => timer:timer0.inta
 keys[0] => pulsadores:pulsadores0.keys[0]
 keys[1] => pulsadores:pulsadores0.keys[1]
@@ -4200,21 +4199,21 @@ switches[4] => interruptores:interruptores0.switches[4]
 switches[5] => interruptores:interruptores0.switches[5]
 switches[6] => interruptores:interruptores0.switches[6]
 switches[7] => interruptores:interruptores0.switches[7]
-ps2_clk <> keyboard_controller:keyboard_controller0.ps2_clk
-ps2_data <> keyboard_controller:keyboard_controller0.ps2_data
-clear_char => keyboard_controller:keyboard_controller0.clear_char
-read_char[0] <= keyboard_controller:keyboard_controller0.read_char[0]
-read_char[1] <= keyboard_controller:keyboard_controller0.read_char[1]
-read_char[2] <= keyboard_controller:keyboard_controller0.read_char[2]
-read_char[3] <= keyboard_controller:keyboard_controller0.read_char[3]
-read_char[4] <= keyboard_controller:keyboard_controller0.read_char[4]
-read_char[5] <= keyboard_controller:keyboard_controller0.read_char[5]
-read_char[6] <= keyboard_controller:keyboard_controller0.read_char[6]
-read_char[7] <= keyboard_controller:keyboard_controller0.read_char[7]
-data_ready <= keyboard_controller:keyboard_controller0.data_ready
+ps2_clk <> keyboard_controller_intr:keyboard_controller_intr0.ps2_clk
+ps2_data <> keyboard_controller_intr:keyboard_controller_intr0.ps2_data
+clear_char => keyboard_controller_intr:keyboard_controller_intr0.clear_char
+read_char[0] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[0]
+read_char[1] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[1]
+read_char[2] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[2]
+read_char[3] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[3]
+read_char[4] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[4]
+read_char[5] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[5]
+read_char[6] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[6]
+read_char[7] <= keyboard_controller_intr:keyboard_controller_intr0.read_char[7]
+data_ready <= keyboard_controller_intr:keyboard_controller_intr0.data_ready
 pulsadores_intr <= pulsadores:pulsadores0.intr
 switches_intr <= interruptores:interruptores0.intr
-ps2_intr <= comb.DB_MAX_OUTPUT_PORT_TYPE
+ps2_intr <= keyboard_controller_intr:keyboard_controller_intr0.intr
 timer_intr <= timer:timer0.intr
 rd_key[0] <= pulsadores:pulsadores0.rd_key[0]
 rd_key[1] <= pulsadores:pulsadores0.rd_key[1]
@@ -4230,7 +4229,26 @@ rd_sw[6] <= interruptores:interruptores0.rd_sw[6]
 rd_sw[7] <= interruptores:interruptores0.rd_sw[7]
 
 
-|sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller:keyboard_controller0
+|sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0
+clk => keyboard_controller:keyboard_controller0.clk
+reset => keyboard_controller:keyboard_controller0.reset
+ps2_clk <> keyboard_controller:keyboard_controller0.ps2_clk
+ps2_data <> keyboard_controller:keyboard_controller0.ps2_data
+read_char[0] <= keyboard_controller:keyboard_controller0.read_char[0]
+read_char[1] <= keyboard_controller:keyboard_controller0.read_char[1]
+read_char[2] <= keyboard_controller:keyboard_controller0.read_char[2]
+read_char[3] <= keyboard_controller:keyboard_controller0.read_char[3]
+read_char[4] <= keyboard_controller:keyboard_controller0.read_char[4]
+read_char[5] <= keyboard_controller:keyboard_controller0.read_char[5]
+read_char[6] <= keyboard_controller:keyboard_controller0.read_char[6]
+read_char[7] <= keyboard_controller:keyboard_controller0.read_char[7]
+clear_char => keyboard_controller:keyboard_controller0.clear_char
+data_ready <= keyboard_controller:keyboard_controller0.data_ready
+intr <= keyboard_controller:keyboard_controller0.data_ready
+inta => ~NO_FANOUT~
+
+
+|sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0
 clk => ps2_keyboard_interface:k0.clk
 clk => read_char[0]~reg0.CLK
 clk => read_char[1]~reg0.CLK
@@ -4258,7 +4276,7 @@ clear_char => state.OUTPUTSELECT
 data_ready <= data_ready~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0
+|sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0
 clk => rx_ascii[0]~reg0.CLK
 clk => rx_ascii[1]~reg0.CLK
 clk => rx_ascii[2]~reg0.CLK

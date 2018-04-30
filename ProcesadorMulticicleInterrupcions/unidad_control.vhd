@@ -69,6 +69,10 @@ ARCHITECTURE Structure OF unidad_control IS
 	COMPONENT multi IS
     port(clk       : IN  STD_LOGIC;
          boot      : IN  STD_LOGIC;
+         in_d_l    : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			tknbr_l   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+			alu_op_l	 : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
+			rd_sys_gp_l : IN STD_LOGIC;
          ldpc_l    : IN  STD_LOGIC;
          wrd_gp_l  : IN  STD_LOGIC;
          wrd_sys_l : IN  STD_LOGIC;
@@ -83,7 +87,11 @@ ARCHITECTURE Structure OF unidad_control IS
          wr_m      : OUT STD_LOGIC;
          ldir      : OUT STD_LOGIC;
          ins_dad   : OUT STD_LOGIC;
-         word_byte : OUT STD_LOGIC);
+         word_byte : OUT STD_LOGIC;
+			in_d		 : OUT STD_LOGIC_VECTOR (1 downto 0);
+			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
+			alu_op	 : OUT  STD_LOGIC_VECTOR (2 DOWNTO 0);
+			rd_sys_gp : OUT STD_LOGIC);
 	END COMPONENT;
 	
 	SIGNAL bus_ir			: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -94,7 +102,6 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_wr_m		: STD_LOGIC;
 	SIGNAL bus_wrd_gp		: STD_LOGIC;
 	SIGNAL bus_wrd_sys	: STD_LOGIC;
---	SIGNAL bus_rd_sys_gp : STD_LOGIC;
 
 	SIGNAL multi_ldpc		: STD_LOGIC;
 	SIGNAL multi_ldir		: STD_LOGIC;
@@ -107,7 +114,11 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL new_pc					: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	
 	SIGNAL tknbr_pc				: STD_LOGIC_VECTOR (15 DOWNTO 0);
+	SIGNAL bus_tknbr_l			: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL bus_in_d_l				: STD_LOGIC_VECTOR (1 downto 0);
 	SIGNAL bus_tknbr				: STD_LOGIC_VECTOR (1 DOWNTO 0);
+	SIGNAL bus_alu_op				: STD_LOGIC_VECTOR (2 DOWNTO 0);
+	SIGNAL bus_rd_sys_gp 		: STD_LOGIC;
 	
 BEGIN
 
@@ -115,20 +126,20 @@ BEGIN
 	PORT MAP (
 		ir 			=>	bus_ir,
 		eval			=> eval,
-		op				=>	op,
+		op				=>	bus_alu_op,
 		func			=> func,
 		ldpc			=> bus_ldpc,
 		wrd_gp		=>	bus_wrd_gp,
 		wrd_sys		=>	bus_wrd_sys,
-		rd_sys_gp   => rd_sys_gp,
+		rd_sys_gp   => bus_rd_sys_gp,
 		addr_a		=> addr_a,
 		addr_b		=> addr_b,
 		addr_d		=> addr_d,
 		immed			=> bus_immed,
 		immed_reg   => immed_reg,
 		wr_m			=>	bus_wr_m,
-		in_d			=> in_d,
-		tknbr			=> bus_tknbr,
+		in_d			=> bus_in_d_l,
+		tknbr			=> bus_tknbr_l,
 		immed_x2		=> immed_x2,
 		word_byte 	=> bus_word_byte,
 		wr_port		=> wr_port,
@@ -143,6 +154,10 @@ BEGIN
 	PORT MAP (
 		clk			=>	clk,
 		boot			=> boot,
+		in_d_l		=> bus_in_d_l,
+		tknbr_l		=> bus_tknbr_l,
+		alu_op_l		=> bus_alu_op,
+		rd_sys_gp_l => bus_rd_sys_gp,
 		intr_l		=> intr_l,
 		intr			=> intr_d,
 		intr_enabled=> intr_enabled,
@@ -157,7 +172,11 @@ BEGIN
 		wr_m			=>	wr_m,
 		ldir			=>	multi_ldir,
 		ins_dad		=>	ins_dad,
-		word_byte	=> word_byte
+		word_byte	=> word_byte,
+		in_d			=> in_d,
+		tknbr			=> bus_tknbr,
+		alu_op		=> op,
+		rd_sys_gp	=> rd_sys_gp
 	);
 	
 	WITH multi_ldir SELECT
@@ -183,9 +202,7 @@ BEGIN
 									X"C000"				WHEN others;
 
 	pc 	<= new_pc;
-	pcup 	<= new_pc + 2; -- Si se lanzase una interrupcion justo cuando lanzamos un branch, esto no funcionaría?
-								-- Esto es debido a que un salto seria interrumpido y en vez de almacenar la direccion
-								-- de salto almacenariamos el pc+2, lo cual es un poco estupido...
+	pcup 	<= tknbr_pc;
 	
 	PROCESS (clk, boot) 
 	BEGIN
@@ -201,8 +218,5 @@ BEGIN
 	
 	immed 			<= bus_immed;
 	bus_immed_des	<= STD_LOGIC_VECTOR(shift_left(unsigned(bus_immed), 1));
-	
-	-- Hay que añadirle a multi todo el estado system... con las escrituras en los registros etc. analogo a el estado DEMW con losregistros gp
-	-- Falta tambien añadirle la señal interrupt a multi, que saldra del interrupt controller, si se nos olvida esto estamos DEPDEP
 	
 END Structure;

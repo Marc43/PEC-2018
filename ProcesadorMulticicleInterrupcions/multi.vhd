@@ -4,6 +4,10 @@ USE ieee.std_logic_1164.all;
 entity multi is
     port(clk       : IN  STD_LOGIC;
          boot      : IN  STD_LOGIC;
+			in_d_l	 : IN  STD_LOGIC_VECTOR(1 downto 0);
+			tknbr_l	 : IN  STD_LOGIC_VECTOR(1 downto 0);
+			alu_op_l	 : IN	 STD_LOGIC_VECTOR(2 downto 0);
+			rd_sys_gp_l : IN STD_LOGIC;
          ldpc_l    : IN  STD_LOGIC;
          wrd_gp_l  : IN  STD_LOGIC;
 			wrd_sys_l : IN	 STD_LOGIC;
@@ -18,8 +22,17 @@ entity multi is
          wr_m      : OUT STD_LOGIC;
          ldir      : OUT STD_LOGIC;
          ins_dad   : OUT STD_LOGIC;
-         word_byte : OUT STD_LOGIC);
+         word_byte : OUT STD_LOGIC;
+			in_d		 : OUT STD_LOGIC_VECTOR (1 downto 0);
+			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
+			alu_op	 : OUT STD_LOGIC_VECTOR (2 downto 0);
+			rd_sys_gp : OUT STD_LOGIC);
 end entity;
+
+--tknbr, in_d and alu op are added to multi because when we enter the
+--SYSTEM cycle the instruction that preceeded the cycle is the one that
+--determines the output of control_l, we need to ensure that the S5 is loaded
+--into the PC, and that the PCup is loaded into S1
 
 architecture Structure of multi is
 
@@ -80,14 +93,20 @@ begin
 		
 	END PROCESS;
 	
-	ldpc			<= ldpc_l		when state=DEMW OR 
-											  state=SYSTEM else '0';
+	ldpc			<= ldpc_l		when state=DEMW else '0';
 	
-	wrd_sys		<= wrd_sys_l	when state=DEMW OR state=SYSTEM else '0';
+	wrd_sys		<= wrd_sys_l	when state=DEMW   else 
+						'1'			when state=SYSTEM else -- Really not necessary, those writes are pretty hardcoded...
+						'0';
+						
 	wrd_gp		<= wrd_gp_l 	when state=DEMW 	else '0';
 	wr_m			<= wr_m_l 		when state=DEMW 	else '0';
 	word_byte	<= w_b			when state=DEMW	else '0';
 	ins_dad 		<=	'1'			when state=DEMW 	else '0';
+	in_d			<= in_d_l		when state=DEMW	else "10";  -- "10" is the value to take pcup and drive it to 'd'
+	tknbr			<= tknbr_l		when state=DEMW	else "10";  -- "10" is the value to write a register value into the PC
+	alu_op		<= alu_op_l		when state=DEMW	else "100"; -- "100" is the alu operation BYPASSX, useful to bypass a value from the regfile
+	rd_sys_gp	<= rd_sys_gp_l when state=DEMW	else '1';	-- '1' indicates reading from sys regfile 
 	ldir 			<= '1'			when state=FETCH 	else '0';
 	
 	intr		 	<= '1' when state=SYSTEM else '0'; -- Check...

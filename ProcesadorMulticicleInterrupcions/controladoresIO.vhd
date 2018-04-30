@@ -211,7 +211,8 @@ BEGIN
 		END PROCESS;
 		
 		ms_counter_we <= wr_out WHEN addr_io = MS_COUNT_P ELSE
-								'0';
+							
+							  '0';
 		
 		vga_cursor <= X"0000";
 		vga_cursor_enable <= '0';

@@ -89,7 +89,7 @@ BEGIN
 	
 		  bus_gp_a	WHEN RD_SYS_GP = '0' AND intr = '0' ELSE
 		  
-		  bus_sys_a; -- If intr = '1' port a is being read from the sys regfile  
+		  bus_sys_a; -- If intr = '1' port 'a' is being read from the sys regfile  
 	
 END Structure;
 

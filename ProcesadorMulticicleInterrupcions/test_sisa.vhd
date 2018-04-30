@@ -73,10 +73,14 @@ architecture comportament of test_sisa is
    signal botones      	: std_logic_vector(9 downto 0);
 	signal bypass_sw0		: std_logic_vector(8 downto 0) := "000000000";
 	signal keys				: std_logic_vector(3 downto 0) := "1111";
+	signal hexs				: std_logic_vector(6 downto 0) := "1111111";
+	signal rgb				: std_logic_vector(7 downto 0) := "11111111";
 	
 	signal bboot : std_logic;
 
 	signal bypass_sw : std_logic_vector(9 downto 0) := bboot & bypass_sw0;
+	
+	signal ununo : std_logic := '1';
 	
 begin
    
@@ -93,8 +97,16 @@ begin
 			SRAM_CE_N 	=> ce_m,
 			SRAM_OE_N 	=> oe_m,
 			SRAM_WE_N 	=> we_m, 
-			KEY	  => keys
-
+			KEY	  => keys,
+			VGA_R  		=> rgb,
+			VGA_G  		=> rgb,
+			VGA_B  		=> rgb,
+			VGA_HS 		=> ununo,
+			VGA_VS 		=> ununo,
+			HEX0 			=> hexs,
+			HEX1 			=> hexs,
+			HEX2 			=> hexs,
+			HEX3 			=> hexs
       );
 
 	mem0: async_64Kx16
@@ -116,8 +128,8 @@ begin
 		addr_mem (15 downto 0) <= addr_SOC (15 downto 0);
 		botones(9) <= reset_proc;
 		
-   -- Descripcio del comportament
-	bboot <= '1' after 150 ns, '0' after 200 ns;
+--	bboot <= '1' after 150 ns, '0' after 200 ns;
+	bypass_sw(9) <= '1' after 150 ns, '0' after 200 ns;
 	clk <= not clk after 10 ns;
 	reset_ram <= '1' after 15 ns, '0' after 50 ns;    -- reseteamos la RAm en el primer ciclo
 	reset_proc <= '1' after 25 ns, '0' after 320 ns;  -- reseteamos el procesador en el segundo ciclo
