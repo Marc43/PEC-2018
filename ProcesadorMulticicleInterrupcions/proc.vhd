@@ -42,7 +42,7 @@ COMPONENT unidad_control IS
           pc        : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad   : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+          in_d      : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
 			 immed_reg : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
@@ -71,7 +71,7 @@ COMPONENT datapath IS
           ins_dad  : IN  STD_LOGIC;
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup     : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          in_d     : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+          in_d     : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 intr		 : IN	 STD_LOGIC;
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -102,7 +102,7 @@ SIGNAL bus_immed			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_pc				: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_pcup			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_ins_dad		: STD_LOGIC;
-SIGNAL bus_in_d			: STD_LOGIC_VECTOR(1 DOWNTO 0);
+SIGNAL bus_in_d			: STD_LOGIC_VECTOR(2 DOWNTO 0);
 SIGNAL bus_immed_x2		: STD_LOGIC;
 SIGNAL bus_wr_m			: STD_LOGIC;
 SIGNAL bus_word_byte		: STD_LOGIC;

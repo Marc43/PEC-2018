@@ -19,7 +19,7 @@ ENTITY datapath IS
           ins_dad  : IN  STD_LOGIC;
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup		 : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-          in_d     : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+          in_d     : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			 intr		 : IN	 STD_LOGIC;
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -106,10 +106,11 @@ BEGIN
 	);
 	
 	WITH in_d SELECT		-- Data output or data from memory (loads)
-		mux_dreg <= alu_out 	WHEN "00",	 -- ALU
-						datard_m	WHEN "01",	 -- MEM
-						pcup		WHEN "10",	 -- JAL
-						rd_io		WHEN others; -- IO
+		mux_dreg <= alu_out 	WHEN "000",	 -- ALU
+						datard_m	WHEN "001",	 -- MEM
+						pcup		WHEN "010",	 -- JAL
+						rd_io		WHEN "011",  -- IO
+						pc			WHEN others; -- PC
 						
 	WITH intr SELECT	-- When an interrupt is triggered the pcuptaded must reach S1
 		mux_dreg_pcup <= mux_dreg 	WHEN '0',

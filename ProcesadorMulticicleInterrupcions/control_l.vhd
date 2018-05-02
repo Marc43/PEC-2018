@@ -17,7 +17,7 @@ ENTITY control_l IS
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 immed_reg : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+          in_d      : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 tknbr	  : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC;
@@ -197,13 +197,14 @@ BEGIN
 							  op_code = STB 	ELSE		
 				'0'; 
 			
-	in_d	<= "11"	WHEN op_code = IO	AND ir(8) = '0' 	ELSE -- IN 
+	in_d	<= "011"		WHEN (op_code = IO	AND ir(8) = '0') OR
+								  (op_code = SPEC AND spec_code = GETIID) ELSE -- IN 
 	
-				"10"  WHEN op_code = JUMP AND jmp_f = JAL ELSE
+				"010"  	WHEN op_code = JUMP AND jmp_f = JAL ELSE
 				
-				"01" 	WHEN op_code = LD 	OR
-							  op_code = LDB 	ELSE
-				"00";
+				"001" 	WHEN op_code = LD 	OR
+								  op_code = LDB 	ELSE
+				"000";
 				
 	tknbr <= "10" WHEN (op_code = JUMP AND jmp_f = JZ  AND eval = '1') OR
 							 (op_code = JUMP AND jmp_f = JNZ AND eval = '0') OR
@@ -271,7 +272,7 @@ BEGIN
 	
 				  '0';
 	
-	inta	  <= '1' WHEN op_code = SPEC AND spec_code = RETI ELSE
+	inta	  <= '1' WHEN op_code = SPEC AND spec_code = GETIID ELSE
 	
 				  '0';
 	

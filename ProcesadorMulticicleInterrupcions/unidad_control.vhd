@@ -26,7 +26,7 @@ ENTITY unidad_control IS
           pc        : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup		  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           ins_dad   : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+          in_d      : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC;
@@ -54,7 +54,7 @@ ARCHITECTURE Structure OF unidad_control IS
           immed     : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 immed_reg : OUT STD_LOGIC;
           wr_m      : OUT STD_LOGIC;
-          in_d      : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+          in_d      : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
 			 tknbr	  : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
           immed_x2  : OUT STD_LOGIC;
           word_byte : OUT STD_LOGIC;
@@ -69,7 +69,7 @@ ARCHITECTURE Structure OF unidad_control IS
 	COMPONENT multi IS
     port(clk       : IN  STD_LOGIC;
          boot      : IN  STD_LOGIC;
-         in_d_l    : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
+         in_d_l    : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			tknbr_l   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			alu_op_l	 : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			rd_sys_gp_l : IN STD_LOGIC;
@@ -88,7 +88,7 @@ ARCHITECTURE Structure OF unidad_control IS
          ldir      : OUT STD_LOGIC;
          ins_dad   : OUT STD_LOGIC;
          word_byte : OUT STD_LOGIC;
-			in_d		 : OUT STD_LOGIC_VECTOR (1 downto 0);
+			in_d		 : OUT STD_LOGIC_VECTOR (2 downto 0);
 			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
 			alu_op	 : OUT  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			rd_sys_gp : OUT STD_LOGIC);
@@ -115,7 +115,7 @@ ARCHITECTURE Structure OF unidad_control IS
 	
 	SIGNAL tknbr_pc				: STD_LOGIC_VECTOR (15 DOWNTO 0);
 	SIGNAL bus_tknbr_l			: STD_LOGIC_VECTOR (1 DOWNTO 0);
-	SIGNAL bus_in_d_l				: STD_LOGIC_VECTOR (1 downto 0);
+	SIGNAL bus_in_d_l				: STD_LOGIC_VECTOR (2 downto 0);
 	SIGNAL bus_tknbr				: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL bus_alu_op				: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL bus_rd_sys_gp 		: STD_LOGIC;
