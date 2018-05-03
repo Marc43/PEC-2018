@@ -232,28 +232,24 @@ end timer;
 ARCHITECTURE Structure OF timer IS
 
 	SIGNAL cnt 		: STD_LOGIC_VECTOR (21 downto 0);
-	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"2625A0";
-	
+	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"0025A0";
+	--2625A0 2625A0 2625A0 2625A0 2625A0 2625A0
 	signal bus_intr : std_logic := '0';
 
 BEGIN
 
-	counter : PROCESS (CLOCK_50, inta) 
+	counter : PROCESS (CLOCK_50, cnt, inta) 
 	BEGIN
 		IF boot = '1' THEN
 			cnt <= (others=>'0');		
 		ELSIF rising_edge(CLOCK_50) THEN
-			IF inta = '1' THEN 
-				cnt <= (others=>'0');
-				bus_intr <= '0';
-			ELSIF cnt = ms50 THEN
-				cnt  <= (others=>'0');
-				bus_intr <= '1';
-			ELSE 
-				cnt <= cnt + 1;
-			END IF;
+			cnt <= cnt + 1;
+		ELSIF rising_edge(inta) THEN
+			bus_intr <= '0';
+		ELSIF cnt = ms50 THEN
+			cnt<= (others=>'0');
+			bus_intr <= '1';
 		END IF;
-	
 	END PROCESS;
 	
 	intr <= bus_intr;

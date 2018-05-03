@@ -4,7 +4,7 @@ K3
 cModel Technology
 dC:\altera\13.0sp1
 Ealu
-Z0 w1525264336
+Z0 w1525357237
 Z1 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
 Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
 Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
@@ -16,7 +16,7 @@ L5
 VWb__kAX0fzWc3@57=d5b01
 Z7 OV;C;10.1d;51
 32
-Z8 !s108 1525267997.524000
+Z8 !s108 1525363017.332000
 Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd|
 Z10 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd|
 Z11 o-work work -2002 -explicit -O0
@@ -41,7 +41,7 @@ R12
 !s100 9NiaHf;M:^_?BNf9UI@KR0
 !i10b 1
 Easync_64kx16
-Z13 w1525264147
+Z13 w1525349729
 Z14 DPx4 work 15 package_utility 0 22 abW^FY0na:iFW@RR:Fofg0
 Z15 DPx4 work 14 package_timing 0 22 ]QljGNTG0EJQ?X:f3a>TX1
 Z16 DPx4 ieee 16 std_logic_textio 0 22 ?Il0a149GV276[?[UMDWh2
@@ -50,16 +50,16 @@ Z18 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
 R2
 R3
 R4
-Z19 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
-Z20 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd
+Z19 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd
+Z20 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd
 l0
 L22
 Vz7=:g106kSL^?zZa1_k1i2
 R7
 32
-Z21 !s108 1525268003.849000
-Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
-Z23 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/async_64Kx16.vhd|
+Z21 !s108 1525363022.574000
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd|
+Z23 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd|
 R11
 R12
 !s100 >mUGlnEO[;>2_SQSo6jO>0
@@ -86,7 +86,7 @@ R12
 !s100 ;PMTN0Wle:CWX6W[Y:e7_2
 !i10b 1
 Econtrol_l
-Z24 w1525267919
+Z24 w1525357237
 R1
 R2
 R3
@@ -98,7 +98,7 @@ L5
 Vhk?gOz]F>>433od_8mJBe1
 R7
 32
-Z27 !s108 1525267997.743000
+Z27 !s108 1525363017.472000
 Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd|
 Z29 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd|
 R11
@@ -123,23 +123,23 @@ R12
 !s100 HiB5c7IW;3:F1mBEmg:]P3
 !i10b 1
 Econtroladores_io
-Z30 w1525264336
+R24
 R1
 R17
 R18
 R2
 R3
 R4
-Z31 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd
-Z32 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd
+Z30 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd
+Z31 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd
 l0
 L6
 V944eDBUSNmiAOOU63Pn^Q3
 R7
 32
-Z33 !s108 1525267997.992000
-Z34 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd|
-Z35 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd|
+Z32 !s108 1525363017.644000
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd|
+Z34 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd|
 R11
 R12
 !s100 nY0kFC`@E4:VC37aaGzz>1
@@ -156,31 +156,31 @@ L29
 VS:Ml[gN0Ocm;XVKCXQ=ZP0
 R7
 32
+R32
 R33
 R34
-R35
 R11
 R12
 !s100 XmhK[Lc6c2Z81]XBNcFj_1
 !i10b 1
 Ecounter_ms
-R30
+R24
 R1
 R17
 R18
 R2
 R3
 R4
+R30
 R31
-R32
 l0
 L231
 V87Xg>d1]7j]_`>1mEHhcE1
 R7
 32
+R32
 R33
 R34
-R35
 R11
 R12
 !s100 G9hi0NaH`0UHiTeC@aRD12
@@ -197,29 +197,29 @@ L241
 VzXe>WY2MRmTO9AeSKJ4A]0
 R7
 32
+R32
 R33
 R34
-R35
 R11
 R12
 !s100 mLb59mSS_0ALVMN4IkUC52
 !i10b 1
 Edatapath
-Z36 w1525265944
+R24
 R1
 R2
 R3
 R4
-Z37 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
-Z38 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
+Z35 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
+Z36 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
 l0
 L5
 VSia;1z;U7L7EmH1UQQP433
 R7
 32
-Z39 !s108 1525267998.508000
-Z40 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd|
-Z41 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd|
+Z37 !s108 1525363017.893000
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd|
+Z39 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd|
 R11
 R12
 !s100 PgPP3_Ff5i<I0?K<_aza[3
@@ -234,28 +234,28 @@ L37
 VGlIj?9mR]m8JH5[^e[0dW0
 R7
 32
+R37
+R38
 R39
-R40
-R41
 R11
 R12
 !s100 jQ0:28QXm3Lo=Fjc?UDk=0
 !i10b 1
 Edisplay7
-Z42 w1525264337
+Z40 w1525357238
 R2
 R3
 R4
-Z43 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
-Z44 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
+Z41 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
+Z42 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
 l0
 L4
 VQkKZRnP`82Yan`>hd9Qdj0
 R7
 32
-Z45 !s108 1525267998.742000
-Z46 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd|
-Z47 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd|
+Z43 !s108 1525363018.221000
+Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd|
+Z45 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd|
 R11
 R12
 !s100 gU`nfGzPi32X=f^fYU>MX0
@@ -269,31 +269,31 @@ L10
 V<DfTAX6ZSGK;K<GR7Z3k00
 R7
 32
+R43
+R44
 R45
-R46
-R47
 R11
 R12
 !s100 ai;6NBJm>Sc7EBEgKcG4R2
 !i10b 1
 Egeneralp_regfile
-R42
+R40
 R1
 R17
 R18
 R2
 R3
 R4
-Z48 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd
-Z49 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd
+Z46 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd
+Z47 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd
 l0
 L202
 VG7IB1?e@BRm`ez^5ajdmX0
 R7
 32
-Z50 !s108 1525268001.193000
-Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd|
-Z52 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd|
+Z48 !s108 1525363020.467000
+Z49 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd|
+Z50 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd|
 R11
 R12
 !s100 ZcAI3LeGjoc>RUUB`R_:01
@@ -310,28 +310,28 @@ L215
 VC<31_oEnUk;;UAWZ5k=Y23
 R7
 32
+R48
+R49
 R50
-R51
-R52
 R11
 R12
 !s100 g5621HDLz?ROXG_l<;];L2
 !i10b 1
 Einput_controllers
-R42
+Z51 w1525363009
 R2
 R3
 R4
-Z53 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
-Z54 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
+Z52 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
+Z53 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
 l0
 L4
 V;cnO>U<=8NAEL^dH2e1Hh3
 R7
 32
-Z55 !s108 1525267998.960000
-Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd|
-Z57 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd|
+Z54 !s108 1525363018.377000
+Z55 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd|
+Z56 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd|
 R11
 R12
 !s100 R=f]CWC[kh?NYPVXkKWKB1
@@ -345,15 +345,15 @@ L28
 VRh>O6ZI@<_kNfERRkNoLG3
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
 !s100 TLVgNOhA=WkBKa9>[z1L>3
 !i10b 1
 Einterrupt_controller
-R42
+Z57 w1525359952
 R1
 R17
 R18
@@ -367,7 +367,7 @@ L6
 V`=cE8mYN70S6=_mO2[V[K0
 R7
 32
-Z60 !s108 1525267999.740000
+Z60 !s108 1525363018.939000
 Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd|
 Z62 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd|
 R11
@@ -383,7 +383,7 @@ R3
 DEx4 work 20 interrupt_controller 0 22 `=cE8mYN70S6=_mO2[V[K0
 l31
 L24
-V_aR;U@6XTOlA;=9VTH]dz1
+V7N?I_M0En>8Y:RY[Sj1<T2
 R7
 32
 R60
@@ -391,23 +391,23 @@ R61
 R62
 R11
 R12
-!s100 Cl0IA@L6czhoaM>m1RWPm2
+!s100 164gO>:OMK6fOJhzH<=5N3
 !i10b 1
 Einterruptores
-R42
+R51
 R2
 R3
 R4
+R52
 R53
-R54
 l0
 L176
 VAD9JPAFeXfQ<_O0[fVBX]2
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
 !s100 6L?];L8EeP:FjbTei7[9`0
@@ -421,15 +421,15 @@ L187
 VLRb[>KczYKMQG;ia>2n:I0
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
 !s100 JN6iKGZDcUMDUV<d6XRc:1
 !i10b 1
 Ekeyboard_controller
-R42
+R40
 R17
 R18
 R1
@@ -443,7 +443,7 @@ L7
 V]acQ[UYWJ8SM<S>?lXzUe1
 R7
 32
-Z65 !s108 1525267999.943000
+Z65 !s108 1525363019.188000
 Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd|
 Z67 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd|
 R11
@@ -470,25 +470,25 @@ R12
 !s100 [HCde[Z1>^O_LBZ_KLYUQ1
 !i10b 1
 Ekeyboard_controller_intr
-R42
+R51
 R17
 R18
 R2
 R3
 R4
+R52
 R53
-R54
 l0
-L272
+L294
 VA@0gNMk51zO<3O:K4UjcW3
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
-!s100 8bC5AG`BhoIZL2NLoCFUd0
+!s100 :DT4[<9KK<HlX[N;:fOik1
 !i10b 1
 Astructure
 R17
@@ -496,20 +496,20 @@ R18
 R2
 R3
 DEx4 work 24 keyboard_controller_intr 0 22 A@0gNMk51zO<3O:K4UjcW3
-l299
-L285
+l321
+L307
 V8gNfZf3Z:1FT8PY189@DN1
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
-!s100 4Pej_YZBPNa_44SBhD5kL3
+!s100 LC3L;M^c5RX5jdj`ZE7Hd3
 !i10b 1
 Ememorycontroller
-R30
+R24
 R1
 R2
 R3
@@ -521,7 +521,7 @@ L5
 V]<SnHIh6kIdWgmolEYlb53
 R7
 32
-Z70 !s108 1525268000.147000
+Z70 !s108 1525363019.422000
 Z71 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd|
 Z72 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd|
 R11
@@ -546,20 +546,20 @@ R12
 !s100 1[=0ch^MR3EYjOoC4alUQ2
 !i10b 1
 Emulti
-Z73 w1525266934
+R40
 R2
 R3
 R4
-Z74 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
-Z75 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
+Z73 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
+Z74 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
 l0
 L4
 V?zfU`MeAb3ffAIi9ek0NN3
 R7
 32
-Z76 !s108 1525268000.443000
-Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd|
-Z78 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd|
+Z75 !s108 1525363019.594000
+Z76 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd|
+Z77 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd|
 R11
 R12
 !s100 mQKLISg1b2MMd4RCIJ:?O0
@@ -573,9 +573,9 @@ L37
 VloOS<bSB0jJN_fG2z5>LD1
 R7
 32
+R75
 R76
 R77
-R78
 R11
 R12
 !s100 Bzm3=ST5YUWoB_JH8cam?3
@@ -588,16 +588,16 @@ R2
 R3
 R13
 R4
-Z79 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd
-Z80 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd
+Z78 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd
+Z79 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd
 l0
 L17
 V]QljGNTG0EJQ?X:f3a>TX1
 R7
 32
-Z81 !s108 1525268004.208000
-Z82 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
-Z83 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_timing.vhd|
+Z80 !s108 1525363022.730000
+Z81 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd|
+Z82 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd|
 R11
 R12
 !s100 7[5MEfJ`HFPK=zP7G66<i1
@@ -615,9 +615,9 @@ VfeQXi[8kmeXD5NlH1A^G91
 !s100 [;aAVGm330N:B:ZYX350a1
 R7
 32
+R80
 R81
 R82
-R83
 R11
 R12
 nbody
@@ -629,8 +629,8 @@ R2
 R3
 R13
 R4
-Z84 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd
-Z85 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd
+Z83 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd
+Z84 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd
 l0
 L15
 VabW^FY0na:iFW@RR:Fofg0
@@ -639,9 +639,9 @@ R7
 32
 b1
 !i10b 1
-Z86 !s108 1525268004.442000
-Z87 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
-Z88 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleMemoria/package_utility.vhd|
+Z85 !s108 1525363022.901000
+Z86 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd|
+Z87 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd|
 R11
 R12
 Bbody
@@ -652,32 +652,32 @@ R2
 R3
 l0
 L22
-Z89 V1dAT5_E6[=Q4>0kGEF5@]3
-Z90 !s100 =i4<XdWXU:J]Ih;Vo<NgP3
+Z88 V1dAT5_E6[=Q4>0kGEF5@]3
+Z89 !s100 =i4<XdWXU:J]Ih;Vo<NgP3
 R7
 32
 !i10b 1
+R85
 R86
 R87
-R88
 R11
 R12
 nbody
 Eproc
-Z91 w1525266101
+R40
 R2
 R3
 R4
-Z92 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd
-Z93 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd
+Z90 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd
+Z91 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd
 l0
 L4
 V@]Fo9aW;jh[j]m^YaX5JA2
 R7
 32
-Z94 !s108 1525268000.677000
-Z95 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd|
-Z96 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd|
+Z92 !s108 1525363019.781000
+Z93 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd|
+Z94 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd|
 R11
 R12
 !s100 CG@a^@E;Ph[Fi3oNCKZKP1
@@ -691,30 +691,30 @@ L21
 V88enf1HCDFz7Z>`Fgik880
 R7
 32
+R92
+R93
 R94
-R95
-R96
 R11
 R12
 !s100 al;3[mmD2]GW@QBnL`j=<0
 !i10b 1
 Eps2_keyboard_interface
-R42
+R40
 R17
 R18
 R2
 R3
 R4
-Z97 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd
-Z98 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd
+Z95 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd
+Z96 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd
 l0
 L122
 V5^^o1WM<I<13TLR9OGm6X3
 R7
 32
-Z99 !s108 1525268000.989000
-Z100 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd|
-Z101 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd|
+Z97 !s108 1525363020.202000
+Z98 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd|
+Z99 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd|
 R11
 R12
 !s100 VS?01B]caEG3LaE0f;Ylo0
@@ -730,28 +730,28 @@ L154
 V0@lM>0X3`2K2;_A`g_8gZ3
 R7
 32
+R97
+R98
 R99
-R100
-R101
 R11
 R12
 !s100 j<zV5hkF?44S1l^eK2JI41
 !i10b 1
 Epulsadores
-R42
+R51
 R2
 R3
 R4
+R52
 R53
-R54
 l0
 L131
 VlRQcLooaUm7]^5]bR4Wn51
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
 !s100 NGe9ZWIXbh2_d5Ul9g@1X0
@@ -765,31 +765,31 @@ L142
 V1?0BFMOgK4^?l8zL]m0dW0
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
 !s100 7U5_[g6d[e7lV>hg6NOJ=0
 !i10b 1
 Eregfile
-R42
+R40
 R1
 R17
 R18
 R2
 R3
 R4
-R48
-R49
+R46
+R47
 l0
 L6
 VYKRDi8Pa[HPdN;;O:H0m62
 R7
 32
+R48
+R49
 R50
-R51
-R52
 R11
 R12
 !s100 l]UPHAK^]39=hMkelX7ZQ3
@@ -806,30 +806,30 @@ L25
 VlWQRVzQiCFACniOzNbf6X0
 R7
 32
+R48
+R49
 R50
-R51
-R52
 R11
 R12
 !s100 WacT?OndDEBcIg=R96X;T0
 !i10b 1
 Esisa
-R42
+R40
 R18
 R17
 R2
 R3
 R4
-Z102 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
-Z103 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
+Z100 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
+Z101 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
 l0
 L6
 VfSAA8h1zzbCBfLV=eZ:LJ2
 R7
 32
-Z104 !s108 1525268001.646000
-Z105 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd|
-Z106 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd|
+Z102 !s108 1525363021.045000
+Z103 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd|
+Z104 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd|
 R11
 R12
 !s100 =k1LUd0ChIaP7;;PVcKi`2
@@ -845,31 +845,31 @@ L32
 V`DjhTEME[JK[IgmJTRJec0
 R7
 32
+R102
+R103
 R104
-R105
-R106
 R11
 R12
 !s100 3OGhbM0iLg;0>JMgBB7m@2
 !i10b 1
 Esramcontroller
-R30
+R24
 R1
 R17
 R18
 R2
 R3
 R4
-Z107 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd
-Z108 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd
+Z105 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd
+Z106 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd
 l0
 L7
 Vjjn044l<>f1hjRRH94@o;0
 R7
 32
-Z109 !s108 1525268001.895000
-Z110 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd|
-Z111 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd|
+Z107 !s108 1525363021.201000
+Z108 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd|
+Z109 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd|
 R11
 R12
 !s100 <FSc_Qzi@@deA1M8@=TIF2
@@ -886,31 +886,31 @@ L24
 V`LgX=mVK@?I58dGVf9ZdC2
 R7
 32
+R107
+R108
 R109
-R110
-R111
 R11
 R12
 !s100 E0k9T;?h<bbH_[oUS6HN51
 !i10b 1
 Esystem_regfile
-R42
+R40
 R1
 R17
 R18
 R2
 R3
 R4
-R48
-R49
+R46
+R47
 l0
 L104
 VNiUDLl@WBDR=FHK_J1Y;A0
 R7
 32
+R48
+R49
 R50
-R51
-R52
 R11
 R12
 !s100 Xb4B6@KOShb9_Hka@RR0J1
@@ -927,28 +927,28 @@ L120
 VWi[`?fAOUfChC[`kJdo9F2
 R7
 32
+R48
+R49
 R50
-R51
-R52
 R11
 R12
 !s100 JTV0]bJNUNTBH;O<^D9>73
 !i10b 1
 Etest_sisa
-R42
+R40
 R2
 R3
 R4
-Z112 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd
-Z113 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd
+Z110 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd
+Z111 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd
 l0
 L5
 VkAdhfn89W5`mY_=KPlfV]3
 R7
 32
-Z114 !s108 1525268002.114000
-Z115 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd|
-Z116 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd|
+Z112 !s108 1525363021.357000
+Z113 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd|
+Z114 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd|
 R11
 R12
 !s100 688X_8OZ0BkG::B3fT5kf3
@@ -962,30 +962,30 @@ L8
 Vc>Lzn3khHaU31Tg00[MR[2
 R7
 32
+R112
+R113
 R114
-R115
-R116
 R11
 R12
 !s100 3:MR?4jd?QKPJ3Vj;R?Sc1
 !i10b 1
 Etimer
-R42
+R51
 R17
 R18
 R2
 R3
 R4
+R52
 R53
-R54
 l0
 L222
 VemTW5m6MZ`aR4?FJ0A2[d0
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
 !s100 >f2@083bb0Y9dNAZId^123
@@ -998,34 +998,34 @@ R3
 DEx4 work 5 timer 0 22 emTW5m6MZ`aR4?FJ0A2[d0
 l239
 L232
-VVg9O`o:nN>;ID8doiAn[l1
+V<GkP1kQEl1=Kln`AfGJWc2
 R7
 32
+R54
 R55
 R56
-R57
 R11
 R12
-!s100 ifNTEL9;RdPedLPI<_3N[3
+!s100 Ql?N^nm;c:<J8k1a?3KUg1
 !i10b 1
 Eunidad_control
-Z117 w1525265868
+R40
 R17
 R18
 R1
 R2
 R3
 R4
-Z118 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd
-Z119 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd
+Z115 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd
+Z116 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd
 l0
 L6
 V;`m33>=L[VUSlT7VAG7^42
 R7
 32
-Z120 !s108 1525268002.395000
-Z121 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd|
-Z122 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd|
+Z117 !s108 1525363021.544000
+Z118 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd|
+Z119 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd|
 R11
 R12
 !s100 JjPG<VZ7][cT8X>mM8zmZ1
@@ -1042,31 +1042,31 @@ L40
 VQ`b33mMz7GkiMb1VK0IIA3
 R7
 32
-R120
-R121
-R122
+R117
+R118
+R119
 R11
 R12
 !s100 `?TE@Go5QUJ=azZ9[>N`i2
 !i10b 1
 Evga_controller
-R42
+R40
 R1
 R17
 R18
 R2
 R3
 R4
-Z123 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
-Z124 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
+Z120 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
+Z121 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
 l0
 L26
 V2G3@f>mLnM6bdcKg9lHXg0
 R7
 32
-Z125 !s108 1525268002.801000
-Z126 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd|
-Z127 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd|
+Z122 !s108 1525363021.715000
+Z123 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd|
+Z124 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd|
 R11
 R12
 !s100 Y5<G=Ez_bmSHfQbfjOTS:0
@@ -1083,29 +1083,29 @@ L46
 VcC@mLFYFDCZ_GSGU_WFoG3
 R7
 32
-R125
-R126
-R127
+R122
+R123
+R124
 R11
 R12
 !s100 YSd;GeR_SWT]]6O^?Ae?]3
 !i10b 1
 Evga_font_rom
-R42
+R40
 R1
 R2
 R3
 R4
-Z128 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd
-Z129 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd
+Z125 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd
+Z126 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd
 l0
 L13
 VH@gRdK_>UKT8HE^oCjHX?0
 R7
 32
-Z130 !s108 1525268003.066000
-Z131 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd|
-Z132 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd|
+Z127 !s108 1525363021.887000
+Z128 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd|
+Z129 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd|
 R11
 R12
 !s100 _n?V8gI@YY66c>C?Z4@GH1
@@ -1120,31 +1120,31 @@ L20
 VhSHXnTOS9fkZzGd9bHg4f2
 R7
 32
-R130
-R131
-R132
+R127
+R128
+R129
 R11
 R12
 !s100 [9oeX:^c7_=Vk8B==g]?:3
 !i10b 1
 Evga_ram_dual
-R42
+R40
 R1
 R17
 R18
 R2
 R3
 R4
-Z133 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
-Z134 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
+Z130 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
+Z131 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
 l0
 L16
 V[53RVSI@5>gEc0OEEUn7F1
 R7
 32
-Z135 !s108 1525268003.379000
-Z136 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd|
-Z137 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd|
+Z132 !s108 1525363022.152000
+Z133 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd|
+Z134 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd|
 R11
 R12
 !s100 d48TNSFU[BN?km22?gBl43
@@ -1161,30 +1161,30 @@ L29
 VOL;U58eU=<AOBHCcmFf]K1
 R7
 32
-R135
-R136
-R137
+R132
+R133
+R134
 R11
 R12
 !s100 A5<h?2MmIed[M;<nh5ILd3
 !i10b 1
 Evga_sync
-R42
+R40
 R18
 R17
 R2
 R3
 R4
-Z138 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd
-Z139 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd
+Z135 8C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd
+Z136 FC:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd
 l0
 L26
 VQ>L>[fMjiPJOffij=6Sd71
 R7
 32
-Z140 !s108 1525268003.615000
-Z141 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd|
-Z142 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd|
+Z137 !s108 1525363022.433000
+Z138 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd|
+Z139 !s107 C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd|
 R11
 R12
 !s100 dSLg1gz4;bLFXh]H[>DdD1
@@ -1200,9 +1200,9 @@ L36
 V11;?@RU>XhZjfLDM@^KlY3
 R7
 32
-R140
-R141
-R142
+R137
+R138
+R139
 R11
 R12
 !s100 i6F@<:Jc2EfSg29jElZ^50

@@ -30,10 +30,10 @@ ARCHITECTURE Structure OF interrupt_controller IS
 	
 BEGIN
 	
-	controller : PROCESS (clk, inta)
+	controller : PROCESS (inta, clk)
 	BEGIN
 	
-		IF rising_edge(clk) THEN
+		IF rising_edge(inta) THEN
 		
 			IF inta = '1' THEN
 			
@@ -51,18 +51,19 @@ BEGIN
 					iid <= PS2;
 				END IF;
 			
-			ELSE
-			
+			END IF;
+		 ELSE
+		 
 				timer_inta 	<= '0';
 				key_inta		<= '0';
 				switch_inta <= '0';
 				ps2_inta		<= '0';
-			
-			END IF;
 		
 		END IF;
 	
 	END PROCESS;
+	
+
 	
 	intr <= key_intr OR ps2_intr OR switch_intr OR timer_intr;
 
