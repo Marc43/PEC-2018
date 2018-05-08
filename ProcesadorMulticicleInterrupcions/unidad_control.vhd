@@ -202,7 +202,7 @@ BEGIN
 									X"C000"				WHEN others;
 
 	pc 	<= new_pc;
-	pcup 	<= tknbr_pc;
+	pcup 	<= new_pc + 2;
 	
 	PROCESS (clk, boot) 
 	BEGIN

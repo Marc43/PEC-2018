@@ -232,7 +232,7 @@ end timer;
 ARCHITECTURE Structure OF timer IS
 
 	SIGNAL cnt 		: STD_LOGIC_VECTOR (21 downto 0);
-	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"0025A0";
+	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"2625A0";
 	--2625A0 2625A0 2625A0 2625A0 2625A0 2625A0
 	signal bus_intr : std_logic := '0';
 
@@ -243,16 +243,23 @@ BEGIN
 		IF boot = '1' THEN
 			cnt <= (others=>'0');		
 		ELSIF rising_edge(CLOCK_50) THEN
+		
 			cnt <= cnt + 1;
-		ELSIF rising_edge(inta) THEN
-			bus_intr <= '0';
-		ELSIF cnt = ms50 THEN
-			cnt<= (others=>'0');
-			bus_intr <= '1';
+			IF cnt = ms50 THEN
+				bus_intr <= '0'; -- REMEMBER SALTPEPPER
+				cnt <= (others =>'0');
+			END IF;
+			
+			IF inta = '1' THEN
+				bus_intr <= '0';
+			END IF;
+			
 		END IF;
 	END PROCESS;
 	
-	intr <= bus_intr;
+	intr <= '1' WHEN bus_intr = '1' AND inta = '0' ELSE
+	
+			  '0';
 
 END Structure;
 
@@ -291,6 +298,7 @@ ARCHITECTURE Structure OF keyboard_controller_intr IS
 	END COMPONENT;
 	
 	signal bus_data_ready : std_logic;
+	signal bus_acknoledge : std_logic;
 
 BEGIN
 
@@ -301,13 +309,17 @@ BEGIN
 		ps2_clk 		=> ps2_clk,
 		ps2_data 	=> ps2_data,
 		read_char 	=> read_char,
-		clear_char	=> clear_char,
+		clear_char	=> bus_acknoledge,
 		data_ready 	=> bus_data_ready
 	);
 	
+	bus_acknoledge <= clear_char OR inta;
+	
 	data_ready <= bus_data_ready;
-	intr		  <= bus_data_ready; -- Both signals are equivalent, in order to preserve the original 
-											-- structure we maintaned the data_ready signal.
-											-- the same will be applied to inta and clear_char
+	intr		  <= bus_data_ready AND NOT bus_acknoledge; 
+	
+	-- Both signals are equivalent, in order to preserve the original 
+	-- structure we maintaned the data_ready signal.
+	-- the same will be applied to inta and clear_char
 	
 END Structure;

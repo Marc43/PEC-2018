@@ -4,7 +4,8 @@ USE ieee.std_logic_unsigned.all;
 USE ieee.numeric_std.all;        
 
 ENTITY regfile IS
-    PORT (clk    		: IN  STD_LOGIC;
+    PORT (reset		: IN  STD_LOGIC;
+			 clk    		: IN  STD_LOGIC;
           wrd_gp  	: IN  STD_LOGIC;
 			 wrd_sys		: IN	STD_LOGIC;
 			 RD_SYS_GP	: IN 	STD_LOGIC;
@@ -26,6 +27,7 @@ ARCHITECTURE Structure OF regfile IS
 
 COMPONENT system_regfile IS
 	PORT (
+		 reset		: IN  STD_LOGIC;
 		 clk    		: IN  STD_LOGIC;
 		 wrd	    	: IN  STD_LOGIC;
 		 intr			: IN  STD_LOGIC;
@@ -60,6 +62,7 @@ BEGIN
 
 	system_regfile0 : system_regfile
 	PORT MAP (
+		reset		=> reset,
 		clk 		=> clk,
 		wrd 		=> wrd_sys,
 		intr		=> intr,
@@ -103,6 +106,7 @@ USE ieee.numeric_std.all;
 
 ENTITY system_regfile IS
 	PORT (
+		 reset		: IN  STD_LOGIC;
 		 clk    		: IN  STD_LOGIC;
 		 wrd	    	: IN  STD_LOGIC;
 		 intr			: IN  STD_LOGIC;
@@ -123,9 +127,6 @@ ARCHITECTURE Structure OF system_regfile IS
 
 	SIGNAL regs_sys 	: register_set := ((others => (others => '0'))); -- System registers
 	
-	
-	
-	
 	CONSTANT PSWold	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "000";	
 	CONSTANT PCret		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
 	CONSTANT blackb	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "010"; -- Records what made an intr or except. trigger
@@ -136,8 +137,9 @@ BEGIN
 
 	PROCESS (clk)
 	BEGIN
-		
-		IF rising_edge(clk) THEN
+		IF reset = '1' THEN
+			regs_sys <= ((others => (others => '0')));
+		ELSIF rising_edge(clk) THEN
 		
 			IF wrd = '1' THEN
 				IF e_int = '1' THEN

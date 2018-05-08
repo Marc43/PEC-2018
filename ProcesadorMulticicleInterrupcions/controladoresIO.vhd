@@ -251,12 +251,15 @@ BEGIN
 	PROCESS (CLOCK_50) 
 	BEGIN
 		IF rising_edge(CLOCK_50) THEN
-			IF counter_cyc = 0 THEN
+		
+			IF write_enable = '1' THEN
+				tmp_ms_counter <= ms_to_count;
+			END IF;
+			
+			IF counter_cyc = 0 THEN 
 				counter_cyc <= X"C350";
 				IF tmp_ms_counter > 0 AND write_enable = '0' THEN
 					tmp_ms_counter <= tmp_ms_counter - 1;
-				ELSIF write_enable = '1' THEN
-					tmp_ms_counter <= ms_to_count;
 				END IF;
 			ELSE  
 				counter_cyc <= counter_cyc - 1;

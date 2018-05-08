@@ -3,8 +3,6 @@ JedecChain;
 	FileRevision(JESD32A);
 	DefaultMfr(6E);
 
-	P ActionCode(Cfg)
-		Device PartName(EP2C20F484) Path("C:/Users/pec02/Desktop/DE1_CD_v08/DE1_CD_v0.8/DE1_control_panel/") File("DE1_USB_API.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

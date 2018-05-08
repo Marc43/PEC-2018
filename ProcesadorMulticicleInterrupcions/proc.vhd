@@ -55,7 +55,8 @@ COMPONENT unidad_control IS
 END COMPONENT;
 
 COMPONENT datapath IS
-    PORT (clk      : IN  STD_LOGIC;
+    PORT (reset	 : IN  STD_LOGIC;
+			 clk      : IN  STD_LOGIC;
           op       : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		 : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd_gp   : IN  STD_LOGIC;
@@ -84,11 +85,6 @@ COMPONENT datapath IS
 			 e_int	 : IN  STD_LOGIC;
 			 d_int	 : IN  STD_LOGIC;
 			 ret_int  : IN  STD_LOGIC);
-END COMPONENT;
-
-COMPONENT Display7 IS
- PORT(VALOR : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
- bitsCaracter : OUT STD_LOGIC_VECTOR(6 DOWNTO 0));
 END COMPONENT;
 
 SIGNAL bus_op 				: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -160,6 +156,7 @@ BEGIN
 	
 	datapath0 : datapath
 	PORT MAP (
+		reset		=> boot,
 		clk		=> clk,
 		op			=> bus_op,
 		func		=> bus_func,

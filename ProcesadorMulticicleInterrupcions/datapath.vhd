@@ -3,7 +3,8 @@ USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
 ENTITY datapath IS
-    PORT (clk      : IN  STD_LOGIC;
+    PORT (reset	 : IN  STD_LOGIC;
+			 clk      : IN  STD_LOGIC;
           op       : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func 	 : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           wrd_gp   : IN  STD_LOGIC;
@@ -46,7 +47,8 @@ ARCHITECTURE Structure OF datapath IS
 	END COMPONENT;
 	
 	COMPONENT regfile IS
-    PORT (clk    : IN  STD_LOGIC;
+    PORT (reset  : IN  STD_LOGIC;
+			 clk    : IN  STD_LOGIC;
           wrd_gp : IN  STD_LOGIC;
 			 wrd_sys: IN  STD_LOGIC;
 			 RD_SYS_GP : IN 	STD_LOGIC;
@@ -88,6 +90,7 @@ BEGIN
 	
 	regfile0 : regfile
    PORT MAP (
+		reset			=> reset,
 		clk 			=> clk,
 		wrd_gp 		=> wrd_gp,
 		wrd_sys	 	=> wrd_sys,
@@ -135,7 +138,7 @@ BEGIN
 	data_wr	 <= reg_b;
 	aluout	 <= alu_out;
 	addr_m	 <= mux_addr;
-	wr_io		 <= alu_out; 				-- para el OUT, aunque tambien se podria coger directamente el registro B...
+	wr_io		 <= reg_b; 					-- para el OUT, aunque tambien se podria coger directamente el registro B...
 	addr_port <= immed(7 DOWNTO 0);	-- Tanto para OUT como para IN, en caso que sea otra llamada wr_out = '0' && rd_in = '0'
 	
 	-- Just connect the wires, the control will allow the write if necessary

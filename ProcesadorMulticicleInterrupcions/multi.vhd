@@ -103,13 +103,22 @@ begin
 	wr_m			<= wr_m_l 		when state=DEMW 	else '0';
 	word_byte	<= w_b			when state=DEMW	else '0';
 	ins_dad 		<=	'1'			when state=DEMW 	else '0';
-	in_d			<= in_d_l		when state=DEMW	else "100";  -- "10" is the value to take pcup and drive it to 'd'
-	tknbr			<= tknbr_l		when state=DEMW	else "10";  -- "10" is the value to write a register value into the PC
-	alu_op		<= alu_op_l		when state=DEMW	else "100"; -- "100" is the alu operation BYPASSX, useful to bypass a value from the regfile
-	rd_sys_gp	<= rd_sys_gp_l when state=DEMW	else '1';	-- '1' indicates reading from sys regfile 
+	
+	in_d			<= "100"			when state=SYSTEM else 
+						in_d_l;  -- "10" is the value to take pcup and drive it to 'd'
+						
+	tknbr			<= "10"			when state=SYSTEM	else
+						tknbr_l;  -- "10" is the value to write a register value into the PC
+	
+	alu_op		<= "100"			when state=SYSTEM	else 
+						alu_op_l		when state=DEMW; -- "100" is the alu operation BYPASSX, useful to bypass a value from the regfile
+						
+	rd_sys_gp	<= '1' 			when state=SYSTEM	else
+						rd_sys_gp_l;	-- '1' indicates reading from sys regfile 
+						
 	ldir 			<= '1'			when state=FETCH 	else '0';
 	
-	intr		 	<= '1' when state=SYSTEM else '0'; -- Check...
+	intr		 	<= '1' 			when state=SYSTEM else '0'; -- Check...
 	
 	-- multi only changes the signal intr to tell every other module
 	-- to execute the procedure so at the end of the cycle we can do
