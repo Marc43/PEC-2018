@@ -28,51 +28,67 @@ ARCHITECTURE Structure OF interrupt_controller IS
 	CONSTANT SWITCHES : STD_LOGIC_VECTOR := X"02";
 	CONSTANT PS2	 	: STD_LOGIC_VECTOR := X"03";
 	
-	SIGNAL clear : STD_LOGIC := '0';
+	--SIGNAL clear : STD_LOGIC := '0';
+	--SIGNAL bus_intr : STD_LOGIC := '0'; 
+	SIGNAL bus_timer_inta : STD_LOGIC := '0';
+	SIGNAL bus_key_inta : STD_LOGIC := '0';
+	SIGNAL bus_switch_inta : STD_LOGIC := '0';
+	SIGNAL bus_ps2_inta : STD_LOGIC := '0';
 	
 BEGIN
+--	
+--	controller : PROCESS (clk)
+--	BEGIN
+--	
+--		IF rising_edge(clk) THEN
+--				
+--			IF clear = '1' THEN
+--				
+--				timer_inta 	<= '0';
+--				key_inta		<= '0';
+--				switch_inta <= '0';
+--				ps2_inta		<= '0';
+--				clear 		<= '0';
+--			
+--			END IF;
+--			
+--			IF inta = '1' AND clear = '0' THEN
+--				IF timer_intr = '1' THEN
+--					timer_inta <= '1';
+--					clear <= '1';
+--					iid <= TIMER;
+--				ELSIF key_intr = '1' THEN
+--					key_inta <= '1';
+--					clear <= '1';
+--					iid <= KEYS;
+--				ELSIF switch_intr = '1' THEN
+--					switch_inta <= '1';
+--					clear <= '1';
+--					iid <= SWITCHES;
+--				ELSIF ps2_intr = '1' THEN
+--					ps2_inta <= '1';
+--					clear <= '1';
+--					iid <= PS2;
+--				END IF;
+--			END IF;
+--		 
+--			
+--		
+--		END IF;
+--	
+--	END PROCESS;
+--	
+--	intr 	<= key_intr OR ps2_intr OR switch_intr OR timer_intr;
 	
-	controller : PROCESS (clk)
-	BEGIN
+	bus_timer_inta 	<= '1' WHEN timer_intr = '1' AND inta 			= '1' ELSE '0';
+	bus_key_inta	  	<= '1' WHEN bus_timer_inta = '0' AND key_intr 		= '1' AND inta = '1' ELSE '0';
+	bus_switch_inta	<= '1' WHEN bus_key_inta 	= '0' AND switch_intr 	= '1' AND inta = '1' ELSE '0';
+	bus_ps2_inta	  	<= '1' WHEN bus_switch_inta= '0' AND ps2_intr		= '1' AND inta = '1' ELSE '0';
 	
-		IF rising_edge(clk) THEN
-				
-				IF clear = '1' THEN
-				
-				timer_inta 	<= '0';
-				key_inta		<= '0';
-				switch_inta <= '0';
-				ps2_inta		<= '0';
-				clear 		<= '0';
-			
-				END IF;
-			
-			IF inta = '1' THEN
-				IF timer_intr = '1' THEN
-					timer_inta <= '1';
-					clear <= '1';
-					iid <= TIMER;
-				ELSIF key_intr = '1' THEN
-					key_inta <= '1';
-					clear <= '1';
-					iid <= KEYS;
-				ELSIF switch_intr = '1' THEN
-					switch_inta <= '1';
-					clear <= '1';
-					iid <= SWITCHES;
-				ELSIF ps2_intr = '1' THEN
-					ps2_inta <= '1';
-					clear <= '1';
-					iid <= PS2;
-				END IF;
-			END IF;
-		 
-			
-		
-		END IF;
+	intr <= (key_intr OR ps2_intr OR switch_intr OR timer_intr) AND NOT inta;
 	
-	END PROCESS;
-	
-	intr 	<= key_intr OR ps2_intr OR switch_intr OR timer_intr;
-	
+	timer_inta 	<= bus_timer_inta;
+	key_inta 	<= bus_key_inta;
+	switch_inta <= bus_timer_inta;
+	ps2_inta 	<= bus_timer_inta;
 END Structure;

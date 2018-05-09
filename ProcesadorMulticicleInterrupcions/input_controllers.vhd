@@ -141,7 +141,7 @@ end pulsadores;
 
 ARCHITECTURE Structure OF pulsadores IS
 
- SIGNAL read_keys : STD_LOGIC_VECTOR (3 DOWNTO 0); -- Stores the read keys the last time (the state)
+ SIGNAL read_keys : STD_LOGIC_VECTOR (3 DOWNTO 0) := (others => 'X'); -- Stores the read keys the last time (the state)
 
  SIGNAL bus_intr : STD_LOGIC := '0';
  
@@ -186,7 +186,7 @@ end interruptores;
 
 ARCHITECTURE Structure OF interruptores IS
 
- SIGNAL read_sw : STD_LOGIC_VECTOR (7 DOWNTO 0); -- Stores the read sw the last time (the state)
+ SIGNAL read_sw : STD_LOGIC_VECTOR (7 DOWNTO 0) := (others => 'X'); -- Stores the read sw the last time (the state)
  
  SIGNAL bus_intr: STD_LOGIC := '0';
  

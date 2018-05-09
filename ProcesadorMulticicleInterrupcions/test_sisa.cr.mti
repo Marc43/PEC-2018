@@ -9,14 +9,45 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling package body package_utility
 -- Loading package package_utility
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity datapath
--- Compiling architecture Structure of datapath
+-- Compiling entity control_l
+-- Compiling architecture Structure of control_l
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity unidad_control
+-- Compiling architecture Structure of unidad_control
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Display7
+-- Compiling architecture Structure of Display7
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package std_logic_textio
+-- Compiling package package_timing
+-- Compiling package body package_timing
+-- Loading package package_timing
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -28,6 +59,58 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package NUMERIC_STD
 -- Compiling entity SRAMController
 -- Compiling architecture comportament of SRAMController
+
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity datapath
+-- Compiling architecture Structure of datapath
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity datapath
+-- Compiling architecture Structure of datapath
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity controladores_IO
+-- Compiling architecture Structure of controladores_IO
+-- Compiling entity counter_ms
+-- Compiling architecture Structure of counter_ms
+
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity vga_controller
+-- Compiling architecture vga_controller_rtl of vga_controller
+
+} {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity sisa
+-- Compiling architecture Structure of sisa
 
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd {2 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -42,26 +125,14 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 ** Warning: [9] C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd(81): (vcom-1013) Initial value of "bypass_sw" depends on value of signal "bypass_sw0".
 
 
-} {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity sisa
--- Compiling architecture Structure of sisa
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
 -- Loading package NUMERIC_STD
--- Compiling entity vga_controller
--- Compiling architecture vga_controller_rtl of vga_controller
+-- Compiling entity alu
+-- Compiling architecture Structure of alu
 
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/sisa.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -73,14 +144,16 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity sisa
 -- Compiling architecture Structure of sisa
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package NUMERIC_STD
--- Compiling entity alu
--- Compiling architecture Structure of alu
+-- Compiling entity vga_ram_dual
+-- Compiling architecture vga_ram_dual_arch of vga_ram_dual
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -99,6 +172,24 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity control_l
 -- Compiling architecture Structure of control_l
 
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity ps2_keyboard_interface
+-- Compiling architecture trans of ps2_keyboard_interface
+
+} {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Display7
+-- Compiling architecture Structure of Display7
+
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_utility.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_utility.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -109,14 +200,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling package package_utility
 -- Compiling package body package_utility
 -- Loading package package_utility
-
-} {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity Display7
--- Compiling architecture Structure of Display7
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -240,6 +323,14 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity vga_ram_dual
 -- Compiling architecture vga_ram_dual_arch of vga_ram_dual
 
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity multi
+-- Compiling architecture Structure of multi
+
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -274,6 +365,17 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity async_64Kx16
 -- Compiling architecture behave_arch of async_64Kx16
 
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity keyboard_controller
+-- Compiling architecture Behavioral of keyboard_controller
+
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd {1 {vcom -work work -2002 -explicit {X:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleInterrupcions\unidad_control.vhd}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -305,6 +407,39 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity ps2_keyboard_interface
 -- Compiling architecture trans of ps2_keyboard_interface
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity input_controllers
+-- Compiling architecture Structure of input_controllers
+-- Compiling entity pulsadores
+-- Compiling architecture Structure of pulsadores
+-- Compiling entity interruptores
+-- Compiling architecture Structure of interruptores
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity timer
+-- Compiling architecture Structure of timer
+-- Compiling entity keyboard_controller_intr
+-- Compiling architecture Structure of keyboard_controller_intr
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/regfile.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity regfile
+-- Compiling architecture Structure of regfile
+-- Compiling entity system_regfile
+-- Compiling architecture Structure of system_regfile
+-- Compiling entity generalp_regfile
+-- Compiling architecture Structure of generalp_regfile
 
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -338,6 +473,17 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity async_64Kx16
 -- Compiling architecture behave_arch of async_64Kx16
 
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd {2 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity test_sisa
+-- Compiling architecture comportament of test_sisa
+** Warning: [4] /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd(87): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+** Warning: [9] /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd(81): (vcom-1013) Initial value of "bypass_sw" depends on value of signal "bboot".
+** Warning: [9] /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd(81): (vcom-1013) Initial value of "bypass_sw" depends on value of signal "bypass_sw0".
+
 } {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -348,6 +494,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package NUMERIC_STD
 -- Compiling entity interrupt_controller
 -- Compiling architecture Structure of interrupt_controller
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity vga_font_rom
+-- Compiling architecture vga_font_rom_arch of vga_font_rom
 
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -378,6 +533,19 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package std_logic_1164
 -- Compiling entity multi
 -- Compiling architecture Structure of multi
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleIO/async_64Kx16.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package std_logic_textio
+-- Loading package package_timing
+-- Loading package package_utility
+-- Compiling entity async_64Kx16
+-- Compiling architecture behave_arch of async_64Kx16
 
 } {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -475,6 +643,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity vga_font_rom
 -- Compiling architecture vga_font_rom_arch of vga_font_rom
 
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity alu
+-- Compiling architecture Structure of alu
+
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/vga_font_rom.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -543,16 +720,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity counter_ms
 -- Compiling architecture Structure of counter_ms
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity vga_sync
--- Compiling architecture vga_sync_arch of vga_sync
-
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -564,13 +731,25 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity vga_ram_dual
 -- Compiling architecture vga_ram_dual_arch of vga_ram_dual
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity multi
--- Compiling architecture Structure of multi
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity vga_sync
+-- Compiling architecture vga_sync_arch of vga_sync
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_sync.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity vga_sync
+-- Compiling architecture vga_sync_arch of vga_sync
 
 } {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/alu.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -581,14 +760,21 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity alu
 -- Compiling architecture Structure of alu
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity MemoryController
--- Compiling architecture comportament of MemoryController
+-- Compiling entity multi
+-- Compiling architecture Structure of multi
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity proc
+-- Compiling architecture Structure of proc
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/ps2_keyboard.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -599,6 +785,24 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity ps2_keyboard_interface
 -- Compiling architecture trans of ps2_keyboard_interface
+
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity MemoryController
+-- Compiling architecture comportament of MemoryController
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity MemoryController
+-- Compiling architecture comportament of MemoryController
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleIO/package_timing.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -641,15 +845,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity proc
 -- Compiling architecture Structure of proc
 
-} {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/control_l.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/control_l.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity control_l
--- Compiling architecture Structure of control_l
-
 } {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/MemoryController.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -659,6 +854,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity MemoryController
 -- Compiling architecture comportament of MemoryController
 
+} {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/control_l.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/control_l.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity control_l
+-- Compiling architecture Structure of control_l
+
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/display16.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/display16.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -666,6 +870,17 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package std_logic_1164
 -- Compiling entity Display7
 -- Compiling architecture Structure of Display7
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/SRAMController.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity SRAMController
+-- Compiling architecture comportament of SRAMController
 
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/regfile.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/regfile.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -691,14 +906,27 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity vga_font_rom
 -- Compiling architecture vga_font_rom_arch of vga_font_rom
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
 -- Loading package NUMERIC_STD
--- Compiling entity control_l
--- Compiling architecture Structure of control_l
+-- Compiling entity vga_controller
+-- Compiling architecture vga_controller_rtl of vga_controller
+
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleIO/package_utility.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package std_logic_textio
+-- Compiling package package_utility
+-- Compiling package body package_utility
+-- Loading package package_utility
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/keyboard_controller.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -710,6 +938,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity keyboard_controller
 -- Compiling architecture Behavioral of keyboard_controller
+
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity control_l
+-- Compiling architecture Structure of control_l
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -730,17 +967,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity SRAMController
 -- Compiling architecture comportament of SRAMController
 
-} {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd
+} {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package std_logic_arith
 -- Loading package STD_LOGIC_UNSIGNED
--- Loading package std_logic_textio
--- Compiling package package_timing
--- Compiling package body package_timing
--- Loading package package_timing
+-- Compiling entity sisa
+-- Compiling architecture Structure of sisa
 
 } {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/vga_controller.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -752,5 +987,17 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package NUMERIC_STD
 -- Compiling entity vga_controller
 -- Compiling architecture vga_controller_rtl of vga_controller
+
+} {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleMemoria/package_timing.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package std_logic_textio
+-- Compiling package package_timing
+-- Compiling package body package_timing
+-- Loading package package_timing
 
 } {} {}}

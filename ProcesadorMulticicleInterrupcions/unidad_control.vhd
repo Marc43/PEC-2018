@@ -79,6 +79,7 @@ ARCHITECTURE Structure OF unidad_control IS
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
 			intr_l	 : IN  STD_LOGIC;
+			inta_l	 : IN  STD_LOGIC;
 			intr		 : OUT STD_LOGIC;
 			intr_enabled : IN STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
@@ -91,7 +92,8 @@ ARCHITECTURE Structure OF unidad_control IS
 			in_d		 : OUT STD_LOGIC_VECTOR (2 downto 0);
 			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
 			alu_op	 : OUT  STD_LOGIC_VECTOR (2 DOWNTO 0);
-			rd_sys_gp : OUT STD_LOGIC);
+			rd_sys_gp : OUT STD_LOGIC;
+			inta		 : OUT STD_LOGIC);
 	END COMPONENT;
 	
 	SIGNAL bus_ir			: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -119,6 +121,7 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_tknbr				: STD_LOGIC_VECTOR (1 DOWNTO 0);
 	SIGNAL bus_alu_op				: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL bus_rd_sys_gp 		: STD_LOGIC;
+	SIGNAL bus_inta_l				: STD_LOGIC;
 	
 BEGIN
 
@@ -147,7 +150,7 @@ BEGIN
 		e_int			=> e_int,
 		d_int			=> d_int,
 		ret_int		=> ret_int,
-		inta			=> inta
+		inta			=> bus_inta_l
 	);
 	
 	multi0 : multi
@@ -161,6 +164,7 @@ BEGIN
 		intr_l		=> intr_l,
 		intr			=> intr_d,
 		intr_enabled=> intr_enabled,
+		inta_l		=> bus_inta_l,
 		ldpc_l		=> bus_ldpc,
 		wrd_gp_l		=>	bus_wrd_gp,
 		wrd_sys_l	=> bus_wrd_sys,
@@ -176,7 +180,8 @@ BEGIN
 		in_d			=> in_d,
 		tknbr			=> bus_tknbr,
 		alu_op		=> op,
-		rd_sys_gp	=> rd_sys_gp
+		rd_sys_gp	=> rd_sys_gp,
+		inta			=> inta
 	);
 	
 	WITH multi_ldir SELECT

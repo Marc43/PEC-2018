@@ -15,6 +15,7 @@ entity multi is
          w_b       : IN  STD_LOGIC;
 			intr_l	 : IN  STD_LOGIC;
 			intr_enabled : IN STD_LOGIC;
+			inta_l	 : IN  STD_LOGIC;
 			intr		 : OUT STD_LOGIC;
 			ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -26,7 +27,8 @@ entity multi is
 			in_d		 : OUT STD_LOGIC_VECTOR (2 downto 0);
 			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
 			alu_op	 : OUT STD_LOGIC_VECTOR (2 downto 0);
-			rd_sys_gp : OUT STD_LOGIC);
+			rd_sys_gp : OUT STD_LOGIC;
+			inta		 : OUT STD_LOGIC);
 end entity;
 
 --tknbr, in_d and alu op are added to multi because when we enter the
@@ -119,6 +121,8 @@ begin
 	ldir 			<= '1'			when state=FETCH 	else '0';
 	
 	intr		 	<= '1' 			when state=SYSTEM else '0'; -- Check...
+	
+	inta			<= inta_l		when state=DEMW	else '0';
 	
 	-- multi only changes the signal intr to tell every other module
 	-- to execute the procedure so at the end of the cycle we can do
