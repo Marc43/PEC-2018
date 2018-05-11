@@ -141,28 +141,25 @@ end pulsadores;
 
 ARCHITECTURE Structure OF pulsadores IS
 
- SIGNAL read_keys : STD_LOGIC_VECTOR (3 DOWNTO 0) := (others => 'X'); -- Stores the read keys the last time (the state)
+ SIGNAL last_keys : STD_LOGIC_VECTOR (3 DOWNTO 0) := (others => 'X'); -- Stores the read keys the last time (the state)
 
  SIGNAL bus_intr : STD_LOGIC := '0';
  
 BEGIN
 
-	state : PROCESS (keys, inta)
+	state : PROCESS (clk)
 	BEGIN
-	--???
-		IF keys /= read_keys AND bus_intr = '0' THEN
-			read_keys <= keys; 		-- Update the state and
-			bus_intr <= '1'; 			-- Trigger an interruption
-		ELSE
-			IF inta = '1' THEN
-				bus_intr <= '0';
-			END IF;
+		IF rising_edge(clk) AND bus_intr = '0' THEN
+			last_keys <= keys; 	
 		END IF;
 		
 	END PROCESS;
 	
+	bus_intr <= '1' WHEN keys /= last_keys AND inta = '0' AND boot = '0' ELSE
+					'0';
+					
 	intr	 <= bus_intr;
-	rd_key <= read_keys; 
+	rd_key <= last_keys; 
 
 END Structure;
 	
@@ -186,28 +183,43 @@ end interruptores;
 
 ARCHITECTURE Structure OF interruptores IS
 
- SIGNAL read_sw : STD_LOGIC_VECTOR (7 DOWNTO 0) := (others => 'X'); -- Stores the read sw the last time (the state)
+ SIGNAL last_sw : STD_LOGIC_VECTOR (7 DOWNTO 0) := (others => 'X'); -- Stores the read sw the last time (the state)
  
  SIGNAL bus_intr: STD_LOGIC := '0';
  
 BEGIN
 
-	state : PROCESS (switches, inta)
+--	state : PROCESS (switches, inta)
+--	BEGIN
+--	--???
+--		IF switches /= read_sw AND bus_intr = '0' THEN
+--			read_sw <= switches; 		-- Update the state and
+--			bus_intr <= '1'; 				-- Trigger an interruption
+--		ELSE
+--			IF inta = '1' THEN
+--				bus_intr <= '0';
+--			END IF;
+--		END IF;
+--		
+--	END PROCESS;
+--	
+--	intr	<= bus_intr;
+--	rd_sw <= read_sw; 
+	
+	
+	state : PROCESS (clk)
 	BEGIN
-	--???
-		IF switches /= read_sw AND bus_intr = '0' THEN
-			read_sw <= switches; 		-- Update the state and
-			bus_intr <= '1'; 				-- Trigger an interruption
-		ELSE
-			IF inta = '1' THEN
-				bus_intr <= '0';
-			END IF;
+		IF rising_edge(clk) AND bus_intr = '0' THEN
+			last_sw <= switches;
 		END IF;
 		
 	END PROCESS;
 	
-	intr	<= bus_intr;
-	rd_sw <= read_sw; 
+	bus_intr <= '1' WHEN switches /= last_sw AND inta = '0' AND boot = '0' ELSE
+					'0';
+					
+	intr	 <= bus_intr;
+	rd_sw  <= last_sw; 
 
 END Structure;
 	
@@ -238,7 +250,7 @@ ARCHITECTURE Structure OF timer IS
 
 BEGIN
 
-	counter : PROCESS (CLOCK_50, cnt, inta) 
+	counter : PROCESS (CLOCK_50) 
 	BEGIN
 		IF boot = '1' THEN
 			cnt <= (others=>'0');		
@@ -246,20 +258,23 @@ BEGIN
 		
 			cnt <= cnt + 1;
 			IF cnt = ms50 THEN
-				bus_intr <= '0'; -- REMEMBER SALTPEPPER
+				bus_intr <= '1'; -- REMEMBER SALTPEPPER
 				cnt <= (others =>'0');
-			END IF;
-			
-			IF inta = '1' THEN
+			ELSIF inta = '1' THEN
 				bus_intr <= '0';
 			END IF;
 			
 		END IF;
 	END PROCESS;
 	
-	intr <= '1' WHEN bus_intr = '1' AND inta = '0' ELSE
-	
+--	intr <= '1' WHEN bus_intr = '1' AND inta = '0' ELSE
+--	
+--			  '0';
+
+	intr <= bus_intr WHEN boot = '0' ELSE
+			  
 			  '0';
+
 
 END Structure;
 

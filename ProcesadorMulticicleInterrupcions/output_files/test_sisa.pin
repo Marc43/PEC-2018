@@ -398,7 +398,7 @@ GND                          : N19       : gnd    :                   :         
 nSTATUS                      : N20       :        :                   :         : 6         :                
 GND*                         : N21       :        :                   :         : 6         :                
 GND*                         : N22       :        :                   :         : 6         :                
-GND*                         : P1        :        :                   :         : 1         :                
+VGA_G[4]                     : P1        : output : 3.3-V LVTTL       :         : 1         : N              
 GND*                         : P2        :        :                   :         : 1         :                
 GND*                         : P3        :        :                   :         : 1         :                
 NC                           : P4        :        :                   :         :           :                
@@ -453,7 +453,7 @@ SRAM_OE_N                    : T8        : output : 3.3-V LVTTL       :         
 VCCIO8                       : T9        : power  :                   : 3.3V    : 8         :                
 GND                          : T10       : gnd    :                   :         :           :                
 SRAM_ADDR[11]                : T11       : output : 3.3-V LVTTL       :         : 8         : Y              
-VGA_G[4]                     : T12       : output : 3.3-V LVTTL       :         : 7         : N              
+GND*                         : T12       :        :                   :         : 7         :                
 GND                          : T13       : gnd    :                   :         :           :                
 VCCIO7                       : T14       : power  :                   : 3.3V    : 7         :                
 GND*                         : T15       :        :                   :         : 7         :                

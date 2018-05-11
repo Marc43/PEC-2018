@@ -35,6 +35,8 @@ ARCHITECTURE Structure OF interrupt_controller IS
 	SIGNAL bus_switch_inta : STD_LOGIC := '0';
 	SIGNAL bus_ps2_inta : STD_LOGIC := '0';
 	
+	SIGNAL control_dec : STD_LOGIC_VECTOR (3 downto 0) := "0000";
+	
 BEGIN
 --	
 --	controller : PROCESS (clk)
@@ -80,15 +82,31 @@ BEGIN
 --	
 --	intr 	<= key_intr OR ps2_intr OR switch_intr OR timer_intr;
 	
-	bus_timer_inta 	<= '1' WHEN timer_intr = '1' AND inta 			= '1' ELSE '0';
-	bus_key_inta	  	<= '1' WHEN bus_timer_inta = '0' AND key_intr 		= '1' AND inta = '1' ELSE '0';
-	bus_switch_inta	<= '1' WHEN bus_key_inta 	= '0' AND switch_intr 	= '1' AND inta = '1' ELSE '0';
-	bus_ps2_inta	  	<= '1' WHEN bus_switch_inta= '0' AND ps2_intr		= '1' AND inta = '1' ELSE '0';
+	PROCESS (clk)
+	BEGIN
+	
+		IF rising_edge(clk) THEN
+			control_dec <= timer_intr & key_intr & switch_intr & ps2_intr; -- Control iid
+		END IF;
+	
+	END PROCESS;
+	
+	bus_timer_inta 	<= '1' WHEN timer_intr = '1' 		AND inta 	= '1' 					ELSE '0';
+	bus_key_inta	  	<= '1' WHEN timer_intr = '0' AND key_intr 	= '1' AND inta = '1' ELSE '0';
+	bus_switch_inta	<= '1' WHEN timer_intr = '0' AND key_intr 	= '0' AND switch_intr	= '1' AND inta = '1' 							ELSE '0';
+	bus_ps2_inta	  	<= '1' WHEN timer_intr = '0' AND key_intr 	= '0' AND switch_intr	= '0' AND ps2_intr = '1' AND inta = '1' 	ELSE '0';
 	
 	intr <= (key_intr OR ps2_intr OR switch_intr OR timer_intr) AND NOT inta;
 	
 	timer_inta 	<= bus_timer_inta;
 	key_inta 	<= bus_key_inta;
-	switch_inta <= bus_timer_inta;
-	ps2_inta 	<= bus_timer_inta;
+	switch_inta <= bus_switch_inta;
+	ps2_inta 	<= bus_ps2_inta;
+	
+	iid <= TIMER 	 WHEN control_dec(3) = '1'	ELSE
+			 KEYS  	 WHEN control_dec(2) = '1' ELSE
+			 SWITCHES WHEN control_dec(1) = '1' ELSE
+			 PS2;
+			 
+	
 END Structure;
