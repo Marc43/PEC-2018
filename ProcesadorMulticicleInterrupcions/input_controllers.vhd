@@ -183,7 +183,7 @@ end interruptores;
 
 ARCHITECTURE Structure OF interruptores IS
 
- SIGNAL last_sw : STD_LOGIC_VECTOR (7 DOWNTO 0) := (others => 'X'); -- Stores the read sw the last time (the state)
+ SIGNAL last_sw : STD_LOGIC_VECTOR (7 DOWNTO 0); -- Stores the read sw the last time (the state)
  
  SIGNAL bus_intr: STD_LOGIC := '0';
  
@@ -207,19 +207,42 @@ BEGIN
 --	rd_sw <= read_sw; 
 	
 	
-	state : PROCESS (clk)
+	state : PROCESS (clk, boot)
 	BEGIN
-		IF rising_edge(clk) AND bus_intr = '0' THEN
-			last_sw <= switches;
-		END IF;
-		
+		IF boot='1' THEN
+				bus_intr <= '0';
+				last_sw <= switches;
+		else 
+			IF rising_edge(clk) THEN
+				if switches /= last_sw then
+					bus_intr <= '1';
+					last_sw <= switches;
+				end if;
+				if (inta = '0') then
+					bus_intr <= '0';
+				end if;
+			END IF;
+		end if;
 	END PROCESS;
 	
-	bus_intr <= '1' WHEN switches /= last_sw AND inta = '0' AND boot = '0' ELSE
-					'0';
-					
 	intr	 <= bus_intr;
-	rd_sw  <= last_sw; 
+	rd_sw  <= switches; 
+	
+	
+	
+--	state : PROCESS (clk)
+--	BEGIN
+--		IF rising_edge(clk) AND bus_intr = '0' THEN
+--			last_sw <= switches;
+--		END IF;
+--		
+--	END PROCESS;
+--	
+--	bus_intr <= '1' WHEN switches /= last_sw AND inta = '0' AND boot = '0' ELSE
+--					'0';
+--					
+--	intr	 <= bus_intr;
+--	rd_sw  <= last_sw; 
 
 END Structure;
 	

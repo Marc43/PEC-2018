@@ -80,24 +80,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity datapath
 -- Compiling architecture Structure of datapath
 
-} {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity input_controllers
--- Compiling architecture Structure of input_controllers
--- Compiling entity pulsadores
--- Compiling architecture Structure of pulsadores
--- Compiling entity interruptores
--- Compiling architecture Structure of interruptores
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity timer
--- Compiling architecture Structure of timer
--- Compiling entity keyboard_controller_intr
--- Compiling architecture Structure of keyboard_controller_intr
-
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/package_timing.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/package_timing.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -768,6 +750,19 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package package_utility
 -- Compiling entity async_64Kx16
 -- Compiling architecture behave_arch of async_64Kx16
+
+} {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package NUMERIC_STD
+-- Compiling entity controladores_IO
+-- Compiling architecture Structure of controladores_IO
+-- Compiling entity counter_ms
+-- Compiling architecture Structure of counter_ms
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/vga_ram_dual.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
