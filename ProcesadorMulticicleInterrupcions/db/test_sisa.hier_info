@@ -11829,6 +11829,7 @@ vga_cursor_enable <= <GND>
 
 |sisa|controladores_IO:controladores_IO0|interrupt_controller:interrupt_controller0
 boot => ~NO_FANOUT~
+clk => control_dec[0].CLK
 clk => control_dec[1].CLK
 clk => control_dec[2].CLK
 clk => control_dec[3].CLK
@@ -11843,6 +11844,7 @@ key_intr => control_dec[2].DATAIN
 key_intr => bus_ps2_inta.IN0
 ps2_intr => bus_ps2_inta.IN1
 ps2_intr => intr.IN1
+ps2_intr => control_dec[0].DATAIN
 switch_intr => bus_switch_inta.IN1
 switch_intr => intr.IN1
 switch_intr => control_dec[1].DATAIN
@@ -11857,8 +11859,8 @@ key_inta <= bus_key_inta.DB_MAX_OUTPUT_PORT_TYPE
 ps2_inta <= bus_ps2_inta.DB_MAX_OUTPUT_PORT_TYPE
 switch_inta <= bus_switch_inta.DB_MAX_OUTPUT_PORT_TYPE
 timer_inta <= bus_timer_inta.DB_MAX_OUTPUT_PORT_TYPE
-iid[0] <= iid.DB_MAX_OUTPUT_PORT_TYPE
-iid[1] <= iid.DB_MAX_OUTPUT_PORT_TYPE
+iid[0] <= iid[0]$latch.DB_MAX_OUTPUT_PORT_TYPE
+iid[1] <= iid[1]$latch.DB_MAX_OUTPUT_PORT_TYPE
 iid[2] <= <GND>
 iid[3] <= <GND>
 iid[4] <= <GND>
@@ -11924,7 +11926,9 @@ rd_sw[7] <= interruptores:interruptores0.rd_sw[7]
 
 |sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0
 clk => keyboard_controller:keyboard_controller0.clk
+clk => intr~reg0.CLK
 reset => keyboard_controller:keyboard_controller0.reset
+reset => intr~reg0.ACLR
 ps2_clk <> keyboard_controller:keyboard_controller0.ps2_clk
 ps2_data <> keyboard_controller:keyboard_controller0.ps2_data
 read_char[0] <= keyboard_controller:keyboard_controller0.read_char[0]
@@ -11937,7 +11941,7 @@ read_char[6] <= keyboard_controller:keyboard_controller0.read_char[6]
 read_char[7] <= keyboard_controller:keyboard_controller0.read_char[7]
 clear_char => bus_acknoledge.IN0
 data_ready <= keyboard_controller:keyboard_controller0.data_ready
-intr <= intr.DB_MAX_OUTPUT_PORT_TYPE
+intr <= intr~reg0.DB_MAX_OUTPUT_PORT_TYPE
 inta => bus_acknoledge.IN1
 
 
@@ -12129,25 +12133,38 @@ tx_error_no_keyboard_ack <= tx_error_no_keyboard_ack.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|pulsadores:pulsadores0
-boot => bus_intr.IN1
+boot => last_keys[0].ALOAD
+boot => last_keys[1].ALOAD
+boot => last_keys[2].ALOAD
+boot => last_keys[3].ALOAD
+boot => bus_intr.ACLR
 clk => last_keys[0].CLK
 clk => last_keys[1].CLK
 clk => last_keys[2].CLK
 clk => last_keys[3].CLK
-inta => bus_intr.IN1
+clk => bus_intr.CLK
+inta => bus_intr.OUTPUTSELECT
 keys[0] => Equal0.IN3
+keys[0] => last_keys[0].ADATA
+keys[0] => rd_key[0].DATAIN
 keys[0] => last_keys[0].DATAIN
 keys[1] => Equal0.IN2
+keys[1] => last_keys[1].ADATA
+keys[1] => rd_key[1].DATAIN
 keys[1] => last_keys[1].DATAIN
 keys[2] => Equal0.IN1
+keys[2] => last_keys[2].ADATA
+keys[2] => rd_key[2].DATAIN
 keys[2] => last_keys[2].DATAIN
 keys[3] => Equal0.IN0
+keys[3] => last_keys[3].ADATA
+keys[3] => rd_key[3].DATAIN
 keys[3] => last_keys[3].DATAIN
 intr <= bus_intr.DB_MAX_OUTPUT_PORT_TYPE
-rd_key[0] <= last_keys[0].DB_MAX_OUTPUT_PORT_TYPE
-rd_key[1] <= last_keys[1].DB_MAX_OUTPUT_PORT_TYPE
-rd_key[2] <= last_keys[2].DB_MAX_OUTPUT_PORT_TYPE
-rd_key[3] <= last_keys[3].DB_MAX_OUTPUT_PORT_TYPE
+rd_key[0] <= keys[0].DB_MAX_OUTPUT_PORT_TYPE
+rd_key[1] <= keys[1].DB_MAX_OUTPUT_PORT_TYPE
+rd_key[2] <= keys[2].DB_MAX_OUTPUT_PORT_TYPE
+rd_key[3] <= keys[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|interruptores:interruptores0
@@ -12214,55 +12231,10 @@ rd_sw[7] <= switches[7].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|timer:timer0
-boot => cnt[0].ACLR
-boot => cnt[1].ACLR
-boot => cnt[2].ACLR
-boot => cnt[3].ACLR
-boot => cnt[4].ACLR
-boot => cnt[5].ACLR
-boot => cnt[6].ACLR
-boot => cnt[7].ACLR
-boot => cnt[8].ACLR
-boot => cnt[9].ACLR
-boot => cnt[10].ACLR
-boot => cnt[11].ACLR
-boot => cnt[12].ACLR
-boot => cnt[13].ACLR
-boot => cnt[14].ACLR
-boot => cnt[15].ACLR
-boot => cnt[16].ACLR
-boot => cnt[17].ACLR
-boot => cnt[18].ACLR
-boot => cnt[19].ACLR
-boot => cnt[20].ACLR
-boot => cnt[21].ACLR
-boot => intr.OUTPUTSELECT
-boot => bus_intr.ENA
-inta => bus_intr.OUTPUTSELECT
+boot => bus_intr.ACLR
+inta => bus_intr.ENA
 CLOCK_50 => bus_intr.CLK
-CLOCK_50 => cnt[0].CLK
-CLOCK_50 => cnt[1].CLK
-CLOCK_50 => cnt[2].CLK
-CLOCK_50 => cnt[3].CLK
-CLOCK_50 => cnt[4].CLK
-CLOCK_50 => cnt[5].CLK
-CLOCK_50 => cnt[6].CLK
-CLOCK_50 => cnt[7].CLK
-CLOCK_50 => cnt[8].CLK
-CLOCK_50 => cnt[9].CLK
-CLOCK_50 => cnt[10].CLK
-CLOCK_50 => cnt[11].CLK
-CLOCK_50 => cnt[12].CLK
-CLOCK_50 => cnt[13].CLK
-CLOCK_50 => cnt[14].CLK
-CLOCK_50 => cnt[15].CLK
-CLOCK_50 => cnt[16].CLK
-CLOCK_50 => cnt[17].CLK
-CLOCK_50 => cnt[18].CLK
-CLOCK_50 => cnt[19].CLK
-CLOCK_50 => cnt[20].CLK
-CLOCK_50 => cnt[21].CLK
-intr <= intr.DB_MAX_OUTPUT_PORT_TYPE
+intr <= bus_intr.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |sisa|controladores_IO:controladores_IO0|counter_ms:counter_ms0

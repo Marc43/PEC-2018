@@ -237,24 +237,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling package body package_utility
 -- Loading package package_utility
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity input_controllers
--- Compiling architecture Structure of input_controllers
--- Compiling entity pulsadores
--- Compiling architecture Structure of pulsadores
--- Compiling entity interruptores
--- Compiling architecture Structure of interruptores
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity timer
--- Compiling architecture Structure of timer
--- Compiling entity keyboard_controller_intr
--- Compiling architecture Structure of keyboard_controller_intr
-
 } {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -278,7 +260,7 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling package body package_timing
 -- Loading package package_timing
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd {1 {vcom -work work -2002 -explicit {X:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleInterrupcions\controladoresIO.vhd}
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/controladoresIO.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -291,17 +273,17 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity counter_ms
 -- Compiling architecture Structure of counter_ms
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd {2 {vcom -work work -2002 -explicit {X:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleInterrupcions\test_sisa.vhd}
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd {2 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling entity test_sisa
 -- Compiling architecture comportament of test_sisa
-** Warning: [4] X:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleInterrupcions\test_sisa.vhd(87): (vcom-1207) An abstract literal and an identifier must have a separator between them.
-** Warning: [9] X:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleInterrupcions\test_sisa.vhd(81): (vcom-1013) Initial value of "bypass_sw" depends on value of signal "bboot".
+** Warning: [4] X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd(87): (vcom-1207) An abstract literal and an identifier must have a separator between them.
+** Warning: [9] X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd(81): (vcom-1013) Initial value of "bypass_sw" depends on value of signal "bboot".
 
-** Warning: [9] X:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleInterrupcions\test_sisa.vhd(81): (vcom-1013) Initial value of "bypass_sw" depends on value of signal "bypass_sw0".
+** Warning: [9] X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/test_sisa.vhd(81): (vcom-1013) Initial value of "bypass_sw" depends on value of signal "bypass_sw0".
 
 
 } {} {}} C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/PEC-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
@@ -412,7 +394,7 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity keyboard_controller
 -- Compiling architecture Behavioral of keyboard_controller
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd {1 {vcom -work work -2002 -explicit {X:\Marc\Uni\PEC\PEC-2018\ProcesadorMulticicleInterrupcions\unidad_control.vhd}
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/unidad_control.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO

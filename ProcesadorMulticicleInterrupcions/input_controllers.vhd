@@ -141,25 +141,47 @@ end pulsadores;
 
 ARCHITECTURE Structure OF pulsadores IS
 
- SIGNAL last_keys : STD_LOGIC_VECTOR (3 DOWNTO 0) := (others => 'X'); -- Stores the read keys the last time (the state)
+ SIGNAL last_keys : STD_LOGIC_VECTOR (3 DOWNTO 0); -- Stores the read keys the last time (the state)
 
  SIGNAL bus_intr : STD_LOGIC := '0';
  
 BEGIN
 
-	state : PROCESS (clk)
+--	state : PROCESS (clk)
+--	BEGIN
+--		IF rising_edge(clk) AND bus_intr = '0' THEN
+--			last_keys <= keys; 	
+--		END IF;
+--		
+--	END PROCESS;
+--	
+--	bus_intr <= '1' WHEN keys /= last_keys AND inta = '0' AND boot = '0' ELSE
+--					'0';
+--					
+--	intr	 <= bus_intr;
+--	rd_key <= last_keys;
+
+	state : PROCESS (clk, boot)
 	BEGIN
-		IF rising_edge(clk) AND bus_intr = '0' THEN
-			last_keys <= keys; 	
-		END IF;
-		
+		IF boot='1' THEN
+				bus_intr <= '0';
+				last_keys <= keys;
+		else 
+			IF rising_edge(clk) THEN
+				last_keys <= keys;
+
+				if keys /= last_keys then
+					bus_intr <= '1';
+				end if;
+				if (inta = '0') then
+					bus_intr <= '0';
+				end if;
+			END IF;
+		end if;
 	END PROCESS;
 	
-	bus_intr <= '1' WHEN keys /= last_keys AND inta = '0' AND boot = '0' ELSE
-					'0';
-					
 	intr	 <= bus_intr;
-	rd_key <= last_keys; 
+	rd_key <= keys; 
 
 END Structure;
 	
@@ -214,9 +236,10 @@ BEGIN
 				last_sw <= switches;
 		else 
 			IF rising_edge(clk) THEN
+				last_sw <= switches;
+				
 				if switches /= last_sw then
 					bus_intr <= '1';
-					last_sw <= switches;
 				end if;
 				if (inta = '0') then
 					bus_intr <= '0';
@@ -267,7 +290,7 @@ end timer;
 ARCHITECTURE Structure OF timer IS
 
 	SIGNAL cnt 		: STD_LOGIC_VECTOR (21 downto 0);
-	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"2625A0";
+	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"788FFF"; --DO not forget
 	--2625A0 2625A0 2625A0 2625A0 2625A0 2625A0
 	signal bus_intr : std_logic := '0';
 
@@ -276,14 +299,17 @@ BEGIN
 	counter : PROCESS (CLOCK_50) 
 	BEGIN
 		IF boot = '1' THEN
-			cnt <= (others=>'0');		
+			cnt <= (others=>'0');
+			bus_intr <= '0';
 		ELSIF rising_edge(CLOCK_50) THEN
 		
 			cnt <= cnt + 1;
 			IF cnt = ms50 THEN
-				bus_intr <= '1'; -- REMEMBER SALTPEPPER
+				bus_intr <= '1';
 				cnt <= (others =>'0');
-			ELSIF inta = '1' THEN
+			END IF;
+			
+			IF (inta = '1') THEN
 				bus_intr <= '0';
 			END IF;
 			
@@ -294,11 +320,8 @@ BEGIN
 --	
 --			  '0';
 
-	intr <= bus_intr WHEN boot = '0' ELSE
+	intr <= bus_intr;
 			  
-			  '0';
-
-
 END Structure;
 
 --##############################################################################################################
@@ -351,10 +374,28 @@ BEGIN
 		data_ready 	=> bus_data_ready
 	);
 	
+	state : PROCESS (clk, reset)
+	BEGIN
+
+	IF reset = '1' THEN
+		intr <= '0';
+	ELSE
+		IF rising_edge(clk) THEN
+			IF bus_data_ready = '1' THEN
+				intr <= '1';
+			END IF;
+			
+			IF bus_acknoledge = '1' THEN
+				intr <= '0';
+			END IF;
+		END IF;
+	END IF;
+	
+	END PROCESS;
+	
 	bus_acknoledge <= clear_char OR inta;
 	
 	data_ready <= bus_data_ready;
-	intr		  <= bus_data_ready AND NOT bus_acknoledge; 
 	
 	-- Both signals are equivalent, in order to preserve the original 
 	-- structure we maintaned the data_ready signal.

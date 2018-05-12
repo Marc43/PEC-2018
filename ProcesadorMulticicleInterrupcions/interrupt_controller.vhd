@@ -91,7 +91,7 @@ BEGIN
 	
 	END PROCESS;
 	
-	bus_timer_inta 	<= '1' WHEN timer_intr = '1' 		AND inta 	= '1' 					ELSE '0';
+	bus_timer_inta 	<= '1' WHEN timer_intr = '1' AND inta 	= '1' 					ELSE '0';
 	bus_key_inta	  	<= '1' WHEN timer_intr = '0' AND key_intr 	= '1' AND inta = '1' ELSE '0';
 	bus_switch_inta	<= '1' WHEN timer_intr = '0' AND key_intr 	= '0' AND switch_intr	= '1' AND inta = '1' 							ELSE '0';
 	bus_ps2_inta	  	<= '1' WHEN timer_intr = '0' AND key_intr 	= '0' AND switch_intr	= '0' AND ps2_intr = '1' AND inta = '1' 	ELSE '0';
@@ -106,7 +106,7 @@ BEGIN
 	iid <= TIMER 	 WHEN control_dec(3) = '1'	ELSE
 			 KEYS  	 WHEN control_dec(2) = '1' ELSE
 			 SWITCHES WHEN control_dec(1) = '1' ELSE
-			 PS2;
+			 PS2		 WHEN control_dec(0) = '1';
 			 
 	
 END Structure;
