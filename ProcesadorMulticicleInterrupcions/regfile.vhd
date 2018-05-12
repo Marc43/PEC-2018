@@ -135,7 +135,7 @@ ARCHITECTURE Structure OF system_regfile IS
 	
 BEGIN
 
-	PROCESS (clk)
+	PROCESS (clk, reset)
 	BEGIN
 		IF reset = '1' THEN
 			regs_sys <= ((others => (others => '0')));

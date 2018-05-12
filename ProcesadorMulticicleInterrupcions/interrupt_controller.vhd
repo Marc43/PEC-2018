@@ -38,49 +38,6 @@ ARCHITECTURE Structure OF interrupt_controller IS
 	SIGNAL control_dec : STD_LOGIC_VECTOR (3 downto 0) := "0000";
 	
 BEGIN
---	
---	controller : PROCESS (clk)
---	BEGIN
---	
---		IF rising_edge(clk) THEN
---				
---			IF clear = '1' THEN
---				
---				timer_inta 	<= '0';
---				key_inta		<= '0';
---				switch_inta <= '0';
---				ps2_inta		<= '0';
---				clear 		<= '0';
---			
---			END IF;
---			
---			IF inta = '1' AND clear = '0' THEN
---				IF timer_intr = '1' THEN
---					timer_inta <= '1';
---					clear <= '1';
---					iid <= TIMER;
---				ELSIF key_intr = '1' THEN
---					key_inta <= '1';
---					clear <= '1';
---					iid <= KEYS;
---				ELSIF switch_intr = '1' THEN
---					switch_inta <= '1';
---					clear <= '1';
---					iid <= SWITCHES;
---				ELSIF ps2_intr = '1' THEN
---					ps2_inta <= '1';
---					clear <= '1';
---					iid <= PS2;
---				END IF;
---			END IF;
---		 
---			
---		
---		END IF;
---	
---	END PROCESS;
---	
---	intr 	<= key_intr OR ps2_intr OR switch_intr OR timer_intr;
 	
 	PROCESS (clk)
 	BEGIN

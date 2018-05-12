@@ -132,7 +132,7 @@ BEGIN
 	
 	addr_a 	<= reg_d WHEN op_code = MOV ELSE
 	
-					S1		WHEN op_code = SPEC AND 
+					S1		WHEN op_code   = SPEC AND 
 								  spec_code = RETI ELSE  
 								  
 					reg_src1;

@@ -1,5 +1,6 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
 
 ENTITY input_controllers IS
 	PORT (
@@ -127,6 +128,7 @@ END Structure;
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
 
 ENTITY pulsadores IS 
 	PORT (
@@ -145,21 +147,9 @@ ARCHITECTURE Structure OF pulsadores IS
 
  SIGNAL bus_intr : STD_LOGIC := '0';
  
+-- SIGNAL dummy : STD_LOGIC;
+ 
 BEGIN
-
---	state : PROCESS (clk)
---	BEGIN
---		IF rising_edge(clk) AND bus_intr = '0' THEN
---			last_keys <= keys; 	
---		END IF;
---		
---	END PROCESS;
---	
---	bus_intr <= '1' WHEN keys /= last_keys AND inta = '0' AND boot = '0' ELSE
---					'0';
---					
---	intr	 <= bus_intr;
---	rd_key <= last_keys;
 
 	state : PROCESS (clk, boot)
 	BEGIN
@@ -168,14 +158,15 @@ BEGIN
 				last_keys <= keys;
 		else 
 			IF rising_edge(clk) THEN
-				last_keys <= keys;
-
 				if keys /= last_keys then
 					bus_intr <= '1';
 				end if;
-				if (inta = '0') then
+				if (inta = '1') then
 					bus_intr <= '0';
 				end if;
+				
+				last_keys <= keys;
+
 			END IF;
 		end if;
 	END PROCESS;
@@ -191,6 +182,7 @@ END Structure;
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
 
 ENTITY interruptores IS 
 	PORT (
@@ -208,26 +200,8 @@ ARCHITECTURE Structure OF interruptores IS
  SIGNAL last_sw : STD_LOGIC_VECTOR (7 DOWNTO 0); -- Stores the read sw the last time (the state)
  
  SIGNAL bus_intr: STD_LOGIC := '0';
- 
+  
 BEGIN
-
---	state : PROCESS (switches, inta)
---	BEGIN
---	--???
---		IF switches /= read_sw AND bus_intr = '0' THEN
---			read_sw <= switches; 		-- Update the state and
---			bus_intr <= '1'; 				-- Trigger an interruption
---		ELSE
---			IF inta = '1' THEN
---				bus_intr <= '0';
---			END IF;
---		END IF;
---		
---	END PROCESS;
---	
---	intr	<= bus_intr;
---	rd_sw <= read_sw; 
-	
 	
 	state : PROCESS (clk, boot)
 	BEGIN
@@ -236,36 +210,20 @@ BEGIN
 				last_sw <= switches;
 		else 
 			IF rising_edge(clk) THEN
-				last_sw <= switches;
-				
 				if switches /= last_sw then
 					bus_intr <= '1';
 				end if;
-				if (inta = '0') then
+				if (inta = '1') then
 					bus_intr <= '0';
 				end if;
+				
+				last_sw <= switches;
 			END IF;
 		end if;
 	END PROCESS;
 	
 	intr	 <= bus_intr;
 	rd_sw  <= switches; 
-	
-	
-	
---	state : PROCESS (clk)
---	BEGIN
---		IF rising_edge(clk) AND bus_intr = '0' THEN
---			last_sw <= switches;
---		END IF;
---		
---	END PROCESS;
---	
---	bus_intr <= '1' WHEN switches /= last_sw AND inta = '0' AND boot = '0' ELSE
---					'0';
---					
---	intr	 <= bus_intr;
---	rd_sw  <= last_sw; 
 
 END Structure;
 	
@@ -290,7 +248,7 @@ end timer;
 ARCHITECTURE Structure OF timer IS
 
 	SIGNAL cnt 		: STD_LOGIC_VECTOR (21 downto 0);
-	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"788FFF"; --DO not forget
+	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"2625A0"; --DO not forget
 	--2625A0 2625A0 2625A0 2625A0 2625A0 2625A0
 	signal bus_intr : std_logic := '0';
 
@@ -316,10 +274,6 @@ BEGIN
 		END IF;
 	END PROCESS;
 	
---	intr <= '1' WHEN bus_intr = '1' AND inta = '0' ELSE
---	
---			  '0';
-
 	intr <= bus_intr;
 			  
 END Structure;

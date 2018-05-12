@@ -98,16 +98,16 @@ begin
 	ldpc			<= ldpc_l		when state=DEMW or state=SYSTEM else '0';
 	
 	wrd_sys		<= wrd_sys_l	when state=DEMW   else 
-						'1'			when state=SYSTEM else -- Really not necessary, those writes are pretty hardcoded...
+
 						'0';
 						
 	wrd_gp		<= wrd_gp_l 	when state=DEMW 	else '0';
 	wr_m			<= wr_m_l 		when state=DEMW 	else '0';
 	word_byte	<= w_b			when state=DEMW	else '0';
-	ins_dad 		<=	'1'			when state=DEMW 	else '0';
-	
+	ins_dad 		<=	'1'			when state=DEMW 	else '0'; -- This will make SYSTEM to load instructions
+																			 -- overwriting contents in bus_ir 
 	in_d			<= "100"			when state=SYSTEM else 
-						in_d_l;  -- "10" is the value to take pcup and drive it to 'd'
+						in_d_l;  -- "100" is the value to take pcup and drive it to 'd'
 						
 	tknbr			<= "10"			when state=SYSTEM	else
 						tknbr_l;  -- "10" is the value to write a register value into the PC
@@ -122,7 +122,7 @@ begin
 	
 	intr		 	<= '1' 			when state=SYSTEM else '0'; -- Check...
 	
-	inta			<= inta_l		when state=DEMW	else '0';
+	inta			<= inta_l;		--when state=DEMW	else '0';
 	
 	-- multi only changes the signal intr to tell every other module
 	-- to execute the procedure so at the end of the cycle we can do

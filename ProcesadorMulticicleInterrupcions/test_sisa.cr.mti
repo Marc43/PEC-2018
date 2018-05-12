@@ -195,6 +195,24 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity control_l
 -- Compiling architecture Structure of control_l
 
+} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/input_controllers.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity input_controllers
+-- Compiling architecture Structure of input_controllers
+-- Compiling entity pulsadores
+-- Compiling architecture Structure of pulsadores
+-- Compiling entity interruptores
+-- Compiling architecture Structure of interruptores
+-- Compiling entity timer
+-- Compiling architecture Structure of timer
+-- Compiling entity keyboard_controller_intr
+-- Compiling architecture Structure of keyboard_controller_intr
+
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/async_64Kx16.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleIO/async_64Kx16.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -786,14 +804,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity alu
 -- Compiling architecture Structure of alu
 
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/multi.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity multi
--- Compiling architecture Structure of multi
-
 } {} {}} /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd {1 {vcom -work work -2002 -explicit /home/mdomingu/Documents/FIB/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/proc.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -841,17 +851,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling package package_timing
 -- Compiling package body package_timing
 -- Loading package package_timing
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/interrupt_controller.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Loading package NUMERIC_STD
--- Compiling entity interrupt_controller
--- Compiling architecture Structure of interrupt_controller
 
 } {} {}} C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/datapath.vhd {1 {vcom -work work -2002 -explicit C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/datapath.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -981,15 +980,6 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity keyboard_controller
 -- Compiling architecture Behavioral of keyboard_controller
-
-} {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/control_l.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity control_l
--- Compiling architecture Structure of control_l
 
 } {} {}} X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd {1 {vcom -work work -2002 -explicit X:/Marc/Uni/PEC/PEC-2018/ProcesadorMulticicleInterrupcions/display16.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
