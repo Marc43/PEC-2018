@@ -26,7 +26,8 @@ ENTITY control_l IS
 			 e_int	  : OUT STD_LOGIC;
 			 d_int	  : OUT STD_LOGIC;
 			 ret_int	  : OUT STD_LOGIC;
-			 inta		  : OUT STD_LOGIC);
+			 inta		  : OUT STD_LOGIC;
+			 ilegal_instr : OUT STD_LOGIC);
 END control_l;
 
 ARCHITECTURE Structure OF control_l IS
@@ -44,6 +45,10 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT LDB 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1101";
 	CONSTANT STB 		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1110";
 	CONSTANT SPEC		: STD_LOGIC_VECTOR (3 DOWNTO 0) := "1111"; 
+	
+	CONSTANT UNIMPLEMENTED_OP_1 : STD_LOGIC_VECTOR (3 DOWNTO 0) := "1001";
+	CONSTANT UNIMPLEMENTED_OP_2 : STD_LOGIC_VECTOR (3 DOWNTO 0) := "1011";
+	CONSTANT UNIMPLEMENTED_OP_3 : STD_LOGIC_VECTOR (3 DOWNTO 0) := "1100";
 	
 	-- Alu operation codes
 	
@@ -143,6 +148,10 @@ BEGIN
 					reg_d;
 					
 	addr_d 	<= reg_d;
+	
+	ilegal_instr <= '1' WHEN op_code = UNIMPLEMENTED_OP_1 OR op_code = UNIMPLEMENTED_OP_2 OR op_code = UNIMPLEMENTED_OP_3 ELSE
+						 
+						 '0';
 	
 	immed_ma 	<= ir(5 DOWNTO 0);
 	immed_alu	<= ir(7 DOWNTO 0);

@@ -119,7 +119,6 @@ begin
 											"ZZZZZZZZ" when address(0) = '0' AND byte_m = '1' ELSE
 												dataToWrite(15 DOWNTO 8);
 
-		
 --		dataToWrite0(7 DOWNTO 0) <= dataToWrite(7 DOWNTO 0);
 --		dataToWrite0(15 DOWNTO 8) <= dataToWrite(7 DOWNTO 0) WHEN address(0) = '1' AND byte_m = '1' ELSE
 --												dataToWrite(15 DOWNTO 8);

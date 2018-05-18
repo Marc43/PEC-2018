@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP2C20F484) Path("C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleInterrupcions/output_files/") File("test_sisa.sof") MfrSpec(OpMask(1));
+		Device PartName(EP2C20F484) Path("C:/Users/pec02/Documents/pec-2018/ProcesadorMulticicleExcepcions/output_files/") File("test_sisa.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

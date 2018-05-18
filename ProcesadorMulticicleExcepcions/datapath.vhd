@@ -32,7 +32,10 @@ ENTITY datapath IS
 			 intr_enabled : OUT STD_LOGIC;
 			 e_int	 : IN STD_LOGIC;
 			 d_int	 : IN STD_LOGIC;
-			 ret_int	 : IN STD_LOGIC);
+			 ret_int	 : IN STD_LOGIC;
+			 div_zero : OUT STD_LOGIC;
+			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+			 unaligned_access : IN STD_LOGIC);
 END datapath;
 
 ARCHITECTURE Structure OF datapath IS
@@ -43,7 +46,8 @@ ARCHITECTURE Structure OF datapath IS
           op 	: IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			 func	: IN	STD_LOGIC_VECTOR (2 DOWNTO 0);
           w  	: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 z		: OUT STD_LOGIC);
+			 z		: OUT STD_LOGIC;
+			 div_zero : OUT STD_LOGIC);
 	END COMPONENT;
 	
 	COMPONENT regfile IS
@@ -62,7 +66,10 @@ ARCHITECTURE Structure OF datapath IS
           addr_d : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
           a      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           b      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 intr_enabled : OUT STD_LOGIC
+			 intr_enabled : OUT STD_LOGIC;
+			 addr_m			: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 unaligned_mem	: IN STD_LOGIC;
+			 exception_cause	: IN STD_LOGIC_VECTOR(3 DOWNTO 0)
 			 );
 	END COMPONENT;
 	
@@ -85,7 +92,8 @@ BEGIN
 		op		=> op,
 		func 	=> func,
 		w		=> alu_out,
-		z		=> eval
+		z		=> eval,
+		div_zero => div_zero
 	);
 	
 	regfile0 : regfile
@@ -105,7 +113,10 @@ BEGIN
 		addr_d 		=> addr_d,
 		a 				=> reg_a,
 		b 				=> reg_b,
-		intr_enabled=> intr_enabled
+		intr_enabled=> intr_enabled,
+		addr_m => mux_addr,
+		unaligned_mem => unaligned_access,
+		exception_cause => exception_cause
 	);
 	
 	WITH in_d SELECT		-- Data output or data from memory (loads)

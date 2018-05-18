@@ -36,6 +36,7 @@ ARCHITECTURE Structure OF sisa IS
           boot      : IN  STD_LOGIC;
 			 intr		  : IN  STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
+			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_m    : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -45,7 +46,11 @@ ARCHITECTURE Structure OF sisa IS
 			 rd_port	  : OUT STD_LOGIC;
 			 addr_port : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 			 rd_io	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-		    wr_io	  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+		    wr_io	  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 mem_instr : OUT STD_LOGIC;
+			 div_zero  : OUT STD_LOGIC;
+			 ilegal_instr : OUT STD_LOGIC;
+			 unaligned_access : IN STD_LOGIC);
 	END component;
 
 	component MemoryController is
@@ -68,7 +73,9 @@ ARCHITECTURE Structure OF sisa IS
 			 vga_we : out std_logic;
 			 vga_wr_data : out std_logic_vector(15 downto 0);
 			 vga_rd_data : in std_logic_vector(15 downto 0);
-			 vga_byte_m : out std_logic);
+			 vga_byte_m : out std_logic;
+			 unaligned_access	: out std_logic
+);
 	end component;
 	
   COMPONENT controladores_IO IS  
@@ -76,7 +83,6 @@ ARCHITECTURE Structure OF sisa IS
 			CLOCK_50    : IN  std_logic; 
 			inta			: IN  STD_LOGIC;
 			intr			: OUT STD_LOGIC;
---			iid			: OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 			addr_io     : IN  std_logic_vector(7 downto 0); 
 			wr_io  		: in  std_logic_vector(15 downto 0); 
 			rd_io 		: out std_logic_vector(15 downto 0); 
@@ -94,6 +100,17 @@ ARCHITECTURE Structure OF sisa IS
 			vga_cursor_enable : out std_logic); 
 	END COMPONENT; 
 	
+	COMPONENT exception_controller IS
+	PORT (
+		ilegal_instr 		: IN STD_LOGIC;
+		mem_instr			: IN STD_LOGIC;
+		unaligned_access 	: IN STD_LOGIC;
+		intr					: IN STD_LOGIC;
+		div_zero				: IN STD_LOGIC;
+		exception_cause	: OUT STD_LOGIC_VECTOR (3 downto 0);
+		exception 			: OUT STD_LOGIC
+	);
+	END COMPONENT; 
 	
 	COMPONENT vga_controller is
     port(clk_50mhz      : in  std_logic; -- system clock signal
@@ -157,8 +174,14 @@ ARCHITECTURE Structure OF sisa IS
 	
 	signal bus_inta  : std_logic;
 	signal bus_intr  : std_logic;
---	signal bus_iid   : std_logic_vector (7 downto 0);
 	
+	signal bus_exception_cause : std_logic_vector (3 downto 0);
+	signal bus_unaligned_access : std_logic;
+	signal bus_mem_instr	: std_logic;
+	signal bus_div_zero	: std_logic;
+	signal bus_exception : std_logic;	
+	signal bus_ilegal_instr : std_logic;
+
 BEGIN
 
 	clk_calc : process (CLOCK_50)
@@ -174,8 +197,9 @@ BEGIN
 	port map (
 		clk 		=> clk_proc,
 		boot 		=> gboot,
-		intr		=> bus_intr,
+		intr		=> bus_exception,
 		inta		=> bus_inta,
+		exception_cause => bus_exception_cause,
 		datard_m	=> bus_data_rd,
 		addr_m	=> bus_addr,
 		data_wr	=> bus_data_wr,
@@ -185,7 +209,11 @@ BEGIN
 		rd_port	=> bus_rd_port,
 		addr_port => bus_addr_io,
 		rd_io	  	=> bus_rd_io,
-		wr_io		=> bus_wr_io
+		wr_io		=> bus_wr_io,
+		mem_instr 	=> bus_mem_instr, 
+		div_zero 	=> bus_div_zero,
+		ilegal_instr => bus_ilegal_instr,
+		unaligned_access => bus_unaligned_access
 	);
 	
 	mem_ctrl0 : MemoryController
@@ -207,7 +235,8 @@ BEGIN
 		vga_we 	=> bus_vga_we,
 		vga_wr_data => bus_vga_wr_data,
 		vga_rd_data => bus_vga_rd_data,
-		vga_byte_m => bus_vga_byte_m
+		vga_byte_m => bus_vga_byte_m,
+		unaligned_access => bus_unaligned_access
 	);
 	
 	controladores_IO0 : controladores_IO
@@ -216,7 +245,6 @@ BEGIN
 		CLOCK_50 	=> CLOCK_50,
 		inta			=> bus_inta,
 		intr			=> bus_intr,
---		iid			=> bus_iid,
 		addr_io  	=> bus_addr_io,
 		wr_io  		=> bus_wr_io,
 		rd_io 		=> bus_rd_io,
@@ -234,6 +262,16 @@ BEGIN
 		vga_cursor_enable => bus_vga_cursor_enable
 	);
 	
+	exception_controller0 : exception_controller 
+	port map (
+		ilegal_instr 		=> bus_ilegal_instr,
+		mem_instr	 		=> bus_mem_instr,
+		unaligned_access 	=> bus_unaligned_access,
+		intr					=> bus_intr,
+		div_zero				=> bus_div_zero,
+		exception_cause	=> bus_exception_cause,
+		exception 			=> bus_exception
+	);
 
 	vga_controller0 : vga_controller
 	port map (

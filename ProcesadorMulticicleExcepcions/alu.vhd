@@ -70,7 +70,7 @@ BEGIN
 			--MOV
 			y WHEN op = MOV_op AND func = MOVI_f ELSE
 			y(7 DOWNTO 0) & x(7 DOWNTO 0) WHEN op = MOV_op AND func = MOVHI_f ELSE
-			--COMP
+			
 			X"0001" WHEN op = CMP_op AND func = CMPLT_f AND signed(x) < signed(y)	 ELSE
 			X"0000" WHEN op = CMP_op AND func = CMPLT_f AND signed(x) >= signed(y) ELSE
 			

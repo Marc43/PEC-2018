@@ -175,6 +175,7 @@ BEGIN
 				--		S0 <- S7 	 (PSWold = PSWup)
 				--		S1 <- PCup   (Store the return point)
 				--		S2 <- 0x000F (Black box)
+				--		S3 <- MEM_addr
 				--		PC <- S5		 (General handler code)
  				--		S7(1) <- '0' (Disable interrupts)
 				-- Theoretically a process guarantees the order execution
@@ -184,8 +185,11 @@ BEGIN
 				regs_sys(conv_integer(PSWold)) 	<= regs_sys(conv_integer(PSWup));
 				regs_sys(conv_integer(PCret))		<= d; -- d must match PCup
 				regs_sys(conv_integer(blackb))	<= X"000" & exception_cause;
-				regs_sys(conv_integer(mem_addr)) <= addr_m;
 				regs_sys(conv_integer(PSWup))		<= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWup))(0);
+				
+				IF unaligned_mem = '1' THEN
+					regs_sys(conv_integer(mem_addr)) <= addr_m;
+				END IF;
 				
 			END IF;
 			

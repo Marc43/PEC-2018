@@ -4,8 +4,9 @@ USE ieee.std_logic_1164.all;
 ENTITY proc IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
-			 intr		  : IN  STD_LOGIC;
+			 intr		  : IN  STD_LOGIC; -- Now its exception but it's easier this way (enjoy)
 			 inta		  : OUT STD_LOGIC;
+			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           addr_m    : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -15,7 +16,11 @@ ENTITY proc IS
 			 rd_port	  : OUT STD_LOGIC;
 			 addr_port : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 			 rd_io	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
-		    wr_io	  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0));
+		    wr_io	  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
+			 mem_instr : OUT STD_LOGIC;
+			 div_zero : OUT STD_LOGIC;
+			 ilegal_instr : OUT STD_LOGIC;
+			 unaligned_access : IN STD_LOGIC);
 END proc;
 
 ARCHITECTURE Structure OF proc IS
@@ -51,7 +56,9 @@ COMPONENT unidad_control IS
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
 			 d_int	  : OUT STD_LOGIC;
-			 ret_int	  : OUT STD_LOGIC);
+			 ret_int	  : OUT STD_LOGIC;
+			 mem_instr : OUT STD_LOGIC;
+			 ilegal_instr : OUT STD_LOGIC);
 END COMPONENT;
 
 COMPONENT datapath IS
@@ -84,7 +91,10 @@ COMPONENT datapath IS
 			 intr_enabled : OUT STD_LOGIC;
 			 e_int	 : IN  STD_LOGIC;
 			 d_int	 : IN  STD_LOGIC;
-			 ret_int  : IN  STD_LOGIC);
+			 ret_int  : IN  STD_LOGIC;
+			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+			 div_zero : OUT STD_LOGIC;
+			 unaligned_access : IN STD_LOGIC);
 END COMPONENT;
 
 SIGNAL bus_op 				: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -151,7 +161,9 @@ BEGIN
 		rd_port  => rd_port,
 		e_int		=> bus_e_int,
 		d_int		=> bus_d_int,
-		ret_int	=> bus_ret_int
+		ret_int	=> bus_ret_int,
+		mem_instr => mem_instr,
+		ilegal_instr => ilegal_instr
 	);
 	
 	datapath0 : datapath
@@ -185,7 +197,10 @@ BEGIN
 		intr_enabled => bus_intr_enabled,
 		e_int		=> bus_e_int,
 		d_int		=> bus_d_int,
-		ret_int	=> bus_ret_int
+		ret_int	=> bus_ret_int,
+		div_zero => div_zero,
+		exception_cause => exception_cause,
+		unaligned_access => unaligned_access
 	);
 	
 	wr_m <= bus_wr_m;

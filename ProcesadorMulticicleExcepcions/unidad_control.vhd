@@ -34,7 +34,9 @@ ENTITY unidad_control IS
 			 rd_port	  : OUT STD_LOGIC;
 			 e_int	  : OUT STD_LOGIC;
 			 d_int	  : OUT STD_LOGIC;
-			 ret_int	  : OUT STD_LOGIC);
+			 ret_int	  : OUT STD_LOGIC;
+			 mem_instr : OUT STD_LOGIC;
+			 ilegal_instr : OUT STD_LOGIC);
 END unidad_control;
 
 ARCHITECTURE Structure OF unidad_control IS
@@ -63,7 +65,8 @@ ARCHITECTURE Structure OF unidad_control IS
 			 e_int	  : OUT STD_LOGIC;
 			 d_int	  : OUT STD_LOGIC;
 			 ret_int   : OUT STD_LOGIC;
-			 inta		  : OUT STD_LOGIC);
+			 inta		  : OUT STD_LOGIC;
+			 ilegal_instr : OUT STD_LOGIC);
 	END COMPONENT;
 	
 	COMPONENT multi IS
@@ -122,7 +125,9 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_alu_op				: STD_LOGIC_VECTOR (2 DOWNTO 0);
 	SIGNAL bus_rd_sys_gp 		: STD_LOGIC;
 	SIGNAL bus_inta_l				: STD_LOGIC;
-	
+	SIGNAL bus_in_d				: STD_LOGIC_VECTOR (2 downto 0);
+	SIGNAL bus_wr_m_out			: STD_LOGIC;
+
 BEGIN
 
 	control_l0 : control_l
@@ -150,7 +155,8 @@ BEGIN
 		e_int			=> e_int,
 		d_int			=> d_int,
 		ret_int		=> ret_int,
-		inta			=> bus_inta_l
+		inta			=> bus_inta_l,
+		ilegal_instr => ilegal_instr
 	);
 	
 	multi0 : multi
@@ -168,16 +174,16 @@ BEGIN
 		ldpc_l		=> bus_ldpc,
 		wrd_gp_l		=>	bus_wrd_gp,
 		wrd_sys_l	=> bus_wrd_sys,
-		wr_m_l		=>	bus_wr_m,
+		wr_m_l		=>	bus_wr_m_out,
 		w_b			=> bus_word_byte,
 		ldpc			=> multi_ldpc,
 		wrd_gp		=>	wrd_gp,
 		wrd_sys		=> wrd_sys,
-		wr_m			=>	wr_m,
+		wr_m			=>	bus_wr_m,
 		ldir			=>	multi_ldir,
 		ins_dad		=>	ins_dad,
 		word_byte	=> word_byte,
-		in_d			=> in_d,
+		in_d			=> bus_in_d,
 		tknbr			=> bus_tknbr,
 		alu_op		=> op,
 		rd_sys_gp	=> rd_sys_gp,
@@ -223,5 +229,10 @@ BEGIN
 	
 	immed 			<= bus_immed;
 	bus_immed_des	<= STD_LOGIC_VECTOR(shift_left(unsigned(bus_immed), 1));
+	
+	mem_instr <= '1' WHEN bus_wr_m_out = '1' AND bus_in_d = "001" ELSE '0';
+	
+	wr_m <= bus_wr_m_out;
+	in_d <= bus_in_d;
 	
 END Structure;
