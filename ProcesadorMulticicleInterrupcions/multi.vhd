@@ -45,53 +45,72 @@ SIGNAL state : states_t := IDLE;
 begin
 
 	PROCESS (clk, boot)
-		variable interrupt 	: boolean := false;
-		variable interrupt_e : boolean := false;
+--		variable interrupt 	: boolean := false;
+--		variable interrupt_e : boolean := false;
 	BEGIN
 	
-		IF intr_l = '0' THEN
-			interrupt := false;
-		ELSE	
-			interrupt := true;
-		END IF;
-		
-		IF intr_enabled = '0' THEN
-			interrupt_e := false;
-		ELSE
-			interrupt_e := true;
-		END IF;
+--		IF intr_l = '0' THEN
+--			interrupt := false;
+--		ELSE	
+--			interrupt := true;
+--		END IF;
+--		
+--		IF intr_enabled = '0' THEN
+--			interrupt_e := false;
+--		ELSE
+--			interrupt_e := true;
+--		END IF;
+--
 		
 		IF boot = '1' THEN
-		
-			state <= IDLE;
-			
-		ELSIF rising_edge(clk) THEN
-
-			CASE state IS
-				WHEN IDLE 	=>
-					IF boot = '0' THEN
-						state <= FETCH; -- Boot edged to 0
-					END IF;
-			
-				WHEN FETCH 	=>
+			state <= FETCH;
+		else
+			state <= state;
+			IF rising_edge(clk) THEN
+				if state = FETCH then
 					state <= DEMW;
-		
-				WHEN DEMW	=>
-					
-					IF NOT (interrupt AND interrupt_e) THEN
-						state <= FETCH;
-					ELSE
+				else
+					if state = DEMW and (intr_enabled = '1') and (intr_l='1') then
 						state <= SYSTEM;
-					END IF;
-					
-				WHEN SYSTEM	=>
-					-- One or more SYSTEM cycles are executed 
-					-- once an interruption is triggered
-					state <= FETCH;
-					
-			END CASE;
+					else
+						state <= FETCH;
+					end if;
+				end if;
+			end if;
+		end if;
 		
-		END IF;
+		
+--		IF boot = '1' THEN
+--		
+--			state <= IDLE;
+--			
+--		ELSIF rising_edge(clk) THEN
+--
+--			CASE state IS
+--				WHEN IDLE 	=>
+--					IF boot = '0' THEN
+--						state <= FETCH; -- Boot edged to 0
+--					END IF;
+--			
+--				WHEN FETCH 	=>
+--					state <= DEMW;
+--		
+--				WHEN DEMW	=>
+--					
+--					IF NOT (interrupt AND interrupt_e) THEN
+--						state <= FETCH;
+--					ELSE
+--						state <= SYSTEM;
+--					END IF;
+--					
+--				WHEN SYSTEM	=>
+--					-- One or more SYSTEM cycles are executed 
+--					-- once an interruption is triggered
+--					state <= FETCH;
+--					
+--			END CASE;
+--		
+--		END IF;
 		
 	END PROCESS;
 	
