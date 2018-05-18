@@ -10,8 +10,8 @@ entity SRAMController is
           SRAM_DQ     : inout std_logic_vector(15 downto 0);
           SRAM_UB_N   : out   std_logic;
           SRAM_LB_N   : out   std_logic;
-          SRAM_CE_N   : out   std_logic := '1';
-          SRAM_OE_N   : out   std_logic := '1';
+          SRAM_CE_N   : out   std_logic;
+          SRAM_OE_N   : out   std_logic;
           SRAM_WE_N   : out   std_logic := '1';
 			 
           address     : in    std_logic_vector(15 downto 0) := "0000000000000000";
@@ -35,19 +35,20 @@ architecture comportament of SRAMController is
 
 begin
 
-		estado: PROCESS (clk) -- Calculates the state to jump
+		estado: PROCESS (clk,dataToWrite0) -- Calculates the state to jump
 		BEGIN
 			IF rising_edge(clk) THEN
 				state <= next_state;
 			END IF;
 		END PROCESS;
+
+		SRAM_CE_N <= '0'; -- Chip input not enabled
+		SRAM_OE_N <= '0'; -- Output not enabled 
 		
 		salidas: PROCESS (state) -- Checks the actual state and assigns the signals for the jumping state
 		BEGIN
 			CASE state IS
 				WHEN IDLE_ST => -- outputs to IDLE (ensures that writes nor reads are performed)
-					SRAM_OE_N <= '1'; -- Output not enabled 
-					SRAM_CE_N <= '0'; -- Chip input not enabled
 					SRAM_WE_N <= '1'; -- Write not enabled
 					SRAM_LB_N <= '1';
 					SRAM_UB_N <= '1';
@@ -55,7 +56,6 @@ begin
 					next_state <= BRANCH_ST;
 					
 				WHEN BRANCH_ST=>
-					SRAM_CE_N <= '0';
 					IF(WR = '1') THEN
 						SRAM_DQ <= dataToWrite0;
 						next_state <= WR_ST;
@@ -74,7 +74,6 @@ begin
 						SRAM_LB_N 	<= '0';
 					END IF;
 					
-					SRAM_OE_N 	<= '0';
 					next_state	<= RES_ST;
 					
 				WHEN WR_ST =>-- goes to WR
@@ -113,10 +112,19 @@ begin
 					next_state <= IDLE_ST;
 			END CASE;
 		END PROCESS;
-		dataToWrite0(7 DOWNTO 0) <= dataToWrite(7 DOWNTO 0);
+
+		dataToWrite0(7 DOWNTO 0) <= "ZZZZZZZZ" when address(0) = '1' AND byte_m = '1' else dataToWrite(7 DOWNTO 0);
+		
 		dataToWrite0(15 DOWNTO 8) <= dataToWrite(7 DOWNTO 0) WHEN address(0) = '1' AND byte_m = '1' ELSE
+											"ZZZZZZZZ" when address(0) = '0' AND byte_m = '1' ELSE
 												dataToWrite(15 DOWNTO 8);
-		SRAM_ADDR 	<= "00" & std_logic_vector(shift_right(unsigned(address), 1));
+
+		
+--		dataToWrite0(7 DOWNTO 0) <= dataToWrite(7 DOWNTO 0);
+--		dataToWrite0(15 DOWNTO 8) <= dataToWrite(7 DOWNTO 0) WHEN address(0) = '1' AND byte_m = '1' ELSE
+--												dataToWrite(15 DOWNTO 8);
+--		SRAM_ADDR 	<= "00" & std_logic_vector(shift_right(unsigned(address), 1));
+		SRAM_ADDR 	<= "000" & address(15 downto 1);
 		dataReaded	<= data_ext;
 		
 end comportament;
