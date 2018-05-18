@@ -26,8 +26,8 @@ state.WR_ST 0 1 0 0 1
 state.RES_ST 1 0 0 0 1 
 
 State Machine - |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0|state
-Name state.SYSTEM state.DEMW state.FETCH state.IDLE 
-state.IDLE 0 0 0 0 
-state.FETCH 0 0 1 1 
+Name state.SYSTEM state.DEMW state.IDLE state.FETCH 
+state.FETCH 0 0 0 0 
+state.IDLE 0 0 1 1 
 state.DEMW 0 1 0 1 
 state.SYSTEM 1 0 0 1 

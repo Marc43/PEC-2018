@@ -158,14 +158,26 @@ BEGIN
 				last_keys <= keys;
 		else 
 			IF rising_edge(clk) THEN
-				if keys /= last_keys then
-					bus_intr <= '1';
-				end if;
-				if (inta = '1') then
+
+				if inta='0' then
+					if keys /= last_keys then
+						bus_intr <= '1';
+		  			   last_keys <= keys;
+					else
+						bus_intr <= bus_intr;
+					end if;
+				else
 					bus_intr <= '0';
 				end if;
-				
-				last_keys <= keys;
+			
+--				if keys /= last_keys then
+--					bus_intr <= '1';
+--				end if;
+--				if (inta = '1') then
+--					bus_intr <= '0';
+--				end if;
+--				
+--				last_keys <= keys;
 
 			END IF;
 		end if;
@@ -210,14 +222,26 @@ BEGIN
 				last_sw <= switches;
 		else 
 			IF rising_edge(clk) THEN
-				if switches /= last_sw then
-					bus_intr <= '1';
-				end if;
-				if (inta = '1') then
+
+				if inta='0' then
+					if switches /= last_sw then
+						bus_intr <= '1';
+		  			   last_sw <= switches;
+					else
+						bus_intr <= bus_intr;
+					end if;
+				else
 					bus_intr <= '0';
 				end if;
 				
-				last_sw <= switches;
+--				if switches /= last_sw then
+--					bus_intr <= '1';
+--				end if;
+--				if (inta = '1') then
+--					bus_intr <= '0';
+--				end if;
+--				-- Mal mal	
+--				last_sw <= switches;
 			END IF;
 		end if;
 	END PROCESS;
