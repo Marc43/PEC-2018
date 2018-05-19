@@ -14,7 +14,7 @@ entity multi is
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
 			intr_l	 : IN  STD_LOGIC;
-			intr_enabled : IN STD_LOGIC;
+--			intr_enabled : IN STD_LOGIC;
 			inta_l	 : IN  STD_LOGIC;
 			intr		 : OUT STD_LOGIC;
 			ldpc      : OUT STD_LOGIC;
@@ -55,7 +55,7 @@ begin
 				if state = FETCH then
 					state <= DEMW;
 				else
-					if state = DEMW and (intr_enabled = '1') and (intr_l='1') then
+					if state = DEMW and (intr_l='1') then
 						state <= SYSTEM;
 					else
 						state <= FETCH;

@@ -35,7 +35,8 @@ ENTITY datapath IS
 			 ret_int	 : IN STD_LOGIC;
 			 div_zero : OUT STD_LOGIC;
 			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
-			 unaligned_access : IN STD_LOGIC);
+			 unaligned_mem : IN STD_LOGIC
+			 );
 END datapath;
 
 ARCHITECTURE Structure OF datapath IS
@@ -68,8 +69,8 @@ ARCHITECTURE Structure OF datapath IS
           b      : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 intr_enabled : OUT STD_LOGIC;
 			 addr_m			: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-			 unaligned_mem	: IN STD_LOGIC;
-			 exception_cause	: IN STD_LOGIC_VECTOR(3 DOWNTO 0)
+			 exception_cause	: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+			 unaligned_mem : IN STD_LOGIC
 			 );
 	END COMPONENT;
 	
@@ -115,8 +116,8 @@ BEGIN
 		b 				=> reg_b,
 		intr_enabled=> intr_enabled,
 		addr_m => mux_addr,
-		unaligned_mem => unaligned_access,
-		exception_cause => exception_cause
+		exception_cause => exception_cause,
+		unaligned_mem => unaligned_mem
 	);
 	
 	WITH in_d SELECT		-- Data output or data from memory (loads)

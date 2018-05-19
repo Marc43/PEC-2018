@@ -43,8 +43,8 @@ COMPONENT system_regfile IS
 		 a      		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 		 intr_enabled : OUT STD_LOGIC;
 		 addr_m	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
-		 unaligned_mem : IN STD_LOGIC;
-		 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0)
+		 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+		 unaligned_mem : IN STD_LOGIC
 	);
 END COMPONENT;
 
@@ -81,8 +81,8 @@ BEGIN
 		a			=> bus_sys_a,
 		intr_enabled => intr_enabled,
 		addr_m => addr_m,
-		unaligned_mem => unaligned_mem,
-		exception_cause => exception_cause
+		exception_cause => exception_cause,
+		unaligned_mem => unaligned_mem
 	);
 	
 	generalp_regfile0 : generalp_regfile
@@ -128,8 +128,8 @@ ENTITY system_regfile IS
 		 a      		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 		 intr_enabled : OUT STD_LOGIC;
 		 addr_m 		: IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		 unaligned_mem	: IN STD_LOGIC;
-		 exception_cause	: IN STD_LOGIC_VECTOR(3 DOWNTO 0)
+		 exception_cause	: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+		 unaligned_mem : IN STD_LOGIC
 	);
 END system_regfile;
 	
@@ -139,12 +139,19 @@ ARCHITECTURE Structure OF system_regfile IS
 
 	SIGNAL regs_sys 	: register_set := ((others => (others => '0'))); -- System registers
 	
+	SIGNAL stop_saving_addr : STD_LOGIC := '0';
+	
 	CONSTANT PSWold	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "000";	
 	CONSTANT PCret		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
 	CONSTANT blackb	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "010"; -- Records what made an intr or except. trigger
 	CONSTANT mem_addr	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "011";
 	CONSTANT RSG	 	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "101";
 	CONSTANT PSWup 	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "111";
+	
+	CONSTANT ILEGAL_INSTRUCTION_E : STD_LOGIC_VECTOR (3 downto 0) := "0000";
+	CONSTANT UNALIGNED_ACCESS_E	: STD_LOGIC_VECTOR (3 downto 0) := "0001";
+	CONSTANT DIVIDE_BY_ZERO_E		: STD_LOGIC_VECTOR (3 downto 0) := "0100";
+	CONSTANT INTERRUPT_E				: STD_LOGIC_VECTOR (3 downto 0) := "1111";
 	
 BEGIN
 
@@ -174,13 +181,18 @@ BEGIN
 				-- Thus, the processor is in the same PC and state as before
 			END IF;
 			
+			-- intr it's equivalent to exception here...
+			IF unaligned_mem = '1' THEN
+					regs_sys(conv_integer(mem_addr)) <= addr_m;
+			END IF;
+			
 			IF intr = '1' THEN
 				-- The control unit has driven the intr signal to '1'
 				-- So we have to handle an interruption
 				-- The procedure is the following:
 				--		S0 <- S7 	 (PSWold = PSWup)
 				--		S1 <- PCup   (Store the return point)
-				--		S2 <- 0x000F (Black box)
+				--		S2 <- 0x000 & exception cause (Black box)
 				--		S3 <- MEM_addr
 				--		PC <- S5		 (General handler code)
  				--		S7(1) <- '0' (Disable interrupts)
@@ -192,11 +204,7 @@ BEGIN
 				regs_sys(conv_integer(PCret))		<= d; -- d must match PCup
 				regs_sys(conv_integer(blackb))	<= X"000" & exception_cause;
 				regs_sys(conv_integer(PSWup))		<= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWup))(0);
-				
-				IF unaligned_mem = '1' THEN
-					regs_sys(conv_integer(mem_addr)) <= addr_m;
-				END IF;
-				
+			
 			END IF;
 			
 		END IF;

@@ -20,7 +20,9 @@ ENTITY proc IS
 			 mem_instr : OUT STD_LOGIC;
 			 div_zero : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
-			 unaligned_access : IN STD_LOGIC);
+			 intr_enabled : OUT STD_LOGIC;
+			 unaligned_mem : IN STD_LOGIC
+			 );
 END proc;
 
 ARCHITECTURE Structure OF proc IS
@@ -33,7 +35,6 @@ COMPONENT unidad_control IS
 			 eval		  : IN  STD_LOGIC;
 			 intr_l	  : IN  STD_LOGIC;
 			 intr_d	  : OUT STD_LOGIC;
-			 intr_enabled : IN STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -94,7 +95,8 @@ COMPONENT datapath IS
 			 ret_int  : IN  STD_LOGIC;
 			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
 			 div_zero : OUT STD_LOGIC;
-			 unaligned_access : IN STD_LOGIC);
+			 unaligned_mem : IN STD_LOGIC			 
+			 );
 END COMPONENT;
 
 SIGNAL bus_op 				: STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -125,7 +127,7 @@ SIGNAL bus_e_int			: STD_LOGIC;
 SIGNAL bus_d_int			: STD_LOGIC;
 SIGNAL bus_ret_int		: STD_LOGIC;
 SIGNAL bus_intr			: STD_LOGIC;
-SIGNAL bus_intr_enabled : STD_LOGIC;
+--SIGNAL bus_intr_enabled : STD_LOGIC;
 
 BEGIN
 
@@ -138,7 +140,6 @@ BEGIN
 		eval		=> bus_eval,
 		intr_l	=> intr,
 		intr_d		=> bus_intr,
-		intr_enabled => bus_intr_enabled,
 		inta		=> inta,
 		op			=> bus_op,
 		func		=> bus_func,
@@ -194,13 +195,13 @@ BEGIN
 		rd_io		=> rd_io,
 		wr_io		=> wr_io,
 		addr_port => addr_port,
-		intr_enabled => bus_intr_enabled,
+		intr_enabled => intr_enabled,
 		e_int		=> bus_e_int,
 		d_int		=> bus_d_int,
 		ret_int	=> bus_ret_int,
 		div_zero => div_zero,
 		exception_cause => exception_cause,
-		unaligned_access => unaligned_access
+		unaligned_mem => unaligned_mem
 	);
 	
 	wr_m <= bus_wr_m;

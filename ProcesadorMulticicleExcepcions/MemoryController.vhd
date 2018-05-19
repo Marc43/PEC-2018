@@ -92,7 +92,9 @@ begin
 	vga_wr_data <= wr_data;
 	vga_byte_m  <= byte_m;
 	
-	unaligned_access <= '1' WHEN byte_m = '0' AND addr(0) = '1';
+	unaligned_access <= '1' WHEN byte_m = '0' AND addr(0) = '1' ELSE -- Word access
+							  
+							  '0';  
 	
 	--unaligned_access <= bus_unaligned_access;
 	

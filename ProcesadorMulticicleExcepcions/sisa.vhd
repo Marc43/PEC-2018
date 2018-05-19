@@ -50,7 +50,9 @@ ARCHITECTURE Structure OF sisa IS
 			 mem_instr : OUT STD_LOGIC;
 			 div_zero  : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
-			 unaligned_access : IN STD_LOGIC);
+			 intr_enabled : OUT STD_LOGIC;
+			 unaligned_mem : IN STD_LOGIC
+			 );
 	END component;
 
 	component MemoryController is
@@ -103,13 +105,15 @@ ARCHITECTURE Structure OF sisa IS
 	COMPONENT exception_controller IS
 	PORT (
 		clk : IN STD_LOGIC;
+		intr_enabled : IN STD_LOGIC;
 		ilegal_instr 		: IN STD_LOGIC;
 		mem_instr			: IN STD_LOGIC;
 		unaligned_access 	: IN STD_LOGIC;
 		intr					: IN STD_LOGIC;
 		div_zero				: IN STD_LOGIC;
 		exception_cause	: OUT STD_LOGIC_VECTOR (3 downto 0);
-		exception 			: OUT STD_LOGIC
+		exception 			: OUT STD_LOGIC;
+		unaligned_exception : OUT STD_LOGIC -- Necessary to handle the exception properly
 	);
 	END COMPONENT; 
 	
@@ -182,6 +186,8 @@ ARCHITECTURE Structure OF sisa IS
 	signal bus_div_zero	: std_logic;
 	signal bus_exception : std_logic;	
 	signal bus_ilegal_instr : std_logic;
+	signal bus_intr_enabled : std_logic;
+	signal bus_unaligned_exception : std_logic;
 
 BEGIN
 
@@ -214,7 +220,8 @@ BEGIN
 		mem_instr 	=> bus_mem_instr, 
 		div_zero 	=> bus_div_zero,
 		ilegal_instr => bus_ilegal_instr,
-		unaligned_access => bus_unaligned_access
+		intr_enabled => bus_intr_enabled,
+		unaligned_mem => bus_unaligned_exception
 	);
 	
 	mem_ctrl0 : MemoryController
@@ -265,14 +272,16 @@ BEGIN
 	
 	exception_controller0 : exception_controller 
 	port map (
-		clk => clk,
+		clk => clk_proc,
+		intr_enabled 		=> bus_intr_enabled,
 		ilegal_instr 		=> bus_ilegal_instr,
 		mem_instr	 		=> bus_mem_instr,
 		unaligned_access 	=> bus_unaligned_access,
 		intr					=> bus_intr,
 		div_zero				=> bus_div_zero,
 		exception_cause	=> bus_exception_cause,
-		exception 			=> bus_exception
+		exception 			=> bus_exception,
+		unaligned_exception => bus_unaligned_exception
 	);
 
 	vga_controller0 : vga_controller

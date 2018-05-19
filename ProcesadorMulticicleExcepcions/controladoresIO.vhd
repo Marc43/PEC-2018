@@ -28,7 +28,7 @@ END controladores_IO;
 
 ARCHITECTURE Structure OF controladores_IO IS
 	
-	type IO_address_space is array (255 downto 0) of std_logic_vector (15 downto 0); --Perque compili mes rapid.
+	type IO_address_space is array (50 downto 0) of std_logic_vector (15 downto 0); --Perque compili mes rapid.
 	
 	SIGNAL ports : IO_address_space;
 
