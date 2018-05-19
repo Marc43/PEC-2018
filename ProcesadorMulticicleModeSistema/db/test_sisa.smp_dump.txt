@@ -1,0 +1,32 @@
+
+State Machine - |sisa|controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0|m1_state
+Name m1_state.m1_tx_rising_edge_marker m1_state.m1_tx_error_no_keyboard_ack m1_state.m1_tx_done_recovery m1_state.m1_tx_wait_keyboard_ack m1_state.m1_tx_clk_l m1_state.m1_tx_clk_h m1_state.m1_tx_wait_clk_h m1_state.m1_tx_reset_timer m1_state.m1_tx_first_wait_clk_l m1_state.m1_tx_first_wait_clk_h m1_state.m1_tx_force_clk_l m1_state.m1_rx_rising_edge_marker m1_state.m1_rx_falling_edge_marker m1_state.m1_rx_clk_l m1_state.m1_rx_clk_h 
+m1_state.m1_rx_clk_h 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+m1_state.m1_rx_clk_l 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+m1_state.m1_rx_falling_edge_marker 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+m1_state.m1_rx_rising_edge_marker 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+m1_state.m1_tx_force_clk_l 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+m1_state.m1_tx_first_wait_clk_h 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+m1_state.m1_tx_first_wait_clk_l 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+m1_state.m1_tx_reset_timer 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+m1_state.m1_tx_wait_clk_h 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+m1_state.m1_tx_clk_h 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+m1_state.m1_tx_clk_l 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+m1_state.m1_tx_wait_keyboard_ack 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+m1_state.m1_tx_done_recovery 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+m1_state.m1_tx_error_no_keyboard_ack 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+m1_state.m1_tx_rising_edge_marker 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |sisa|MemoryController:mem_ctrl0|SRAMController:controller0|state
+Name state.RES_ST state.WR_ST state.RD_ST state.BRANCH_ST state.IDLE_ST 
+state.IDLE_ST 0 0 0 0 0 
+state.BRANCH_ST 0 0 0 1 1 
+state.RD_ST 0 0 1 0 1 
+state.WR_ST 0 1 0 0 1 
+state.RES_ST 1 0 0 0 1 
+
+State Machine - |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0|state
+Name state.SYSTEM state.DEMW state.FETCH 
+state.FETCH 0 0 0 
+state.DEMW 0 1 1 
+state.SYSTEM 1 0 1 
