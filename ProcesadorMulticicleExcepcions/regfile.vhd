@@ -41,7 +41,10 @@ COMPONENT system_regfile IS
 		 addr_a 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 addr_d 		: IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
 		 a      		: OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-		 intr_enabled : OUT STD_LOGIC
+		 intr_enabled : OUT STD_LOGIC;
+		 addr_m	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		 unaligned_mem : IN STD_LOGIC;
+		 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0)
 	);
 END COMPONENT;
 
@@ -76,7 +79,10 @@ BEGIN
 		addr_a	=> addr_a,
 		addr_d	=> addr_d,
 		a			=> bus_sys_a,
-		intr_enabled => intr_enabled
+		intr_enabled => intr_enabled,
+		addr_m => addr_m,
+		unaligned_mem => unaligned_mem,
+		exception_cause => exception_cause
 	);
 	
 	generalp_regfile0 : generalp_regfile

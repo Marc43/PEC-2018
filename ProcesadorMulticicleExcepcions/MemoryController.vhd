@@ -51,7 +51,7 @@ architecture comportament of MemoryController is
 	--signal bus_datard	: std_logic_vector;
 	signal bus_we		: std_logic;
 	signal bus_byte	: std_logic;
-	signal bus_unaligned_access : std_logic;
+	--signal bus_unaligned_access : std_logic;
 	
 	signal instr_memory_limit : std_logic_vector (15 downto 0) := X"C000"; -- Any address >= to this one is invalid to write
 	signal vga_lower_limit : std_logic_vector (15 downto 0) := X"A000";
@@ -77,7 +77,7 @@ begin
 		byte_m		=> bus_byte
 	);
 	
-	bus_we 		<= we when unsigned(addr) < unsigned(instr_memory_limit) AND bus_unaligned_access = '0' else
+	bus_we 		<= we when unsigned(addr) < unsigned(instr_memory_limit) else
 						'0';
 						
 	bus_addr		<= addr;
@@ -86,15 +86,14 @@ begin
 	
 	vga_addr <= addr(12 DOWNTO 0);
 	vga_we <= we WHEN unsigned(addr) >= unsigned(vga_lower_limit) AND 
-							unsigned(addr) <= unsigned(vga_upper_limit) AND
-							bus_unaligned_access = '0' ELSE
+							unsigned(addr) <= unsigned(vga_upper_limit) ELSE
 				 '0';
 				 
 	vga_wr_data <= wr_data;
 	vga_byte_m  <= byte_m;
 	
-	bus_unaligned_access <= '1' WHEN byte_m = '0' AND addr(0) = '1';
+	unaligned_access <= '1' WHEN byte_m = '0' AND addr(0) = '1';
 	
-	unaligned_access <= bus_unaligned_access;
+	--unaligned_access <= bus_unaligned_access;
 	
 end comportament;

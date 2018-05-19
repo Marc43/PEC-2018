@@ -102,6 +102,7 @@ ARCHITECTURE Structure OF sisa IS
 	
 	COMPONENT exception_controller IS
 	PORT (
+		clk : IN STD_LOGIC;
 		ilegal_instr 		: IN STD_LOGIC;
 		mem_instr			: IN STD_LOGIC;
 		unaligned_access 	: IN STD_LOGIC;
@@ -264,6 +265,7 @@ BEGIN
 	
 	exception_controller0 : exception_controller 
 	port map (
+		clk => clk,
 		ilegal_instr 		=> bus_ilegal_instr,
 		mem_instr	 		=> bus_mem_instr,
 		unaligned_access 	=> bus_unaligned_access,
