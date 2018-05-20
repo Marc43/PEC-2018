@@ -21,7 +21,7 @@ ENTITY datapath IS
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup		 : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           in_d     : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
-			 intr		 : IN	 STD_LOGIC;
+			 exception		 : IN	 STD_LOGIC;
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -58,7 +58,7 @@ ARCHITECTURE Structure OF datapath IS
           wrd_gp : IN  STD_LOGIC;
 			 wrd_sys: IN  STD_LOGIC;
 			 RD_SYS_GP : IN 	STD_LOGIC;
-			 intr   : IN  STD_LOGIC;
+			 exception   : IN  STD_LOGIC;
 			 e_int  : IN  STD_LOGIC;
 			 d_int  : IN  STD_LOGIC;
 			 ret_int: IN  STD_LOGIC;
@@ -106,7 +106,7 @@ BEGIN
 		wrd_gp 		=> wrd_gp,
 		wrd_sys	 	=> wrd_sys,
 		RD_SYS_GP 	=> rd_sys_gp,
-		intr			=> intr,
+		exception			=> exception,
 		e_int 		=> e_int,
 		d_int 		=> d_int,
 		ret_int 		=> ret_int,
@@ -130,7 +130,7 @@ BEGIN
 						rd_io		WHEN "011",  -- IO
 						pc			WHEN others; -- PC
 						
-	WITH intr SELECT	-- When an interrupt is triggered the pcuptaded must reach S1
+	WITH exception SELECT	-- When an interrupt is triggered the pcuptaded must reach S1
 		mux_dreg_pcup <= mux_dreg 	WHEN '0',
 							  pcup 		WHEN '1',
 							  mux_dreg 	WHEN others;

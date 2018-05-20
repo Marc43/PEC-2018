@@ -9,7 +9,7 @@ ENTITY regfile IS
           wrd_gp  	: IN  STD_LOGIC;
 			 wrd_sys		: IN	STD_LOGIC;
 			 RD_SYS_GP	: IN 	STD_LOGIC;
-			 intr			: IN  STD_LOGIC;
+			 exception			: IN  STD_LOGIC;
 			 e_int		: IN  STD_LOGIC;
 			 d_int		: IN  STD_LOGIC;
 			 ret_int    : IN  STD_LOGIC;
@@ -34,7 +34,7 @@ COMPONENT system_regfile IS
 		 reset		: IN  STD_LOGIC;
 		 clk    		: IN  STD_LOGIC;
 		 wrd	    	: IN  STD_LOGIC;
-		 intr			: IN  STD_LOGIC;
+		 exception			: IN  STD_LOGIC;
 		 e_int		: IN  STD_LOGIC;
 		 d_int		: IN  STD_LOGIC;
 		 ret_int    : IN  STD_LOGIC;
@@ -73,7 +73,7 @@ BEGIN
 		reset		=> reset,
 		clk 		=> clk,
 		wrd 		=> wrd_sys,
-		intr		=> intr,
+		exception		=> exception,
 		e_int 	=> e_int,
 		d_int 	=> d_int,
 		ret_int 	=> ret_int,
@@ -100,11 +100,11 @@ BEGIN
 		b		 	=> b
 	);
 	
-	a <= bus_sys_a WHEN RD_SYS_GP = '1' AND intr = '0' ELSE
+	a <= bus_sys_a WHEN RD_SYS_GP = '1' AND exception = '0' ELSE
 	
-		  bus_gp_a	WHEN RD_SYS_GP = '0' AND intr = '0' ELSE
+		  bus_gp_a	WHEN RD_SYS_GP = '0' AND exception = '0' ELSE
 		  
-		  bus_sys_a; -- If intr = '1' port 'a' is being read from the sys regfile  
+		  bus_sys_a; -- If exception = '1' port 'a' is being read from the sys regfile  
 	
 END Structure;
 
@@ -121,7 +121,7 @@ ENTITY system_regfile IS
 		 reset		: IN  STD_LOGIC;
 		 clk    		: IN  STD_LOGIC;
 		 wrd	    	: IN  STD_LOGIC;
-		 intr			: IN  STD_LOGIC;
+		 exception			: IN  STD_LOGIC;
 		 e_int		: IN  STD_LOGIC;
 		 d_int		: IN  STD_LOGIC;
 		 ret_int    : IN  STD_LOGIC;
@@ -147,7 +147,7 @@ ARCHITECTURE Structure OF system_regfile IS
 	
 	CONSTANT PSWold	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "000";	
 	CONSTANT PCret		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001";
-	CONSTANT blackb	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "010"; -- Records what made an intr or except. trigger
+	CONSTANT blackb	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "010"; -- Records what made an exception or except. trigger
 	CONSTANT mem_addr	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "011";
 	CONSTANT RSG	 	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "101";
 	CONSTANT PSWup 	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "111";
@@ -186,13 +186,11 @@ BEGIN
 				-- Thus, the processor is in the same PC and state as before
 			END IF;
 			
-			-- intr it's equivalent to exception from now on...
-			
 			IF mem_exception = '1' THEN
 					regs_sys(conv_integer(mem_addr)) <= addr_m;
 			END IF;
 			
-			IF intr = '1' THEN
+			IF exception = '1' THEN
 				-- The control unit has driven the intr signal to '1'
 				-- So we have to handle an interruption
 				-- The procedure is the following:
@@ -217,7 +215,7 @@ BEGIN
 	
 	END PROCESS;
 	
-	a <= regs_sys(conv_integer(addr_a)) WHEN intr = '0' ELSE
+	a <= regs_sys(conv_integer(addr_a)) WHEN exception = '0' ELSE
 	
 		  regs_sys(conv_integer(RSG)); -- PC will be overwritten with this value when an interrupt is triggered
 	

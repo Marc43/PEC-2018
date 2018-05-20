@@ -34,7 +34,7 @@ ARCHITECTURE Structure OF sisa IS
 	component proc IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
-			 intr		  : IN  STD_LOGIC;
+			 exception : IN  STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
 			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -218,7 +218,7 @@ BEGIN
 	port map (
 		clk 		=> clk_proc,
 		boot 		=> gboot,
-		intr		=> bus_exception,
+		exception => bus_exception,
 		inta		=> bus_inta,
 		exception_cause => bus_exception_cause,
 		datard_m	=> bus_data_rd,

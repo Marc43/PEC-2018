@@ -4,7 +4,7 @@ USE ieee.std_logic_1164.all;
 ENTITY proc IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
-			 intr		  : IN  STD_LOGIC; -- Now its exception but it's easier this way (enjoy)
+			 exception : IN  STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
 			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -37,8 +37,8 @@ COMPONENT unidad_control IS
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
 			 mode		  : IN STD_LOGIC; -- System or User 
-			 intr_l	  : IN  STD_LOGIC;
-			 intr_d	  : OUT STD_LOGIC;
+			 exception_l : IN  STD_LOGIC;
+			 exception_d : OUT STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -88,7 +88,7 @@ COMPONENT datapath IS
           pc       : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 pcup     : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
           in_d     : IN  STD_LOGIC_VECTOR(2 DOWNTO 0);
-			 intr		 : IN	 STD_LOGIC;
+			 exception : IN	 STD_LOGIC;
           addr_m   : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
           data_wr  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	 : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -134,7 +134,7 @@ SIGNAL bus_aluout			: STD_LOGIC_VECTOR (15 DOWNTO 0);
 SIGNAL bus_e_int			: STD_LOGIC;
 SIGNAL bus_d_int			: STD_LOGIC;
 SIGNAL bus_ret_int		: STD_LOGIC;
-SIGNAL bus_intr			: STD_LOGIC;
+SIGNAL bus_exception			: STD_LOGIC;
 --SIGNAL bus_intr_enabled : STD_LOGIC;
 
 SIGNAL bus_mode : STD_LOGIC;
@@ -149,8 +149,8 @@ BEGIN
 		aluout	=> bus_aluout,
 		eval		=> bus_eval,
 		mode		=> bus_mode,
-		intr_l	=> intr,
-		intr_d		=> bus_intr,
+		exception_l	=> exception,
+		exception_d		=> bus_exception,
 		inta		=> inta,
 		op			=> bus_op,
 		func		=> bus_func,
@@ -175,7 +175,9 @@ BEGIN
 		d_int		=> bus_d_int,
 		ret_int	=> bus_ret_int,
 		mem_instr => mem_instr,
-		ilegal_instr => ilegal_instr
+		ilegal_instr => ilegal_instr,
+		calls_instr => calls_instr,
+		spec_ilegal_instr => spec_ilegal_instr
 	);
 	
 	datapath0 : datapath
@@ -198,7 +200,7 @@ BEGIN
 		pc			=> bus_pc,
 		pcup		=> bus_pcup,
 		in_d		=> bus_in_d,
-		intr		=> bus_intr,
+		exception		=> bus_exception,
 		addr_m	=> addr_m,
 		data_wr	=> data_wr,
 		aluout   => bus_aluout,

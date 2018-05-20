@@ -10,8 +10,8 @@ ENTITY unidad_control IS
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
 			 mode		  : IN STD_LOGIC; -- System or User 
-			 intr_l	  : IN  STD_LOGIC; -- This one is provided by the controller
-			 intr_d	  : OUT STD_LOGIC; -- This one really indicates when an interrupt must be performed 
+			 exception_l	  : IN  STD_LOGIC; -- This one is provided by the controller
+			 exception_d	  : OUT STD_LOGIC; -- This one really indicates when an interrupt must be performed 
 			 inta		  : OUT STD_LOGIC;
           op        : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 			 func		  : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
@@ -88,9 +88,9 @@ ARCHITECTURE Structure OF unidad_control IS
          wrd_sys_l : IN  STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
-			intr_l	 : IN  STD_LOGIC;
+			exception_l	 : IN  STD_LOGIC;
 			inta_l	 : IN  STD_LOGIC;
-			intr		 : OUT STD_LOGIC;
+			exception		 : OUT STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
 			wrd_sys	 : OUT STD_LOGIC;
@@ -179,8 +179,8 @@ BEGIN
 		tknbr_l		=> bus_tknbr_l,
 		alu_op_l		=> bus_alu_op,
 		rd_sys_gp_l => bus_rd_sys_gp,
-		intr_l		=> intr_l,
-		intr			=> intr_d,
+		exception_l => exception_l,
+		exception	=> exception_d,
 		inta_l		=> bus_inta_l,
 		ldpc_l		=> bus_ldpc,
 		wrd_gp_l		=>	bus_wrd_gp,
@@ -241,7 +241,9 @@ BEGIN
 	immed 			<= bus_immed;
 	bus_immed_des	<= STD_LOGIC_VECTOR(shift_left(unsigned(bus_immed), 1));
 	
-	mem_instr <= '1' WHEN bus_wr_m_out = '1' OR bus_in_d = "001" ELSE '0';
+	mem_instr <= '1' WHEN bus_wr_m_out = '1' OR bus_in_d = "001" ELSE 
+	
+					 '0';
 	
 	wr_m <= bus_wr_m_out;
 	in_d <= bus_in_d;

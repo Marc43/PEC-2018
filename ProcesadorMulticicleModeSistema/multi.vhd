@@ -13,10 +13,9 @@ entity multi is
 			wrd_sys_l : IN	 STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
-			intr_l	 : IN  STD_LOGIC;
---			intr_enabled : IN STD_LOGIC;
+			exception_l	 : IN  STD_LOGIC;
 			inta_l	 : IN  STD_LOGIC;
-			intr		 : OUT STD_LOGIC;
+			exception		 : OUT STD_LOGIC;
 			ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
 			wrd_sys	 : OUT STD_LOGIC;
@@ -55,7 +54,7 @@ begin
 				if state = FETCH then
 					state <= DEMW;
 				else
-					if state = DEMW and (intr_l='1') then
+					if state = DEMW and (exception_l='1') then
 						state <= SYSTEM;
 					else
 						state <= FETCH;
@@ -91,11 +90,11 @@ begin
 						
 	ldir 			<= '1'			when state=FETCH 	else '0';
 	
-	intr		 	<= '1' 			when state=SYSTEM else '0'; -- Check...
+	exception	<= '1' 			when state=SYSTEM else '0'; -- Check...
 	
 	inta			<= inta_l;		--when state=DEMW	else '0';
 	
-	-- multi only changes the signal intr to tell every other module
+	-- multi only changes the signal exception to tell every other module
 	-- to execute the procedure so at the end of the cycle we can do
 	-- the fetch of the RSG correctly
 

@@ -30,6 +30,7 @@ ARCHITECTURE Structure OF exception_controller IS
 	CONSTANT SPEC_ILEGAL_INSTR_E			: STD_LOGIC_VECTOR (3 downto 0) := "1101";
 	CONSTANT CALLS_INSTR_E					: STD_LOGIC_VECTOR (3 downto 0) := "1110";
 	CONSTANT INTERRUPT_E						: STD_LOGIC_VECTOR (3 downto 0) := "1111";
+	
 	CONSTANT NO_EXCEPTION					: STD_LOGIC_VECTOR (3 downto 0) := "0101";
 
 	SIGNAL unaligned_access_exception : STD_LOGIC := '0';
@@ -60,7 +61,7 @@ BEGIN
 
 	END PROCESS;
 
-	exception <= ilegal_instr OR unaligned_access_exception OR filter_intr OR div_zero;
+	exception <= ilegal_instr OR unaligned_access_exception OR div_zero OR pm_access_e OR spec_ilegal_instr OR calls_instr OR filter_intr;
 	
 	exception_cause <= ILEGAL_INSTRUCTION_E 	WHEN cause(6) = '1' ELSE
 							 UNALIGNED_ACCESS_E		WHEN cause(5) = '1' ELSE
@@ -75,14 +76,10 @@ BEGIN
 	-- Supposing that no more than one exception can be triggered at once this works fine,
 	-- otherwise a system of priorities is defined implicitly by the WHEN ELSE we defined.
 
-	mem_exception <= unaligned_access OR protected_mem_access WHEN mem_instr = '1' ELSE 
+	mem_exception <= unaligned_access_exception OR pm_access_e; 
 	
-						  '0'; 
+	unaligned_access_exception <= unaligned_access WHEN mem_instr = '1' ELSE '0';
 	
-	--unaligned_exception <= unaligned_access_exception;
-	
-	--unaligned_access_exception <= unaligned_access WHEN mem_instr = '1' ELSE '0';
-	
-	--pm_access_e <= protected_mem_access WHEN mem_instr = '1' ELSE '0'; 
+	pm_access_e <= protected_mem_access WHEN mem_instr = '1' ELSE '0'; 
 	
 END Structure;
