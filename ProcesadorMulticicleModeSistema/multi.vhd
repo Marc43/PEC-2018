@@ -67,12 +67,12 @@ begin
 	
 	ldpc			<= ldpc_l		when state=DEMW or state=SYSTEM else '0';
 	
-	wrd_sys		<= wrd_sys_l	when state=DEMW   else 
+	wrd_sys		<= wrd_sys_l	when state=DEMW AND exception_l = '0' else 
 
 						'0';
 						
-	wrd_gp		<= wrd_gp_l 	when state=DEMW 	else '0';
-	wr_m			<= wr_m_l 		when state=DEMW 	else '0';
+	wrd_gp		<= wrd_gp_l 	when state=DEMW AND exception_l = '0' else '0';
+	wr_m			<= wr_m_l 		when state=DEMW AND exception_l = '0'else '0';
 	word_byte	<= w_b			when state=DEMW	else '0';
 	ins_dad 		<=	'1'			when state=DEMW 	else '0'; -- This will make SYSTEM to load instructions
 																			 -- overwriting contents in bus_ir 
