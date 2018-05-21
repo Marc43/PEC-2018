@@ -79,6 +79,7 @@ ARCHITECTURE Structure OF unidad_control IS
 	COMPONENT multi IS
     port(clk       : IN  STD_LOGIC;
          boot      : IN  STD_LOGIC;
+			mode		 : IN	 STD_LOGIC;
          in_d_l    : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			tknbr_l   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			alu_op_l	 : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -90,6 +91,10 @@ ARCHITECTURE Structure OF unidad_control IS
          w_b       : IN  STD_LOGIC;
 			exception_l	 : IN  STD_LOGIC;
 			inta_l	 : IN  STD_LOGIC;
+			calls_instr_l : IN STD_LOGIC;
+			e_int_l	  		: IN STD_LOGIC;
+			d_int_l	  		: IN STD_LOGIC;
+			ret_int_l   	: IN STD_LOGIC;
 			exception		 : OUT STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -102,7 +107,11 @@ ARCHITECTURE Structure OF unidad_control IS
 			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
 			alu_op	 : OUT  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			rd_sys_gp : OUT STD_LOGIC;
-			inta		 : OUT STD_LOGIC);
+			inta		 : OUT STD_LOGIC;
+			calls_instr : OUT STD_LOGIC;
+			e_int	  		: OUT STD_LOGIC;
+			d_int	  		: OUT STD_LOGIC;
+			ret_int   	: OUT STD_LOGIC);
 	END COMPONENT;
 	
 	SIGNAL bus_ir			: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -133,8 +142,10 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_inta_l				: STD_LOGIC;
 	SIGNAL bus_in_d				: STD_LOGIC_VECTOR (2 downto 0);
 	SIGNAL bus_wr_m_out			: STD_LOGIC;
-	
-	--SIGNAL bus_calls_instr : STD_LOGIC;
+	SIGNAL bus_calls_instr		: STD_LOGIC;
+	SIGNAL bus_e_int				: STD_LOGIC;
+	SIGNAL bus_d_int				: STD_LOGIC;
+	SIGNAL bus_ret_int			: STD_LOGIC;
 
 BEGIN
 
@@ -161,12 +172,12 @@ BEGIN
 		word_byte 	=> bus_word_byte,
 		wr_port		=> wr_port,
 		rd_port		=> rd_port,
-		e_int			=> e_int,
-		d_int			=> d_int,
-		ret_int		=> ret_int,
+		e_int			=> bus_e_int,
+		d_int			=> bus_d_int,
+		ret_int		=> bus_ret_int,
 		inta			=> bus_inta_l,
 		ilegal_instr => ilegal_instr,
-		calls_instr => calls_instr,
+		calls_instr => bus_calls_instr,
 		spec_ilegal_instr => spec_ilegal_instr
 		
 	);
@@ -175,6 +186,7 @@ BEGIN
 	PORT MAP (
 		clk			=>	clk,
 		boot			=> boot,
+		mode			=> mode,
 		in_d_l		=> bus_in_d_l,
 		tknbr_l		=> bus_tknbr_l,
 		alu_op_l		=> bus_alu_op,
@@ -186,6 +198,10 @@ BEGIN
 		wrd_gp_l		=>	bus_wrd_gp,
 		wrd_sys_l	=> bus_wrd_sys,
 		wr_m_l		=>	bus_wr_m,
+		calls_instr_l => bus_calls_instr,
+		e_int_l		=> bus_e_int,
+		d_int_l		=> bus_d_int,
+		ret_int_l	=> bus_ret_int,
 		w_b			=> bus_word_byte,
 		ldpc			=> multi_ldpc,
 		wrd_gp		=>	wrd_gp,
@@ -198,7 +214,11 @@ BEGIN
 		tknbr			=> bus_tknbr,
 		alu_op		=> op,
 		rd_sys_gp	=> rd_sys_gp,
-		inta			=> inta
+		inta			=> inta,
+		calls_instr => calls_instr,
+		e_int			=> e_int,
+		d_int			=> d_int,
+		ret_int		=> ret_int
 	);
 	
 	WITH multi_ldir SELECT

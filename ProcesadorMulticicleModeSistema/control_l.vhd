@@ -164,12 +164,6 @@ BEGIN
 	
 					reg_d;
 	
-	ilegal_instr <= '1' WHEN (op_code = UNIMPLEMENTED_OP_1 OR op_code = UNIMPLEMENTED_OP_2 OR op_code = UNIMPLEMENTED_OP_3) OR
-									  
-									 (bus_calls_instr = '1' AND mode = '1') ELSE
-						 
-						 '0'; -- ilegal instr is also '1' when calls is executed and mode system is enabled
-	
 	immed_ma 	<= ir(5 DOWNTO 0);
 	immed_alu	<= ir(7 DOWNTO 0);
 	
@@ -271,6 +265,7 @@ BEGIN
 						'1';
 						
 	wrd_sys		<= '1' WHEN (op_code = SPEC AND (spec_code = WRS OR spec_code = EI OR spec_code = DI)) OR
+									 
 									 bus_calls_instr = '1' ELSE -- Necessary to write into S3
 	
 						'0';
@@ -308,9 +303,32 @@ BEGIN
 	
 						    '0';
 							 
-	bus_spec_ilegal_instr <= '1' WHEN (op_code = SPEC AND spec_code /= HALT) AND mode = USER_MODE ELSE
+--   bus_spec_ilegal_instr <= '1' WHEN 		((op_code = SPEC AND mode = USER_MODE) 		  AND 
+--														((spec_code /= HALT  AND spec_code /= EI)   	  AND
+--														(spec_code /= DI     	AND spec_code /= RETI) AND
+--														(spec_code /= GETIID 	AND spec_code /= RDS)  AND
+--														(spec_code /= WRS))) 						 	  ELSE
+--												  
+--									 '0';
+
+	bus_spec_ilegal_instr <= '1' WHEN ((op_code = SPEC AND mode = USER_MODE) AND 
+												  (spec_code = EI  OR spec_code = DI  OR spec_code = GETIID OR
+													spec_code = RDS OR spec_code = WRS OR spec_code = RETI)) ELSE
+													
+									 '0';
+									
+	-- It's possible to obtain ilegal instruction and spec ilegal instruction exception in some cases...
+	-- That's because not all 'spec_code' are implemented, so if the op_code matches with SPEC and it's
+	-- different of HALT whether it's implemented or not it's going to trigger spec_ilegal_instr! 
 	
-									 '0'; -- It's possible to obtain ilegal instruction and spec ilegal instruction exception in some cases...
+	ilegal_instr <= '1' WHEN (op_code = UNIMPLEMENTED_OP_1 OR op_code = UNIMPLEMENTED_OP_2 OR op_code = UNIMPLEMENTED_OP_3) OR
+	
+									 (op_code = SPEC AND mode = SYSTEM_MODE AND (spec_code /= EI  AND spec_code /= DI  AND spec_code /= GETIID AND
+																							   spec_code /= RDS AND spec_code /= WRS AND spec_code /= RETI)) OR
+									  
+									 (bus_calls_instr = '1' AND mode = '1') ELSE
+						 
+						 '0'; -- ilegal instr is also '1' when calls is executed and mode system is enabled
 							 
 	calls_instr <= bus_calls_instr;
 	
