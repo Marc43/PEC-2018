@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for test_sisa
-Sun May 20 13:46:07 2018
+Mon May 21 17:34:00 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -230,7 +230,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 ; Property                        ; Setup ; Hold ;
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
-; Unconstrained Clocks            ; 9     ; 9    ;
+; Unconstrained Clocks            ; 8     ; 8    ;
 ; Unconstrained Input Ports       ; 31    ; 31   ;
 ; Unconstrained Input Port Paths  ; 421   ; 421  ;
 ; Unconstrained Output Ports      ; 93    ; 93   ;
@@ -244,7 +244,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun May 20 13:46:03 2018
+    Info: Processing started: Mon May 21 17:33:56 2018
 Info: Command: quartus_sta test_sisa -c test_sisa
 Info: qsta_default_script.tcl version: #1
 Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
@@ -256,11 +256,27 @@ Info (332164): Evaluating HDL-embedded SDC commands
         Info (332166): create_clock -name altera_reserved_tck [get_ports {altera_reserved_tck}] -period 10MHz   
         Info (332166): set_clock_groups -asynchronous -group {altera_reserved_tck}
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'test_sisa.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Warning (332125): Found combinational loop of 16 nodes
+    Warning (332126): Node "exception_controller0|pm_access_e~0|combout"
+    Warning (332126): Node "exception_controller0|exception|dataa"
+    Warning (332126): Node "exception_controller0|exception|combout"
+    Warning (332126): Node "proc0|unidad_control0|multi0|wr_m~1|datac"
+    Warning (332126): Node "proc0|unidad_control0|multi0|wr_m~1|combout"
+    Warning (332126): Node "exception_controller0|pm_access_e~0|dataa"
+    Warning (332126): Node "exception_controller0|exception~3|datad"
+    Warning (332126): Node "exception_controller0|exception~3|combout"
+    Warning (332126): Node "exception_controller0|exception~4|datac"
+    Warning (332126): Node "exception_controller0|exception~4|combout"
+    Warning (332126): Node "exception_controller0|exception~5|dataa"
+    Warning (332126): Node "exception_controller0|exception~5|combout"
+    Warning (332126): Node "exception_controller0|exception|datab"
+    Warning (332126): Node "exception_controller0|exception~6|datac"
+    Warning (332126): Node "exception_controller0|exception~6|combout"
+    Warning (332126): Node "exception_controller0|exception~5|datac"
 Warning (332060): Node: ticks[2] was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: proc:proc0|unidad_control:unidad_control0|bus_ir[0] was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: SW[9] was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST was determined to be a clock but was found without an associated clock assignment.
@@ -279,10 +295,9 @@ Info (332146): Worst-case minimum pulse width slack is 97.531
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info: Analyzing Fast Model
 Warning (332060): Node: ticks[2] was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.RES_ST was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: proc:proc0|unidad_control:unidad_control0|multi:multi0|state.DEMW was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.BRANCH_ST was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: proc:proc0|unidad_control:unidad_control0|bus_ir[0] was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: SW[9] was determined to be a clock but was found without an associated clock assignment.
 Warning (332060): Node: MemoryController:mem_ctrl0|SRAMController:controller0|state.IDLE_ST was determined to be a clock but was found without an associated clock assignment.
@@ -298,10 +313,10 @@ Info (332146): Worst-case minimum pulse width slack is 97.778
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 20 warnings
-    Info: Peak virtual memory: 629 megabytes
-    Info: Processing ended: Sun May 20 13:46:07 2018
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 35 warnings
+    Info: Peak virtual memory: 670 megabytes
+    Info: Processing ended: Mon May 21 17:34:00 2018
     Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:04
 
 
