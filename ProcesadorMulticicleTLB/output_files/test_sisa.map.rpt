@@ -1,0 +1,546 @@
+Analysis & Elaboration report for test_sisa
+Mon May 21 13:03:44 2018
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Parameter Settings for User Entity Instance: controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0
+  5. Parameter Settings for User Entity Instance: vga_controller:vga_controller0|vga_ram_dual:U_MonitorRam
+  6. Parameter Settings for Inferred Entity Instance: sld_signaltap:auto_signaltap_0
+  7. Analysis & Elaboration Settings
+  8. Port Connectivity Checks: "vga_controller:vga_controller0|vga_sync:u_vga_sync"
+  9. Port Connectivity Checks: "vga_controller:vga_controller0"
+ 10. Port Connectivity Checks: "controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0"
+ 11. SignalTap II Logic Analyzer Settings
+ 12. Analysis & Elaboration Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Elaboration Summary                                                       ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Elaboration Status      ; Successful - Mon May 21 13:03:44 2018           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; test_sisa                                       ;
+; Top-level Entity Name              ; sisa                                            ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; N/A until Partition Merge                       ;
+;     Total combinational functions  ; N/A until Partition Merge                       ;
+;     Dedicated logic registers      ; N/A until Partition Merge                       ;
+; Total registers                    ; N/A until Partition Merge                       ;
+; Total pins                         ; N/A until Partition Merge                       ;
+; Total virtual pins                 ; N/A until Partition Merge                       ;
+; Total memory bits                  ; N/A until Partition Merge                       ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
+; Total PLLs                         ; N/A until Partition Merge                       ;
++------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 4           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-4         ;   0.0%      ;
++----------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0 ;
++-----------------------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name        ; Value ; Type                                                                                                                                                                                                       ;
++-----------------------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; TIMER_60USEC_VALUE_PP ; 2950  ; Signed Integer                                                                                                                                                                                             ;
+; TIMER_60USEC_BITS_PP  ; 12    ; Signed Integer                                                                                                                                                                                             ;
+; TIMER_5USEC_VALUE_PP  ; 186   ; Signed Integer                                                                                                                                                                                             ;
+; TIMER_5USEC_BITS_PP   ; 8     ; Signed Integer                                                                                                                                                                                             ;
+; TRAP_SHIFT_KEYS_PP    ; 0     ; Signed Integer                                                                                                                                                                                             ;
++-----------------------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: vga_controller:vga_controller0|vga_ram_dual:U_MonitorRam ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; d_width        ; 16    ; Signed Integer                                                               ;
+; addr_width     ; 12    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: sld_signaltap:auto_signaltap_0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
++-------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
+; Parameter Name                                  ; Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ; Type           ;
++-------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
+; lpm_type                                        ; sld_signaltap                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ; String         ;
+; sld_node_info                                   ; 805334528                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ; Untyped        ;
+; SLD_IP_VERSION                                  ; 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_IP_MINOR_VERSION                            ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_COMMON_IP_VERSION                           ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; sld_data_bits                                   ; 198                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ; Untyped        ;
+; sld_trigger_bits                                ; 198                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ; Untyped        ;
+; SLD_NODE_CRC_BITS                               ; 32                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ; Signed Integer ;
+; sld_node_crc_hiword                             ; 17288                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ; Untyped        ;
+; sld_node_crc_loword                             ; 57207                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ; Untyped        ;
+; SLD_INCREMENTAL_ROUTING                         ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; sld_sample_depth                                ; 256                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ; Untyped        ;
+; sld_segment_size                                ; 256                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ; Untyped        ;
+; SLD_RAM_BLOCK_TYPE                              ; AUTO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; sld_state_bits                                  ; 11                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ; Untyped        ;
+; sld_buffer_full_stop                            ; 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; SLD_MEM_ADDRESS_BITS                            ; 7                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_DATA_BIT_CNTR_BITS                          ; 4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; sld_trigger_level                               ; 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; sld_trigger_in_enabled                          ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; SLD_HPS_TRIGGER_IN_ENABLED                      ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_HPS_TRIGGER_OUT_ENABLED                     ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_HPS_EVENT_ENABLED                           ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_HPS_EVENT_ID                                ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; sld_advanced_trigger_entity                     ; basic,1,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ; Untyped        ;
+; sld_trigger_level_pipeline                      ; 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; sld_enable_advanced_trigger                     ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; SLD_ADVANCED_TRIGGER_1                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_2                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_3                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_4                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_5                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_6                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_7                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_8                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_9                          ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; SLD_ADVANCED_TRIGGER_10                         ; NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ; String         ;
+; sld_inversion_mask_length                       ; 616                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ; Untyped        ;
+; sld_inversion_mask                              ; 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 ; Untyped        ;
+; sld_power_up_trigger                            ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; SLD_STATE_FLOW_MGR_ENTITY                       ; state_flow_mgr_entity.vhd                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ; String         ;
+; sld_state_flow_use_generated                    ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; sld_current_resource_width                      ; 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; sld_attribute_mem_mode                          ; OFF                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ; Untyped        ;
+; SLD_STORAGE_QUALIFIER_BITS                      ; 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_STORAGE_QUALIFIER_GAP_RECORD                ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; SLD_STORAGE_QUALIFIER_MODE                      ; OFF                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ; String         ;
+; SLD_STORAGE_QUALIFIER_ENABLE_ADVANCED_CONDITION ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
+; sld_storage_qualifier_inversion_mask_length     ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Untyped        ;
+; SLD_STORAGE_QUALIFIER_ADVANCED_CONDITION_ENTITY ; basic                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ; String         ;
+; SLD_STORAGE_QUALIFIER_PIPELINE                  ; 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ; Signed Integer ;
++-------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Elaboration Settings                                                                                      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C20F484C7       ;                    ;
+; Top-level entity name                                                      ; sisa               ; test_sisa          ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "vga_controller:vga_controller0|vga_sync:u_vga_sync"                                         ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; pixel_row[9] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "vga_controller:vga_controller0"                                                                                     ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                  ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; red_out[7..4]   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                      ;
+; green_out[7..4] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                      ;
+; blue_out[7..4]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                      ;
+; blank_out       ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
+; csync_out       ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0" ;
++--------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                     ; Type   ; Severity ; Details                                                                                                                                                                    ;
++--------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; rx_extended              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                        ;
+; rx_scan_code             ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                        ;
+; tx_data                  ; Input  ; Info     ; Stuck at GND                                                                                                                                                               ;
+; tx_write                 ; Input  ; Info     ; Stuck at GND                                                                                                                                                               ;
+; tx_write_ack_o           ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                        ;
+; tx_error_no_keyboard_ack ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                                                        ;
++--------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; SignalTap II Logic Analyzer Settings                                                                                                                                                                                                                                    ;
++----------------+------------------+---------------------+------------------+--------------+----------+------------------------+----------------------+--------------------+-----------------------------+-----------------+------------------+--------------------------+
+; Instance Index ; Instance Name    ; Trigger Input Width ; Data Input Width ; Sample Depth ; Segments ; Storage Qualifier Type ; Trigger Flow Control ; Trigger Conditions ; Advanced Trigger Conditions ; Trigger In Used ; Trigger Out Used ; Power-Up Trigger Enabled ;
++----------------+------------------+---------------------+------------------+--------------+----------+------------------------+----------------------+--------------------+-----------------------------+-----------------+------------------+--------------------------+
+; 0              ; auto_signaltap_0 ; 198                 ; 198              ; 256          ; 1        ; continuous             ; sequential           ; 1                  ; 0                           ; no              ; no               ; no                       ;
++----------------+------------------+---------------------+------------------+--------------+----------+------------------------+----------------------+--------------------+-----------------------------+-----------------+------------------+--------------------------+
+
+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Elaboration
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Mon May 21 13:03:39 2018
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test_sisa -c test_sisa --analysis_and_elaboration
+Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
+Info (12021): Found 2 design units, including 1 entities, in source file interrupt_controller.vhd
+    Info (12022): Found design unit 1: interrupt_controller-Structure
+    Info (12023): Found entity 1: interrupt_controller
+Info (12021): Found 2 design units, including 1 entities, in source file display16.vhd
+    Info (12022): Found design unit 1: Display7-Structure
+    Info (12023): Found entity 1: Display7
+Info (12021): Found 2 design units, including 1 entities, in source file vga_sync.vhd
+    Info (12022): Found design unit 1: vga_sync-vga_sync_arch
+    Info (12023): Found entity 1: vga_sync
+Info (12021): Found 2 design units, including 1 entities, in source file vga_ram_dual.vhd
+    Info (12022): Found design unit 1: vga_ram_dual-vga_ram_dual_arch
+    Info (12023): Found entity 1: vga_ram_dual
+Info (12021): Found 2 design units, including 1 entities, in source file vga_font_rom.vhd
+    Info (12022): Found design unit 1: vga_font_rom-vga_font_rom_arch
+    Info (12023): Found entity 1: vga_font_rom
+Info (12021): Found 2 design units, including 1 entities, in source file vga_controller.vhd
+    Info (12022): Found design unit 1: vga_controller-vga_controller_rtl
+    Info (12023): Found entity 1: vga_controller
+Info (12021): Found 2 design units, including 1 entities, in source file unidad_control.vhd
+    Info (12022): Found design unit 1: unidad_control-Structure
+    Info (12023): Found entity 1: unidad_control
+Info (12021): Found 2 design units, including 1 entities, in source file SRAMController.vhd
+    Info (12022): Found design unit 1: SRAMController-comportament
+    Info (12023): Found entity 1: SRAMController
+Info (12021): Found 2 design units, including 1 entities, in source file sisa.vhd
+    Info (12022): Found design unit 1: sisa-Structure
+    Info (12023): Found entity 1: sisa
+Info (12021): Found 6 design units, including 3 entities, in source file regfile.vhd
+    Info (12022): Found design unit 1: regfile-Structure
+    Info (12022): Found design unit 2: system_regfile-Structure
+    Info (12022): Found design unit 3: generalp_regfile-Structure
+    Info (12023): Found entity 1: regfile
+    Info (12023): Found entity 2: system_regfile
+    Info (12023): Found entity 3: generalp_regfile
+Info (12021): Found 2 design units, including 1 entities, in source file ps2_keyboard.vhd
+    Info (12022): Found design unit 1: ps2_keyboard_interface-trans
+    Info (12023): Found entity 1: ps2_keyboard_interface
+Info (12021): Found 2 design units, including 1 entities, in source file proc.vhd
+    Info (12022): Found design unit 1: proc-Structure
+    Info (12023): Found entity 1: proc
+Info (12021): Found 2 design units, including 1 entities, in source file multi.vhd
+    Info (12022): Found design unit 1: multi-Structure
+    Info (12023): Found entity 1: multi
+Info (12021): Found 2 design units, including 1 entities, in source file MemoryController.vhd
+    Info (12022): Found design unit 1: MemoryController-comportament
+    Info (12023): Found entity 1: MemoryController
+Info (12021): Found 2 design units, including 1 entities, in source file keyboard_controller.vhd
+    Info (12022): Found design unit 1: keyboard_controller-Behavioral
+    Info (12023): Found entity 1: keyboard_controller
+Info (12021): Found 2 design units, including 1 entities, in source file datapath.vhd
+    Info (12022): Found design unit 1: datapath-Structure
+    Info (12023): Found entity 1: datapath
+Info (12021): Found 2 design units, including 1 entities, in source file control_l.vhd
+    Info (12022): Found design unit 1: control_l-Structure
+    Info (12023): Found entity 1: control_l
+Info (12021): Found 4 design units, including 2 entities, in source file controladoresIO.vhd
+    Info (12022): Found design unit 1: controladores_IO-Structure
+    Info (12022): Found design unit 2: counter_ms-Structure
+    Info (12023): Found entity 1: controladores_IO
+    Info (12023): Found entity 2: counter_ms
+Info (12021): Found 2 design units, including 1 entities, in source file alu.vhd
+    Info (12022): Found design unit 1: alu-Structure
+    Info (12023): Found entity 1: alu
+Info (12021): Found 10 design units, including 5 entities, in source file input_controllers.vhd
+    Info (12022): Found design unit 1: input_controllers-Structure
+    Info (12022): Found design unit 2: pulsadores-Structure
+    Info (12022): Found design unit 3: interruptores-Structure
+    Info (12022): Found design unit 4: timer-Structure
+    Info (12022): Found design unit 5: keyboard_controller_intr-Structure
+    Info (12023): Found entity 1: input_controllers
+    Info (12023): Found entity 2: pulsadores
+    Info (12023): Found entity 3: interruptores
+    Info (12023): Found entity 4: timer
+    Info (12023): Found entity 5: keyboard_controller_intr
+Info (12021): Found 2 design units, including 1 entities, in source file exception_controller.vhd
+    Info (12022): Found design unit 1: exception_controller-Structure
+    Info (12023): Found entity 1: exception_controller
+Info (12021): Found 2 design units, including 1 entities, in source file tlb.vhd
+    Info (12022): Found design unit 1: TLB-Structure
+    Info (12023): Found entity 1: TLB
+Info (12127): Elaborating entity "sisa" for the top level hierarchy
+Info (12128): Elaborating entity "proc" for hierarchy "proc:proc0"
+Info (12128): Elaborating entity "unidad_control" for hierarchy "proc:proc0|unidad_control:unidad_control0"
+Info (12128): Elaborating entity "control_l" for hierarchy "proc:proc0|unidad_control:unidad_control0|control_l:control_l0"
+Info (12128): Elaborating entity "multi" for hierarchy "proc:proc0|unidad_control:unidad_control0|multi:multi0"
+Warning (10492): VHDL Process Statement warning at multi.vhd(52): signal "state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (10041): Inferred latch for "alu_op[0]" at multi.vhd(85)
+Info (10041): Inferred latch for "alu_op[1]" at multi.vhd(85)
+Info (10041): Inferred latch for "alu_op[2]" at multi.vhd(85)
+Info (12128): Elaborating entity "datapath" for hierarchy "proc:proc0|datapath:datapath0"
+Warning (10036): Verilog HDL or VHDL warning at datapath.vhd(87): object "mux_dreg_pcup" assigned a value but never read
+Info (12128): Elaborating entity "alu" for hierarchy "proc:proc0|datapath:datapath0|alu:alu0"
+Info (12128): Elaborating entity "regfile" for hierarchy "proc:proc0|datapath:datapath0|regfile:regfile0"
+Info (12128): Elaborating entity "system_regfile" for hierarchy "proc:proc0|datapath:datapath0|regfile:regfile0|system_regfile:system_regfile0"
+Warning (10492): VHDL Process Statement warning at regfile.vhd(166): signal "regs_sys" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "generalp_regfile" for hierarchy "proc:proc0|datapath:datapath0|regfile:regfile0|generalp_regfile:generalp_regfile0"
+Info (12128): Elaborating entity "MemoryController" for hierarchy "MemoryController:mem_ctrl0"
+Warning (10540): VHDL Signal Declaration warning at MemoryController.vhd(58): used explicit default value for signal "instr_memory_limit" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at MemoryController.vhd(59): used explicit default value for signal "vga_lower_limit" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at MemoryController.vhd(60): used explicit default value for signal "vga_upper_limit" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at MemoryController.vhd(62): used explicit default value for signal "sys_lower_limit" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at MemoryController.vhd(63): used explicit default value for signal "sys_upper_limit" because signal was never assigned a value
+Info (12128): Elaborating entity "SRAMController" for hierarchy "MemoryController:mem_ctrl0|SRAMController:controller0"
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(59): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(60): signal "dataToWrite0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(69): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(70): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(71): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(80): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(81): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(82): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(93): signal "WR" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(96): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(96): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(100): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(102): signal "byte_m" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(102): signal "address" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(106): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at SRAMController.vhd(108): signal "SRAM_DQ" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(48): inferring latch(es) for signal or variable "SRAM_WE_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(48): inferring latch(es) for signal or variable "SRAM_LB_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(48): inferring latch(es) for signal or variable "SRAM_UB_N", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(48): inferring latch(es) for signal or variable "SRAM_DQ", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at SRAMController.vhd(48): inferring latch(es) for signal or variable "data_ext", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "data_ext[0]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[1]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[2]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[3]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[4]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[5]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[6]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[7]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[8]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[9]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[10]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[11]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[12]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[13]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[14]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "data_ext[15]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[0]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[1]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[2]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[3]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[4]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[5]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[6]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[7]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[8]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[9]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[10]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[11]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[12]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[13]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[14]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_DQ[15]" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_UB_N" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_LB_N" at SRAMController.vhd(48)
+Info (10041): Inferred latch for "SRAM_WE_N" at SRAMController.vhd(48)
+Info (12128): Elaborating entity "controladores_IO" for hierarchy "controladores_IO:controladores_IO0"
+Info (10041): Inferred latch for "rd_io[0]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[1]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[2]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[3]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[4]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[5]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[6]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[7]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[8]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[9]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[10]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[11]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[12]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[13]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[14]" at controladoresIO.vhd(180)
+Info (10041): Inferred latch for "rd_io[15]" at controladoresIO.vhd(180)
+Info (12128): Elaborating entity "interrupt_controller" for hierarchy "controladores_IO:controladores_IO0|interrupt_controller:interrupt_controller0"
+Info (10041): Inferred latch for "iid[0]" at interrupt_controller.vhd(73)
+Info (10041): Inferred latch for "iid[1]" at interrupt_controller.vhd(73)
+Info (10041): Inferred latch for "iid[2]" at interrupt_controller.vhd(73)
+Info (10041): Inferred latch for "iid[3]" at interrupt_controller.vhd(73)
+Info (10041): Inferred latch for "iid[4]" at interrupt_controller.vhd(73)
+Info (10041): Inferred latch for "iid[5]" at interrupt_controller.vhd(73)
+Info (10041): Inferred latch for "iid[6]" at interrupt_controller.vhd(73)
+Info (10041): Inferred latch for "iid[7]" at interrupt_controller.vhd(73)
+Info (12128): Elaborating entity "input_controllers" for hierarchy "controladores_IO:controladores_IO0|input_controllers:input_controllers0"
+Info (12128): Elaborating entity "keyboard_controller_intr" for hierarchy "controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0"
+Info (12128): Elaborating entity "keyboard_controller" for hierarchy "controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0"
+Warning (10036): Verilog HDL or VHDL warning at keyboard_controller.vhd(39): object "rx_extended" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at keyboard_controller.vhd(44): object "tx_write_ack_o" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at keyboard_controller.vhd(45): object "tx_error_no_keyboard_ack" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at keyboard_controller.vhd(47): object "rx_scan_code" assigned a value but never read
+Warning (10492): VHDL Process Statement warning at keyboard_controller.vhd(100): signal "rx_data_ready" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at keyboard_controller.vhd(100): signal "rx_released" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at keyboard_controller.vhd(101): signal "rx_shift_key_on" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at keyboard_controller.vhd(101): signal "rx_ascii" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at keyboard_controller.vhd(96): inferring latch(es) for signal or variable "data_available", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "data_available" at keyboard_controller.vhd(96)
+Info (12128): Elaborating entity "ps2_keyboard_interface" for hierarchy "controladores_IO:controladores_IO0|input_controllers:input_controllers0|keyboard_controller_intr:keyboard_controller_intr0|keyboard_controller:keyboard_controller0|ps2_keyboard_interface:k0"
+Info (12128): Elaborating entity "pulsadores" for hierarchy "controladores_IO:controladores_IO0|input_controllers:input_controllers0|pulsadores:pulsadores0"
+Warning (10492): VHDL Process Statement warning at input_controllers.vhd(158): signal "keys" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "interruptores" for hierarchy "controladores_IO:controladores_IO0|input_controllers:input_controllers0|interruptores:interruptores0"
+Warning (10492): VHDL Process Statement warning at input_controllers.vhd(222): signal "switches" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "timer" for hierarchy "controladores_IO:controladores_IO0|input_controllers:input_controllers0|timer:timer0"
+Warning (10492): VHDL Process Statement warning at input_controllers.vhd(283): signal "boot" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "counter_ms" for hierarchy "controladores_IO:controladores_IO0|counter_ms:counter_ms0"
+Info (12128): Elaborating entity "exception_controller" for hierarchy "exception_controller:exception_controller0"
+Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_controller:vga_controller0"
+Info (12128): Elaborating entity "vga_sync" for hierarchy "vga_controller:vga_controller0|vga_sync:u_vga_sync"
+Info (12128): Elaborating entity "vga_font_rom" for hierarchy "vga_controller:vga_controller0|vga_font_rom:u_font_rom"
+Info (12128): Elaborating entity "vga_ram_dual" for hierarchy "vga_controller:vga_controller0|vga_ram_dual:U_MonitorRam"
+Info (12128): Elaborating entity "Display7" for hierarchy "Display7:display0"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_kt14.tdf
+    Info (12023): Found entity 1: altsyncram_kt14
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_shq1.tdf
+    Info (12023): Found entity 1: altsyncram_shq1
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_coc.tdf
+    Info (12023): Found entity 1: mux_coc
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_rqf.tdf
+    Info (12023): Found entity 1: decode_rqf
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_sdi.tdf
+    Info (12023): Found entity 1: cntr_sdi
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_ccc.tdf
+    Info (12023): Found entity 1: cmpr_ccc
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_32j.tdf
+    Info (12023): Found entity 1: cntr_32j
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_vbi.tdf
+    Info (12023): Found entity 1: cntr_vbi
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_9cc.tdf
+    Info (12023): Found entity 1: cmpr_9cc
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_gui.tdf
+    Info (12023): Found entity 1: cntr_gui
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_5cc.tdf
+    Info (12023): Found entity 1: cmpr_5cc
+Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "auto_signaltap_0"
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info: Quartus II 64-Bit Analysis & Elaboration was successful. 0 errors, 42 warnings
+    Info: Peak virtual memory: 1053 megabytes
+    Info: Processing ended: Mon May 21 13:03:44 2018
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
+
+
