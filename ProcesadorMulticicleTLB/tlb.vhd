@@ -41,7 +41,13 @@ ARCHITECTURE Structure of TLB IS
 		Process(clk, boot) is 
 		begin
 			IF boot='1' THEN
-				--Inicialitzar entrades TLB?
+				--Inicialitzar entrades TLB
+				vtags(0) <= X"C000";
+				ptags(0) <= "11"& X"C000";
+				
+				vtags(1) <= X"8000";
+				ptags(1) <= "10"&X"8000";
+				
 			ELSIF rising_edge(clk) THEN
 				IF flush='1' THEN
 					ptags <= (others => (others => '0'));
@@ -59,13 +65,14 @@ ARCHITECTURE Structure of TLB IS
 					read_only_rd <= '1';
 					ptag_rd <= (others=>'0');
 					hit <= '0';
-					FOR i in 0 to TLB_SIZE -1 loop
+					FOR i in 0 to TLB_SIZE-1 loop
 						IF vtags(i) = vtag THEN
 							hit <= '1';
 							ptag_rd <= ptags(i)(3 DOWNTO 0);
 							read_only_rd <= ptags(i)(4);
 							valid_rd <= ptags(i)(5);
 							exit;
+							--No he tret l'aigua clara de si l'exit es sintetitzable
 						END IF;
 					END LOOP;
 				END IF;

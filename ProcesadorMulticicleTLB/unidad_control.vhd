@@ -38,7 +38,11 @@ ENTITY unidad_control IS
 			 mem_instr : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
-			 spec_ilegal_instr : OUT STD_LOGIC 
+			 spec_ilegal_instr : OUT STD_LOGIC;
+			 wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
+			 wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
+			 wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
+			 wrd_dptlb	: OUT STD_LOGIC	--Same same
 			 );
 END unidad_control;
 
@@ -72,7 +76,11 @@ ARCHITECTURE Structure OF unidad_control IS
 			 inta		  : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
-			 spec_ilegal_instr : OUT STD_LOGIC
+			 spec_ilegal_instr : OUT STD_LOGIC;
+			 wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
+			 wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
+			 wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
+			 wrd_dptlb	: OUT STD_LOGIC	--Same same
 			 );
 	END COMPONENT;
 	
@@ -86,6 +94,10 @@ ARCHITECTURE Structure OF unidad_control IS
          ldpc_l    : IN  STD_LOGIC;
          wrd_gp_l  : IN  STD_LOGIC;
          wrd_sys_l : IN  STD_LOGIC;
+			wrd_ivtlb_l	: IN STD_LOGIC;	
+			wrd_iptlb_l	: IN STD_LOGIC;	
+			wrd_dvtlb_l	: IN STD_LOGIC;	
+			wrd_dptlb_l	: IN STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
 			exception_l	 : IN  STD_LOGIC;
@@ -102,7 +114,11 @@ ARCHITECTURE Structure OF unidad_control IS
 			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
 			alu_op	 : OUT  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			rd_sys_gp : OUT STD_LOGIC;
-			inta		 : OUT STD_LOGIC);
+			inta		 : OUT STD_LOGIC;
+			wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
+			 wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
+			 wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
+			 wrd_dptlb	: OUT STD_LOGIC);	--Same same);
 	END COMPONENT;
 	
 	SIGNAL bus_ir			: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -135,6 +151,11 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_wr_m_out			: STD_LOGIC;
 	
 	--SIGNAL bus_calls_instr : STD_LOGIC;
+	
+	SIGNAL bus_wrd_ivtlb	: STD_LOGIC;
+	SIGNAL bus_wrd_iptlb	: STD_LOGIC;
+	SIGNAL bus_wrd_dvtlb	: STD_LOGIC;
+	SIGNAL bus_wrd_dptlb	: STD_LOGIC;
 
 BEGIN
 
@@ -167,8 +188,11 @@ BEGIN
 		inta			=> bus_inta_l,
 		ilegal_instr => ilegal_instr,
 		calls_instr => calls_instr,
-		spec_ilegal_instr => spec_ilegal_instr
-		
+		spec_ilegal_instr => spec_ilegal_instr,
+		wrd_ivtlb	=> bus_wrd_ivtlb,
+		wrd_iptlb	=> bus_wrd_iptlb,
+		wrd_dvtlb	=> bus_wrd_dvtlb,
+		wrd_dptlb	=> bus_wrd_dptlb
 	);
 	
 	multi0 : multi
@@ -199,6 +223,14 @@ BEGIN
 		alu_op		=> op,
 		rd_sys_gp	=> rd_sys_gp,
 		inta			=> inta
+		wrd_ivtlb	=> wrd_ivtlb,
+		wrd_iptlb	=> wrd_iptlb,
+		wrd_dvtlb	=> wrd_dvtlb,
+		wrd_dptlb	=> wrd_dptlb
+		wrd_ivtlb_l => bus_wrd_ivtlb;	
+		wrd_iptlb_l	=> bus_wrd_iptlb;
+		wrd_dvtlb_l	=> bus_wrd_dvtlb;	
+		wrd_dptlb_l	=> bus_wrd_dptlb;
 	);
 	
 	WITH multi_ldir SELECT

@@ -30,7 +30,11 @@ ENTITY control_l IS
 			 inta		  : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
-			 spec_ilegal_instr : OUT STD_LOGIC
+			 spec_ilegal_instr : OUT STD_LOGIC;
+			 wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
+			 wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
+			 wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
+			 wrd_dptlb	: OUT STD_LOGIC	--Same same
 			 );
 END control_l;
 
@@ -69,6 +73,7 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT EXT_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "011";
 	CONSTANT BYPASSX_op	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "100";
 	CONSTANT BYPASSY_op	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "101";
+	CONSTANT BYPASSXY_op	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "110"; --Para TLB
 
 	-- Alu function codes
 	-- ARITHLOG
@@ -114,6 +119,11 @@ ARCHITECTURE Structure OF control_l IS
 	CONSTANT DI	 	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100001";
 	CONSTANT RETI	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "100100";
 	CONSTANT GETIID: STD_LOGIC_VECTOR (5 DOWNTO 0) := "101000";
+	CONSTANT WRPI	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "110100";
+	CONSTANT WRVI	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "110101";
+	CONSTANT WRPD	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "110110";
+	CONSTANT WRVD	: STD_LOGIC_VECTOR (5 DOWNTO 0) := "110111";
+	CONSTANT FLUSH : STD_LOGIC_VECTOR (5 DOWNTO 0) := "111000";
 	CONSTANT HALT  : STD_LOGIC_VECTOR (5 DOWNTO 0) := "111111";
 	
 	CONSTANT S1		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "001"; -- System register that contains the PCup when the system was interrupted
@@ -197,8 +207,12 @@ BEGIN
 				
 				EXT_op		WHEN		op_code = ARITHEXT 	ELSE
 				
+				BYPASSXY_op WHEN		op_code = SPEC AND (spec_code = WRPI OR
+								spec_code = WRVI OR spec_code = WRPD OR spec_code = WRVD) ELSE
+				
 				BYPASSX_op  WHEN		op_code = JUMP	OR -- Is bypassed for CALLS also! 
 											op_code = SPEC ELSE
+
 				
 				BYPASSY_op; -- IO 
 
@@ -315,5 +329,11 @@ BEGIN
 	calls_instr <= bus_calls_instr;
 	
 	spec_ilegal_instr <= bus_spec_ilegal_instr;
+	
+	wrd_ivtlb <= '1' WHEN (op_code = SPEC AND spec_code = WRVI) ELSE '0' 
+	wrd_iptlb <= '1' WHEN (op_code = SPEC AND spec_code = WRPI) ELSE '0' 
+	wrd_dvtlb <= '1' WHEN (op_code = SPEC AND spec_code = WRVD) ELSE '0' 
+	wrd_dptlb <= '1' WHEN (op_code = SPEC AND spec_code = WRPI) ELSE '0' 
+	
 	
 END Structure;

@@ -11,6 +11,10 @@ entity multi is
          ldpc_l    : IN  STD_LOGIC;
          wrd_gp_l  : IN  STD_LOGIC;
 			wrd_sys_l : IN	 STD_LOGIC;
+			wrd_ivtlb_l	: IN STD_LOGIC;	
+			wrd_iptlb_l	: IN STD_LOGIC;	
+			wrd_dvtlb_l	: IN STD_LOGIC;	
+			wrd_dptlb_l	: IN STD_LOGIC;
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
 			exception_l	 : IN  STD_LOGIC;
@@ -27,7 +31,11 @@ entity multi is
 			tknbr		 : OUT STD_LOGIC_VECTOR (1 downto 0);
 			alu_op	 : OUT STD_LOGIC_VECTOR (2 downto 0);
 			rd_sys_gp : OUT STD_LOGIC;
-			inta		 : OUT STD_LOGIC);
+			inta		 : OUT STD_LOGIC;
+			wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
+			wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
+			wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
+			wrd_dptlb	: OUT STD_LOGIC);	--Same same);
 end entity;
 
 --tknbr, in_d and alu op are added to multi because when we enter the
@@ -94,6 +102,11 @@ begin
 	
 	inta			<= inta_l;		--when state=DEMW	else '0';
 	
+	wrd_ivtlb	<= wrd_ivtlb_l when state=DEMW AND exception_l = '0' ELSE '0'
+	wrd_iptlb	<= wrd_iptlb_l when state=DEMW AND exception_l = '0' ELSE '0'
+	wrd_dvtlb	<= wrd_dvtlb_l when state=DEMW AND exception_l = '0' ELSE '0'
+	wrd_dptlb	<= wrd_dptlb_l when state=DEMW AND exception_l = '0' ELSE '0'
+
 	-- multi only changes the signal exception to tell every other module
 	-- to execute the procedure so at the end of the cycle we can do
 	-- the fetch of the RSG correctly
