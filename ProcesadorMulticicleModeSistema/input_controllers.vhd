@@ -72,9 +72,6 @@ ARCHITECTURE Structure of input_controllers IS
 	);
 	END COMPONENT;
 	
---	signal read_char_bus : STD_LOGIC_VECTOR (7 downto 0);
---	signal data_ready_bus : STD_LOGIC := '0' ;
-	
 BEGIN
 
 	keyboard_controller_intr0 : keyboard_controller_intr
@@ -146,9 +143,7 @@ ARCHITECTURE Structure OF pulsadores IS
  SIGNAL last_keys : STD_LOGIC_VECTOR (3 DOWNTO 0); -- Stores the read keys the last time (the state)
 
  SIGNAL bus_intr : STD_LOGIC := '0';
- 
--- SIGNAL dummy : STD_LOGIC;
- 
+  
 BEGIN
 
 	state : PROCESS (clk, boot)
@@ -169,16 +164,6 @@ BEGIN
 				else
 					bus_intr <= '0';
 				end if;
-			
---				if keys /= last_keys then
---					bus_intr <= '1';
---				end if;
---				if (inta = '1') then
---					bus_intr <= '0';
---				end if;
---				
---				last_keys <= keys;
-
 			END IF;
 		end if;
 	END PROCESS;
@@ -233,15 +218,6 @@ BEGIN
 				else
 					bus_intr <= '0';
 				end if;
-				
---				if switches /= last_sw then
---					bus_intr <= '1';
---				end if;
---				if (inta = '1') then
---					bus_intr <= '0';
---				end if;
---				-- Mal mal	
---				last_sw <= switches;
 			END IF;
 		end if;
 	END PROCESS;
@@ -272,8 +248,7 @@ end timer;
 ARCHITECTURE Structure OF timer IS
 
 	SIGNAL cnt 		: STD_LOGIC_VECTOR (21 downto 0);
-	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"2625A0"; --DO not forget
-	--2625A0 2625A0 2625A0 2625A0 2625A0 2625A0
+	CONSTANT ms50 	: STD_LOGIC_VECTOR (23 downto 0):= X"2625A0";
 	signal bus_intr : std_logic := '0';
 
 BEGIN

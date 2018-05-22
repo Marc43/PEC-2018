@@ -20,7 +20,7 @@ entity multi is
 			e_int_l	 : IN	 STD_LOGIC;
 			d_int_l	 : IN  STD_LOGIC;
 			ret_int_l : IN  STD_LOGIC;
-			mem_instr_l	: OUT STD_LOGIC;
+			mem_instr_l	: IN STD_LOGIC;
 			exception		 : OUT STD_LOGIC;
 			ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -128,5 +128,7 @@ begin
 	ret_int 	<= ret_int_l WHEN state=DEMW AND mode=SYSTEM_MODE else '0';
 	
 	calls_instr <= bus_calls_instr;
+	
+	mem_instr <= mem_instr_l WHEN state=DEMW ELSE '0';
 
 end Structure;

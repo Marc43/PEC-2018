@@ -34,7 +34,7 @@ COMPONENT system_regfile IS
 		 reset		: IN  STD_LOGIC;
 		 clk    		: IN  STD_LOGIC;
 		 wrd	    	: IN  STD_LOGIC;
-		 exception			: IN  STD_LOGIC;
+		 exception	: IN  STD_LOGIC;
 		 e_int		: IN  STD_LOGIC;
 		 d_int		: IN  STD_LOGIC;
 		 ret_int    : IN  STD_LOGIC;
@@ -169,10 +169,12 @@ BEGIN
 			IF wrd = '1' THEN
 				IF e_int = '1' THEN
 					-- EI
-					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '1' & regs_sys(conv_integer(PSWup))(0); -- Bit that indicates enabled/disabled interruptions
+--					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '1' & regs_sys(conv_integer(PSWup))(0); -- Bit that indicates enabled/disabled interruptions
+					regs_sys(conv_integer(PSWold)) <= regs_sys(conv_integer(PSWold))(15 DOWNTO 2) & '1' & regs_sys(conv_integer(PSWold))(0); -- Bit that indicates enabled/disabled interruptions
 				ELSIF d_int = '1' THEN
 					-- DI
-					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWup))(0);
+--					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWup))(0);
+					regs_sys(conv_integer(PSWold)) <= regs_sys(conv_integer(PSWold))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWold))(0);
 				ELSE
 					-- WRS
 					regs_sys(conv_integer(addr_d)) <= d;
@@ -182,8 +184,10 @@ BEGIN
 			IF ret_int = '1' THEN
 			
 				regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWold));
+				
 				-- When we return from an interruption we must restore the old state of the processor
 				-- Thus, the processor is in the same PC and state as before
+				
 			END IF;
 			
 			IF mem_exception = '1' THEN
@@ -199,7 +203,7 @@ BEGIN
 				--		S2 <- 0x000 & exception cause (Black box)
 				--		S3 <- MEM_addr
 				--		PC <- S5		 (General handler code)
- 				--		S7(1) <- '0' (Disable interrupts)
+ 				--		S7(1) <- '0' (Disable exceptions)
 				-- Theoretically a process guarantees the order execution
 				-- of the statements, though signals are going to be assigned
 				-- once the process is finished...

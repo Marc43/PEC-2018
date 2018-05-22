@@ -210,7 +210,7 @@ BEGIN
 									ir(8) = '1'		ELSE
 				f_code;
 				
-	ldpc	<=	'0' 	WHEN op_code = SPEC AND spec_code = HALT ELSE
+	ldpc	<=	'0' 	WHEN (op_code = SPEC AND spec_code = HALT) OR (bus_calls_instr = '1' AND mode = '1') ELSE
 	
 				'1';
 	
@@ -304,14 +304,6 @@ BEGIN
 	
 						    '0';
 							 
---   bus_spec_ilegal_instr <= '1' WHEN 		((op_code = SPEC AND mode = USER_MODE) 		  AND 
---														((spec_code /= HALT  AND spec_code /= EI)   	  AND
---														(spec_code /= DI     	AND spec_code /= RETI) AND
---														(spec_code /= GETIID 	AND spec_code /= RDS)  AND
---														(spec_code /= WRS))) 						 	  ELSE
---												  
---									 '0';
-
 	bus_spec_ilegal_instr <= '1' WHEN ((op_code = SPEC AND mode = USER_MODE) AND 
 												  (spec_code = EI  OR spec_code = DI  OR spec_code = GETIID OR
 													spec_code = RDS OR spec_code = WRS OR spec_code = RETI)) ELSE

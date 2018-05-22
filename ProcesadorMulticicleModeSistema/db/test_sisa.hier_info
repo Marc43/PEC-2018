@@ -447,7 +447,7 @@ rd_port <= control_l:control_l0.rd_port
 e_int <= multi:multi0.e_int
 d_int <= multi:multi0.d_int
 ret_int <= multi:multi0.ret_int
-mem_instr <= mem_instr.DB_MAX_OUTPUT_PORT_TYPE
+mem_instr <= multi:multi0.mem_instr
 ilegal_instr <= control_l:control_l0.ilegal_instr
 calls_instr <= multi:multi0.calls_instr
 spec_ilegal_instr <= control_l:control_l0.spec_ilegal_instr
@@ -637,8 +637,7 @@ eval => tknbr.IN1
 eval => tknbr.IN1
 eval => tknbr.IN1
 eval => tknbr.IN1
-mode => ilegal_instr.IN1
-mode => ilegal_instr.IN1
+mode => ldpc.IN1
 mode => bus_spec_ilegal_instr.IN1
 op[0] <= op.DB_MAX_OUTPUT_PORT_TYPE
 op[1] <= op.DB_MAX_OUTPUT_PORT_TYPE
@@ -693,6 +692,7 @@ inta <= immed.DB_MAX_OUTPUT_PORT_TYPE
 ilegal_instr <= ilegal_instr.DB_MAX_OUTPUT_PORT_TYPE
 calls_instr <= bus_calls_instr.DB_MAX_OUTPUT_PORT_TYPE
 spec_ilegal_instr <= bus_spec_ilegal_instr.DB_MAX_OUTPUT_PORT_TYPE
+mem_instr <= mem_instr.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |sisa|proc:proc0|unidad_control:unidad_control0|multi:multi0
@@ -724,6 +724,7 @@ e_int_l => e_int.DATAB
 d_int_l => d_int.DATAB
 ret_int_l => tknbr.IN1
 ret_int_l => ret_int.DATAB
+mem_instr_l => mem_instr.DATAB
 exception <= exception.DB_MAX_OUTPUT_PORT_TYPE
 ldpc <= ldpc.DB_MAX_OUTPUT_PORT_TYPE
 wrd_gp <= wrd_gp.DB_MAX_OUTPUT_PORT_TYPE
@@ -746,6 +747,7 @@ calls_instr <= bus_calls_instr.DB_MAX_OUTPUT_PORT_TYPE
 e_int <= e_int.DB_MAX_OUTPUT_PORT_TYPE
 d_int <= d_int.DB_MAX_OUTPUT_PORT_TYPE
 ret_int <= ret_int.DB_MAX_OUTPUT_PORT_TYPE
+mem_instr <= mem_instr.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |sisa|proc:proc0|datapath:datapath0
@@ -12595,9 +12597,12 @@ spec_ilegal_instr => cause[2].DATAIN
 intr_enabled => filter_intr.IN0
 ilegal_instr => exception.IN1
 ilegal_instr => cause[6].DATAIN
+mem_instr => mem_exception.IN1
 mem_instr => unaligned_access_exception.OUTPUTSELECT
 mem_instr => pm_access_e.OUTPUTSELECT
+unaligned_access => mem_exception.IN0
 unaligned_access => unaligned_access_exception.DATAB
+protected_mem_access => mem_exception.IN1
 protected_mem_access => pm_access_e.DATAB
 intr => filter_intr.IN1
 div_zero => exception.IN1

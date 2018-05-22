@@ -73,7 +73,7 @@ ARCHITECTURE Structure OF unidad_control IS
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
 			 spec_ilegal_instr : OUT STD_LOGIC;
-			 mem_instr : OUT STD_LOGIC;
+			 mem_instr : OUT STD_LOGIC
 			 );
 	END COMPONENT;
 	
@@ -96,6 +96,7 @@ ARCHITECTURE Structure OF unidad_control IS
 			e_int_l	  		: IN STD_LOGIC;
 			d_int_l	  		: IN STD_LOGIC;
 			ret_int_l   	: IN STD_LOGIC;
+			mem_instr_l : IN STD_LOGIC;
 			exception		 : OUT STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -113,7 +114,7 @@ ARCHITECTURE Structure OF unidad_control IS
 			e_int	  		: OUT STD_LOGIC;
 			d_int	  		: OUT STD_LOGIC;
 			ret_int   	: OUT STD_LOGIC;
-			mem_instr	: OUT STD_LOGIC;
+			mem_instr	: OUT STD_LOGIC
 			);
 	END COMPONENT;
 	
@@ -207,6 +208,7 @@ BEGIN
 		e_int_l		=> bus_e_int,
 		d_int_l		=> bus_d_int,
 		ret_int_l	=> bus_ret_int,
+		mem_instr_l => bus_mem_instr,
 		w_b			=> bus_word_byte,
 		ldpc			=> multi_ldpc,
 		wrd_gp		=>	wrd_gp,
@@ -223,7 +225,8 @@ BEGIN
 		calls_instr => calls_instr,
 		e_int			=> e_int,
 		d_int			=> d_int,
-		ret_int		=> ret_int
+		ret_int		=> ret_int,
+		mem_instr	=> mem_instr
 	);
 	
 	WITH multi_ldir SELECT
