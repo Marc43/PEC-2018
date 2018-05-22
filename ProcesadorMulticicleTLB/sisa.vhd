@@ -89,8 +89,7 @@ ARCHITECTURE Structure OF sisa IS
 			 vga_wr_data : out std_logic_vector(15 downto 0);
 			 vga_rd_data : in std_logic_vector(15 downto 0);
 			 vga_byte_m : out std_logic;
-			 unaligned_access	: out std_logic;
-			 prot_access : out std_logic
+			 unaligned_access	: out std_logic
 );
 	end component;
 	
@@ -118,7 +117,7 @@ ARCHITECTURE Structure OF sisa IS
 	
 	COMPONENT exception_controller IS
 	PORT (
-		clk 						: IN STD_LOGIC;
+		clk : IN STD_LOGIC;
 		calls_instr 			: IN STD_LOGIC;
 		spec_ilegal_instr 	: IN STD_LOGIC;
 		intr_enabled 			: IN STD_LOGIC;
@@ -129,10 +128,10 @@ ARCHITECTURE Structure OF sisa IS
 		intr						: IN STD_LOGIC;
 		div_zero					: IN STD_LOGIC;
 		
-		itlb_miss				: IN STD_LOGIC;
-		dtlb_miss				: IN STD_LOGIC;
-		itlb_invalid			: IN STD_LOGIC;
-		dtlb_invalid			: IN STD_LOGIC;
+		itlb_hit				: IN STD_LOGIC;
+		dtlb_hit				: IN STD_LOGIC;
+		itlb_valid			: IN STD_LOGIC;
+		dtlb_valid			: IN STD_LOGIC;
 		read_only_write		: IN STD_LOGIC;
 		fetch						: IN STD_LOGIC;
 		
@@ -221,10 +220,10 @@ ARCHITECTURE Structure OF sisa IS
 	signal bus_mem_exception : std_logic;
 	signal bus_fetch : std_logic;
 	
-	signal bus_itlb_miss : std_logic;
-	signal bus_dtlb_miss : std_logic;
-	signal bus_itlb_invalid : std_logic;
-	signal bus_dtlb_invalid : std_logic;
+	signal bus_itlb_hit : std_logic;
+	signal bus_dtlb_hit : std_logic;
+	signal bus_itlb_valid : std_logic;
+	signal bus_dtlb_valid : std_logic;
 	
 	signal bus_dtlb_read_only_write: std_logic;
 
@@ -267,11 +266,11 @@ BEGIN
 		mode => bus_mode,
 		fetch => bus_fetch,
 		prot_access => bus_prot_access,
-		itlb_miss	=> bus_itlb_miss,
-		dtlb_miss	=> bus_dtlb_miss,
-		itlb_invalid	=> bus_itlb_invalid,
-		dtlb_invalid	=> bus_dtlb_invalid,
-		itlb_miss	=> bus_itlb_miss
+		hit_itlb	=> bus_itlb_hit,
+		hit_dtlb	=> bus_dtlb_hit,
+		valid_itlb	=> bus_itlb_valid,
+		valid_dtlb	=> bus_dtlb_valid,
+		read_only_dtlb	=> bus_dtlb_read_only_write
 	);
 	
 	mem_ctrl0 : MemoryController
@@ -295,7 +294,6 @@ BEGIN
 		vga_rd_data => bus_vga_rd_data,
 		vga_byte_m => bus_vga_byte_m,
 		unaligned_access => bus_unaligned_access,
-		prot_access => bus_prot_access,
 		mode => bus_mode
 	);
 	
@@ -337,7 +335,12 @@ BEGIN
 		exception_cause	=> bus_exception_cause,
 		exception 			=> bus_exception,
 		mem_exception		=> bus_mem_exception,
-		fetch					=> bus_fetch
+		fetch					=> bus_fetch,
+		itlb_hit				=> bus_itlb_hit,
+		dtlb_hit 			=> bus_dtlb_hit,
+		itlb_valid			=> bus_itlb_valid,
+		dtlb_valid			=> bus_dtlb_valid,
+		read_only_write	=> bus_dtlb_read_only_write
 		);
 
 	vga_controller0 : vga_controller

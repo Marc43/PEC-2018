@@ -31,7 +31,6 @@ ENTITY proc IS
 			 valid_dtlb	: OUT STD_LOGIC;
 			 valid_itlb : OUT STD_LOGIC;
 			 read_only_dtlb : OUT STD_LOGIC;
-			 read_only_itlb : OUT STD_LOGIC;
 			 hit_dtlb : OUT STD_LOGIC;
 			 hit_itlb : OUT STD_LOGIC;
 			 prot_access	: OUT STD_LOGIC;
@@ -135,7 +134,7 @@ COMPONENT TLB IS
 		boot:			IN STD_LOGIC; 	
 		valid_wr: 	IN STD_LOGIC;	--Senyal de validez a escribir en el nuevo tag fisico
 		read_only_wr:		IN STD_LOGIC; --Senyal de read_only a escribir en el nuevo tag fisico
-		wr_table_entry:	IN STD_LOGIC_VECTOR(3 downto 0); --Entrada de la tabla a escribir
+		wr_table_entry:	IN STD_LOGIC_VECTOR(2 downto 0); --Entrada de la tabla a escribir
 		flush:				IN STD_LOGIC; --Si hace falta flushear el TLB
 		ptag_rd:			OUT STD_LOGIC_VECTOR(3 downto 0); --Tag Fisico eido del TLB
 		valid_rd:		OUT STD_LOGIC;	--Senyal de validez del tag Fisico leido del TLB
@@ -326,7 +325,6 @@ BEGIN
 					
 	valid_itlb	<= bus_valid_itlb;
 	valid_dtlb	<= bus_valid_dtlb;
-	read_only_itlb <= bus_read_only_itlb;
 	read_only_dtlb	<= bus_read_only_dtlb;
 	hit_itlb		<= bus_hit_itlb;
 	hit_dtlb		<= bus_hit_dtlb;

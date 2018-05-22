@@ -16,10 +16,10 @@ ENTITY exception_controller IS
 		intr						: IN STD_LOGIC;
 		div_zero					: IN STD_LOGIC;
 		
-		itlb_miss				: IN STD_LOGIC;
-		dtlb_miss				: IN STD_LOGIC;
-		itlb_invalid			: IN STD_LOGIC;
-		dtlb_invalid			: IN STD_LOGIC;
+		itlb_hit				: IN STD_LOGIC;
+		dtlb_hit				: IN STD_LOGIC;
+		itlb_valid			: IN STD_LOGIC;
+		dtlb_valid			: IN STD_LOGIC;
 		read_only_write		: IN STD_LOGIC;
 		fetch						: IN STD_LOGIC;
 		
@@ -60,7 +60,7 @@ ARCHITECTURE Structure OF exception_controller IS
 
 	SIGNAl dtlb_read_only_write_exception : STD_LOGIC := '0';
 
-	SIGNAL cause : STD_LOGIC_VECTOR (6 downto 0);
+	SIGNAL cause : STD_LOGIC_VECTOR (14 downto 0);
 
 BEGIN
 
@@ -72,6 +72,7 @@ BEGIN
 		IF rising_edge(clk) THEN -- This is needed to be available on saving the cause at the SYSTEM cycle...
 			cause <= ilegal_instr & unaligned_access_exception & '0' & '0' &
 						div_zero & itlb_miss_exception & dtlb_miss_exception & itlb_invalid_exception &
+						dtlb_invalid_exception &
 						pm_access_itlb & pm_access_dtlb & dtlb_read_only_write_exception &
 						spec_ilegal_instr & calls_instr & filter_intr;
 		END IF;
@@ -109,7 +110,7 @@ BEGIN
 							 DIVIDE_BY_ZERO_E		 	WHEN cause(10) = '1' ELSE
 							 ITLB_MISS_E				WHEN cause(9) = '1' ELSE
 							 DTLB_MISS_E				WHEN cause(8) = '1' ELSE
-							 ILB_INVALID_E				WHEN cause(7) = '1' ELSE
+							 RDONLY_WRITE_DTLB_E		WHEN cause(7) = '1' ELSE
 							 DTLB_INVALID_E			WHEN cause(6) = '1' ELSE
 							 PROTECTED_MEM_ITLB_E	WHEN cause(5) = '1' ELSE
 							 PROTECTED_MEM_DTLB_E	WHEN cause(4) = '1' ELSE
@@ -127,12 +128,10 @@ BEGIN
 	
 	pm_access_dtlb <= protected_mem_access WHEN mem_instr = '1' ELSE '0';
 	pm_access_itlb <= protected_mem_access WHEN fetch = '1' ELSE '0';
-	itlb_miss_exception <= itlb_miss WHEN fetch = '1' ELSE '0';
-	dtlb_miss_exception <= dtlb_miss WHEN mem_instr = '1' ELSE '0';
-	itlb_invalid_exception <= itlb_invalid WHEN fetch = '1' ELSE '0';
-	dtlb_invalid_exception <= dtlb_invalid WHEN mem_instr = '1' ELSE '0';
-	
-	dtlb_read_only_write_exception <= read_only_write WHEN mem_instr = '1' ELSE '0';
+	itlb_miss_exception <= (NOT itlb_hit) WHEN fetch = '1' ELSE '0';
+	dtlb_miss_exception <= (NOT dtlb_hit) WHEN mem_instr = '1' ELSE '0';
+	itlb_invalid_exception <= (NOT itlb_valid) WHEN fetch = '1' ELSE '0';
+	dtlb_invalid_exception <= (NOT dtlb_valid) WHEN mem_instr = '1' ELSE '0';
 	
 	dtlb_read_only_write_exception <= read_only_write WHEN mem_instr = '1' ELSE '0';
 	
