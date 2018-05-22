@@ -30,7 +30,8 @@ ENTITY control_l IS
 			 inta		  : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
-			 spec_ilegal_instr : OUT STD_LOGIC
+			 spec_ilegal_instr : OUT STD_LOGIC;
+			 mem_instr : OUT STD_LOGIC
 			 );
 END control_l;
 
@@ -323,8 +324,8 @@ BEGIN
 	
 	ilegal_instr <= '1' WHEN (op_code = UNIMPLEMENTED_OP_1 OR op_code = UNIMPLEMENTED_OP_2 OR op_code = UNIMPLEMENTED_OP_3) OR
 	
-									 (op_code = SPEC AND mode = SYSTEM_MODE AND (spec_code /= EI  AND spec_code /= DI  AND spec_code /= GETIID AND
-																							   spec_code /= RDS AND spec_code /= WRS AND spec_code /= RETI)) OR
+									 (op_code = SPEC AND (spec_code /= EI  AND spec_code /= DI  AND spec_code /= GETIID AND
+																 spec_code /= RDS AND spec_code /= WRS AND spec_code /= RETI)) OR
 									  
 									 (bus_calls_instr = '1' AND mode = '1') ELSE
 						 
@@ -333,5 +334,7 @@ BEGIN
 	calls_instr <= bus_calls_instr;
 	
 	spec_ilegal_instr <= bus_spec_ilegal_instr;
+	
+	mem_instr <= '1' WHEN op_code = LD OR op_code = LDB OR op_code = ST OR op_code = STB ELSE '0';
 	
 END Structure;

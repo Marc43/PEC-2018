@@ -35,7 +35,7 @@ ARCHITECTURE Structure OF exception_controller IS
 
 	SIGNAL unaligned_access_exception : STD_LOGIC := '0';
 	SIGNAL filter_intr : STD_LOGIC := '0';
-	SIGNAL pm_access_e : STD_LOGIC := '0'; -- protected memory exception
+   SIGNAL pm_access_e : STD_LOGIC := '0'; -- protected memory exception
 	
 	SIGNAL cause : STD_LOGIC_VECTOR (6 downto 0);
 
@@ -76,10 +76,9 @@ BEGIN
 	-- Supposing that no more than one exception can be triggered at once this works fine,
 	-- otherwise a system of priorities is defined implicitly by the WHEN ELSE we defined.
 
-	mem_exception <= unaligned_access_exception OR pm_access_e; 
+	mem_exception <= '1' WHEN (unaligned_access = '1' OR protected_mem_access = '1') AND mem_instr = '1' ELSE '0'; 
 	
 	unaligned_access_exception <= unaligned_access WHEN mem_instr = '1' ELSE '0';
-	
-	pm_access_e <= protected_mem_access WHEN mem_instr = '1' ELSE '0'; 
+	pm_access_e <= protected_mem_access WHEN mem_instr = '1' ELSE '0';
 	
 END Structure;

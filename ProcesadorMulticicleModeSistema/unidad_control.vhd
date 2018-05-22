@@ -72,7 +72,8 @@ ARCHITECTURE Structure OF unidad_control IS
 			 inta		  : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
-			 spec_ilegal_instr : OUT STD_LOGIC
+			 spec_ilegal_instr : OUT STD_LOGIC;
+			 mem_instr : OUT STD_LOGIC;
 			 );
 	END COMPONENT;
 	
@@ -111,7 +112,9 @@ ARCHITECTURE Structure OF unidad_control IS
 			calls_instr : OUT STD_LOGIC;
 			e_int	  		: OUT STD_LOGIC;
 			d_int	  		: OUT STD_LOGIC;
-			ret_int   	: OUT STD_LOGIC);
+			ret_int   	: OUT STD_LOGIC;
+			mem_instr	: OUT STD_LOGIC;
+			);
 	END COMPONENT;
 	
 	SIGNAL bus_ir			: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -146,6 +149,7 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_e_int				: STD_LOGIC;
 	SIGNAL bus_d_int				: STD_LOGIC;
 	SIGNAL bus_ret_int			: STD_LOGIC;
+	SIGNAL bus_mem_instr			: STD_LOGIC;
 
 BEGIN
 
@@ -178,7 +182,8 @@ BEGIN
 		inta			=> bus_inta_l,
 		ilegal_instr => ilegal_instr,
 		calls_instr => bus_calls_instr,
-		spec_ilegal_instr => spec_ilegal_instr
+		spec_ilegal_instr => spec_ilegal_instr,
+		mem_instr => bus_mem_instr
 		
 	);
 	
@@ -261,9 +266,9 @@ BEGIN
 	immed 			<= bus_immed;
 	bus_immed_des	<= STD_LOGIC_VECTOR(shift_left(unsigned(bus_immed), 1));
 	
-	mem_instr <= '1' WHEN bus_wr_m_out = '1' OR bus_in_d = "001" ELSE 
-	
-					 '0';
+--	mem_instr <= bus_wr_m_out WHEN bus_in_d = "001" ELSE 
+--	
+--					 '0';
 	
 	wr_m <= bus_wr_m_out;
 	in_d <= bus_in_d;

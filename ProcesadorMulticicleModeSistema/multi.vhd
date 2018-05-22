@@ -20,6 +20,7 @@ entity multi is
 			e_int_l	 : IN	 STD_LOGIC;
 			d_int_l	 : IN  STD_LOGIC;
 			ret_int_l : IN  STD_LOGIC;
+			mem_instr_l	: OUT STD_LOGIC;
 			exception		 : OUT STD_LOGIC;
 			ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -36,7 +37,9 @@ entity multi is
 			calls_instr : OUT STD_LOGIC;
 			e_int		 : OUT STD_LOGIC;
 			d_int		 : OUT STD_LOGIC;
-			ret_int	 : OUT STD_LOGIC);
+			ret_int	 : OUT STD_LOGIC;
+			mem_instr	: OUT STD_LOGIC
+			);
 end entity;
 
 --tknbr, in_d and alu op are added to multi because when we enter the
