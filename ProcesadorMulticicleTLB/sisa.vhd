@@ -32,8 +32,9 @@ END sisa;
 ARCHITECTURE Structure OF sisa IS
 
 	component proc IS
-    PORT (clk       : IN  STD_LOGIC;
-			 clk_tlb	  : IN  STD_LOGIC;
+    PORT (
+			clk       : IN  STD_LOGIC;
+			 clk_tlb	  : IN STD_LOGIC;
           boot      : IN  STD_LOGIC;
 			 exception : IN  STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
@@ -49,14 +50,20 @@ ARCHITECTURE Structure OF sisa IS
 			 rd_io	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 		    wr_io	  : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 mem_instr : OUT STD_LOGIC;
-			 div_zero  : OUT STD_LOGIC;
+			 div_zero : OUT STD_LOGIC;
 			 ilegal_instr : OUT STD_LOGIC;
 			 intr_enabled : OUT STD_LOGIC;
-			 mem_exception: IN STD_LOGIC;
+			 mem_exception: IN STD_LOGIC; -- To save the address when necessary...
 			 calls_instr 			: OUT STD_LOGIC;
 			 spec_ilegal_instr 	: OUT STD_LOGIC;
 			 mode : OUT STD_LOGIC;
-			 prot_access	: OUT STD_LOGIC
+			 valid_dtlb	: OUT STD_LOGIC;
+			 valid_itlb : OUT STD_LOGIC;
+			 read_only_dtlb : OUT STD_LOGIC;
+			 hit_dtlb : OUT STD_LOGIC;
+			 hit_itlb : OUT STD_LOGIC;
+			 prot_access	: OUT STD_LOGIC;
+			 fetch	 : OUT STD_LOGIC
 			 );
 	END component;
 
@@ -111,7 +118,7 @@ ARCHITECTURE Structure OF sisa IS
 	
 	COMPONENT exception_controller IS
 	PORT (
-		clk : IN STD_LOGIC;
+		clk 						: IN STD_LOGIC;
 		calls_instr 			: IN STD_LOGIC;
 		spec_ilegal_instr 	: IN STD_LOGIC;
 		intr_enabled 			: IN STD_LOGIC;
@@ -121,9 +128,17 @@ ARCHITECTURE Structure OF sisa IS
 		protected_mem_access : IN STD_LOGIC;
 		intr						: IN STD_LOGIC;
 		div_zero					: IN STD_LOGIC;
+		
+		itlb_miss				: IN STD_LOGIC;
+		dtlb_miss				: IN STD_LOGIC;
+		itlb_invalid			: IN STD_LOGIC;
+		dtlb_invalid			: IN STD_LOGIC;
+		read_only_write		: IN STD_LOGIC;
+		fetch						: IN STD_LOGIC;
+		
 		exception_cause		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		exception 				: OUT STD_LOGIC;
-		mem_exception : OUT STD_LOGIC
+		mem_exception 			: OUT STD_LOGIC
 	);
 	END COMPONENT; 
 	
@@ -204,6 +219,14 @@ ARCHITECTURE Structure OF sisa IS
 	signal bus_mode : std_logic;
 	signal bus_prot_access : std_logic;
 	signal bus_mem_exception : std_logic;
+	signal bus_fetch : std_logic;
+	
+	signal bus_itlb_miss : std_logic;
+	signal bus_dtlb_miss : std_logic;
+	signal bus_itlb_invalid : std_logic;
+	signal bus_dtlb_invalid : std_logic;
+	
+	signal bus_dtlb_read_only_write: std_logic;
 
 BEGIN
 
@@ -241,7 +264,14 @@ BEGIN
 		mem_exception => bus_mem_exception,
 		calls_instr => bus_calls_instr,
 		spec_ilegal_instr => bus_spec_ilegal_instr,
-		mode => bus_mode
+		mode => bus_mode,
+		fetch => bus_fetch,
+		prot_access => bus_prot_access,
+		itlb_miss	=> bus_itlb_miss,
+		dtlb_miss	=> bus_dtlb_miss,
+		itlb_invalid	=> bus_itlb_invalid,
+		dtlb_invalid	=> bus_dtlb_invalid,
+		itlb_miss	=> bus_itlb_miss
 	);
 	
 	mem_ctrl0 : MemoryController
@@ -306,7 +336,8 @@ BEGIN
 		div_zero				=> bus_div_zero,
 		exception_cause	=> bus_exception_cause,
 		exception 			=> bus_exception,
-		mem_exception		=> bus_mem_exception
+		mem_exception		=> bus_mem_exception,
+		fetch					=> bus_fetch
 		);
 
 	vga_controller0 : vga_controller
@@ -359,7 +390,6 @@ BEGIN
 	);
 	
 	gboot <= SW(9);
-	
 	
 	VGA_R <= "0000" & bus_vga_r(3 DOWNTO 0);
 	VGA_G <= "0000" & bus_vga_g(3 DOWNTO 0);

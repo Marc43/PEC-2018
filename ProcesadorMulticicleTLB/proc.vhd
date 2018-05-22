@@ -3,7 +3,8 @@ USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
 ENTITY proc IS
-    PORT (clk       : IN  STD_LOGIC;
+    PORT (
+			clk       : IN  STD_LOGIC;
 			 clk_tlb	  : IN STD_LOGIC;
           boot      : IN  STD_LOGIC;
 			 exception : IN  STD_LOGIC;
@@ -33,7 +34,8 @@ ENTITY proc IS
 			 read_only_itlb : OUT STD_LOGIC;
 			 hit_dtlb : OUT STD_LOGIC;
 			 hit_itlb : OUT STD_LOGIC;
-			 prot_access	: OUT STD_LOGIC
+			 prot_access	: OUT STD_LOGIC;
+			 fetch	 : OUT STD_LOGIC
 			 );
 END proc;
 
@@ -78,7 +80,8 @@ COMPONENT unidad_control IS
 			 wrd_ivtlb	: OUT STD_LOGIC;
 			 wrd_iptlb	: OUT STD_LOGIC;
 			 wrd_dvtlb	: OUT STD_LOGIC;
-			 wrd_dptlb	: OUT STD_LOGIC
+			 wrd_dptlb	: OUT STD_LOGIC;
+			 fetch		: OUT STD_LOGIC
 );
 
 END COMPONENT;
@@ -328,6 +331,6 @@ BEGIN
 	hit_itlb		<= bus_hit_itlb;
 	hit_dtlb		<= bus_hit_dtlb;
 	prot_access <= '1' WHEN ((bus_addr_m(15) = '1' AND unsigned(bus_addr_m) < unsigned(vga_lower_limit)) OR
-									(unsigned(bus_addr_m) >  unsigned(vga_upper_limit) AND bus_addr_m(15) = '1')) ELSE	
+									(unsigned(bus_addr_m) >  unsigned(vga_upper_limit) AND bus_addr_m(15) = '1')) AND bus_mode = '0' ELSE	
 						'0'; 
 END Structure;

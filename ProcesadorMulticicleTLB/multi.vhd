@@ -35,7 +35,9 @@ entity multi is
 			wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
 			wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
 			wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
-			wrd_dptlb	: OUT STD_LOGIC);	--Same same);
+			wrd_dptlb	: OUT STD_LOGIC;
+			fetch_out	: OUT STD_LOGIC
+		);	--Same same);
 end entity;
 
 --tknbr, in_d and alu op are added to multi because when we enter the
@@ -107,6 +109,7 @@ begin
 	wrd_dvtlb	<= wrd_dvtlb_l when state=DEMW AND exception_l = '0' ELSE '0';
 	wrd_dptlb	<= wrd_dptlb_l when state=DEMW AND exception_l = '0' ELSE '0';
 
+	fetch_out <= '1' WHEN state=FETCH;
 	-- multi only changes the signal exception to tell every other module
 	-- to execute the procedure so at the end of the cycle we can do
 	-- the fetch of the RSG correctly
