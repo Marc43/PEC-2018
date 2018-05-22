@@ -24,8 +24,7 @@ entity MemoryController is
 			 vga_wr_data : out std_logic_vector(15 downto 0);
 			 vga_rd_data : in std_logic_vector(15 downto 0);
 			 vga_byte_m : out std_logic;
-			 unaligned_access	: out std_logic;
-			 prot_access : out std_logic
+			 unaligned_access	: out std_logic
 			 );
 end MemoryController;
 

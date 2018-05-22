@@ -152,10 +152,20 @@ ARCHITECTURE Structure OF system_regfile IS
 	CONSTANT RSG	 	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "101";
 	CONSTANT PSWup 	: STD_LOGIC_VECTOR (2 DOWNTO 0) := "111";
 	
-	CONSTANT ILEGAL_INSTRUCTION_E : STD_LOGIC_VECTOR (3 downto 0) := "0000";
-	CONSTANT UNALIGNED_ACCESS_E	: STD_LOGIC_VECTOR (3 downto 0) := "0001";
-	CONSTANT DIVIDE_BY_ZERO_E		: STD_LOGIC_VECTOR (3 downto 0) := "0100";
-	CONSTANT INTERRUPT_E				: STD_LOGIC_VECTOR (3 downto 0) := "1111";
+	
+	CONSTANT ILEGAL_INSTRUCTION_E 		: STD_LOGIC_VECTOR (3 downto 0) := "0000";
+	CONSTANT UNALIGNED_ACCESS_E			: STD_LOGIC_VECTOR (3 downto 0) := "0001";
+	CONSTANT DIVIDE_BY_ZERO_E				: STD_LOGIC_VECTOR (3 downto 0) := "0100";
+	CONSTANT ITLB_MISS_E						: STD_LOGIC_VECTOR (3 downto 0) := "0110";
+	CONSTANT DTLB_MISS_E						: STD_LOGIC_VECTOR (3 downto 0) := "0111";
+	CONSTANT ITLB_INVALID_E					: STD_LOGIC_VECTOR (3 downto 0) := "1000";
+	CONSTANT DTLB_INVALID_E					: STD_LOGIC_VECTOR (3 downto 0) := "1001";
+	CONSTANT PROTECTED_MEM_ITLB_E			: STD_LOGIC_VECTOR (3 downto 0) := "1010";
+	CONSTANT PROTECTED_MEM_DTLB_E 		: STD_LOGIC_VECTOR (3 downto 0) := "1011";
+	CONSTANT RDONLY_WRITE_DTLB_E			: STD_LOGIC_VECTOR (3 downto 0) := "1100";
+	CONSTANT SPEC_ILEGAL_INSTR_E			: STD_LOGIC_VECTOR (3 downto 0) := "1101";
+	CONSTANT CALLS_INSTR_E					: STD_LOGIC_VECTOR (3 downto 0) := "1110";
+	CONSTANT INTERRUPT_E						: STD_LOGIC_VECTOR (3 downto 0) := "1111";
 	
 BEGIN
 
@@ -187,7 +197,11 @@ BEGIN
 			END IF;
 			
 			IF mem_exception = '1' THEN
-					regs_sys(conv_integer(mem_addr)) <= addr_m;
+					IF exception_cause = ITLB_MISS_E OR exception_cause = DTLB_MISS_E THEN
+						regs_sys(conv_integer(mem_addr)) <= addr_m-2;
+					ELSE
+						regs_sys(conv_integer(mem_addr)) <= addr_m;
+					END IF;
 			END IF;
 			
 			IF exception = '1' THEN

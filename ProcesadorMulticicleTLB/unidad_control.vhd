@@ -120,7 +120,7 @@ ARCHITECTURE Structure OF unidad_control IS
 			wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
 			wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
 			wrd_dptlb	: OUT STD_LOGIC;
-			fetch			: OUT STD_LOGIC
+			fetch_out	: OUT STD_LOGIC
 		);	--Same same);
 	END COMPONENT;
 	
@@ -234,7 +234,7 @@ BEGIN
 		wrd_iptlb_l	=> bus_wrd_iptlb,
 		wrd_dvtlb_l	=> bus_wrd_dvtlb,
 		wrd_dptlb_l	=> bus_wrd_dptlb,
-		fetch			=> fetch
+		fetch_out	=> fetch
 	);
 	
 	WITH multi_ldir SELECT
