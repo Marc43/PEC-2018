@@ -102,10 +102,10 @@ begin
 	
 	inta			<= inta_l;		--when state=DEMW	else '0';
 	
-	wrd_ivtlb	<= wrd_ivtlb_l when state=DEMW AND exception_l = '0' ELSE '0'
-	wrd_iptlb	<= wrd_iptlb_l when state=DEMW AND exception_l = '0' ELSE '0'
-	wrd_dvtlb	<= wrd_dvtlb_l when state=DEMW AND exception_l = '0' ELSE '0'
-	wrd_dptlb	<= wrd_dptlb_l when state=DEMW AND exception_l = '0' ELSE '0'
+	wrd_ivtlb	<= wrd_ivtlb_l when state=DEMW AND exception_l = '0' ELSE '0';
+	wrd_iptlb	<= wrd_iptlb_l when state=DEMW AND exception_l = '0' ELSE '0';
+	wrd_dvtlb	<= wrd_dvtlb_l when state=DEMW AND exception_l = '0' ELSE '0';
+	wrd_dptlb	<= wrd_dptlb_l when state=DEMW AND exception_l = '0' ELSE '0';
 
 	-- multi only changes the signal exception to tell every other module
 	-- to execute the procedure so at the end of the cycle we can do

@@ -6,14 +6,15 @@ ENTITY TLB IS
 
 	PORT(
 		clk: 			IN STD_LOGIC;
-		vtag: 		IN STD_LOGIC_VECTOR(3 downto 0); --Tag Virtual a leer o escribir
+		vtag: 		IN STD_LOGIC_VECTOR(3 downto 0); --Tag Virtual a leer
 		ptag_wr:		IN STD_LOGIC_VECTOR(3 downto 0);	--Tag Fisico a escribir
+		vtag_wr:		IN STD_LOGIC_VECTOR(3 downto 0); --Tag Virtual a escribir
 		vtag_wrd:	IN STD_LOGIC;	--Permiso de escritura del Tag Virtual
 		ptag_wrd:	IN STD_LOGIC;	--Permiso de escritura del Tag Fisico
 		boot:			IN STD_LOGIC; 	
 		valid_wr: 	IN STD_LOGIC;	--Senyal de validez a escribir en el nuevo tag fisico
 		read_only_wr:		IN STD_LOGIC; --Senyal de read_only a escribir en el nuevo tag fisico
-		wr_table_entry:	IN STD_LOGIC_VECTOR(3 downto 0); --Entrada de la tabla a escribir
+		wr_table_entry:	IN STD_LOGIC_VECTOR(2 downto 0); --Entrada de la tabla a escribir
 		flush:				IN STD_LOGIC; --Si hace falta flushear el TLB
 		
 		ptag_rd:			OUT STD_LOGIC_VECTOR(3 downto 0); --Tag Fisico eido del TLB
@@ -42,11 +43,11 @@ ARCHITECTURE Structure of TLB IS
 		begin
 			IF boot='1' THEN
 				--Inicialitzar entrades TLB
-				vtags(0) <= X"C000";
-				ptags(0) <= "11"& X"C000";
+				vtags(0) <= X"C";
+				ptags(0) <= "11"& X"C";
 				
-				vtags(1) <= X"8000";
-				ptags(1) <= "10"&X"8000";
+				vtags(1) <= X"8";
+				ptags(1) <= "10"&X"8";
 				
 			ELSIF rising_edge(clk) THEN
 				IF flush='1' THEN

@@ -1,8 +1,10 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
 
 ENTITY proc IS
     PORT (clk       : IN  STD_LOGIC;
+			 clk_tlb	  : IN STD_LOGIC;
           boot      : IN  STD_LOGIC;
 			 exception : IN  STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
@@ -24,7 +26,14 @@ ENTITY proc IS
 			 mem_exception: IN STD_LOGIC; -- To save the address when necessary...
 			 calls_instr 			: OUT STD_LOGIC;
 			 spec_ilegal_instr 	: OUT STD_LOGIC;
-			 mode : OUT STD_LOGIC
+			 mode : OUT STD_LOGIC;
+			 valid_dtlb	: OUT STD_LOGIC;
+			 valid_itlb : OUT STD_LOGIC;
+			 read_only_dtlb : OUT STD_LOGIC;
+			 read_only_itlb : OUT STD_LOGIC;
+			 hit_dtlb : OUT STD_LOGIC;
+			 hit_itlb : OUT STD_LOGIC;
+			 prot_access	: OUT STD_LOGIC
 			 );
 END proc;
 
@@ -65,8 +74,13 @@ COMPONENT unidad_control IS
 			 mem_instr : OUT STD_LOGIC;
 			 ilegal_instr 			: OUT STD_LOGIC;
 			 calls_instr 			: OUT STD_LOGIC;
-			 spec_ilegal_instr 	: OUT STD_LOGIC
+			 spec_ilegal_instr 	: OUT STD_LOGIC;
+			 wrd_ivtlb	: OUT STD_LOGIC;
+			 wrd_iptlb	: OUT STD_LOGIC;
+			 wrd_dvtlb	: OUT STD_LOGIC;
+			 wrd_dptlb	: OUT STD_LOGIC
 );
+
 END COMPONENT;
 
 COMPONENT datapath IS
@@ -107,6 +121,29 @@ COMPONENT datapath IS
 			 );
 END COMPONENT;
 
+COMPONENT TLB IS
+	PORT(
+		clk: 			IN STD_LOGIC;
+		vtag: 		IN STD_LOGIC_VECTOR(3 downto 0); --Tag Virtual a leer
+		ptag_wr:		IN STD_LOGIC_VECTOR(3 downto 0);	--Tag Fisico a escribir
+		vtag_wr:		IN STD_LOGIC_VECTOR(3 downto 0); --Tag virtual a escribir
+		vtag_wrd:	IN STD_LOGIC;	--Permiso de escritura del Tag Virtual
+		ptag_wrd:	IN STD_LOGIC;	--Permiso de escritura del Tag Fisico
+		boot:			IN STD_LOGIC; 	
+		valid_wr: 	IN STD_LOGIC;	--Senyal de validez a escribir en el nuevo tag fisico
+		read_only_wr:		IN STD_LOGIC; --Senyal de read_only a escribir en el nuevo tag fisico
+		wr_table_entry:	IN STD_LOGIC_VECTOR(3 downto 0); --Entrada de la tabla a escribir
+		flush:				IN STD_LOGIC; --Si hace falta flushear el TLB
+		ptag_rd:			OUT STD_LOGIC_VECTOR(3 downto 0); --Tag Fisico eido del TLB
+		valid_rd:		OUT STD_LOGIC;	--Senyal de validez del tag Fisico leido del TLB
+		read_only_rd:	OUT STD_LOGIC;	--Senyal de read_only del tag Fisico leido del TLB
+		hit:				OUT STD_LOGIC	--'1' si ha habido acierto de TLB, 0 si no
+	);
+	
+END COMPONENT;
+constant vga_lower_limit : std_logic_vector (15 downto 0) := X"A000";
+constant vga_upper_limit : std_logic_vector (15 downto 0) := X"B2BE";
+
 SIGNAL bus_op 				: STD_LOGIC_VECTOR (2 DOWNTO 0);
 SIGNAL bus_wrd_gp			: STD_LOGIC;
 SIGNAL bus_wrd_sys		: STD_LOGIC;
@@ -138,6 +175,23 @@ SIGNAL bus_exception			: STD_LOGIC;
 --SIGNAL bus_intr_enabled : STD_LOGIC;
 
 SIGNAL bus_mode : STD_LOGIC;
+
+SIGNAL bus_wrd_ivtlb : STD_LOGIC;
+SIGNAL bus_wrd_iptlb : STD_LOGIC;
+SIGNAL bus_wrd_dvtlb : STD_LOGIC;
+SIGNAL bus_wrd_dptlb : STD_LOGIC;
+
+SIGNAL bus_valid_itlb	: STD_LOGIC;
+SIGNAL bus_valid_dtlb	: STD_LOGIC;
+
+SIGNAL bus_read_only_itlb	: STD_LOGIC;
+SIGNAL bus_read_only_dtlb	: STD_LOGIC;
+
+SIGNAL bus_ptag_itlb	: STD_LOGIC_VECTOR(3 DOWNTO 0);
+SIGNAL bus_ptag_dtlb	: STD_LOGIC_VECTOR(3 DOWNTO 0);
+
+SIGNAL bus_hit_itlb	: STD_LOGIC;
+SIGNAL bus_hit_dtlb	: STD_LOGIC;
 
 BEGIN
 
@@ -177,7 +231,11 @@ BEGIN
 		mem_instr => mem_instr,
 		ilegal_instr => ilegal_instr,
 		calls_instr => calls_instr,
-		spec_ilegal_instr => spec_ilegal_instr
+		spec_ilegal_instr => spec_ilegal_instr,
+		wrd_ivtlb => bus_wrd_ivtlb,
+		wrd_iptlb => bus_wrd_iptlb,
+		wrd_dvtlb => bus_wrd_dvtlb,
+		wrd_dptlb => bus_wrd_dptlb
 	);
 	
 	datapath0 : datapath
@@ -201,7 +259,7 @@ BEGIN
 		pcup		=> bus_pcup,
 		in_d		=> bus_in_d,
 		exception		=> bus_exception,
-		addr_m	=> addr_m,
+		addr_m	=> bus_addr_m,
 		data_wr	=> data_wr,
 		aluout   => bus_aluout,
 		eval		=> bus_eval,
@@ -218,8 +276,58 @@ BEGIN
 		mode	=> bus_mode
 	);
 	
+	tlbIns : tlb
+	PORT MAP(
+		boot => boot,
+		clk => clk_tlb,
+		vtag => bus_addr_m(15 downto 12),
+		ptag_wr => bus_aluout(11 downto 8),
+		vtag_wr => bus_aluout(11 downto 8),
+		vtag_wrd => bus_wrd_ivtlb,
+		ptag_wrd => bus_wrd_iptlb,
+		valid_wr => bus_aluout(13),
+		read_only_wr => bus_aluout(12),
+		wr_table_entry => bus_aluout(2 downto 0),
+		flush => '0',
+		ptag_rd => bus_ptag_itlb,
+		valid_rd => bus_valid_itlb,
+		read_only_rd => bus_read_only_itlb,
+		hit => bus_hit_itlb
+	);
+	
+	tlbDades : tlb
+	PORT MAP(
+		boot => boot,
+		clk => clk_tlb,
+		vtag => bus_addr_m(15 downto 12),
+		ptag_wr => bus_aluout(11 downto 8),
+		vtag_wr => bus_aluout(11 downto 8),
+		vtag_wrd => bus_wrd_dvtlb,
+		ptag_wrd => bus_wrd_dptlb,
+		valid_wr => bus_aluout(13),
+		read_only_wr => bus_aluout(12),
+		wr_table_entry => bus_aluout(2 downto 0),
+		flush => '0',
+		ptag_rd => bus_ptag_dtlb,
+		valid_rd => bus_valid_dtlb,
+		read_only_rd => bus_read_only_dtlb,
+		hit => bus_hit_dtlb
+	);
+	
 	wr_m <= bus_wr_m;
 	word_byte <= bus_word_byte;
 	mode <= bus_mode;
-	
+
+	addr_m <= 	bus_ptag_itlb & bus_addr_m(11 downto 0) WHEN bus_ins_dad = '0' ELSE 
+					bus_ptag_dtlb & bus_addr_m(11 downto 0); --Traduccion del TLB guapa
+					
+	valid_itlb	<= bus_valid_itlb;
+	valid_dtlb	<= bus_valid_dtlb;
+	read_only_itlb <= bus_read_only_itlb;
+	read_only_dtlb	<= bus_read_only_dtlb;
+	hit_itlb		<= bus_hit_itlb;
+	hit_dtlb		<= bus_hit_dtlb;
+	prot_access <= '1' WHEN ((bus_addr_m(15) = '1' AND unsigned(bus_addr_m) < unsigned(vga_lower_limit)) OR
+									(unsigned(bus_addr_m) >  unsigned(vga_upper_limit) AND bus_addr_m(15) = '1')) ELSE	
+						'0'; 
 END Structure;

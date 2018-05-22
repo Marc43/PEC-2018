@@ -15,6 +15,11 @@ ENTITY exception_controller IS
 		protected_mem_access : IN STD_LOGIC;
 		intr						: IN STD_LOGIC;
 		div_zero					: IN STD_LOGIC;
+		itlb_miss				: IN STD_LOGIC;
+		dltb_miss				: IN STD_LOGIC;
+		iltb_invalid			: IN STD_LOGIC;
+		dltb_invalid			: IN STD_LOGIC;
+		
 		exception_cause		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		exception 				: OUT STD_LOGIC;
 		mem_exception 			: OUT STD_LOGIC
@@ -26,7 +31,13 @@ ARCHITECTURE Structure OF exception_controller IS
 	CONSTANT ILEGAL_INSTRUCTION_E 		: STD_LOGIC_VECTOR (3 downto 0) := "0000";
 	CONSTANT UNALIGNED_ACCESS_E			: STD_LOGIC_VECTOR (3 downto 0) := "0001";
 	CONSTANT DIVIDE_BY_ZERO_E				: STD_LOGIC_VECTOR (3 downto 0) := "0100";
-	CONSTANT PROTECTED_MEM_ACCESS_E 		: STD_LOGIC_VECTOR (3 downto 0) := "1011";
+	CONSTANT ITLB_MISS						: STD_LOGIC_VECTOR (3 downto 0) := "0110";
+	CONSTANT DTLB_MISS						: STD_LOGIC_VECTOR (3 downto 0) := "0111";
+	CONSTANT ITLB_INVALID					: STD_LOGIC_VECTOR (3 downto 0) := "1000";
+	CONSTANT DTLB_INVALID					: STD_LOGIC_VECTOR (3 downto 0) := "1001";
+	CONSTANT PROTECTED_MEM_ITLB			: STD_LOGIC_VECTOR (3 downto 0) := "1010";
+	CONSTANT PROTECTED_MEM_DTLB 			: STD_LOGIC_VECTOR (3 downto 0) := "1011";
+	CONSTANT RDONLY_WRITE_DTLB				: STD_LOGIC_VECTOR (3 downto 0) := "1100";
 	CONSTANT SPEC_ILEGAL_INSTR_E			: STD_LOGIC_VECTOR (3 downto 0) := "1101";
 	CONSTANT CALLS_INSTR_E					: STD_LOGIC_VECTOR (3 downto 0) := "1110";
 	CONSTANT INTERRUPT_E						: STD_LOGIC_VECTOR (3 downto 0) := "1111";
@@ -61,9 +72,10 @@ BEGIN
 
 	END PROCESS;
 
-	exception <= ilegal_instr OR unaligned_access_exception OR div_zero OR pm_access_e OR spec_ilegal_instr OR calls_instr OR filter_intr;
+	exception <= itlb_miss OR dtlb_miss OR itlb_invalid OR dtlb_invalid OR ilegal_instr OR unaligned_access_exception OR div_zero OR pm_access_e OR spec_ilegal_instr OR calls_instr OR filter_intr;
 	
-	exception_cause <= ILEGAL_INSTRUCTION_E 	WHEN cause(6) = '1' ELSE
+	exception_cause <= 
+							 ILEGAL_INSTRUCTION_E 	WHEN cause(6) = '1' ELSE
 							 UNALIGNED_ACCESS_E		WHEN cause(5) = '1' ELSE
 							 DIVIDE_BY_ZERO_E		 	WHEN cause(4) = '1' ELSE
 							 PROTECTED_MEM_ACCESS_E WHEN cause(3) = '1' ELSE

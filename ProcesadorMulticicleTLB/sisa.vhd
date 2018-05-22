@@ -33,6 +33,7 @@ ARCHITECTURE Structure OF sisa IS
 
 	component proc IS
     PORT (clk       : IN  STD_LOGIC;
+			 clk_tlb	  : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
 			 exception : IN  STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
@@ -54,7 +55,8 @@ ARCHITECTURE Structure OF sisa IS
 			 mem_exception: IN STD_LOGIC;
 			 calls_instr 			: OUT STD_LOGIC;
 			 spec_ilegal_instr 	: OUT STD_LOGIC;
-			 mode : OUT STD_LOGIC
+			 mode : OUT STD_LOGIC;
+			 prot_access	: OUT STD_LOGIC
 			 );
 	END component;
 
@@ -217,6 +219,7 @@ BEGIN
 	proc0 : proc
 	port map (
 		clk 		=> clk_proc,
+		clk_tlb	=> CLOCK_50, --Perque les lectures es fan dins un process i aixi no va tard el tlb. Sorry Josep
 		boot 		=> gboot,
 		exception => bus_exception,
 		inta		=> bus_inta,

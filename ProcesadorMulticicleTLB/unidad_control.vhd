@@ -116,9 +116,9 @@ ARCHITECTURE Structure OF unidad_control IS
 			rd_sys_gp : OUT STD_LOGIC;
 			inta		 : OUT STD_LOGIC;
 			wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
-			 wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
-			 wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
-			 wrd_dptlb	: OUT STD_LOGIC);	--Same same);
+			wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
+			wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
+			wrd_dptlb	: OUT STD_LOGIC);	--Same same);
 	END COMPONENT;
 	
 	SIGNAL bus_ir			: STD_LOGIC_VECTOR (15 DOWNTO 0);
@@ -222,15 +222,15 @@ BEGIN
 		tknbr			=> bus_tknbr,
 		alu_op		=> op,
 		rd_sys_gp	=> rd_sys_gp,
-		inta			=> inta
+		inta			=> inta,
 		wrd_ivtlb	=> wrd_ivtlb,
 		wrd_iptlb	=> wrd_iptlb,
 		wrd_dvtlb	=> wrd_dvtlb,
-		wrd_dptlb	=> wrd_dptlb
-		wrd_ivtlb_l => bus_wrd_ivtlb;	
-		wrd_iptlb_l	=> bus_wrd_iptlb;
-		wrd_dvtlb_l	=> bus_wrd_dvtlb;	
-		wrd_dptlb_l	=> bus_wrd_dptlb;
+		wrd_dptlb	=> wrd_dptlb,
+		wrd_ivtlb_l => bus_wrd_ivtlb,
+		wrd_iptlb_l	=> bus_wrd_iptlb,
+		wrd_dvtlb_l	=> bus_wrd_dvtlb,
+		wrd_dptlb_l	=> bus_wrd_dptlb
 	);
 	
 	WITH multi_ldir SELECT

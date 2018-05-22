@@ -330,10 +330,10 @@ BEGIN
 	
 	spec_ilegal_instr <= bus_spec_ilegal_instr;
 	
-	wrd_ivtlb <= '1' WHEN (op_code = SPEC AND spec_code = WRVI) ELSE '0' 
-	wrd_iptlb <= '1' WHEN (op_code = SPEC AND spec_code = WRPI) ELSE '0' 
-	wrd_dvtlb <= '1' WHEN (op_code = SPEC AND spec_code = WRVD) ELSE '0' 
-	wrd_dptlb <= '1' WHEN (op_code = SPEC AND spec_code = WRPI) ELSE '0' 
+	wrd_ivtlb <= '1' WHEN (op_code = SPEC AND spec_code = WRVI) ELSE '0';
+	wrd_iptlb <= '1' WHEN (op_code = SPEC AND spec_code = WRPI) ELSE '0';
+	wrd_dvtlb <= '1' WHEN (op_code = SPEC AND spec_code = WRVD) ELSE '0';
+	wrd_dptlb <= '1' WHEN (op_code = SPEC AND spec_code = WRPI) ELSE '0'; 
 	
 	
 END Structure;

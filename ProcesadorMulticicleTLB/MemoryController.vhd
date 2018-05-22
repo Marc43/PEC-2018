@@ -101,10 +101,10 @@ begin
 							  
 							  '0'; 
 	
-	prot_access <= '1' WHEN ((unsigned(addr) >= unsigned(sys_lower_limit) AND unsigned(addr) < unsigned(vga_lower_limit)) OR
-									(unsigned(addr) >  unsigned(vga_upper_limit) AND unsigned(addr) <= unsigned(sys_upper_limit))) AND mode = '0' ELSE
-									
-						'0'; 
+--	prot_access <= '1' WHEN ((unsigned(addr) >= unsigned(sys_lower_limit) AND unsigned(addr) < unsigned(vga_lower_limit)) OR
+--									(unsigned(addr) >  unsigned(vga_upper_limit) AND unsigned(addr) <= unsigned(sys_upper_limit))) AND mode = '0' ELSE
+--									
+--						'0'; 
 									
 	--unaligned_access <= bus_unaligned_access;
 	

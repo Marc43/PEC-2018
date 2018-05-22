@@ -92,7 +92,7 @@ BEGIN
 			STD_LOGIC_VECTOR(signed(x) / signed(y)) WHEN op=EXT_op AND func = DIV_f ELSE
 			STD_LOGIC_VECTOR(unsigned(x) / unsigned(y)) WHEN op=EXT_op AND func = DIVU_f ELSE
 			
-			y(7 downto 0) & x(7 downto 0) WHEN op=BYPASSXY_op;
+			y(7 downto 0) & x(7 downto 0) WHEN op=BYPASSXY_op ELSE
 			x WHEN op = BYPASSX_op ELSE
 			y;
 			
