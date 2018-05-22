@@ -22,6 +22,8 @@ ARCHITECTURE Structure OF alu IS
 	CONSTANT EXT_op			: STD_LOGIC_VECTOR (2 DOWNTO 0) := "011";
 	CONSTANT BYPASSX_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "100";
 	CONSTANT BYPASSY_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "101";
+	CONSTANT BYPASSXY_op		: STD_LOGIC_VECTOR (2 DOWNTO 0) := "110";
+	--Lo ultimo pilla 8 bits de menor peso de cada registro y los empalma para escrituras en el TLB. Los hacks
 	
 	-- Alu function codes
 	
@@ -90,6 +92,7 @@ BEGIN
 			STD_LOGIC_VECTOR(signed(x) / signed(y)) WHEN op=EXT_op AND func = DIV_f ELSE
 			STD_LOGIC_VECTOR(unsigned(x) / unsigned(y)) WHEN op=EXT_op AND func = DIVU_f ELSE
 			
+			y(7 downto 0) & x(7 downto 0) WHEN op=BYPASSXY_op;
 			x WHEN op = BYPASSX_op ELSE
 			y;
 			
