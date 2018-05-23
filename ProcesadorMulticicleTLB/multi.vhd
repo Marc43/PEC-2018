@@ -86,13 +86,13 @@ begin
 	word_byte	<= w_b			when state=DEMW	else '0';
 	ins_dad 		<=	'1'			when state=DEMW 	else '0'; -- This will make SYSTEM to load instructions
 																			 -- overwriting contents in bus_ir 
-	in_d			<= "100"			when state=SYSTEM else 
-						in_d_l;  -- "100" is the value to take pcup and drive it to 'd'
+	in_d			<= "100"			when state=SYSTEM OR state=FETCH else 
+						in_d_l;  -- "100" is the value to take pc and drive it to 'd'
 						
 	tknbr			<= "10"			when state=SYSTEM	else
 						tknbr_l;  -- "10" is the value to write a register value into the PC
 	
-	alu_op		<= "100"			when state=SYSTEM	else 
+	alu_op		<= "100"			when state=SYSTEM else 
 						alu_op_l		when state=DEMW; -- "100" is the alu operation BYPASSX, useful to bypass a value from the regfile
 						
 	rd_sys_gp	<= '1' 			when state=SYSTEM	else

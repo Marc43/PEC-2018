@@ -197,11 +197,7 @@ BEGIN
 			END IF;
 			
 			IF mem_exception = '1' THEN
-					IF exception_cause = ITLB_MISS_E OR exception_cause = DTLB_MISS_E THEN
-						regs_sys(conv_integer(mem_addr)) <= addr_m-2;
-					ELSE
-						regs_sys(conv_integer(mem_addr)) <= addr_m;
-					END IF;
+					regs_sys(conv_integer(mem_addr)) <= addr_m;
 			END IF;
 			
 			IF exception = '1' THEN
@@ -219,7 +215,13 @@ BEGIN
 				-- once the process is finished...
 				
 				regs_sys(conv_integer(PSWold)) 	<= regs_sys(conv_integer(PSWup));
-				regs_sys(conv_integer(PCret))		<= d; -- d must match PCup
+				
+				IF exception_cause = DTLB_MISS_E THEN
+					regs_sys(conv_integer(PCret))		<= d-2; -- direccion 
+					--Cosa cerda.
+				ELSE
+					regs_sys(conv_integer(PCret))		<= d; -- d must match PCup
+				END IF;
 				regs_sys(conv_integer(blackb))	<= X"000" & exception_cause;
 				regs_sys(conv_integer(PSWup))		<= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & '1'; -- Disable interrupts and switch mode to SYS
 			
