@@ -17,7 +17,8 @@ ENTITY exception_controller IS
 		div_zero					: IN STD_LOGIC;
 		exception_cause		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		exception 				: OUT STD_LOGIC;
-		mem_exception 			: OUT STD_LOGIC
+		mem_exception 			: OUT STD_LOGIC;
+		aggresive_exception	: OUT STD_LOGIC
 	);
 END ENTITY;
 
@@ -62,6 +63,8 @@ BEGIN
 	END PROCESS;
 
 	exception <= ilegal_instr OR unaligned_access_exception OR div_zero OR pm_access_e OR spec_ilegal_instr OR calls_instr OR filter_intr;
+	
+	aggresive_exception <= ilegal_instr OR unaligned_access_exception OR div_zero OR pm_access_e OR spec_ilegal_instr OR calls_instr;
 	
 	exception_cause <= ILEGAL_INSTRUCTION_E 	WHEN cause(6) = '1' ELSE
 							 UNALIGNED_ACCESS_E		WHEN cause(5) = '1' ELSE

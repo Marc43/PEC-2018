@@ -35,6 +35,7 @@ ARCHITECTURE Structure OF sisa IS
     PORT (clk       : IN  STD_LOGIC;
           boot      : IN  STD_LOGIC;
 			 exception : IN  STD_LOGIC;
+			 aggresive_exception : IN STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
 			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -54,7 +55,7 @@ ARCHITECTURE Structure OF sisa IS
 			 mem_exception: IN STD_LOGIC;
 			 calls_instr 			: OUT STD_LOGIC;
 			 spec_ilegal_instr 	: OUT STD_LOGIC;
-			 mode : OUT STD_LOGIC
+			 mode 					: OUT STD_LOGIC
 			 );
 	END component;
 
@@ -121,7 +122,8 @@ ARCHITECTURE Structure OF sisa IS
 		div_zero					: IN STD_LOGIC;
 		exception_cause		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		exception 				: OUT STD_LOGIC;
-		mem_exception : OUT STD_LOGIC
+		mem_exception 			: OUT STD_LOGIC;
+		aggresive_exception	: OUT STD_LOGIC
 	);
 	END COMPONENT; 
 	
@@ -199,9 +201,10 @@ ARCHITECTURE Structure OF sisa IS
 	signal bus_calls_instr 				: std_logic;
 	signal bus_spec_ilegal_instr 		: std_logic;
 	
-	signal bus_mode : std_logic;
-	signal bus_prot_access : std_logic;
-	signal bus_mem_exception : std_logic;
+	signal bus_mode 						: std_logic;
+	signal bus_prot_access 				: std_logic;
+	signal bus_mem_exception 			: std_logic;
+	signal bus_aggresive_exception 	: std_logic;
 
 BEGIN
 
@@ -221,6 +224,7 @@ BEGIN
 		exception => bus_exception,
 		inta		=> bus_inta,
 		exception_cause => bus_exception_cause,
+		aggresive_exception => bus_aggresive_exception,
 		datard_m	=> bus_data_rd,
 		addr_m	=> bus_addr,
 		data_wr	=> bus_data_wr,
@@ -303,7 +307,8 @@ BEGIN
 		div_zero				=> bus_div_zero,
 		exception_cause	=> bus_exception_cause,
 		exception 			=> bus_exception,
-		mem_exception		=> bus_mem_exception
+		mem_exception		=> bus_mem_exception,
+		aggresive_exception => bus_aggresive_exception
 		);
 
 	vga_controller0 : vga_controller

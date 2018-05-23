@@ -169,12 +169,10 @@ BEGIN
 			IF wrd = '1' THEN
 				IF e_int = '1' THEN
 					-- EI
---					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '1' & regs_sys(conv_integer(PSWup))(0); -- Bit that indicates enabled/disabled interruptions
-					regs_sys(conv_integer(PSWold)) <= regs_sys(conv_integer(PSWold))(15 DOWNTO 2) & '1' & regs_sys(conv_integer(PSWold))(0); -- Bit that indicates enabled/disabled interruptions
+					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '1' & regs_sys(conv_integer(PSWup))(0); -- Bit that indicates enabled/disabled interruptions
 				ELSIF d_int = '1' THEN
 					-- DI
---					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWup))(0);
-					regs_sys(conv_integer(PSWold)) <= regs_sys(conv_integer(PSWold))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWold))(0);
+					regs_sys(conv_integer(PSWup)) <= regs_sys(conv_integer(PSWup))(15 DOWNTO 2) & '0' & regs_sys(conv_integer(PSWup))(0);
 				ELSE
 					-- WRS
 					regs_sys(conv_integer(addr_d)) <= d;

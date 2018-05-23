@@ -10,6 +10,7 @@ ENTITY unidad_control IS
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
 			 mode		  : IN STD_LOGIC; -- System or User 
+			 aggresive_exception : IN STD_LOGIC;
 			 exception_l	  : IN  STD_LOGIC; -- This one is provided by the controller
 			 exception_d	  : OUT STD_LOGIC; -- This one really indicates when an interrupt must be performed 
 			 inta		  : OUT STD_LOGIC;
@@ -81,6 +82,7 @@ ARCHITECTURE Structure OF unidad_control IS
     port(clk       : IN  STD_LOGIC;
          boot      : IN  STD_LOGIC;
 			mode		 : IN	 STD_LOGIC;
+			aggresive_exception : IN STD_LOGIC;
          in_d_l    : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			tknbr_l   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			alu_op_l	 : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -193,6 +195,7 @@ BEGIN
 		clk			=>	clk,
 		boot			=> boot,
 		mode			=> mode,
+		aggresive_exception => aggresive_exception,
 		in_d_l		=> bus_in_d_l,
 		tknbr_l		=> bus_tknbr_l,
 		alu_op_l		=> bus_alu_op,
