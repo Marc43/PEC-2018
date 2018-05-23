@@ -177,8 +177,10 @@ BEGIN
 	
 	ilegal_instr <= '1' WHEN (op_code = UNIMPLEMENTED_OP_1 OR op_code = UNIMPLEMENTED_OP_2 OR op_code = UNIMPLEMENTED_OP_3) OR
 	
-									  (op_code = SPEC AND (spec_code /=  EI AND spec_code /= DI AND spec_code /= GETIID AND 
-																  spec_code /= RDS AND spec_code /= WRS AND spec_code /= RETI)) OR
+									  (op_code = SPEC AND mode = SYSTEM_MODE AND (spec_code /=  EI AND spec_code /= DI AND spec_code /= GETIID AND 
+																								 spec_code /= RDS AND spec_code /= WRS AND spec_code /= RETI AND 
+																								 spec_code /= WRPI AND spec_code /= WRVI AND spec_code /= WRVD AND
+																								 spec_code /= WRPD AND spec_code /= FLUSH)) OR
 									  
 									 (bus_calls_instr = '1' AND mode = SYSTEM_MODE) ELSE
 						 
@@ -328,8 +330,9 @@ BEGIN
 						    '0';
 							 
 	bus_spec_ilegal_instr <= '1' WHEN ((op_code = SPEC AND mode = USER_MODE) AND 
-													(spec_code = EI  OR spec_code = DI  OR spec_code = GETIID OR
-													 spec_code = RDS OR spec_code = WRS OR spec_code = RETI)) ELSE
+													(spec_code = EI  OR spec_code = DI    OR spec_code = GETIID OR
+													 spec_code = RDS OR spec_code = WRS   OR spec_code = RETI   OR spec_code = WRPI OR 
+													 spec_code = WRVI OR spec_code = WRVD OR spec_code = WRPD OR spec_code = FLUSH)) ELSE
 	
 									 '0';
 							 

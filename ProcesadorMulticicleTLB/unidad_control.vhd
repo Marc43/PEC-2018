@@ -310,4 +310,6 @@ BEGIN
 	wr_m <= bus_wr_m_out;
 	in_d <= bus_in_d;
 	
+	calls_instr <= bus_calls_instr;
+	
 END Structure;

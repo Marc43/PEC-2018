@@ -119,6 +119,7 @@ ARCHITECTURE Structure OF sisa IS
 	COMPONENT exception_controller IS
 	PORT (
 		clk : IN STD_LOGIC;
+		boot : IN STD_LOGIC;
 		calls_instr 			: IN STD_LOGIC;
 		spec_ilegal_instr 	: IN STD_LOGIC;
 		intr_enabled 			: IN STD_LOGIC;
@@ -328,6 +329,7 @@ BEGIN
 	exception_controller0 : exception_controller 
 	port map (
 		clk => clk_proc,
+		boot => gboot,
 		calls_instr 		=> bus_calls_instr,
 		spec_ilegal_instr => bus_spec_ilegal_instr,
 		intr_enabled 		=> bus_intr_enabled,

@@ -6,6 +6,7 @@ USE ieee.std_logic_unsigned.all;
 ENTITY exception_controller IS
 	PORT (
 		clk : IN STD_LOGIC;
+		boot : IN STD_LOGIC;
 		calls_instr 			: IN STD_LOGIC;
 		spec_ilegal_instr 	: IN STD_LOGIC;
 		intr_enabled 			: IN STD_LOGIC;
@@ -61,7 +62,7 @@ ARCHITECTURE Structure OF exception_controller IS
 
 	SIGNAl dtlb_read_only_write_exception : STD_LOGIC := '0';
 	
-	SIGNAL dummy_to_zero : STD_LOGIC := '0';
+	--SIGNAL dummy_to_zero : STD_LOGIC := '0';
 
 	SIGNAL cause : STD_LOGIC_VECTOR (14 downto 0);
 
@@ -73,7 +74,7 @@ BEGIN
 	BEGIN
 	
 		IF rising_edge(clk) THEN -- This is needed to be available on saving the cause at the SYSTEM cycle...
-			cause <= ilegal_instr & unaligned_access_exception & dummy_to_zero & dummy_to_zero &
+			cause <= ilegal_instr & unaligned_access_exception & '0' & '0' &
 						div_zero & itlb_miss_exception & dtlb_miss_exception & itlb_invalid_exception &
 						dtlb_invalid_exception &
 						pm_access_itlb & pm_access_dtlb & dtlb_read_only_write_exception &
@@ -99,10 +100,11 @@ BEGIN
 				-- 0: filter intr
 
 	END PROCESS;
+	
 
-	exception <= ilegal_instr OR unaligned_access_exception OR dummy_to_zero OR dummy_to_zero OR div_zero OR itlb_miss_exception OR dtlb_miss_exception OR itlb_invalid_exception OR dtlb_invalid_exception OR pm_access_itlb OR pm_access_dtlb OR dtlb_read_only_write_exception OR spec_ilegal_instr OR calls_instr OR filter_intr;
-						
-	aggresive_exception <= ilegal_instr OR unaligned_access_exception OR dummy_to_zero OR dummy_to_zero OR div_zero OR itlb_miss_exception OR dtlb_miss_exception OR itlb_invalid_exception OR dtlb_invalid_exception OR pm_access_itlb OR pm_access_dtlb OR dtlb_read_only_write_exception OR spec_ilegal_instr OR calls_instr;
+	exception <= NOT boot AND (ilegal_instr OR unaligned_access_exception OR div_zero OR itlb_miss_exception OR dtlb_miss_exception OR itlb_invalid_exception OR dtlb_invalid_exception OR pm_access_itlb OR pm_access_dtlb OR dtlb_read_only_write_exception OR spec_ilegal_instr OR calls_instr OR filter_intr);
+	
+	aggresive_exception <= NOT boot AND (ilegal_instr OR unaligned_access_exception OR div_zero OR itlb_miss_exception OR dtlb_miss_exception OR itlb_invalid_exception OR dtlb_invalid_exception OR pm_access_itlb OR pm_access_dtlb OR dtlb_read_only_write_exception OR spec_ilegal_instr OR calls_instr);
 	
 	exception_cause <= ILEGAL_INSTRUCTION_E 	WHEN cause(14) = '1' ELSE
 							 UNALIGNED_ACCESS_E		WHEN cause(13) = '1' ELSE

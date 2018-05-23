@@ -43,11 +43,18 @@ ARCHITECTURE Structure of TLB IS
 		begin
 			IF boot='1' THEN
 				--Inicialitzar entrades TLB
-				vtags(0) <= X"C";
-				ptags(0) <= "11"& X"C";
+--				vtags(7) <= X"C";
+--				ptags(7) <= "11"& X"C";
 				
-				vtags(1) <= X"8";
-				ptags(1) <= "10"&X"8";
+				FOR i in 0 to TLB_SIZE-1 loop
+					vtags(i) <= X"C";
+					ptags(i) <= "11" & X"C";
+				END LOOP;
+				
+				
+				
+--				vtags(6) <= X"8";
+--				ptags(6) <= "10"&X"8";
 				
 			ELSIF rising_edge(clk) THEN
 				IF flush='1' THEN
@@ -67,13 +74,11 @@ ARCHITECTURE Structure of TLB IS
 					ptag_rd <= (others=>'0');
 					hit <= '0';
 					FOR i in 0 to TLB_SIZE-1 loop
-						IF vtags(i) = vtag THEN
+						IF vtags(TLB_SIZE- 1 -i) = vtag THEN
 							hit <= '1';
-							ptag_rd <= ptags(i)(3 DOWNTO 0);
-							read_only_rd <= ptags(i)(4);
-							valid_rd <= ptags(i)(5);
-							exit;
-							--No he tret l'aigua clara de si l'exit es sintetitzable
+							ptag_rd <= ptags(TLB_SIZE- 1 - i)(3 DOWNTO 0);
+							read_only_rd <= ptags(TLB_SIZE- 1 - i)(4);
+							valid_rd <= ptags(TLB_SIZE- 1 - i)(5);
 						END IF;
 					END LOOP;
 				END IF;
