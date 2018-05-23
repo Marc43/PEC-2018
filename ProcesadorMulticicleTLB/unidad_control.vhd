@@ -9,7 +9,8 @@ ENTITY unidad_control IS
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
-			 mode		  : IN STD_LOGIC; -- System or User 
+			 mode		  : IN STD_LOGIC; -- System or User
+			 aggresive_exception	: IN STD_LOGIC; 
 			 exception_l	  : IN  STD_LOGIC; -- This one is provided by the controller
 			 exception_d	  : OUT STD_LOGIC; -- This one really indicates when an interrupt must be performed 
 			 inta		  : OUT STD_LOGIC;
@@ -78,6 +79,7 @@ ARCHITECTURE Structure OF unidad_control IS
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
 			 spec_ilegal_instr : OUT STD_LOGIC;
+			 mem_instr	: OUT STD_LOGIC;
 			 wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
 			 wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
 			 wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
@@ -88,6 +90,12 @@ ARCHITECTURE Structure OF unidad_control IS
 	COMPONENT multi IS
     port(clk       : IN  STD_LOGIC;
          boot      : IN  STD_LOGIC;
+			mode		 : IN  STD_LOGIC;
+			aggresive_exception : IN STD_LOGIC;
+			calls_instr	: IN STD_LOGIC;
+			e_int_l	 : IN STD_LOGIC;
+			d_int_l	 : IN STD_LOGIC;
+			ret_int_l : IN STD_LOGIC;
          in_d_l    : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			tknbr_l   : IN  STD_LOGIC_VECTOR (1 DOWNTO 0);
 			alu_op_l	 : IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -102,7 +110,11 @@ ARCHITECTURE Structure OF unidad_control IS
          wr_m_l    : IN  STD_LOGIC;
          w_b       : IN  STD_LOGIC;
 			exception_l	 : IN  STD_LOGIC;
-			inta_l	 : IN  STD_LOGIC;
+			inta_l		 : IN  STD_LOGIC;
+			mem_instr_l	 : IN STD_LOGIC;
+			e_int 		 : OUT STD_LOGIC;
+			d_int			 : OUT STD_LOGIC;
+			ret_int		 : OUT STD_LOGIC;
 			exception		 : OUT STD_LOGIC;
          ldpc      : OUT STD_LOGIC;
          wrd_gp    : OUT STD_LOGIC;
@@ -116,6 +128,7 @@ ARCHITECTURE Structure OF unidad_control IS
 			alu_op	 : OUT  STD_LOGIC_VECTOR (2 DOWNTO 0);
 			rd_sys_gp : OUT STD_LOGIC;
 			inta		 : OUT STD_LOGIC;
+			mem_instr : OUT STD_LOGIC;
 			wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
 			wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
 			wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
@@ -153,12 +166,17 @@ ARCHITECTURE Structure OF unidad_control IS
 	SIGNAL bus_in_d				: STD_LOGIC_VECTOR (2 downto 0);
 	SIGNAL bus_wr_m_out			: STD_LOGIC;
 	
-	--SIGNAL bus_calls_instr : STD_LOGIC;
-	
 	SIGNAL bus_wrd_ivtlb	: STD_LOGIC;
 	SIGNAL bus_wrd_iptlb	: STD_LOGIC;
 	SIGNAL bus_wrd_dvtlb	: STD_LOGIC;
 	SIGNAL bus_wrd_dptlb	: STD_LOGIC;
+	
+	SIGNAL bus_mem_instr : STD_LOGIC;
+	
+	SIGNAL bus_e_int : STD_LOGIC;
+	SIGNAL bus_d_int : STD_LOGIC;
+	SIGNAL bus_ret_int : STD_LOGIC;
+	SIGNAL bus_calls_instr : STD_LOGIC;
 
 BEGIN
 
@@ -185,12 +203,13 @@ BEGIN
 		word_byte 	=> bus_word_byte,
 		wr_port		=> wr_port,
 		rd_port		=> rd_port,
-		e_int			=> e_int,
-		d_int			=> d_int,
-		ret_int		=> ret_int,
+		e_int			=> bus_e_int,
+		d_int			=> bus_d_int,
+		ret_int		=> bus_ret_int,
 		inta			=> bus_inta_l,
+		mem_instr	=> bus_mem_instr,
 		ilegal_instr => ilegal_instr,
-		calls_instr => calls_instr,
+		calls_instr => bus_calls_instr,
 		spec_ilegal_instr => spec_ilegal_instr,
 		wrd_ivtlb	=> bus_wrd_ivtlb,
 		wrd_iptlb	=> bus_wrd_iptlb,
@@ -202,6 +221,12 @@ BEGIN
 	PORT MAP (
 		clk			=>	clk,
 		boot			=> boot,
+		mode			=> mode,
+		aggresive_exception => aggresive_exception,
+		calls_instr => bus_calls_instr,
+		e_int_l		=> bus_e_int,
+		d_int_l		=> bus_d_int,
+		ret_int_l	=> bus_ret_int,
 		in_d_l		=> bus_in_d_l,
 		tknbr_l		=> bus_tknbr_l,
 		alu_op_l		=> bus_alu_op,
@@ -209,6 +234,7 @@ BEGIN
 		exception_l => exception_l,
 		exception	=> exception_d,
 		inta_l		=> bus_inta_l,
+		mem_instr_l => bus_mem_instr,
 		ldpc_l		=> bus_ldpc,
 		wrd_gp_l		=>	bus_wrd_gp,
 		wrd_sys_l	=> bus_wrd_sys,
@@ -226,6 +252,10 @@ BEGIN
 		alu_op		=> op,
 		rd_sys_gp	=> rd_sys_gp,
 		inta			=> inta,
+		mem_instr	=> mem_instr,
+		e_int			=> e_int,
+		d_int			=> d_int,
+		ret_int		=> ret_int,
 		wrd_ivtlb	=> wrd_ivtlb,
 		wrd_iptlb	=> wrd_iptlb,
 		wrd_dvtlb	=> wrd_dvtlb,
@@ -277,13 +307,7 @@ BEGIN
 	immed 			<= bus_immed;
 	bus_immed_des	<= STD_LOGIC_VECTOR(shift_left(unsigned(bus_immed), 1));
 	
-	mem_instr <= '1' WHEN bus_wr_m_out = '1' OR bus_in_d = "001" ELSE 
-	
-					 '0';
-	
 	wr_m <= bus_wr_m_out;
 	in_d <= bus_in_d;
-	
-	--calls_instr <= bus_calls_instr;
 	
 END Structure;

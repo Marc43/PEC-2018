@@ -31,6 +31,7 @@ ENTITY control_l IS
 			 ilegal_instr : OUT STD_LOGIC;
 			 calls_instr : OUT STD_LOGIC;
 			 spec_ilegal_instr : OUT STD_LOGIC;
+			 mem_instr	: OUT STD_LOGIC;
 			 wrd_ivtlb	: OUT STD_LOGIC;	--Permis escritura tags virtruals TLB instruccions
 			 wrd_iptlb	: OUT STD_LOGIC;	--Permis escritura tags fisics TLB instruccions
 			 wrd_dvtlb	: OUT STD_LOGIC;	--Same amb dades
@@ -175,8 +176,11 @@ BEGIN
 					reg_d;
 	
 	ilegal_instr <= '1' WHEN (op_code = UNIMPLEMENTED_OP_1 OR op_code = UNIMPLEMENTED_OP_2 OR op_code = UNIMPLEMENTED_OP_3) OR
+	
+									  (op_code = SPEC AND (spec_code /=  EI AND spec_code /= DI AND spec_code /= GETIID AND 
+																  spec_code /= RDS AND spec_code /= WRS AND spec_code /= RETI)) OR
 									  
-									 (bus_calls_instr = '1' AND mode = '1') ELSE
+									 (bus_calls_instr = '1' AND mode = SYSTEM_MODE) ELSE
 						 
 						 '0'; -- ilegal instr is also '1' when calls is executed and mode system is enabled
 	
@@ -229,7 +233,8 @@ BEGIN
 									ir(8) = '1'		ELSE
 				f_code;
 				
-	ldpc	<=	'0' 	WHEN op_code = SPEC AND spec_code = HALT ELSE
+	ldpc	<=	'0' 	WHEN (op_code = SPEC AND spec_code = HALT) OR 
+							  (bus_calls_instr = '1' AND mode = SYSTEM_MODE) ELSE
 	
 				'1';
 	
@@ -322,13 +327,17 @@ BEGIN
 	
 						    '0';
 							 
-	bus_spec_ilegal_instr <= '1' WHEN (op_code = SPEC AND spec_code /= HALT) AND mode = USER_MODE ELSE
+	bus_spec_ilegal_instr <= '1' WHEN ((op_code = SPEC AND mode = USER_MODE) AND 
+													(spec_code = EI  OR spec_code = DI  OR spec_code = GETIID OR
+													 spec_code = RDS OR spec_code = WRS OR spec_code = RETI)) ELSE
 	
-									 '0'; -- It's possible to obtain ilegal instruction and spec ilegal instruction exception in some cases...
+									 '0';
 							 
 	calls_instr <= bus_calls_instr;
 	
 	spec_ilegal_instr <= bus_spec_ilegal_instr;
+	
+	mem_instr <= '1' WHEN op_code = ST OR op_code = STB OR op_code = LD OR op_code = LDB ELSE '0';
 	
 	wrd_ivtlb <= '1' WHEN (op_code = SPEC AND spec_code = WRVI) ELSE '0';
 	wrd_iptlb <= '1' WHEN (op_code = SPEC AND spec_code = WRPI) ELSE '0';

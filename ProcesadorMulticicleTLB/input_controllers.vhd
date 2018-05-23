@@ -72,9 +72,6 @@ ARCHITECTURE Structure of input_controllers IS
 	);
 	END COMPONENT;
 	
---	signal read_char_bus : STD_LOGIC_VECTOR (7 downto 0);
---	signal data_ready_bus : STD_LOGIC := '0' ;
-	
 BEGIN
 
 	keyboard_controller_intr0 : keyboard_controller_intr
@@ -169,15 +166,6 @@ BEGIN
 				else
 					bus_intr <= '0';
 				end if;
-			
---				if keys /= last_keys then
---					bus_intr <= '1';
---				end if;
---				if (inta = '1') then
---					bus_intr <= '0';
---				end if;
---				
---				last_keys <= keys;
 
 			END IF;
 		end if;
@@ -234,14 +222,6 @@ BEGIN
 					bus_intr <= '0';
 				end if;
 				
---				if switches /= last_sw then
---					bus_intr <= '1';
---				end if;
---				if (inta = '1') then
---					bus_intr <= '0';
---				end if;
---				-- Mal mal	
---				last_sw <= switches;
 			END IF;
 		end if;
 	END PROCESS;

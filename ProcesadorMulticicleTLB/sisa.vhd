@@ -33,10 +33,11 @@ ARCHITECTURE Structure OF sisa IS
 
 	component proc IS
     PORT (
-			clk       : IN  STD_LOGIC;
+			 clk       : IN  STD_LOGIC;
 			 clk_tlb	  : IN STD_LOGIC;
           boot      : IN  STD_LOGIC;
 			 exception : IN  STD_LOGIC;
+			 aggresive_exception	: IN STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
 			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -137,7 +138,8 @@ ARCHITECTURE Structure OF sisa IS
 		
 		exception_cause		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		exception 				: OUT STD_LOGIC;
-		mem_exception 			: OUT STD_LOGIC
+		mem_exception 			: OUT STD_LOGIC;
+		aggresive_exception	: OUT STD_LOGIC
 	);
 	END COMPONENT; 
 	
@@ -226,6 +228,8 @@ ARCHITECTURE Structure OF sisa IS
 	signal bus_dtlb_valid : std_logic;
 	
 	signal bus_dtlb_read_only_write: std_logic;
+	
+	signal bus_aggresive_exception : std_logic;
 
 BEGIN
 
@@ -244,6 +248,7 @@ BEGIN
 		clk_tlb	=> CLOCK_50, --Perque les lectures es fan dins un process i aixi no va tard el tlb. Sorry Josep
 		boot 		=> gboot,
 		exception => bus_exception,
+		aggresive_exception => bus_aggresive_exception,
 		inta		=> bus_inta,
 		exception_cause => bus_exception_cause,
 		datard_m	=> bus_data_rd,
@@ -335,6 +340,7 @@ BEGIN
 		exception_cause	=> bus_exception_cause,
 		exception 			=> bus_exception,
 		mem_exception		=> bus_mem_exception,
+		aggresive_exception => bus_aggresive_exception,
 		fetch					=> bus_fetch,
 		itlb_hit				=> bus_itlb_hit,
 		dtlb_hit 			=> bus_dtlb_hit,

@@ -25,7 +25,8 @@ ENTITY exception_controller IS
 		
 		exception_cause		: OUT STD_LOGIC_VECTOR (3 downto 0);
 		exception 				: OUT STD_LOGIC;
-		mem_exception 			: OUT STD_LOGIC
+		mem_exception 			: OUT STD_LOGIC;
+		aggresive_exception	: OUT STD_LOGIC
 	);
 END ENTITY;
 
@@ -59,6 +60,8 @@ ARCHITECTURE Structure OF exception_controller IS
 	SIGNAl dtlb_invalid_exception : STD_LOGIC := '0'; 
 
 	SIGNAl dtlb_read_only_write_exception : STD_LOGIC := '0';
+	
+	SIGNAL dummy_to_zero : STD_LOGIC := '0';
 
 	SIGNAL cause : STD_LOGIC_VECTOR (14 downto 0);
 
@@ -70,7 +73,7 @@ BEGIN
 	BEGIN
 	
 		IF rising_edge(clk) THEN -- This is needed to be available on saving the cause at the SYSTEM cycle...
-			cause <= ilegal_instr & unaligned_access_exception & '0' & '0' &
+			cause <= ilegal_instr & unaligned_access_exception & dummy_to_zero & dummy_to_zero &
 						div_zero & itlb_miss_exception & dtlb_miss_exception & itlb_invalid_exception &
 						dtlb_invalid_exception &
 						pm_access_itlb & pm_access_dtlb & dtlb_read_only_write_exception &
@@ -94,18 +97,14 @@ BEGIN
 				-- 2: spec_ilegal_instr
 				-- 1: calls_instr
 				-- 0: filter intr
-				--
 
 	END PROCESS;
 
-	exception <=	ilegal_instr OR unaligned_access_exception OR '0' OR '0' OR 
-						div_zero OR itlb_miss_exception OR dtlb_miss_exception OR itlb_invalid_exception OR 
-						dtlb_invalid_exception OR
-						pm_access_itlb OR pm_access_dtlb OR dtlb_read_only_write_exception OR
-						spec_ilegal_instr OR calls_instr OR filter_intr;
+	exception <= ilegal_instr OR unaligned_access_exception OR dummy_to_zero OR dummy_to_zero OR div_zero OR itlb_miss_exception OR dtlb_miss_exception OR itlb_invalid_exception OR dtlb_invalid_exception OR pm_access_itlb OR pm_access_dtlb OR dtlb_read_only_write_exception OR spec_ilegal_instr OR calls_instr OR filter_intr;
+						
+	aggresive_exception <= ilegal_instr OR unaligned_access_exception OR dummy_to_zero OR dummy_to_zero OR div_zero OR itlb_miss_exception OR dtlb_miss_exception OR itlb_invalid_exception OR dtlb_invalid_exception OR pm_access_itlb OR pm_access_dtlb OR dtlb_read_only_write_exception OR spec_ilegal_instr OR calls_instr;
 	
-	exception_cause <= 
-							 ILEGAL_INSTRUCTION_E 	WHEN cause(14) = '1' ELSE
+	exception_cause <= ILEGAL_INSTRUCTION_E 	WHEN cause(14) = '1' ELSE
 							 UNALIGNED_ACCESS_E		WHEN cause(13) = '1' ELSE
 							 DIVIDE_BY_ZERO_E		 	WHEN cause(10) = '1' ELSE
 							 ITLB_MISS_E				WHEN cause(9) = '1' ELSE

@@ -8,6 +8,7 @@ ENTITY proc IS
 			 clk_tlb	  : IN STD_LOGIC;
           boot      : IN  STD_LOGIC;
 			 exception : IN  STD_LOGIC;
+			 aggresive_exception	: IN STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
 			 exception_cause : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -46,7 +47,8 @@ COMPONENT unidad_control IS
           datard_m  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 aluout	  : IN  STD_LOGIC_VECTOR(15 DOWNTO 0);
 			 eval		  : IN  STD_LOGIC;
-			 mode		  : IN STD_LOGIC; -- System or User 
+			 mode		  : IN STD_LOGIC; -- System or User
+			 aggresive_exception	: IN STD_LOGIC; 
 			 exception_l : IN  STD_LOGIC;
 			 exception_d : OUT STD_LOGIC;
 			 inta		  : OUT STD_LOGIC;
@@ -205,6 +207,7 @@ BEGIN
 		aluout	=> bus_aluout,
 		eval		=> bus_eval,
 		mode		=> bus_mode,
+		aggresive_exception => aggresive_exception,
 		exception_l	=> exception,
 		exception_d		=> bus_exception,
 		inta		=> inta,
