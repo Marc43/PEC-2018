@@ -237,7 +237,8 @@ BEGIN
 		wrd_ivtlb => bus_wrd_ivtlb,
 		wrd_iptlb => bus_wrd_iptlb,
 		wrd_dvtlb => bus_wrd_dvtlb,
-		wrd_dptlb => bus_wrd_dptlb
+		wrd_dptlb => bus_wrd_dptlb,
+		fetch		 => fetch
 	);
 	
 	datapath0 : datapath

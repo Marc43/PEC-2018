@@ -135,6 +135,6 @@ BEGIN
 	
 	dtlb_read_only_write_exception <= read_only_write WHEN mem_instr = '1' ELSE '0';
 	
-	mem_exception <= unaligned_access_exception OR itlb_miss_exception or dtlb_miss_exception;
+	mem_exception <= unaligned_access_exception OR itlb_miss_exception OR dtlb_miss_exception;
 	
 END Structure;
